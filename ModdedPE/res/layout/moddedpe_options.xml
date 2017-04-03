@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ImageView
+		android:scaleType="fitXY"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:src="@drawable/mcd_header_bg"
+		android:id="@+id/moddedpeOptionsHeaderBackground"/>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:orientation="vertical">
+
+		<RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="50dp"
+			android:orientation="horizontal">
+
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:layout_centerInParent="true"
+				android:textColor="#DEDEDE"
+				android:id="@+id/moddedpeOptionsTitleTextView"/>
+
+			<com.mcal.MCDesign.widget.MCDBurgerButtonClose
+				android:layout_height="30dp"
+				android:layout_width="30dp"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:onClick="onCloseClicked"/>
+
+		</RelativeLayout>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<ImageView
+				android:scaleType="fitXY"
+				android:layout_height="match_parent"
+				android:layout_width="match_parent"
+				android:src="@drawable/mcd_bg"
+				android:id="@+id/moddedpeOptionsBackground"/>
+
+			<ScrollView
+				android:layout_height="match_parent"
+				android:layout_width="match_parent">
+
+				<LinearLayout
+					android:layout_height="match_parent"
+					android:orientation="vertical"
+					android:layout_width="match_parent">
+
+					<RelativeLayout
+						android:layout_height="50dp"
+						android:layout_width="match_parent">
+
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="wrap_content"
+							android:text="@string/safetyMode"
+							android:layout_centerVertical="true"
+							android:layout_marginLeft="20dp"/>
+
+						<com.mcal.MCDesign.widget.MCDSwitch
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"
+							android:layout_marginRight="20dp"
+							android:id="@+id/moddedpeoptionsMCDSwitchSafetyMode"/>
+
+					</RelativeLayout>
+
+					<RelativeLayout
+						android:layout_height="50dp"
+						android:layout_width="match_parent">
+
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="wrap_content"
+							android:text="@string/redstoneDot"
+							android:layout_centerVertical="true"
+							android:layout_marginLeft="20dp"/>
+
+						<com.mcal.MCDesign.widget.MCDSwitch
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"
+							android:layout_marginRight="20dp"
+							android:id="@+id/moddedpeoptionsMCDSwitchRedstoneDot"/>
+
+					</RelativeLayout>
+
+					<RelativeLayout
+						android:layout_height="50dp"
+						android:layout_width="match_parent">
+
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="wrap_content"
+							android:text="@string/toggleDebugText"
+							android:layout_centerVertical="true"
+							android:layout_marginLeft="20dp"/>
+
+						<com.mcal.MCDesign.widget.MCDSwitch
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"
+							android:layout_marginRight="20dp"
+							android:id="@+id/moddedpeoptionsMCDSwitchToggleDebugText"/>
+
+					</RelativeLayout>
+
+				</LinearLayout>
+
+			</ScrollView>
+
+		</RelativeLayout>
+
+	</LinearLayout>
+
+</RelativeLayout>
+

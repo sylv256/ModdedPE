@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">ModdedPE</string>
+	<string name="menu">菜单</string>
+	<string name="customFlatWorldLayers">自定义平坦世界</string>
+	<string name="toggleDebugText">切换测试版水印</string>
+	<string name="loadFailed">加载失败！</string>
+	<string name="redstoneDot">点状红石</string>
+	<string name="safetyMode">安全模式</string>
+	<string name="error_title">:( 有一些东西坏了</string>
+	<string name="load_fail_msg">错误报告:</string>
+	<string name="load_fail_description">NModPE加载失败，但是游戏仍然可以正常运行。</string>
+	<string name="error_text">这可能是因为一个不支持的MCPE版本或者代码错误引起的。请把错误报告发送给开发者来修复它。</string> 
+	<string name="is_send_crash_message">是否发送崩溃报告至服务器？</string>
+	<string name="nmodpe_load_failed">加载NModPE失败</string>
+	<string name="loading">加载中...</string>
+	<string name="manage_nmodpe_title">管理NModPE</string>
+	<string name="settings">设置</string>
+	<string name="error">错误</string>
+	<string name="loading_blocks_message">一个方块，两个方块，三个方块……</string>
+	<string name="welcome_title">欢迎</string>
+	<string name="welcome_text">欢迎来到ModdedPE。玩得开心！</string>
+	<string name="play">开始</string>
+	<string name="cancel">取消</string>
+	<string name="nomcpe_error">我们在您的设备上没有发现mojang的MinecraftPE。</string>
+	<string name="download_mcpe_descripion">请前往GooglePlay购买或下载mojang的MinecraftPE。</string>
+	<string name="exit">退出</string>
+	<string name="restart_app">重启</string>
+	<string name="jump">跳过</string>
+	<string name="noavmcpe_subtitle">安装在您设备上的MCPE与ModdedPE不匹配。</string>
+	<string name="noavmcpe_description">你可以跳过以开启游戏，但是游戏可能会崩溃或者报错。\n请下载</string>
+</resources>
