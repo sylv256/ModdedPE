@@ -4,6 +4,7 @@ import android.content.res.*;
 import android.os.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
+import com.mcal.ModdedPE.utils.*;
 
 public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
@@ -38,8 +39,7 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 
 	protected void initAssetOverrides()
 	{
-		AssetOverrideManager.instance.init();
-		AssetOverrideManager.instance.addAssetOverride(mcPackageContext.getAssets(),mcPackageContext.getPackageResourcePath());
+		AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
 	}
 
 	private String getNativeLibDirectory()
@@ -69,7 +69,7 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.instance.getLocalAssetManager();
+		AssetManager mgr=AssetOverrideManager.getInstance().getLocalAssetManager();
 		if(mgr!=null)
 			return mgr;
 		return super.getAssets();

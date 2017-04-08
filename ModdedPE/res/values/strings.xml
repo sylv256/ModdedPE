@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_version">0.1</string>
-	<string name="targetMCPE">1.1.0.0</string>
+	<string name="targetMCPE">1.1.0.1</string>
 	<string name="menu">Menu</string>
 	<string name="loadFailed">Load Failed!</string>
 	<string name="customFlatWorldLayers">Custom Flat World Layers</string>
-	<string name="toggleDebugText">Toggle Debug Text</string>
+	<string name="hideDebugText">Hide Debug Text</string>
 	<string name="redstoneDot">Restone Dot</string>
 	<string name="load_fail_msg">Load Error:</string>
+	<string name="autoSaveLevel">Auto Save Level</string>
 	<string name="load_fail_description">NModPE load failed,but the game can still run properly.</string>
+	<string name="leftHandEverything">Hand Everything in Left Hand</string>
 	<string name="safetyMode">Safety Mode</string>
 	<string name="nmodpe_load_failed">Failed to load NModPE</string>
 	<string name="manage_nmodpe_title">Manage NModPEs</string>
@@ -320,8 +322,8 @@
     <string name="app_name">Industrial Craft:Pocket-Edition</string>
     <string name="app_name_demo">Industrial Craft:Pocket-Edition Demo</string>
     <string name="xperiaplayoptimized_content">true</string>
-    <string name="app_name_short">ICPE</string>
-    <string name="app_name_short_demo">ICPE Demo</string>
+    <string name="app_name_short">ModdedPE</string>
+    <string name="app_name_short_demo">ModdedPE Demo</string>
     <string name="facebook_app_id">221094574568058</string>
     <string name="hockeyapp_android_id">3db796c2fc084bbc907764b7deb378c5</string>
 </resources>

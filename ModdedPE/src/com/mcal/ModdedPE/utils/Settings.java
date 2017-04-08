@@ -29,6 +29,30 @@ public class Settings
 		editor.commit();
 	}
 
+	public boolean getAutoSaveLevel()
+	{
+		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("autoSaveLevel",false);
+	}
+	
+	public void setSelectAllInLeft(boolean z)
+	{
+		SharedPreferences.Editor editor=context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).edit();
+		editor.putBoolean("selectAllInLeft",z);
+		editor.commit();
+	}
+
+	public boolean getSelectAllInLeft()
+	{
+		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("selectAllInLeft",false);
+	}
+
+	public void setAutoSaveLevel(boolean z)
+	{
+		SharedPreferences.Editor editor=context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).edit();
+		editor.putBoolean("autoSaveLevel",z);
+		editor.commit();
+	}
+	
 	public boolean getFirstLoaded()
 	{
 		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("firstLoaded",false);
@@ -46,15 +70,15 @@ public class Settings
 		editor.commit();
 	}
 	
-	public boolean getToggleDebugText()
+	public boolean getHideDebugText()
 	{
-		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("toggle_debug_text",false);
+		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("hide_debug_text",false);
 	}
 
-	public void setToggleDebugText(boolean z)
+	public void setHideDebugText(boolean z)
 	{
 		SharedPreferences.Editor editor=context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).edit();
-		editor.putBoolean("toggle_debug_text",z);
+		editor.putBoolean("hide_debug_text",z);
 		editor.commit();
 	}
 }

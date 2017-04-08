@@ -9,13 +9,13 @@ import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.nmodpe.*;
 import java.io.*;
 import android.text.format.*;
+import com.mcal.ModdedPE.utils.*;
 
 public class ModdedPEApplication extends Application
 {
 	public static String MC_PACKAGE_NAME = "com.mojang.minecraftpe";
 	public static String MC_NATIVE_DIR = "/data/data/com.mojang.minecraftpe/lib";
 	public static ModdedPEApplication instance;
-	public static NModPEManager nmodpeManager;
 	public static Context mcPkgContext;
 	
 	public static Context getMcPackageContext()
@@ -33,9 +33,15 @@ public class ModdedPEApplication extends Application
 		}
 		catch(Exception e){}
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
-		nmodpeManager=new NModPEManager(this);
-		AssetOverrideManager.instance.init();
-		AssetOverrideManager.instance.addAssetOverride(mcPkgContext.getAssets(),mcPkgContext.getPackageResourcePath());
+		try
+		{
+			if(mcPkgContext!=null)
+				AssetOverrideManager.getInstance().addAssetOverride(mcPkgContext.getPackageResourcePath());
+		}
+		catch(Throwable t)
+		{
+			
+		}
 	}
 
 	private Thread.UncaughtExceptionHandler restartHandler = new Thread.UncaughtExceptionHandler()
@@ -92,7 +98,7 @@ public class ModdedPEApplication extends Application
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.instance.getLocalAssetManager();
+		AssetManager mgr=AssetOverrideManager.getInstance().getLocalAssetManager();
 		if(mgr!=null)
 			return mgr;
 		return super.getAssets();

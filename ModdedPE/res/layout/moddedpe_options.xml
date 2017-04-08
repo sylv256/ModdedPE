@@ -112,7 +112,7 @@
 							android:layout_height="wrap_content"
 							android:textAppearance="?android:attr/textAppearanceMedium"
 							android:layout_width="wrap_content"
-							android:text="@string/toggleDebugText"
+							android:text="@string/hideDebugText"
 							android:layout_centerVertical="true"
 							android:layout_marginLeft="20dp"/>
 
@@ -123,6 +123,50 @@
 							android:layout_alignParentRight="true"
 							android:layout_marginRight="20dp"
 							android:id="@+id/moddedpeoptionsMCDSwitchToggleDebugText"/>
+
+					</RelativeLayout>
+					
+					<RelativeLayout
+						android:layout_height="50dp"
+						android:layout_width="match_parent">
+
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="wrap_content"
+							android:text="@string/autoSaveLevel"
+							android:layout_centerVertical="true"
+							android:layout_marginLeft="20dp"/>
+
+						<com.mcal.MCDesign.widget.MCDSwitch
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"
+							android:layout_marginRight="20dp"
+							android:id="@+id/moddedpeoptionsMCDSwitchAutoSaveLevel"/>
+
+					</RelativeLayout>
+					
+					<RelativeLayout
+						android:layout_height="50dp"
+						android:layout_width="match_parent">
+
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="wrap_content"
+							android:text="@string/leftHandEverything"
+							android:layout_centerVertical="true"
+							android:layout_marginLeft="20dp"/>
+
+						<com.mcal.MCDesign.widget.MCDSwitch
+							android:layout_height="wrap_content"
+							android:layout_width="wrap_content"
+							android:layout_centerVertical="true"
+							android:layout_alignParentRight="true"
+							android:layout_marginRight="20dp"
+							android:id="@+id/moddedpeoptionsMCDSwitchSelectAllInLeft"/>
 
 					</RelativeLayout>
 

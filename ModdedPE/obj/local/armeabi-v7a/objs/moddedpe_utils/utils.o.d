@@ -79,20 +79,28 @@ obj/local/armeabi-v7a/objs/moddedpe_utils/utils.o: \
  jni/moddedpe_utils/mcpe/util/Vec2.h \
  jni/moddedpe_utils/mcpe/block/BlockGraphics.h \
  jni/moddedpe_utils/mcpe/block/../client/renderer/texture/TextureAtlasTextureItem.h \
- jni/moddedpe_utils/mcpe/entity/player/LocalPlayer.h \
- jni/moddedpe_utils/mcpe/entity/player/Player.h \
+ jni/moddedpe_utils/mcpe/item/Item.h \
+ jni/moddedpe_utils/mcpe/util/Random.h \
+ jni/moddedpe_utils/mcpe/level/Level.h \
+ /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_set \
+ jni/moddedpe_utils/mcpe/level/LevelStorage.h \
+ jni/moddedpe_utils/mcpe/level/GeneratorType.h \
+ jni/moddedpe_utils/mcpe/level/storage/LevelData.h \
+ jni/moddedpe_utils/mcpe/level/storage/../Difficulty.h \
+ jni/moddedpe_utils/mcpe/level/../entity/Entity.h \
+ jni/moddedpe_utils/mcpe/level/../entity/SynchedEntityData.h \
+ jni/moddedpe_utils/mcpe/level/../entity/EntityRendererId.h \
+ jni/moddedpe_utils/mcpe/level/../entity/EntityCategory.h \
+ jni/moddedpe_utils/mcpe/level/../entity/PaletteColor.h \
+ jni/moddedpe_utils/mcpe/level/../entity/../item/ArmorSlot.h \
+ jni/moddedpe_utils/mcpe/level/../entity/player/LocalPlayer.h \
+ jni/moddedpe_utils/mcpe/level/../entity/player/Player.h \
  jni/moddedpe_utils/mcpe/entity/Mob.h \
- jni/moddedpe_utils/mcpe/entity/Entity.h \
- jni/moddedpe_utils/mcpe/entity/SynchedEntityData.h \
- jni/moddedpe_utils/mcpe/entity/EntityRendererId.h \
- jni/moddedpe_utils/mcpe/entity/EntityCategory.h \
- jni/moddedpe_utils/mcpe/entity/PaletteColor.h \
- jni/moddedpe_utils/mcpe/entity/../item/ArmorSlot.h \
  jni/moddedpe_utils/mcpe/entity/MobSpawnMethod.h \
  jni/moddedpe_utils/mcpe/entity/EquipmentSlot.h \
- jni/moddedpe_utils/mcpe/entity/player/../../inventory/IContainerListener.h \
- jni/moddedpe_utils/mcpe/entity/player/../../inventory/InventoryMenu.h \
- jni/moddedpe_utils/mcpe/entity/player/../../inventory/BaseContainerMenu.h \
+ jni/moddedpe_utils/mcpe/level/../entity/player/../../inventory/IContainerListener.h \
+ jni/moddedpe_utils/mcpe/level/../entity/player/../../inventory/InventoryMenu.h \
+ jni/moddedpe_utils/mcpe/level/../entity/player/../../inventory/BaseContainerMenu.h \
  jni/moddedpe_utils/mcpe/client/settings/Options.h \
  jni/moddedpe_utils/mcpe/client/resources/Localization.h \
  jni/moddedpe_utils/NeighborUtil.h
@@ -257,33 +265,49 @@ jni/moddedpe_utils/mcpe/block/BlockGraphics.h:
 
 jni/moddedpe_utils/mcpe/block/../client/renderer/texture/TextureAtlasTextureItem.h:
 
-jni/moddedpe_utils/mcpe/entity/player/LocalPlayer.h:
+jni/moddedpe_utils/mcpe/item/Item.h:
 
-jni/moddedpe_utils/mcpe/entity/player/Player.h:
+jni/moddedpe_utils/mcpe/util/Random.h:
+
+jni/moddedpe_utils/mcpe/level/Level.h:
+
+/data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/unordered_set:
+
+jni/moddedpe_utils/mcpe/level/LevelStorage.h:
+
+jni/moddedpe_utils/mcpe/level/GeneratorType.h:
+
+jni/moddedpe_utils/mcpe/level/storage/LevelData.h:
+
+jni/moddedpe_utils/mcpe/level/storage/../Difficulty.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/Entity.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/SynchedEntityData.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/EntityRendererId.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/EntityCategory.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/PaletteColor.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/../item/ArmorSlot.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/player/LocalPlayer.h:
+
+jni/moddedpe_utils/mcpe/level/../entity/player/Player.h:
 
 jni/moddedpe_utils/mcpe/entity/Mob.h:
-
-jni/moddedpe_utils/mcpe/entity/Entity.h:
-
-jni/moddedpe_utils/mcpe/entity/SynchedEntityData.h:
-
-jni/moddedpe_utils/mcpe/entity/EntityRendererId.h:
-
-jni/moddedpe_utils/mcpe/entity/EntityCategory.h:
-
-jni/moddedpe_utils/mcpe/entity/PaletteColor.h:
-
-jni/moddedpe_utils/mcpe/entity/../item/ArmorSlot.h:
 
 jni/moddedpe_utils/mcpe/entity/MobSpawnMethod.h:
 
 jni/moddedpe_utils/mcpe/entity/EquipmentSlot.h:
 
-jni/moddedpe_utils/mcpe/entity/player/../../inventory/IContainerListener.h:
+jni/moddedpe_utils/mcpe/level/../entity/player/../../inventory/IContainerListener.h:
 
-jni/moddedpe_utils/mcpe/entity/player/../../inventory/InventoryMenu.h:
+jni/moddedpe_utils/mcpe/level/../entity/player/../../inventory/InventoryMenu.h:
 
-jni/moddedpe_utils/mcpe/entity/player/../../inventory/BaseContainerMenu.h:
+jni/moddedpe_utils/mcpe/level/../entity/player/../../inventory/BaseContainerMenu.h:
 
 jni/moddedpe_utils/mcpe/client/settings/Options.h:
 

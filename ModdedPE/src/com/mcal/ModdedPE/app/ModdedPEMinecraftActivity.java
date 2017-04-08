@@ -39,12 +39,6 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		LibraryLoader.loadGameLibs(mcLibDir,false);
 	}
 	
-	protected void initAssetOverrides()
-	{
-		AssetOverrideManager.instance.init();
-		AssetOverrideManager.instance.addAssetOverride(mcPackageContext.getAssets(),mcPackageContext.getPackageResourcePath());
-	}
-
 	private String getNativeLibDirectory()
 	{
 		if (checkNullMcContext())
@@ -66,9 +60,10 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		initFields();
 		loadNativeLibraries();
 		new LoadingDialog(this).show();
-		initAssetOverrides();
-		loadNModPEs();
+		mcPackageContext.getPackageResourcePath();
+		AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
 		setNativeUtilsAttributes();
+		loadNModPEs(p1);
 		super.onCreate(p1);
 	}
 
@@ -78,13 +73,15 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		
 		Utils.nativeSetDataDirectory("/data/data/"+getPackageName()+"/");
 		Utils.nativeSetRedstoneDot(settings.getRedstoneDot());
-		Utils.nativeSetToggleDebugText(settings.getToggleDebugText());
+		Utils.nativeSetHideDebugText(settings.getHideDebugText());
+		Utils.nativeSetAutoSaveLevel(settings.getAutoSaveLevel());
+		Utils.nativeSetSelectAllInLeft(settings.getSelectAllInLeft());
 	}
 
-	private void loadNModPEs()
+	private void loadNModPEs(Bundle savedInstanceState)
 	{
-		NModPEManager nmodpeManager=new NModPEManager(this);
-		String mcVer="";
+		NModPEManager nmodpeManager=NModPEManager.getNModPEManager(this);
+		String mcVer=new String();
 		String moddedpeVer=getString(R.string.app_version);
 		try
 		{
@@ -99,28 +96,23 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 			try
 			{
 				nmodpe.getLoader().load(mcVer,moddedpeVer);
+				AssetOverrideManager.getInstance().addAssetOverride(nmodpe.getPackageContext().getPackageResourcePath());
+				
+				nmodpe.getLoader().callOnActivityCreate(this,savedInstanceState);
 			}
-			catch (Exception e)
+			catch (Throwable e)
 			{
 				LoadErrorDialog loadErrorDialog=new LoadErrorDialog(this,e,nmodpe);
 				loadErrorDialog.show();
 				continue;
 			}
-			AssetOverrideManager.instance.addAssetOverride(nmodpe.getAsset(),nmodpe.getPackageContext().getPackageResourcePath());
-		}
-		
-		
-		for (int i=nmodpeManager.getActiveNModPEs().size() - 1;i >= 0;--i)
-		{
-			NModPE nmodpe=nmodpeManager.getActiveNModPEs().get(i);
-			nmodpe.getLoader().callOnActivityFinish(this);
 		}
 	}
 
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.instance.getLocalAssetManager();
+		AssetManager mgr=AssetOverrideManager.getInstance().getLocalAssetManager();
 		if(mgr!=null)
 			return mgr;
 		return super.getAssets();
@@ -129,11 +121,18 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	@Override
 	protected void onDestroy()
 	{
-		NModPEManager nmodpeManager=new NModPEManager(this);
+		NModPEManager nmodpeManager=NModPEManager.getNModPEManager(this);
 		for (int i=nmodpeManager.getActiveNModPEs().size() - 1;i >= 0;--i)
 		{
-			NModPE nmodpe=nmodpeManager.getActiveNModPEs().get(i);
-			nmodpe.getLoader().callOnActivityFinish(this);
+			try
+			{
+				NModPE nmodpe=nmodpeManager.getActiveNModPEs().get(i);
+				nmodpe.getLoader().callOnActivityFinish(this);
+			}
+			catch(Throwable t)
+			{
+				
+			}
 		}
 		super.onDestroy();
 	}

@@ -18,8 +18,7 @@ public class NModPELoader
 	private void loadLibs(String mcver,String moddedpever) throws Exception
 	{
 		if(nmodPE==null||nmodPE.getNativeLibs()==null)
-			throw new Exception("NModPE Info is null.");
-		
+			throw new Exception("NModPE native_libs is null.");
 		for(String lib : nmodPE.getNativeLibs())
 			tryToLoadLib(lib,mcver,moddedpever);
 	}

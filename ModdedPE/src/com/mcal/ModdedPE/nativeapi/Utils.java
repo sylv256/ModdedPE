@@ -6,7 +6,9 @@ public class Utils
 	
 	public static native void nativeSetDataDirectory(String directory);
 	
+	public static native void nativeSetAutoSaveLevel(boolean z);
+	public static native void nativeSetSelectAllInLeft(boolean z);
 	public static native void nativeSetRedstoneDot(boolean z);
-	public static native void nativeSetToggleDebugText(boolean z);
+	public static native void nativeSetHideDebugText(boolean z);
 	public static native void nativeSetFlatWorldLayers(boolean z);
 }

@@ -25,10 +25,10 @@
 	
 	<application 
 		android:hasCode="true"
+		android:icon="@mipmap/ic_launcher"
 		android:name="com.mcal.ModdedPE.ModdedPEApplication"
 		android:label="@string/app_name"
-		android:largeHeap="true"
-		android:debuggable="false" >
+		android:largeHeap="true" >
 		
 		<meta-data
 			android:name="xperiaplayoptimized_content"

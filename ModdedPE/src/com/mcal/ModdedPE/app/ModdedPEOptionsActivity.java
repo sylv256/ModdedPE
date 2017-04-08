@@ -13,7 +13,10 @@ public class ModdedPEOptionsActivity extends Activity
 {
 	private MCDSwitch switchSafetyMode;
 	private MCDSwitch switchRedstoneDot;
-	private MCDSwitch switchToggleDebugText;
+	private MCDSwitch switchHideDebugText;
+	private MCDSwitch switchAutoSaveLevel;
+	private MCDSwitch switchSelectAllInLeft;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -32,7 +35,9 @@ public class ModdedPEOptionsActivity extends Activity
 		
 		switchSafetyMode=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchSafetyMode);
 		switchRedstoneDot=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchRedstoneDot);
-		switchToggleDebugText=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchToggleDebugText);
+		switchHideDebugText=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchToggleDebugText);
+		switchAutoSaveLevel=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchAutoSaveLevel);
+		switchSelectAllInLeft=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchSelectAllInLeft);
 		
 		loadOptions();
 		
@@ -51,7 +56,9 @@ public class ModdedPEOptionsActivity extends Activity
 		
 		switchSafetyMode.setOnClickListener(switchUpdateListener);
 		switchRedstoneDot.setOnClickListener(switchUpdateListener);
-		switchToggleDebugText.setOnClickListener(switchUpdateListener);
+		switchHideDebugText.setOnClickListener(switchUpdateListener);
+		switchAutoSaveLevel.setOnClickListener(switchUpdateListener);
+		switchSelectAllInLeft.setOnClickListener(switchUpdateListener);
 		
 		refreshViews();
 	}
@@ -75,13 +82,19 @@ public class ModdedPEOptionsActivity extends Activity
 		{
 			switchRedstoneDot.setChecked(false);
 			switchRedstoneDot.setClickable(false);
-			switchToggleDebugText.setChecked(false);
-			switchToggleDebugText.setClickable(false);
+			switchHideDebugText.setChecked(false);
+			switchHideDebugText.setClickable(false);
+			switchAutoSaveLevel.setChecked(false);
+			switchAutoSaveLevel.setClickable(false);
+			switchSelectAllInLeft.setChecked(false);
+			switchSelectAllInLeft.setClickable(false);
 		}
 		else
 		{
 			switchRedstoneDot.setClickable(true);
-			switchToggleDebugText.setClickable(true);
+			switchHideDebugText.setClickable(true);
+			switchAutoSaveLevel.setClickable(true);
+			switchSelectAllInLeft.setClickable(true);
 		}
 	}
 	
@@ -90,7 +103,9 @@ public class ModdedPEOptionsActivity extends Activity
 		Settings settings=new Settings(this);
 		settings.setRedstoneDot(switchRedstoneDot.isChecked());
 		settings.setSafeMode(switchSafetyMode.isChecked());
-		settings.setToggleDebugText(switchToggleDebugText.isChecked());
+		settings.setHideDebugText(switchHideDebugText.isChecked());
+		settings.setAutoSaveLevel(switchAutoSaveLevel.isChecked());
+		settings.setSelectAllInLeft(switchSelectAllInLeft.isChecked());
 	}
 	
 	private void loadOptions()
@@ -98,6 +113,8 @@ public class ModdedPEOptionsActivity extends Activity
 		Settings settings=new Settings(this);
 		switchSafetyMode.setChecked(settings.getSafeMode());
 		switchRedstoneDot.setChecked(settings.getRedstoneDot());
-		switchToggleDebugText.setChecked(settings.getToggleDebugText());
+		switchHideDebugText.setChecked(settings.getHideDebugText());
+		switchAutoSaveLevel.setChecked(settings.getAutoSaveLevel());
+		switchSelectAllInLeft.setChecked(settings.getSelectAllInLeft());
 	}
 }

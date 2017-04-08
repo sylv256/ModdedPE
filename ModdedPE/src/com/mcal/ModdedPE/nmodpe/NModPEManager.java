@@ -4,6 +4,7 @@ import android.content.pm.*;
 import com.google.gson.*;
 import java.io.*;
 import java.util.*;
+import android.app.*;
 
 public class NModPEManager
 {
@@ -11,8 +12,21 @@ public class NModPEManager
 	private Vector<NModPE> allNModPEs=new Vector<NModPE>();
 	private Vector<NModPE> disabledNModPEs=new Vector<NModPE>();
 	private Context contextThis;
+	private static NModPEManager instance=null;
+
+	public static void reCalculate(Context c)
+	{
+		instance=new NModPEManager(c);
+	}
 	
-	public NModPEManager(Context contextThis)
+	public static NModPEManager getNModPEManager(Context c)
+	{
+		if(instance==null)
+			instance=new NModPEManager(c);
+		return instance;
+	}
+	
+	private NModPEManager(Context contextThis)
 	{
 		this.contextThis=contextThis;
 		searchAndAddNModPE();
@@ -41,16 +55,10 @@ public class NModPEManager
 			{
 				Context contextPackage=contextThis.createPackageContext(info.applicationInfo.packageName,Context.CONTEXT_IGNORE_SECURITY|Context.CONTEXT_INCLUDE_CODE);
 				InputStream is=contextPackage.getAssets().open(NModPE.TAG_MANIFEST_NAME);
-				Gson gson=new Gson();
-				byte[] buffer=new byte[is.available()];
-				is.read(buffer);
-				String jsonStr=new String(buffer);
-				NModPE.NModPEDataBean theDataBean=gson.fromJson(jsonStr,NModPE.NModPEDataBean.class);
-				
-				if(theDataBean!=null&&theDataBean.name!=null)
+				if(is!=null)
 					addNewNModPE(new NModPE(contextPackage,contextThis));
 			}
-			catch(Exception e)
+			catch(Throwable e)
 			{
 				
 			}
@@ -73,7 +81,7 @@ public class NModPEManager
 		Vector<String> activeList=options.getActiveList();
 		for(String item:activeList)
 		{
-			if(getNModPE(item)==null)
+			if(getNModPE(item)==null||getNModPE(item).isBugPack())
 				options.removeActive(getNModPE(item));
 		}
 		
@@ -125,6 +133,8 @@ public class NModPEManager
 	
 	public void addActive(NModPE nmodpe)
 	{
+		if(nmodpe.isBugPack())
+			return;
 		NModPEOptions options=new NModPEOptions(contextThis);
 		options.setIsActive(nmodpe,true);
 		activeNModPEs.add(nmodpe);

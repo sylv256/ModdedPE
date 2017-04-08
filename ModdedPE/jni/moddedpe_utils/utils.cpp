@@ -11,8 +11,11 @@
 #include "mcpe/client/renderer/BlockTessellator.h"
 #include "mcpe/block/BlockGraphics.h"
 #include "mcpe/block/Block.h"
+#include "mcpe/item/Item.h"
+#include "mcpe/item/ItemInstance.h"
 #include "mcpe/util/BlockPos.h"
 #include "mcpe/util/Vec3.h"
+#include "mcpe/level/Level.h"
 #include "mcpe/entity/player/LocalPlayer.h"
 #include "mcpe/client/settings/Options.h"
 #include "mcpe/client/resources/Localization.h"
@@ -38,7 +41,9 @@ std::vector<LanguageBean> languageBeans;
 
 bool started=false;
 bool redstoneDot=false;
-bool toggleDebugText=false;
+bool hideDebugText=false;
+bool autoSaveLevel=false;
+bool selectAllInLeft=false;
 JavaVM* jvm;
 
 std::string toString(JNIEnv* env, jstring jstr)
@@ -134,6 +139,28 @@ void setStartMenuScreen(void*self)
 	started=true;
 }
 
+void (*levelTick_)(Level*);
+void levelTick(Level*self)
+{
+	levelTick_(self);
+	
+	if(autoSaveLevel)
+	{
+		static unsigned char timer;
+		if(!((++timer)%20))
+		{
+			self->saveGameData();
+			self->savePlayers();
+			self->saveBiomeData();
+			self->saveLevelData();
+			self->_saveAllMapData();
+			self->saveDirtyChunks();
+			self->_saveSomeChunks();
+			self->_saveDimensionStructures();
+			self->saveAutonomousEntities();
+		}
+	}
+}
 
 extern "C"
 {
@@ -146,9 +173,17 @@ extern "C"
 	{
 		redstoneDot=z;
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetToggleDebugText(JNIEnv*env,jobject thiz,jboolean z)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetHideDebugText(JNIEnv*env,jobject thiz,jboolean z)
 	{
-		toggleDebugText=z;
+		hideDebugText=z;
+	}
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetAutoSaveLevel(JNIEnv*env,jobject thiz,jboolean z)
+	{
+		autoSaveLevel=z;
+	}
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetSelectAllInLeft(JNIEnv*env,jobject thiz,jboolean z)
+	{
+		selectAllInLeft=z;
 	}
 	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
@@ -202,16 +237,11 @@ extern "C"
 	}
 }
 
-void (*initMinecraftGame_)(MinecraftGame*);
-void initMinecraftGame(MinecraftGame*self)
+void (*handleRenderDebugButtonPress_)(ClientInputCallbacks*,ClientInstance&);
+void handleRenderDebugButtonPress(ClientInputCallbacks*self,ClientInstance&client)
 {
-	initMinecraftGame_(self);
-	
-	if(toggleDebugText)
-	{
-		//ClientInputCallbacks callBacks;
-		//callBacks.handleRenderDebugButtonPress(*self->getPrimaryClientInstance());
-	}
+	if(!hideDebugText)
+		handleRenderDebugButtonPress_(self,client);
 }
 
 void (*loadLocalization_)(Localization *self, const std::string &languageName);
@@ -226,14 +256,24 @@ void loadLocalization(Localization *self, const std::string &languageName)
 	}
 }
 
+bool (*allowOffhand_)(ItemInstance*);
+bool allowOffhand(ItemInstance* self)
+{
+	if(selectAllInLeft)
+		return true;
+	return allowOffhand_(self);
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 {
 	jvm=vm;
 	
+	MSHookFunction((void*)&Level::tick,(void*)&levelTick,(void**)&levelTick_);
 	MSHookFunction((void*)&Localization::_load,(void*)&loadLocalization,(void**)&loadLocalization_);
 	MSHookFunction((void*)((void(BlockTessellator::*)(Block const&,BlockPos const&,unsigned char,bool))&BlockTessellator::tessellateInWorld),(void*)&tessellateInWorld,(void**)&tessellateInWorld_);
 	MSHookFunction((void*)&BlockTessellator::renderFaceDown,(void*)&renderFaceDown,(void**)&renderFaceDown_);
 	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
-	MSHookFunction((void*)&MinecraftGame::init,(void*)&initMinecraftGame,(void**)&initMinecraftGame_);
+	MSHookFunction((void*)&ClientInputCallbacks::handleRenderDebugButtonPress,(void*)&handleRenderDebugButtonPress,(void**)&handleRenderDebugButtonPress_);
+	MSHookFunction((void*)&ItemInstance::isOffhandItem,(void*)&allowOffhand,(void**)&allowOffhand_);
 	return JNI_VERSION_1_6;
 }

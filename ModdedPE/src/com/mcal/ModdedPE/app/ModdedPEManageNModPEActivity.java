@@ -18,11 +18,15 @@ public class ModdedPEManageNModPEActivity extends Activity
 	private ListView listQuiet;
 	private Vector<NModPE> activeList;
 	private Vector<NModPE> disabledList;
+	private NModPEManager nmodpeManager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_manage_nmodpe);
+		
+		NModPEManager.reCalculate(this);
+		nmodpeManager=NModPEManager.getNModPEManager(this);
 		
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
@@ -88,7 +92,7 @@ public class ModdedPEManageNModPEActivity extends Activity
 					@Override
 					public void onClick(View p1)
 					{
-						ModdedPEApplication.instance.nmodpeManager.removeActive(itemNModPE);
+						nmodpeManager.removeActive(itemNModPE);
 						refreshDatas();
 					}
 					
@@ -105,7 +109,7 @@ public class ModdedPEManageNModPEActivity extends Activity
 						@Override
 						public void onClick(View p1)
 						{
-							ModdedPEApplication.instance.nmodpeManager.makeDown(itemNModPE);
+							nmodpeManager.makeDown(itemNModPE);
 							refreshDatas();
 						}
 						
@@ -122,7 +126,7 @@ public class ModdedPEManageNModPEActivity extends Activity
 						@Override
 						public void onClick(View p1)
 						{
-							ModdedPEApplication.instance.nmodpeManager.makeUp(itemNModPE);
+							nmodpeManager.makeUp(itemNModPE);
 							refreshDatas();
 						}
 
@@ -142,8 +146,8 @@ public class ModdedPEManageNModPEActivity extends Activity
 	
 	private void refreshDatas()
 	{
-		activeList=ModdedPEApplication.instance.nmodpeManager.getActiveNModPEs();
-		disabledList=ModdedPEApplication.instance.nmodpeManager.getDisabledNModPEs();
+		activeList=nmodpeManager.getActiveNModPEs();
+		disabledList=nmodpeManager.getDisabledNModPEs();
 		
 		AdapterActive adapterActive = new AdapterActive();
 		listActive.setAdapter(adapterActive);
@@ -199,7 +203,7 @@ public class ModdedPEManageNModPEActivity extends Activity
 					@Override
 					public void onClick(View p1)
 					{
-						ModdedPEApplication.instance.nmodpeManager.addActive(itemNModPE);
+						nmodpeManager.addActive(itemNModPE);
 						refreshDatas();
 					}
 				});
