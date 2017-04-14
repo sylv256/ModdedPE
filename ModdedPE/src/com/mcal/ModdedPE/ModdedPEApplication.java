@@ -6,7 +6,7 @@ import android.content.res.*;
 import android.os.*;
 import com.mcal.ModdedPE.app.*;
 import com.mcal.ModdedPE.nativeapi.*;
-import com.mcal.ModdedPE.nmodpe.*;
+import com.mcal.ModdedPE.nmod.*;
 import java.io.*;
 import android.text.format.*;
 import com.mcal.ModdedPE.utils.*;
@@ -27,21 +27,13 @@ public class ModdedPEApplication extends Application
 	{
 		super.onCreate();
 		instance = this;
+		
 		try
 		{
 			mcPkgContext=this.createPackageContext(MC_PACKAGE_NAME,Context.CONTEXT_IGNORE_SECURITY|Context.CONTEXT_INCLUDE_CODE);
 		}
 		catch(Exception e){}
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
-		try
-		{
-			if(mcPkgContext!=null)
-				AssetOverrideManager.getInstance().addAssetOverride(mcPkgContext.getPackageResourcePath());
-		}
-		catch(Throwable t)
-		{
-			
-		}
 	}
 
 	private Thread.UncaughtExceptionHandler restartHandler = new Thread.UncaughtExceptionHandler()
@@ -107,5 +99,28 @@ public class ModdedPEApplication extends Application
 	static
 	{
 		LibraryLoader.loadLocalLibs();
+	}
+	
+	public void init()
+	{
+		try
+		{
+			if(mcPkgContext!=null)
+				AssetOverrideManager.getInstance().addAssetOverride(mcPkgContext.getPackageResourcePath());
+			AssetOverrideManager.getInstance().addAssetOverride(this.getPackageResourcePath());
+		}
+		catch(Throwable t)
+		{
+			restartAppAndReport(t);
+		}
+
+		try
+		{
+			NModManager.getNModManager(this).reCalculate(this);
+		}
+		catch(Throwable t)
+		{
+			restartAppAndReport(t);
+		}
 	}
 }

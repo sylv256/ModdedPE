@@ -36,7 +36,7 @@
 				android:layout_marginRight="10dp"
 				android:layout_marginTop="10dp"
 				android:layout_marginBottom="10dp"
-				android:id="@+id/moddedpenmodpeloadfailedMCDBurgerButtonClose"/>
+				android:id="@+id/moddedpenmodloadfailedMCDBurgerButtonClose"/>
 
 		</RelativeLayout>
 
@@ -64,13 +64,66 @@
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
 					android:orientation="vertical">
-					
+
 					<android.support.v7.widget.AppCompatTextView
 						android:layout_height="wrap_content"
 						android:textAppearance="?android:attr/textAppearanceMedium"
 						android:layout_width="match_parent"
-						android:textColor="#DEDEDE"
+						android:layout_margin="10dp"
+						android:gravity="center"
+						android:id="@+id/moddedpeLFWarningTextView"/>
+
+					<View
+						android:layout_width="match_parent"
+						android:layout_height="1dp"
+						android:layout_marginTop="1dp"
+						android:background="#6E6E6E"
+						android:layout_marginBottom="1dp"/>
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="match_parent"
+						android:gravity="center"
+						android:text="@string/load_fail_main"/>
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="match_parent"
+						android:gravity="center"
+						android:textIsSelectable="true"
 						android:id="@+id/moddedpeLFMsgTextView"/>
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="match_parent"
+						android:gravity="center"
+						android:text="@string/load_fail_deal"/>
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="match_parent"
+						android:textIsSelectable="true"
+						android:id="@+id/moddedpeLFDealTextView"/>
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="match_parent"
+						android:gravity="center"
+						android:text="@string/load_fail_all"/>
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_height="wrap_content"
+						android:gravity="center"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:layout_width="match_parent"
+						android:id="@+id/moddedpeLFFullTextView"
+						android:textIsSelectable="true"/>
 
 				</LinearLayout>
 

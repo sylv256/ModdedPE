@@ -2,6 +2,10 @@
 <resources>
 	<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:statusBarColor">#000000</item>
+		<item name="android:colorPrimary">#000000</item>  
+       	<item name="android:colorPrimaryDark">#000000</item>  
+     	<item name="android:colorAccent">#000000</item>
+		<item name="android:windowTranslucentStatus">true</item>
 	</style>
 	<style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:windowFullscreen">true</item>

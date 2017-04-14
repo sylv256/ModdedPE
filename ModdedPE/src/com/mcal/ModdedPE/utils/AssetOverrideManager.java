@@ -17,9 +17,7 @@ public class AssetOverrideManager
 			if (localManager == null)
 				localManager = AssetManager.class.newInstance();
 		}
-		catch (InstantiationException e)
-		{}
-		catch (IllegalAccessException e)
+		catch (Throwable e)
 		{}
 		
 		try
@@ -27,16 +25,6 @@ public class AssetOverrideManager
 			Method method=AssetManager.class.getMethod("addAssetPath",String.class);
 			method.invoke(localManager, packageResourcePath);
 		}
-		catch (NoSuchMethodException e)
-		{}
-		catch (SecurityException e)
-		{}
-		catch (IllegalAccessException e)
-		{}
-		catch (IllegalArgumentException e)
-		{}
-		catch (InvocationTargetException e)
-		{}
 		catch(Throwable t)
 		{}
 	}

@@ -25,7 +25,7 @@ public class ModdedPEErrorActivity extends Activity
 		}
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpeErrorHeaderBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
+			((ImageView)findViewById(R.id.moddedpeErrorHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
 		}
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  

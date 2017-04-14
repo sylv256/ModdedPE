@@ -10,6 +10,10 @@ import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.resources.*;
 import com.mcal.ModdedPE.utils.*;
+import com.mcal.ModdedPE.widget.*;
+import com.mcal.ModdedPE.nmod.*;
+import java.util.*;
+import android.support.v7.widget.*;
 
 public class ModdedPEMainActivity extends Activity 
 {
@@ -18,25 +22,9 @@ public class ModdedPEMainActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_main);
-		
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpemainHeaderBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpemainImageViewBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
+		resetViews();
 		
 		final Settings settings=new Settings(this);
-		
-		findViewById(R.id.moddedpemainMCDPlayButton).getLayoutParams().width=getWindowManager().getDefaultDisplay().getWidth()/3;
-		((TextView)findViewById(R.id.moddedpemainTextViewTitle)).setText(getTitle());
-		((TextView)findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
-		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(getString(R.string.targetMCPE));
-		((TextView)findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode()?View.VISIBLE:View.GONE);
-		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion()?Color.GREEN:Color.RED);
-		
 		if(!settings.getFirstLoaded())
 		{
 			final MCDDialog mdialog = new MCDDialog(this);
@@ -55,6 +43,37 @@ public class ModdedPEMainActivity extends Activity
 				
 			});
 		}
+	}
+	
+	private void resetViews()
+	{
+		{
+			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
+			((ImageView)findViewById(R.id.moddedpemainHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
+		}
+		{
+			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  
+			((ImageView)findViewById(R.id.moddedpemainImageViewBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
+		}
+
+		final Settings settings=new Settings(this);
+
+		findViewById(R.id.moddedpemainMCDPlayButton).getLayoutParams().width=getWindowManager().getDefaultDisplay().getWidth()/3;
+		((TextView)findViewById(R.id.moddedpemainTextViewTitle)).setText(getTitle());
+		((TextView)findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
+		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(getString(R.string.targetMCPE));
+		((TextView)findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode()?View.VISIBLE:View.GONE);
+		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion()?Color.GREEN:Color.RED);
+		
+		prepareNews();
+	}
+
+	@Override
+	protected void onRestart()
+	{
+		super.onRestart();
+		
+		resetViews();
 	}
 	
 	private Context getMcContext()
@@ -86,13 +105,39 @@ public class ModdedPEMainActivity extends Activity
 	protected void onResume()
 	{
 		super.onResume();
-		Settings settings=new Settings(this);
-
-		((TextView)findViewById(R.id.moddedpemainTextViewTitle)).setText(getTitle());
-		((TextView)findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
-		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(getString(R.string.targetMCPE));
-		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion()?Color.GREEN:Color.RED);
-		((TextView)findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode()?View.VISIBLE:View.GONE);
+		
+		resetViews();
+	}
+	
+	private NMod showingNMod;
+	
+	private void prepareNews()
+	{
+		Vector<NMod> nmods=NModManager.getNModManager(this).getActiveNModsHasNews();
+		
+		ImageView newsImage=(ImageView)findViewById(R.id.moddedpemainTextViewNewsNModImage);
+		AppCompatTextView newsTitle=(AppCompatTextView)findViewById(R.id.moddedpemainTextViewNewsNModTitle);
+		
+		if(nmods.size()>0)
+		{
+			showingNMod=nmods.get(new Random(System.nanoTime()).nextInt(nmods.size()));
+			newsImage.setImageBitmap(showingNMod.getVersionImage());
+			newsTitle.setText(showingNMod.getNewsTitle());
+		}
+		else
+		{
+			showingNMod=null;
+			newsImage.setImageResource(R.drawable.image_default_minecraft);
+			newsTitle.setText(getString(R.string.default_minecraft_title));
+		}
+	}
+	
+	public void onNewsClicked(View view)
+	{
+		if(showingNMod!=null)
+		{
+			
+		}
 	}
 	
 	public void onPlayClicked(View v)

@@ -1,30 +1,30 @@
-package com.mcal.ModdedPE.nmodpe;
+package com.mcal.ModdedPE.nmod;
 import android.content.*;
 import java.util.*;
 
-public class NModPEOptions
+public class NModOptions
 {
 	private Context contextThis;
-	public static final String TAG_SHARED_PREFERENCE = "nmodpe_list";
-	public static final String TAG_ACTIVE_LIST = "nmodpe_active_list";
+	public static final String TAG_SHARED_PREFERENCE = "nmod_list";
+	public static final String TAG_ACTIVE_LIST = "nmod_active_list";
 	
-	public NModPEOptions(Context thisContext)
+	public NModOptions(Context thisContext)
 	{
 		contextThis=thisContext;
 	}
 	
-	public void setIsActive(NModPE nmodpe,boolean isActive)
+	public void setIsActive(NMod nmod,boolean isActive)
 	{
 		if(isActive)
-			addNewActive(nmodpe);
+			addNewActive(nmod);
 		else
-			removeActive(nmodpe);
+			removeActive(nmod);
 	}
 	
-	public boolean isActive(NModPE nmodpe)
+	public boolean isActive(NMod nmod)
 	{
 		Vector<String> activeList=getActiveList();
-		return activeList.indexOf(nmodpe.getPackageName())!=-1;
+		return activeList.indexOf(nmod.getPackageName())!=-1;
 	}
 	
 	private SharedPreferences getSharedPreferences()
@@ -32,40 +32,40 @@ public class NModPEOptions
 		return contextThis.getSharedPreferences(TAG_SHARED_PREFERENCE,Context.MODE_MULTI_PROCESS);
 	}
 	
-	private void addNewActive(NModPE nmodpe)
+	private void addNewActive(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		Vector<String> activeList=getActiveList();
-		if(activeList.indexOf(nmodpe.getPackageName()) == -1)
-			activeList.add(nmodpe.getPackageName());
+		if(activeList.indexOf(nmod.getPackageName()) == -1)
+			activeList.add(nmod.getPackageName());
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ACTIVE_LIST,fromVector(activeList));
 		editor.commit();
 	}
 	
-	public void removeActive(NModPE nmodpe)
+	public void removeActive(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		Vector<String> activeList=getActiveList();
-		if(activeList.indexOf(nmodpe.getPackageName()) != -1)
-			activeList.remove(nmodpe.getPackageName());
+		if(activeList.indexOf(nmod.getPackageName()) != -1)
+			activeList.remove(nmod.getPackageName());
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ACTIVE_LIST,fromVector(activeList));
 		editor.commit();
 	}
 	
-	public void upNModPE(NModPE nmodpe)
+	public void upNMod(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		Vector<String> activeList=getActiveList();
-		int index=activeList.indexOf(nmodpe.getPackageName());
+		int index=activeList.indexOf(nmod.getPackageName());
 		if(index==-1||index==0)
 			return;
 		int indexFront=index-1;
 		String nameFront=activeList.get(indexFront);
 		if(nameFront==null||nameFront.isEmpty())
 			return;
-		String nameSelf=nmodpe.getPackageName();
+		String nameSelf=nmod.getPackageName();
 		activeList.set(indexFront,nameSelf);
 		activeList.set(index,nameFront);
 		SharedPreferences.Editor editor=preferences.edit();
@@ -73,18 +73,18 @@ public class NModPEOptions
 		editor.commit();
 	}
 	
-	public void downNModPE(NModPE nmodpe)
+	public void downNMod(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		Vector<String> activeList=getActiveList();
-		int index=activeList.indexOf(nmodpe.getPackageName());
+		int index=activeList.indexOf(nmod.getPackageName());
 		if(index==-1||index==(activeList.size()-1))
 			return;
 		int indexBack=index+1;
 		String nameBack=activeList.get(indexBack);
 		if(nameBack==null||nameBack.isEmpty())
 			return;
-		String nameSelf=nmodpe.getPackageName();
+		String nameSelf=nmod.getPackageName();
 		activeList.set(indexBack,nameSelf);
 		activeList.set(index,nameBack);
 		SharedPreferences.Editor editor=preferences.edit();

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ImageView
+		android:scaleType="fitXY"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:src="@drawable/mcd_header_bg"
+		android:id="@+id/moddedpemanageNModHeaderBackgroundStatus"/>
+
+	<RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_marginTop="25dp"
+		android:layout_height="fill_parent">
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical">
+
+			<RelativeLayout
+				android:layout_width="fill_parent"
+				android:layout_height="50dp"
+				android:orientation="horizontal">
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:textColor="#DEDEDE"
+					android:id="@+id/moddedpemanageNModTitleTextView"/>
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+					android:layout_centerVertical="true"
+					android:textColor="#FF0000"
+					android:id="@+id/moddedpemanageNModIsSafetyMode"
+					android:layout_alignParentLeft="true"
+					android:text="@string/safetyMode"
+					android:layout_marginLeft="10dp"
+					android:visibility="gone"/>
+
+				<com.mcal.MCDesign.widget.MCDBurgerButtonClose
+					android:layout_height="30dp"
+					android:layout_width="30dp"
+					android:layout_alignParentRight="true"
+					android:layout_marginRight="10dp"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:onClick="onCloseClicked"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<ImageView
+					android:scaleType="fitXY"
+					android:layout_height="match_parent"
+					android:layout_width="match_parent"
+					android:src="@drawable/mcd_bg"
+					android:id="@+id/moddedpemanageNModBackground"/>
+
+				<LinearLayout
+					android:layout_height="match_parent"
+					android:orientation="horizontal"
+					android:layout_width="match_parent">
+
+					<ListView
+						android:layout_height="match_parent"
+						android:id="@+id/moddedpemanageNModListActive"
+						android:layout_width="wrap_content"/>
+
+					<View
+						android:layout_height="match_parent"
+						android:layout_width="2dp"
+						android:background="#000000"/>
+
+					<ListView
+						android:layout_height="match_parent"
+						android:id="@+id/moddedpemanageNModListQuiet"
+						android:layout_width="wrap_content"/>
+
+				</LinearLayout>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+</RelativeLayout>
+

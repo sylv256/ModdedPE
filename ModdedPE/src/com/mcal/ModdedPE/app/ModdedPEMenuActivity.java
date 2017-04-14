@@ -19,7 +19,7 @@ public class ModdedPEMenuActivity extends Activity
 
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpemenuBackgroundImage)).setImageBitmap(BitmapRepeater.createRepeater(getWindowManager().getDefaultDisplay().getWidth(),getWindowManager().getDefaultDisplay().getHeight(), bitmap));
+			((ImageView)findViewById(R.id.moddedpemenuHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeater(getWindowManager().getDefaultDisplay().getWidth(),getWindowManager().getDefaultDisplay().getHeight(), bitmap));
 		}
 		((TextView)findViewById(R.id.moddedpemenuTitle)).setText(getTitle());
 	}
@@ -29,9 +29,9 @@ public class ModdedPEMenuActivity extends Activity
 		finish();
 	}
 	
-	public void onManageNModPEClicked(View v)
+	public void onManageNModClicked(View v)
 	{
-		startActivity(new Intent(this,ModdedPEManageNModPEActivity.class));
+		startActivity(new Intent(this,ModdedPEManageNModActivity.class));
 	}
 	
 	public void onOptionsClicked(View v)

@@ -5,7 +5,7 @@ import android.content.res.*;
 import android.os.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
-import com.mcal.ModdedPE.nmodpe.*;
+import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.utils.*;
 
 public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivity
@@ -63,7 +63,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		mcPackageContext.getPackageResourcePath();
 		AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
 		setNativeUtilsAttributes();
-		loadNModPEs(p1);
+		loadNMods(p1);
 		super.onCreate(p1);
 	}
 
@@ -78,9 +78,9 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		Utils.nativeSetSelectAllInLeft(settings.getSelectAllInLeft());
 	}
 
-	private void loadNModPEs(Bundle savedInstanceState)
+	private void loadNMods(Bundle savedInstanceState)
 	{
-		NModPEManager nmodpeManager=NModPEManager.getNModPEManager(this);
+		NModManager nmodManager=NModManager.getNModManager(this);
 		String mcVer=new String();
 		String moddedpeVer=getString(R.string.app_version);
 		try
@@ -89,23 +89,24 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		}
 		catch (PackageManager.NameNotFoundException e)
 		{}
-		for (int i=nmodpeManager.getActiveNModPEs().size() - 1;i >= 0;--i)
+		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
-			NModPE nmodpe=nmodpeManager.getActiveNModPEs().get(i);
+			NMod nmod=nmodManager.getActiveNMods().get(i);
 			
 			try
 			{
-				nmodpe.getLoader().load(mcVer,moddedpeVer);
-				AssetOverrideManager.getInstance().addAssetOverride(nmodpe.getPackageContext().getPackageResourcePath());
-				
-				nmodpe.getLoader().callOnActivityCreate(this,savedInstanceState);
+				nmod.getLoader().load(mcVer,moddedpeVer);
 			}
 			catch (Throwable e)
 			{
-				LoadErrorDialog loadErrorDialog=new LoadErrorDialog(this,e,nmodpe);
+				nmod.setBugPack(NModLoadException.getLoadElfFail(e,getResources()));
+				LoadErrorDialog loadErrorDialog=new LoadErrorDialog(this,nmod);
 				loadErrorDialog.show();
 				continue;
 			}
+			
+			AssetOverrideManager.getInstance().addAssetOverride(nmod.getPackageContext().getPackageResourcePath());
+			nmod.getLoader().callOnActivityCreate(this,savedInstanceState);
 		}
 	}
 
@@ -121,13 +122,13 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	@Override
 	protected void onDestroy()
 	{
-		NModPEManager nmodpeManager=NModPEManager.getNModPEManager(this);
-		for (int i=nmodpeManager.getActiveNModPEs().size() - 1;i >= 0;--i)
+		NModManager nmodManager=NModManager.getNModManager(this);
+		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
 			try
 			{
-				NModPE nmodpe=nmodpeManager.getActiveNModPEs().get(i);
-				nmodpe.getLoader().callOnActivityFinish(this);
+				NMod nmod=nmodManager.getActiveNMods().get(i);
+				nmod.getLoader().callOnActivityFinish(this);
 			}
 			catch(Throwable t)
 			{

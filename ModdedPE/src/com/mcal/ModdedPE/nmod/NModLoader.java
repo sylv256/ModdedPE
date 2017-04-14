@@ -1,13 +1,13 @@
-package com.mcal.ModdedPE.nmodpe;
+package com.mcal.ModdedPE.nmod;
 import android.os.*;
 import java.io.*;
-public class NModPELoader
+public class NModLoader
 {
-	private NModPE nmodPE;
+	private NMod nmod;
 	
-	public NModPELoader(NModPE nmodpe)
+	public NModLoader(NMod nmod)
 	{
-		this.nmodPE=nmodpe;
+		this.nmod=nmod;
 	}
 	
 	public void load(String mcver,String moddedpever) throws Exception
@@ -17,9 +17,9 @@ public class NModPELoader
 	
 	private void loadLibs(String mcver,String moddedpever) throws Exception
 	{
-		if(nmodPE==null||nmodPE.getNativeLibs()==null)
-			throw new Exception("NModPE native_libs is null.");
-		for(String lib : nmodPE.getNativeLibs())
+		if(nmod==null||nmod.getNativeLibs()==null)
+			return;
+		for(String lib : nmod.getNativeLibs())
 			tryToLoadLib(lib,mcver,moddedpever);
 	}
 	
@@ -27,7 +27,7 @@ public class NModPELoader
 	{
 		try
 		{
-			System.load(nmodPE.getPackageContext().getApplicationInfo().nativeLibraryDir+"/"+name);
+			System.load(nmod.getPackageContext().getApplicationInfo().nativeLibraryDir+"/"+name);
 		}
 		catch(Throwable e)
 		{
@@ -40,15 +40,15 @@ public class NModPELoader
 	
 	private void loadLanguages()
 	{
-		if (nmodPE.getLanguageBeans() == null)
+		if (nmod.getLanguageBeans() == null)
 			return;
-		for (NModPE.NModPELanguageBean languageBean:nmodPE.getLanguageBeans())
+		for (NMod.NModLanguageBean languageBean:nmod.getLanguageBeans())
 		{
 			if (languageBean.name == null || languageBean.name.isEmpty())
 				continue;
 			try
 			{
-				InputStream locationIns=nmodPE.getAsset().open(languageBean.location);
+				InputStream locationIns=nmod.getAsset().open(languageBean.location);
 				byte[] buffer=new byte[locationIns.available()];
 				locationIns.read(buffer);
 				locationIns.close();
@@ -83,13 +83,13 @@ public class NModPELoader
 
 	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity mainActivity,Bundle bundle)
 	{
-		for(String lib : nmodPE.getNativeLibs())
+		for(String lib : nmod.getNativeLibs())
 			nativeCallOnActivityCreate(lib,mainActivity,bundle);
 	}
 	
 	public void callOnActivityFinish(com.mojang.minecraftpe.MainActivity mainActivity)
 	{
-		for(String lib : nmodPE.getNativeLibs())
+		for(String lib : nmod.getNativeLibs())
 			nativeCallOnActivityFinish(lib,mainActivity);
 	}
 	

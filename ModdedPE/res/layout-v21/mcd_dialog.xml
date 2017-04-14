@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/dialog_rootView"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="#55000000"
+	android:padding="32dp">
+
+	<RelativeLayout
+		android:id="@+id/contentDialog"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		android:background="#EFEDE9"
+		android:padding="24dp">
+
+		<android.support.v7.widget.AppCompatTextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="24dp"
+			android:textAppearance="?android:attr/textAppearanceLarge"
+			android:id="@+id/mcddialogAppCompatTextViewTitle"
+			android:layout_centerHorizontal="true"
+			android:textColor="#000000"/>
+
+		<ScrollView
+			android:id="@+id/mcd_dialog_views_scroll"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@id/mcddialogAppCompatTextViewTitle"
+			android:paddingBottom="50dp"
+			android:scrollbarSize="2dp"
+			android:layout_marginTop="10dp">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:id="@+id/mcddialogViewsLayout">
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceLarge"
+					android:id="@+id/mcddialogMainText"
+					android:textColor="#000000"
+					android:layout_gravity="center_horizontal"
+					android:gravity="center_horizontal"/>
+
+			</LinearLayout>
+
+		</ScrollView>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@id/mcd_dialog_views_scroll"
+			android:layout_marginTop="24dp"
+			android:orientation="horizontal"
+			android:id="@+id/mcddialogButtonsLayout"
+			android:gravity="center_horizontal">
+
+			<com.mcal.MCDesign.widget.MCDBorderButton
+				android:id="@+id/mcddialogbuttonLeft"
+				android:layout_width="200dp"
+				android:layout_height="wrap_content"
+				android:layout_marginRight="20dp"
+				android:layout_marginLeft="20dp"
+				android:visibility="gone"/>
+
+			<com.mcal.MCDesign.widget.MCDBorderButton
+				android:id="@+id/mcddialogbuttonRight"
+				android:layout_width="200dp"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
+				android:layout_marginRight="20dp"
+				android:visibility="gone"/>
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+</RelativeLayout>
+

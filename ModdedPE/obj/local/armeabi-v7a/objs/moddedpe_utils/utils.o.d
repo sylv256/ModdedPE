@@ -26,6 +26,7 @@ obj/local/armeabi-v7a/objs/moddedpe_utils/utils.o: \
  /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/vector \
  /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/string \
  /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream \
+ /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/cxxabi.h \
  jni/moddedpe_utils/mcpe/client/ClientInputCallbacks.h \
  jni/moddedpe_utils/mcpe/client/ClientInstance.h \
  /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/memory \
@@ -158,6 +159,8 @@ jni/moddedpe_utils/Substrate.h:
 /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/string:
 
 /data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/fstream:
+
+/data/data/com.aide.ui/files/ndksupport-20160121/android-ndk-aide/sources/cxx-stl/gnu-libstdc++/4.9/include/cxxabi.h:
 
 jni/moddedpe_utils/mcpe/client/ClientInputCallbacks.h:
 

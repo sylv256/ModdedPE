@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <cxxabi.h>
 
 #include "mcpe/client/ClientInputCallbacks.h"
 #include "mcpe/client/ClientInstance.h"
@@ -194,7 +195,7 @@ extern "C"
 		
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmodpe_NModPELoader_nativeAppendTranslation(JNIEnv*env,jobject thiz,jstring name,jstring translation)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeAppendTranslation(JNIEnv*env,jobject thiz,jstring name,jstring translation)
 	{
 		std::string nameN=toString(env,name);
 		std::string translationN=toString(env,translation);
@@ -202,39 +203,50 @@ extern "C"
 		LanguageBean bean(nameN,translationN);
 		languageBeans.emplace_back(bean);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmodpe_NModPELoader_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
-		void (*NModPE_onActivityFinish)(JNIEnv*env,jobject thiz)=
-		(void (*)(JNIEnv*,jobject)) dlsym(image,"NModPE_onActivityFinish");
-		if(NModPE_onActivityFinish)
+		void (*NMod_onActivityFinish)(JNIEnv*env,jobject thiz)=
+		(void (*)(JNIEnv*,jobject)) dlsym(image,"NMod_onActivityFinish");
+		if(NMod_onActivityFinish)
 		{
-			NModPE_onActivityFinish(env,mainActivity);
+			NMod_onActivityFinish(env,mainActivity);
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmodpe_NModPELoader_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring moddedpeVer)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring moddedpeVer)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
-		void (*NModPE_onLoad)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)=
-		(void (*)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)) dlsym(image,"NModPE_onLoad");
-		if(NModPE_onLoad)
+		void (*NMod_onLoad)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)=
+		(void (*)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)) dlsym(image,"NMod_onLoad");
+		if(NMod_onLoad)
 		{
-			NModPE_onLoad(jvm,env,toString(env,mcVer),toString(env,moddedpeVer));
+			NMod_onLoad(jvm,env,toString(env,mcVer),toString(env,moddedpeVer));
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmodpe_NModPELoader_nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
-		void (*NModPE_onActivityCreate)(JNIEnv*env,jobject thiz,jobject savedInstanceState)=
-		(void (*)(JNIEnv*,jobject,jobject)) dlsym(image,"NModPE_onActivityCreate");
-		if(NModPE_onActivityCreate)
+		void (*NMod_onActivityCreate)(JNIEnv*env,jobject thiz,jobject savedInstanceState)=
+		(void (*)(JNIEnv*,jobject,jobject)) dlsym(image,"NMod_onActivityCreate");
+		if(NMod_onActivityCreate)
 		{
-			NModPE_onActivityCreate(env,mainActivity,bundle);
+			NMod_onActivityCreate(env,mainActivity,bundle);
 		}
 		dlclose(image);
 	}
+	JNIEXPORT jstring Java_com_mcal_ModdedPE_nativeapi_Utils_nativeDemangle(JNIEnv*env,jobject thiz,jstring str)
+	{
+		char const* symbol_name = toString(env,str).c_str();
+		if(symbol_name)
+		{
+			char const* ret = abi::__cxa_demangle(symbol_name,0,0,0);
+			return env->NewStringUTF(ret);
+		}
+		return env->NewStringUTF("");
+	}
+	
 }
 
 void (*handleRenderDebugButtonPress_)(ClientInputCallbacks*,ClientInstance&);
