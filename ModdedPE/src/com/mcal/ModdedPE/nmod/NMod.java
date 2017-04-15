@@ -20,6 +20,27 @@ public class NMod
 	private Bitmap icon;
 	private Bitmap version_image;
 	public static final String TAG_MANIFEST_NAME = "nmod_manifest.json";
+
+	public String getDescription()
+	{
+		if(dataBean.description!=null)
+			return dataBean.description;
+		return thisContext.getResources().getString(R.string.unknow);
+	}
+	
+	public String getAuthor()
+	{
+		if(dataBean.author!=null)
+			return dataBean.author;
+		return thisContext.getResources().getString(R.string.unknow);
+	}
+	
+	public String getVersionName()
+	{
+		if(dataBean.version_info!=null&&dataBean.version_info.version_name!=null)
+			return dataBean.version_info.version_name;
+		return thisContext.getResources().getString(R.string.unknow);
+	}
 	
 	public boolean isBugPack()
 	{

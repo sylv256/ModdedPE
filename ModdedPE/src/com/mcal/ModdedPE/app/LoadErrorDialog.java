@@ -31,7 +31,7 @@ public class LoadErrorDialog extends Dialog
 		
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpeLFHeaderBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(parentActivity.getWindowManager().getDefaultDisplay().getWidth(), bitmap));
+			((ImageView)findViewById(R.id.moddedpeLFHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(parentActivity.getWindowManager().getDefaultDisplay().getWidth(), bitmap));
 		}
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);  

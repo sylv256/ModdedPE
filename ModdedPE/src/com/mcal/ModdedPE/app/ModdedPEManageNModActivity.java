@@ -84,6 +84,19 @@ public class ModdedPEManageNModActivity extends Activity
 			AppCompatTextView title=(AppCompatTextView)convertView.findViewById(R.id.moddedpenmoditemactiveTextViewTitle);
 			title.setText(itemNMod.getName());
 			
+			Button btnDescription=(Button)convertView.findViewById(R.id.moddedpenmoditemactiveButtonDescription);
+			btnDescription.setOnClickListener(new View.OnClickListener()
+				{
+
+					@Override
+					public void onClick(View p1)
+					{
+						new NModDescriptionDialog(ModdedPEManageNModActivity.this,itemNMod).show();
+					}
+					
+				
+			});
+			
 			Button btn=(Button)convertView.findViewById(R.id.moddedpenmoditemactiveAdjustButton);
 			btn.setOnClickListener(new View.OnClickListener()
 				{
@@ -201,6 +214,19 @@ public class ModdedPEManageNModActivity extends Activity
 							nmodManager.addActive(itemNMod);
 							refreshDatas();
 						}
+					});
+					
+				Button btnDescription=(Button)convertView.findViewById(R.id.moddedpenmoditemdisabledButtonDescription);
+				btnDescription.setOnClickListener(new View.OnClickListener()
+					{
+
+						@Override
+						public void onClick(View p1)
+						{
+							new NModDescriptionDialog(ModdedPEManageNModActivity.this,itemNMod).show();
+						}
+
+
 					});
 			}
 			else

@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_version">0.1</string>
-	<string name="targetMCPE">1.1.0.1</string>
+	<string name="targetMCPE">1.1.0.4</string>
 	<string name="menu">Menu</string>
 	<string name="loadFailed">Load Failed!</string>
 	<string name="customFlatWorldLayers">Custom Flat World Layers</string>
+	<string name="nmod_description_description_title">Description</string>
+	<string name="nmod_description_about_title">About</string>
+	<string name="nmod_description_about_author">Author:</string>
+	<string name="nmod_description_about_version_name">Version Name:</string>
 	<string name="hideDebugText">Hide Debug Text</string>
 	<string name="redstoneDot">Restone Dot</string>
 	<string name="load_fail_msg">Load Error:</string>
 	<string name="autoSaveLevel">Auto Save Level</string>
 	<string name="load_fail_description">NMod load failed,but the game can still run properly.</string>
 	<string name="leftHandEverything">Hold Everything in Left Hand</string>
-	<string name="safetyMode">Safety Mode</string>
+	<string name="safetyMode">Safe Mode</string>
+	<string name="eduUI">Education UI</string>
 	<string name="nmod_load_failed">Failed to load NMod</string>
 	<string name="manage_nmod_title">Manage NMods</string>
 	<string name="loading_blocks_message">One block,two blocks,three blocks…</string>
@@ -31,6 +36,7 @@
 	<string name="play">Play</string>
 	<string name="jump">Jump</string>
 	<string name="ok">OK</string>
+	<string name="unknow">Unknow</string>
 	<string name="check_update">Check update</string>
 	<string name="not_available_network">The network is not available.Please check your network.</string>
 	<string name="restart_app">Restart</string>

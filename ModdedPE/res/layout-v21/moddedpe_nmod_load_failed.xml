@@ -9,129 +9,176 @@
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:src="@drawable/mcd_header_bg"
-		android:id="@+id/moddedpeLFHeaderBackground"/>
+		android:id="@+id/moddedpeLFHeaderBackgroundStatus"/>
 
-	<LinearLayout
+	<RelativeLayout
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:orientation="vertical">
+		android:layout_marginTop="25dp"
+		android:layout_height="fill_parent">
 
-		<RelativeLayout
+		<LinearLayout
 			android:layout_width="fill_parent"
-			android:layout_height="50dp"
-			android:orientation="horizontal">
+			android:layout_height="fill_parent"
+			android:orientation="vertical">
 
-			<android.support.v7.widget.AppCompatTextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:layout_width="wrap_content"
-				android:layout_centerInParent="true"
-				android:textColor="#DEDEDE"
-				android:id="@+id/moddedpeLFTitleTextView"/>
+			<RelativeLayout
+				android:layout_width="fill_parent"
+				android:layout_height="50dp"
+				android:orientation="horizontal">
 
-			<com.mcal.MCDesign.widget.MCDBurgerButtonClose
-				android:layout_height="30dp"
-				android:layout_width="30dp"
-				android:layout_alignParentRight="true"
-				android:layout_marginRight="10dp"
-				android:layout_marginTop="10dp"
-				android:layout_marginBottom="10dp"
-				android:id="@+id/moddedpenmodloadfailedMCDBurgerButtonClose"/>
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:textColor="#DEDEDE"
+					android:id="@+id/moddedpeLFTitleTextView"/>
 
-		</RelativeLayout>
+				<com.mcal.MCDesign.widget.MCDBurgerButtonClose
+					android:layout_height="30dp"
+					android:layout_width="30dp"
+					android:layout_alignParentRight="true"
+					android:layout_marginRight="10dp"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:id="@+id/moddedpenmodloadfailedMCDBurgerButtonClose"/>
 
-		<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+			</RelativeLayout>
 
-			<ImageView
-				android:scaleType="fitXY"
-				android:layout_height="match_parent"
+			<RelativeLayout
 				android:layout_width="match_parent"
-				android:src="@drawable/mcd_bg"
-				android:id="@+id/moddedpeLFBackground"/>
+				android:layout_height="wrap_content">
 
-			<ScrollView
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"
-				android:id="@+id/moddedpeLFactivityAppCompatTextViewLFMsg"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:layout_marginTop="10dp"
-				android:layout_marginBottom="10dp">
-
-				<LinearLayout
-					android:layout_width="match_parent"
+				<ImageView
+					android:scaleType="fitXY"
 					android:layout_height="match_parent"
-					android:orientation="vertical">
+					android:layout_width="match_parent"
+					android:src="@drawable/mcd_bg"
+					android:id="@+id/moddedpeLFBackground"/>
 
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_height="wrap_content"
-						android:textAppearance="?android:attr/textAppearanceMedium"
+				<ScrollView
+					android:layout_height="wrap_content"
+					android:layout_width="match_parent"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp">
+
+					<LinearLayout
 						android:layout_width="match_parent"
-						android:layout_margin="10dp"
-						android:gravity="center"
-						android:id="@+id/moddedpeLFWarningTextView"/>
+						android:layout_height="match_parent"
+						android:orientation="vertical">
 
-					<View
-						android:layout_width="match_parent"
-						android:layout_height="1dp"
-						android:layout_marginTop="1dp"
-						android:background="#6E6E6E"
-						android:layout_marginBottom="1dp"/>
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="match_parent"
+							android:layout_margin="10dp"
+							android:gravity="center"
+							android:id="@+id/moddedpeLFWarningTextView"/>
 
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_height="wrap_content"
-						android:textAppearance="?android:attr/textAppearanceMedium"
-						android:layout_width="match_parent"
-						android:gravity="center"
-						android:text="@string/load_fail_main"/>
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:orientation="horizontal"
+							android:layout_height="wrap_content">
 
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_height="wrap_content"
-						android:textAppearance="?android:attr/textAppearanceMedium"
-						android:layout_width="match_parent"
-						android:gravity="center"
-						android:textIsSelectable="true"
-						android:id="@+id/moddedpeLFMsgTextView"/>
+							<android.support.v7.widget.AppCompatTextView
+								android:layout_height="wrap_content"
+								android:textAppearance="?android:attr/textAppearanceSmall"
+								android:layout_width="wrap_content"
+								android:text="@string/load_fail_main"
+								android:id="@+id/moddedpeLFTextViewTitleMain"
+								android:layout_marginLeft="10dp"/>
 
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_height="wrap_content"
-						android:textAppearance="?android:attr/textAppearanceMedium"
-						android:layout_width="match_parent"
-						android:gravity="center"
-						android:text="@string/load_fail_deal"/>
+							<View
+								android:layout_width="match_parent"
+								android:layout_height="1dp"
+								android:background="#6E6E6E"
+								android:layout_centerVertical="true"
+								android:layout_marginLeft="5dp"
+								android:layout_toRightOf="@id/moddedpeLFTextViewTitleMain"/>
 
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_height="wrap_content"
-						android:gravity="center"
-						android:textAppearance="?android:attr/textAppearanceMedium"
-						android:layout_width="match_parent"
-						android:textIsSelectable="true"
-						android:id="@+id/moddedpeLFDealTextView"/>
+						</RelativeLayout>
 
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_height="wrap_content"
-						android:textAppearance="?android:attr/textAppearanceMedium"
-						android:layout_width="match_parent"
-						android:gravity="center"
-						android:text="@string/load_fail_all"/>
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="match_parent"
+							android:gravity="center"
+							android:textIsSelectable="true"
+							android:id="@+id/moddedpeLFMsgTextView"/>
 
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_height="wrap_content"
-						android:gravity="center"
-						android:textAppearance="?android:attr/textAppearanceMedium"
-						android:layout_width="match_parent"
-						android:id="@+id/moddedpeLFFullTextView"
-						android:textIsSelectable="true"/>
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:orientation="horizontal"
+							android:layout_height="wrap_content">
 
-				</LinearLayout>
+							<android.support.v7.widget.AppCompatTextView
+								android:layout_height="wrap_content"
+								android:textAppearance="?android:attr/textAppearanceSmall"
+								android:layout_width="wrap_content"
+								android:text="@string/load_fail_deal"
+								android:id="@+id/moddedpeLFTextViewTitleDeal"
+								android:layout_marginLeft="10dp"/>
 
-			</ScrollView>
+							<View
+								android:layout_width="match_parent"
+								android:layout_height="1dp"
+								android:background="#6E6E6E"
+								android:layout_centerVertical="true"
+								android:layout_marginLeft="5dp"
+								android:layout_toRightOf="@id/moddedpeLFTextViewTitleDeal"/>
 
-		</RelativeLayout>
+						</RelativeLayout>
 
-	</LinearLayout>
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:gravity="center"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="match_parent"
+							android:textIsSelectable="true"
+							android:id="@+id/moddedpeLFDealTextView"/>
+
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:orientation="horizontal"
+							android:layout_height="wrap_content">
+
+							<android.support.v7.widget.AppCompatTextView
+								android:layout_height="wrap_content"
+								android:textAppearance="?android:attr/textAppearanceSmall"
+								android:layout_width="wrap_content"
+								android:text="@string/load_fail_all"
+								android:id="@+id/moddedpeLFTextViewTitleAll"
+								android:layout_marginLeft="10dp"/>
+
+							<View
+								android:layout_width="match_parent"
+								android:layout_height="1dp"
+								android:background="#6E6E6E"
+								android:layout_centerVertical="true"
+								android:layout_marginLeft="5dp"
+								android:layout_toRightOf="@id/moddedpeLFTextViewTitleAll"/>
+
+						</RelativeLayout>
+
+						<android.support.v7.widget.AppCompatTextView
+							android:layout_height="wrap_content"
+							android:gravity="center"
+							android:textAppearance="?android:attr/textAppearanceMedium"
+							android:layout_width="match_parent"
+							android:id="@+id/moddedpeLFFullTextView"
+							android:textIsSelectable="true"/>
+
+					</LinearLayout>
+
+				</ScrollView>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+	</RelativeLayout>
 
 </RelativeLayout>
 

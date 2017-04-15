@@ -264,7 +264,7 @@ void loadLocalization(Localization *self, const std::string &languageName)
 	for(LanguageBean const& bean:languageBeans)
 	{
 		if(bean.name==languageName)
-			self->_appendTranslations(bean.translation);
+			self->appendTranslations(bean.translation);
 	}
 }
 

@@ -135,9 +135,7 @@ public class ModdedPEMainActivity extends Activity
 	public void onNewsClicked(View view)
 	{
 		if(showingNMod!=null)
-		{
-			
-		}
+			new NModDescriptionDialog(this,showingNMod).show();
 	}
 	
 	public void onPlayClicked(View v)

@@ -2,6 +2,7 @@
 <resources>
 	<string name="app_name">ModdedPE</string>
 	<string name="menu">菜单</string>
+	<string name="eduUI">教育版UI</string>
 	<string name="customFlatWorldLayers">自定义平坦世界</string>
 	<string name="hideDebugText">隐藏测试版水印</string>
 	<string name="loadFailed">加载失败！</string>
@@ -23,6 +24,7 @@
 	<string name="welcome_text">欢迎来到ModdedPE。玩得开心！</string>
 	<string name="play">开始</string>
 	<string name="cancel">取消</string>
+	<string name="unknow">未知</string>
 	<string name="nomcpe_error">我们在您的设备上没有发现mojang的MinecraftPE。</string>
 	<string name="download_mcpe_descripion">请前往GooglePlay购买或下载mojang的MinecraftPE。</string>
 	<string name="exit">退出</string>
@@ -54,4 +56,8 @@
 	<string name="load_fail_all">全部错误内容</string>
 	<string name="load_fail_warning">NMod %1$s 造成了一个错误。这个NMod已经被禁用，您可以继续享受游戏。</string>
 	<string name="default_minecraft_title">我的世界携带版：原版</string>
+	<string name="nmod_description_description_title">介绍</string>
+	<string name="nmod_description_about_title">关于</string>
+	<string name="nmod_description_about_author">作者：</string>
+	<string name="nmod_description_about_version_name">版本名：</string>
 </resources>

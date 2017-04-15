@@ -6,5 +6,5 @@ class Localization
 {
 public:
 	void _load(std::string const&);
-	void _appendTranslations(std::string const&);
+	void appendTranslations(std::string const&);
 };
