@@ -8,7 +8,9 @@
 	<string name="loadFailed">加载失败！</string>
 	<string name="redstoneDot">点状红石</string>
 	<string name="autoSaveLevel">自动保存世界</string>
+	<string name="copyright">Copyright</string>
 	<string name="safetyMode">安全模式</string>
+	<string name="license">开源许可</string>
 	<string name="error_title">:( 有一些东西坏了</string>
 	<string name="load_fail_msg">错误报告:</string>
 	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>
@@ -28,6 +30,7 @@
 	<string name="nomcpe_error">我们在您的设备上没有发现mojang的MinecraftPE。</string>
 	<string name="download_mcpe_descripion">请前往GooglePlay购买或下载mojang的MinecraftPE。</string>
 	<string name="exit">退出</string>
+	<string name="about">关于</string>
 	<string name="restart_app">重启</string>
 	<string name="jump">跳过</string>
 	<string name="noavmcpe_title">未找到合适版本的MinecraftPE。</string>

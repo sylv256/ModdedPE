@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ImageView
+		android:scaleType="fitXY"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:src="@drawable/mcd_header_bg"
+		android:id="@+id/moddedpeAboutHeaderBackgroundStatus"/>
+
+	<RelativeLayout
+		android:layout_width="fill_parent"
+		android:layout_marginTop="25dp"
+		android:layout_height="fill_parent">
+
+		<LinearLayout
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:orientation="vertical">
+
+			<RelativeLayout
+				android:layout_width="fill_parent"
+				android:layout_height="50dp"
+				android:orientation="horizontal">
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:layout_centerInParent="true"
+					android:textColor="#DEDEDE"
+					android:id="@+id/moddedpeAboutTitleTextView"/>
+				
+				<com.mcal.MCDesign.widget.MCDBurgerButtonClose
+					android:layout_height="30dp"
+					android:layout_width="30dp"
+					android:layout_alignParentRight="true"
+					android:layout_marginRight="10dp"
+					android:layout_marginTop="10dp"
+					android:layout_marginBottom="10dp"
+					android:onClick="onCloseClicked"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<ImageView
+					android:scaleType="fitXY"
+					android:layout_height="match_parent"
+					android:layout_width="match_parent"
+					android:src="@drawable/mcd_bg"
+					android:id="@+id/moddedpeAboutBackground"/>
+				
+				<ScrollView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical">
+					
+					<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="vertical">
+						
+
+
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:orientation="horizontal"
+							android:layout_height="wrap_content">
+
+							<TextView
+								android:layout_height="wrap_content"
+								android:textAppearance="?android:attr/textAppearanceSmall"
+								android:layout_width="wrap_content"
+								android:text="@string/copyright"
+								android:id="@+id/moddedpenmodAboutTextViewAboutTitle"
+								android:layout_marginLeft="10dp"/>
+
+							<View
+								android:layout_width="match_parent"
+								android:layout_height="1dp"
+								android:background="#6E6E6E"
+								android:layout_centerVertical="true"
+								android:layout_marginLeft="5dp"
+								android:layout_toRightOf="@id/moddedpenmodAboutTextViewAboutTitle"/>
+
+						</RelativeLayout>
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="match_parent"
+							android:text="Copyright © 2016-2017 MCAL Team"
+							android:layout_marginLeft="10dp"
+							android:layout_marginRight="10dp"
+							android:gravity="center"
+							android:singleLine="true"/>
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="match_parent"
+							android:text="Made by ModelPart (Twitter:@model_part)"
+							android:layout_marginLeft="10dp"
+							android:layout_marginRight="10dp"
+							android:gravity="center"
+							android:singleLine="true"/>
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="match_parent"
+							android:text="https://github.com/ModelPart/ModdedPE"
+							android:layout_marginLeft="10dp"
+							android:layout_marginRight="10dp"
+							android:gravity="center"
+							android:singleLine="true"
+							android:textIsSelectable="true"/>
+
+						<RelativeLayout
+							android:layout_width="match_parent"
+							android:orientation="horizontal"
+							android:layout_height="wrap_content">
+
+							<TextView
+								android:layout_height="wrap_content"
+								android:textAppearance="?android:attr/textAppearanceSmall"
+								android:layout_width="wrap_content"
+								android:text="@string/license"
+								android:id="@+id/moddedpenmodAboutTextViewLicenseTitle"
+								android:layout_marginLeft="10dp"/>
+
+							<View
+								android:layout_width="match_parent"
+								android:layout_height="1dp"
+								android:background="#6E6E6E"
+								android:layout_centerVertical="true"
+								android:layout_marginLeft="5dp"
+								android:layout_toRightOf="@id/moddedpenmodAboutTextViewLicenseTitle"/>
+
+						</RelativeLayout>
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="match_parent"
+							android:text="Android Support v4 under Apache License 2.0."
+							android:layout_marginLeft="10dp"
+							android:layout_marginRight="10dp"
+							android:gravity="center"
+							android:singleLine="true"
+							android:textIsSelectable="true"/>
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="match_parent"
+							android:text="Android Support v7 under Apache License 2.0."
+							android:layout_marginLeft="10dp"
+							android:layout_marginRight="10dp"
+							android:gravity="center"
+							android:singleLine="true"
+							android:textIsSelectable="true"/>
+
+						<TextView
+							android:layout_height="wrap_content"
+							android:textAppearance="?android:attr/textAppearanceSmall"
+							android:layout_width="match_parent"
+							android:text="MCDesign under Apache License 2.0."
+							android:layout_marginLeft="10dp"
+							android:layout_marginRight="10dp"
+							android:gravity="center"
+							android:singleLine="true"
+							android:textIsSelectable="true"/>
+
+						
+						
+					</LinearLayout>
+					
+				</ScrollView>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+</RelativeLayout>
+

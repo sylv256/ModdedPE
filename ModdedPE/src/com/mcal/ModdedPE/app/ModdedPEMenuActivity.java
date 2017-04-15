@@ -38,4 +38,9 @@ public class ModdedPEMenuActivity extends Activity
 	{
 		startActivity(new Intent(this,ModdedPEOptionsActivity.class));
 	}
+	
+	public void onAboutClicked(View v)
+	{
+		startActivity(new Intent(this,ModdedPEAboutActivity.class));
+	}
 }

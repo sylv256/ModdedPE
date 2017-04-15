@@ -2,10 +2,10 @@
 <manifest 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.mcal.ModdedPE"
-	platformBuildVersionCode="24"
-    platformBuildVersionName="5.1.1-1819727"
+	platformBuildVersionCode="25"
+    platformBuildVersionName="@string/app_version"
 	android:installLocation="preferExternal"
-    android:versionCode="24"
+    android:versionCode="25"
 	android:versionName="@string/app_version">
 	
 	<uses-feature android:glEsVersion="20000"
@@ -25,7 +25,7 @@
 	
 	<application 
 		android:hasCode="true"
-		
+		android:debuggable="false"
 		android:icon="@mipmap/ic_launcher"
 		android:name="com.mcal.ModdedPE.ModdedPEApplication"
 		android:label="@string/app_name"
@@ -147,8 +147,7 @@
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEAboutActivity"
 			android:theme="@style/AppTheme"
-			android:launchMode="singleTask"
-			android:label="@string/error"
+			android:label="@string/about"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		

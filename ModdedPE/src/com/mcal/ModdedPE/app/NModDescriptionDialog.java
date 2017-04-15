@@ -55,7 +55,7 @@ public class NModDescriptionDialog extends Dialog
 		
 		ImageView iconImage=(ImageView)findViewById(R.id.moddedpenmoddescriptionImageViewIcon);
 		iconImage.setImageBitmap(targetNMod.getIcon());
-		iconImage.getLayoutParams().width=iconImage.getLayoutParams().height=getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth()/3;
+		iconImage.getLayoutParams().width=iconImage.getLayoutParams().height=getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth()/5;
 		
 		AppCompatTextView textViewName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewNModName);
 		textViewName.setText(targetNMod.getName());
