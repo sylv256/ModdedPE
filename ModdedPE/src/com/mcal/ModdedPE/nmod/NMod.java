@@ -3,11 +3,11 @@ import android.content.*;
 import android.content.pm.*;
 import android.content.res.*;
 import android.graphics.*;
-import com.google.gson.*;
 import java.io.*;
 import org.json.*;
 import com.mcal.ModdedPE.*;
 import java.util.*;
+import com.google.gson.*;
 
 public class NMod
 {
@@ -25,21 +25,21 @@ public class NMod
 	{
 		if(dataBean.description!=null)
 			return dataBean.description;
-		return thisContext.getResources().getString(R.string.unknow);
+		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 	
 	public String getAuthor()
 	{
 		if(dataBean.author!=null)
 			return dataBean.author;
-		return thisContext.getResources().getString(R.string.unknow);
+		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 	
 	public String getVersionName()
 	{
 		if(dataBean.version_info!=null&&dataBean.version_info.version_name!=null)
 			return dataBean.version_info.version_name;
-		return thisContext.getResources().getString(R.string.unknow);
+		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 	
 	public boolean isBugPack()
@@ -312,6 +312,13 @@ public class NMod
 		{
 			throw NModLoadException.getFileNotFound(e,thisContext.getResources(),dataBean.version_info.version_description_image);
 		}
+		catch(Throwable t)
+		{
+			throw NModLoadException.getImageDecode(t,thisContext.getResources(),dataBean.version_info.version_description_image);
+		}
+		if(ret==null)
+			throw NModLoadException.getImageDecode(null,thisContext.getResources(),dataBean.version_info.version_description_image);
+		
 		if(ret.getWidth()!=1024||ret.getHeight()!=500)
 			throw NModLoadException.getBadImageSize(thisContext.getResources());
 		return ret;

@@ -1,52 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_version">1.0</string>
+	<!--Default-->
+	<string name="app_version">1.0.0.1</string>
 	<string name="targetMCPE">1.1.0.4</string>
-	<string name="menu">Menu</string>
-	<string name="loadFailed">Load Failed!</string>
-	<string name="customFlatWorldLayers">Custom Flat World Layers</string>
-	<string name="nmod_description_description_title">Description</string>
-	<string name="nmod_description_about_title">About</string>
-	<string name="nmod_description_about_author">Author:</string>
-	<string name="nmod_description_about_version_name">Version Name:</string>
-	<string name="hideDebugText">Hide Debug Text</string>
-	<string name="redstoneDot">Restone Dot</string>
-	<string name="copyright">Copyright</string>
-	<string name="license">Licenses</string>
-	<string name="load_fail_msg">Load Error:</string>
-	<string name="autoSaveLevel">Auto Save Level</string>
-	<string name="load_fail_description">NMod load failed,but the game can still run properly.</string>
-	<string name="leftHandEverything">Hold Everything in Left Hand</string>
-	<string name="safetyMode">Safe Mode</string>
-	<string name="eduUI">Education UI</string>
-	<string name="nmod_load_failed">Failed to load NMod</string>
+	
+	<!--titles-->
+	<string name="menu_title">Menu</string>
+	<string name="error_title">:( Something has broken...</string>
 	<string name="manage_nmod_title">Manage NMods</string>
-	<string name="loading_blocks_message">One block,two blocks,three blocks…</string>
-	<string name="loading">Loading</string>
-	<string name="settings">Settings</string>
-	<string name="update">Update</string>
-	<string name="noavmcpe_title">No available mcpe found</string>
-	<string name="noavmcpe_subtitle">MinecraftPE installed on your device isn\'t available for ModdedPE.</string>
-	<string name="noavmcpe_description">You can jump to launch MCPE,but the game may crash or report an error.\nYou should Install MCPE with the version of </string>
-	<string name="error">ERROR</string>
-	<string name="welcome_title">Welcome</string>
-	<string name="welcome_text">Welcome to ModdedPE.Have Fun!</string>
-	<string name="nomcpe_error">No MCPE made by mojang found on this device.</string>
-	<string name="download_mcpe_descripion">Buy or download MCPE of mojang in GooglePlay!</string>
-	<string name="exit">Exit</string>
-	<string name="cancel">Cancel</string>
-	<string name="play">Play</string>
-	<string name="jump">Jump</string>
-	<string name="about">About</string>
-	<string name="ok">OK</string>
-	<string name="unknow">Unknow</string>
-	<string name="check_update">Check update</string>
-	<string name="not_available_network">The network is not available.Please check your network.</string>
-	<string name="restart_app">Restart</string>
-	<string name="restarting_appp">Restarting...</string>
-	<string name="restart_app_and_send">Restart and send messages</string>
-	<string name="error_title">:( Something has broken.</string>
-	<string name="error_text">This may caused by an unsupported version or a mistake of codes.Send the report to the developer to fix it.</string> 
+	<string name="settings_title">Settings</string>
+	<string name="about_title">About</string>
+	<string name="main_title">Home Page</string>
+	
+	<!--NMod-->
+	<string name="nmod_loadFailed">%1$s Load Failed!</string>
+	<string name="load_fail_msg">Load Error:</string>
+	<string name="load_fail_description">NMod load failed,but the game still can run.</string>
+	<string name="nmod_load_failed">Failed to load NMod.</string>
+	
 	<string name="load_exception_bad_jni_return_value">Bad return value in method JNI_OnLoad!</string>
 	<string name="load_exception_bad_jni_return_value_d">Please create method JNI_OnLoad and return JNI_VERSION value in it!</string>
 	<string name="load_exception_bad_manifest_grammar">An error caused in loading nmod_manifest.json.</string>
@@ -61,6 +32,8 @@
 	<string name="load_exception_dlopen_fail_d">Please add native lib %1$s and register it in native_libs (in nmod_manifest.json) before %2$s.</string>
 	<string name="load_exception_native_lib_not_found">Cannot found native lib: %1$s.</string>
 	<string name="load_exception_native_lib_not_found_d">Please add native lib: %1$s.</string>
+	<string name="load_exception_image_decode">Decoding image failed: %1$s.</string>
+	<string name="load_exception_image_decode_d">Please make sure if the image is valid: %1$s.</string>
 	<string name="load_exception_unknow">UNKNOW.</string>
 	<string name="load_exception_unknow_d">UNKNOW.</string>
 	<string name="load_exception_bad_image_size">Bad image size:description image should be 1024(width)*500(height).</string>
@@ -69,7 +42,46 @@
 	<string name="load_fail_deal">How to Deal</string>
 	<string name="load_fail_all">Full Description</string>
 	<string name="load_fail_warning">An error was caused by the NMod %1$s.The NMod is disabled now,you can continue to enjoy the game!</string>
-	<string name="default_minecraft_title">MinecraftPE : Default</string>
+	
+	<string name="nmod_description_description_title">Description</string>
+	<string name="nmod_description_about_title">About</string>
+	<string name="nmod_description_about_author">Author:</string>
+	<string name="nmod_description_about_version_name">Version Name:</string>
+	<string name="nmod_description_unknow">Unknow</string>
+	<!--About-->
+	<string name="about_copyright">Copyright</string>
+	<string name="about_license">Licenses</string>
+	
+	<!--Settings-->
+	<string name="settings_autoSaveLevel">Auto Save Level</string>
+	<string name="settings_leftHandEverything">Hold Everything in Left Hand</string>
+	<string name="settings_safetyMode">Safe Mode</string>
+	<string name="settings_eduUI">Education UI</string>
+	<string name="settings_hideDebugText">Hide Debug Text</string>
+	<string name="settings_redstoneDot">Restone Dot</string>
+	<string name="settings_customFlatWorldLayers">Custom Flat World Layers</string>
+	
+	<!--Open Game Dialog-->
+	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
+	<string name="opengame_loading">Loading</string>
+	
+	<!--MCPE Version-->
+	<string name="noavmcpe_title">No available mcpe found</string>
+	<string name="noavmcpe_subtitle">MinecraftPE installed on your device isn\'t available for ModdedPE.</string>
+	<string name="noavmcpe_description">You can jump to launch MCPE,but the game may crash or report an error.\nYou should Install MCPE with the version of </string>
+	<string name="error">ERROR</string>
+	<string name="nomcpe_error">No MCPE made by mojang found on this device.</string>
+	<string name="download_mcpe_descripion">Buy or download MCPE of mojang in GooglePlay!</string>
+	
+	<!--Main Activity-->
+	<string name="main_play">Play</string>
+	<string name="main_jump">Jump</string>
+	<string name="main_default_minecraft_title">MinecraftPE : Default</string>
+	<string name="main_ok">OK</string>
+	
+	<!--Error Activity-->
+	<string name="error_restart_app">Restart</string>
+	<string name="error_text">This may caused by an unsupported version or a mistake of codes.Send the report to the developer to fix it.</string> 
 	
 	<string name="com_facebook_like_button_not_liked">Like</string>
     <string name="com_facebook_like_button_liked">Liked</string>
@@ -351,8 +363,8 @@
     <string name="ic_Edit"></string>
     <string name="ic_Repeat"></string>
     <string name="ic_ApplicationLaunch"></string>
-    <string name="app_name">Industrial Craft:Pocket-Edition</string>
-    <string name="app_name_demo">Industrial Craft:Pocket-Edition Demo</string>
+    <string name="app_name">ModdedPE</string>
+    <string name="app_name_demo">ModdedPE Demo</string>
     <string name="xperiaplayoptimized_content">true</string>
     <string name="app_name_short">ModdedPE</string>
     <string name="app_name_short_demo">ModdedPE Demo</string>

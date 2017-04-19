@@ -14,6 +14,7 @@ public abstract class NModLoadException extends Exception
 	public static final int BAD_MANIFEST_GRAMMAR=6;
 	public static final int BAD_JSON_GRAMMAR=7;
 	public static final int BAD_IMAGE_SIZE=8;
+	public static final int IMAGE_DECODE=9;
 	
 	protected int type;
 	protected Throwable defaultMsg;
@@ -30,6 +31,11 @@ public abstract class NModLoadException extends Exception
 		this.type=type;
 		this.defaultMsg=msg;
 		this.resources=r;
+	}
+
+	public static NModLoadException getImageDecode(Throwable throwable, Resources r, String version_description_image)
+	{
+		return new ImageDecodeException(throwable,r,version_description_image);
 	}
 
 	public static NModLoadException getBadJsonGrammar(Throwable throwable, Resources r,String jsonName)
@@ -171,6 +177,27 @@ public abstract class NModLoadException extends Exception
 		public String getDealMessage()
 		{
 			return resources.getString(R.string.load_exception_bad_json_grammar_d,new String[]{jsonName});
+		}
+	}
+	
+	public static class ImageDecodeException extends NModLoadException
+	{
+		private String name;
+
+		public ImageDecodeException(Throwable t,Resources r,String name)
+		{
+			super(NModLoadException.IMAGE_DECODE,t,r);
+
+			this.name=name;
+		}
+
+		public String getBugMessage()
+		{
+			return resources.getString(R.string.load_exception_image_decode,new String[]{name});
+		}
+		public String getDealMessage()
+		{
+			return resources.getString(R.string.load_exception_image_decode_d,new String[]{name});
 		}
 	}
 	

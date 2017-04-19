@@ -7,6 +7,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.utils.*;
+import android.app.*;
 
 public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {

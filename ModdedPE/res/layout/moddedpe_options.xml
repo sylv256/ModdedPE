@@ -1,188 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent">
 
-	<ImageView
-		android:scaleType="fitXY"
-		android:layout_height="wrap_content"
-		android:layout_width="match_parent"
-		android:src="@drawable/mcd_header_bg"
-		android:id="@+id/moddedpeOptionsHeaderBackgroundStatus"/>
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:layout_width="match_parent">
 
-	<RelativeLayout
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent">
+		<RelativeLayout
+			android:layout_height="50dp"
+			android:layout_width="match_parent">
 
-		<LinearLayout
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:orientation="vertical">
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="@string/settings_safetyMode"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="20dp"/>
 
-			<RelativeLayout
-				android:layout_width="fill_parent"
-				android:layout_height="50dp"
-				android:orientation="horizontal">
+			<com.mcal.MCDesign.widget.MCDSwitch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="20dp"
+				android:id="@+id/moddedpeoptionsMCDSwitchSafetyMode"/>
 
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:layout_centerInParent="true"
-					android:textColor="#DEDEDE"
-					android:id="@+id/moddedpeOptionsTitleTextView"/>
+		</RelativeLayout>
 
-				<com.mcal.MCDesign.widget.MCDBurgerButtonClose
-					android:layout_height="30dp"
-					android:layout_width="30dp"
-					android:layout_alignParentRight="true"
-					android:layout_marginRight="10dp"
-					android:layout_marginTop="10dp"
-					android:layout_marginBottom="10dp"
-					android:onClick="onCloseClicked"/>
+		<RelativeLayout
+			android:layout_height="50dp"
+			android:layout_width="match_parent">
 
-			</RelativeLayout>
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="@string/settings_redstoneDot"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="20dp"/>
 
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
+			<com.mcal.MCDesign.widget.MCDSwitch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="20dp"
+				android:id="@+id/moddedpeoptionsMCDSwitchRedstoneDot"/>
 
-				<ImageView
-					android:scaleType="fitXY"
-					android:layout_height="match_parent"
-					android:layout_width="match_parent"
-					android:src="@drawable/mcd_bg"
-					android:id="@+id/moddedpeOptionsBackground"/>
+		</RelativeLayout>
 
-				<ScrollView
-					android:layout_height="match_parent"
-					android:layout_width="match_parent">
+		<RelativeLayout
+			android:layout_height="50dp"
+			android:layout_width="match_parent">
 
-					<LinearLayout
-						android:layout_height="match_parent"
-						android:orientation="vertical"
-						android:layout_width="match_parent">
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="@string/settings_hideDebugText"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="20dp"/>
 
-						<RelativeLayout
-							android:layout_height="50dp"
-							android:layout_width="match_parent">
+			<com.mcal.MCDesign.widget.MCDSwitch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="20dp"
+				android:id="@+id/moddedpeoptionsMCDSwitchToggleDebugText"/>
 
-							<android.support.v7.widget.AppCompatTextView
-								android:layout_height="wrap_content"
-								android:textAppearance="?android:attr/textAppearanceMedium"
-								android:layout_width="wrap_content"
-								android:text="@string/safetyMode"
-								android:layout_centerVertical="true"
-								android:layout_marginLeft="20dp"/>
+		</RelativeLayout>
 
-							<com.mcal.MCDesign.widget.MCDSwitch
-								android:layout_height="wrap_content"
-								android:layout_width="wrap_content"
-								android:layout_centerVertical="true"
-								android:layout_alignParentRight="true"
-								android:layout_marginRight="20dp"
-								android:id="@+id/moddedpeoptionsMCDSwitchSafetyMode"/>
+		<RelativeLayout
+			android:layout_height="50dp"
+			android:layout_width="match_parent">
 
-						</RelativeLayout>
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="@string/settings_autoSaveLevel"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="20dp"/>
 
-						<RelativeLayout
-							android:layout_height="50dp"
-							android:layout_width="match_parent">
+			<com.mcal.MCDesign.widget.MCDSwitch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="20dp"
+				android:id="@+id/moddedpeoptionsMCDSwitchAutoSaveLevel"/>
 
-							<android.support.v7.widget.AppCompatTextView
-								android:layout_height="wrap_content"
-								android:textAppearance="?android:attr/textAppearanceMedium"
-								android:layout_width="wrap_content"
-								android:text="@string/redstoneDot"
-								android:layout_centerVertical="true"
-								android:layout_marginLeft="20dp"/>
+		</RelativeLayout>
 
-							<com.mcal.MCDesign.widget.MCDSwitch
-								android:layout_height="wrap_content"
-								android:layout_width="wrap_content"
-								android:layout_centerVertical="true"
-								android:layout_alignParentRight="true"
-								android:layout_marginRight="20dp"
-								android:id="@+id/moddedpeoptionsMCDSwitchRedstoneDot"/>
+		<RelativeLayout
+			android:layout_height="50dp"
+			android:layout_width="match_parent">
 
-						</RelativeLayout>
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="@string/settings_leftHandEverything"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="20dp"/>
 
-						<RelativeLayout
-							android:layout_height="50dp"
-							android:layout_width="match_parent">
+			<com.mcal.MCDesign.widget.MCDSwitch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="20dp"
+				android:id="@+id/moddedpeoptionsMCDSwitchSelectAllInLeft"/>
 
-							<android.support.v7.widget.AppCompatTextView
-								android:layout_height="wrap_content"
-								android:textAppearance="?android:attr/textAppearanceMedium"
-								android:layout_width="wrap_content"
-								android:text="@string/hideDebugText"
-								android:layout_centerVertical="true"
-								android:layout_marginLeft="20dp"/>
+		</RelativeLayout>
 
-							<com.mcal.MCDesign.widget.MCDSwitch
-								android:layout_height="wrap_content"
-								android:layout_width="wrap_content"
-								android:layout_centerVertical="true"
-								android:layout_alignParentRight="true"
-								android:layout_marginRight="20dp"
-								android:id="@+id/moddedpeoptionsMCDSwitchToggleDebugText"/>
+	</LinearLayout>
 
-						</RelativeLayout>
-
-						<RelativeLayout
-							android:layout_height="50dp"
-							android:layout_width="match_parent">
-
-							<android.support.v7.widget.AppCompatTextView
-								android:layout_height="wrap_content"
-								android:textAppearance="?android:attr/textAppearanceMedium"
-								android:layout_width="wrap_content"
-								android:text="@string/autoSaveLevel"
-								android:layout_centerVertical="true"
-								android:layout_marginLeft="20dp"/>
-
-							<com.mcal.MCDesign.widget.MCDSwitch
-								android:layout_height="wrap_content"
-								android:layout_width="wrap_content"
-								android:layout_centerVertical="true"
-								android:layout_alignParentRight="true"
-								android:layout_marginRight="20dp"
-								android:id="@+id/moddedpeoptionsMCDSwitchAutoSaveLevel"/>
-
-						</RelativeLayout>
-
-						<RelativeLayout
-							android:layout_height="50dp"
-							android:layout_width="match_parent">
-
-							<android.support.v7.widget.AppCompatTextView
-								android:layout_height="wrap_content"
-								android:textAppearance="?android:attr/textAppearanceMedium"
-								android:layout_width="wrap_content"
-								android:text="@string/leftHandEverything"
-								android:layout_centerVertical="true"
-								android:layout_marginLeft="20dp"/>
-
-							<com.mcal.MCDesign.widget.MCDSwitch
-								android:layout_height="wrap_content"
-								android:layout_width="wrap_content"
-								android:layout_centerVertical="true"
-								android:layout_alignParentRight="true"
-								android:layout_marginRight="20dp"
-								android:id="@+id/moddedpeoptionsMCDSwitchSelectAllInLeft"/>
-
-						</RelativeLayout>
-
-					</LinearLayout>
-
-				</ScrollView>
-
-			</RelativeLayout>
-
-		</LinearLayout>
-
-	</RelativeLayout>
-
-</RelativeLayout>
+</ScrollView>
 

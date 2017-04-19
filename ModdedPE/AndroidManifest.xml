@@ -2,10 +2,10 @@
 <manifest 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.mcal.ModdedPE"
-	platformBuildVersionCode="25"
+	platformBuildVersionCode="27"
     platformBuildVersionName="@string/app_version"
 	android:installLocation="preferExternal"
-    android:versionCode="25"
+    android:versionCode="27"
 	android:versionName="@string/app_version">
 	
 	<uses-feature android:glEsVersion="20000"
@@ -50,7 +50,7 @@
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEMainActivity"
 			android:theme="@style/AppTheme"
-			android:label="ModdedPE"
+			android:label="@string/main_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		
@@ -70,7 +70,7 @@
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEMenuActivity"
 			android:theme="@style/AppTheme"
-			android:label="@string/menu"
+			android:label="@string/menu_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		
@@ -84,13 +84,13 @@
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEOptionsActivity"
 			android:theme="@style/AppTheme"
-			android:label="@string/settings"
+			android:label="@string/settings_title"
 			android:screenOrientation="sensorLandscape">
 		</activity>
 		
 		<activity
 			android:theme="@style/FullScreenTheme"
-			android:label="Minecraft PE"
+			android:label="@string/app_name"
 			android:name="com.mcal.ModdedPE.app.ModdedPEMinecraftActivity"
 			android:debuggable="false"
             android:excludeFromRecents="false"
@@ -114,7 +114,7 @@
 		
 		<activity
 			android:theme="@style/FullScreenTheme"
-			android:label="Minecraft PE"
+			android:label="@string/app_name"
 			android:name="com.mcal.ModdedPE.app.ModdedPESafetyModeMinecraftActivity"
 			android:debuggable="false"
             android:excludeFromRecents="false"
@@ -140,14 +140,14 @@
 			android:name="com.mcal.ModdedPE.app.ModdedPEErrorActivity"
 			android:theme="@style/AppTheme"
 			android:launchMode="singleTask"
-			android:label="@string/error"
+			android:label="@string/error_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEAboutActivity"
 			android:theme="@style/AppTheme"
-			android:label="@string/about"
+			android:label="@string/about_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		

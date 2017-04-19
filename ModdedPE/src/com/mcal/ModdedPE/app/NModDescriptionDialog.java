@@ -36,7 +36,7 @@ public class NModDescriptionDialog extends Dialog
 		}
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getOwnerActivity().getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeDescriptionBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth(), bitmap));
+			((ImageView)findViewById(R.id.moddedpeDescriptionBackground)).setImageBitmap(BitmapRepeater.createRepeater(getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth(), getOwnerActivity().getWindowManager().getDefaultDisplay().getHeight(),bitmap));
 		}
 		((TextView)findViewById(R.id.moddedpeDescriptionTitleTextView)).setText(targetNMod.getName());
 		

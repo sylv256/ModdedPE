@@ -11,8 +11,10 @@ import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.resources.*;
 import com.mcal.ModdedPE.utils.*;
 import java.util.*;
+import com.mcal.MCDesign.app.*;
+import com.mcal.MCDesign.widget.*;
 
-public class ModdedPEManageNModActivity extends Activity
+public class ModdedPEManageNModActivity extends MCDActivity
 {
 	private ListView listActive;
 	private ListView listQuiet;
@@ -27,16 +29,7 @@ public class ModdedPEManageNModActivity extends Activity
 		
 		nmodManager=NModManager.getNModManager(this);
 		
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpemanageNModHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpemanageNModBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		((TextView)findViewById(R.id.moddedpemanageNModTitleTextView)).setText(getTitle());
-		((TextView)findViewById(R.id.moddedpemanageNModIsSafetyMode)).setVisibility(new Settings(this).getSafeMode()?View.VISIBLE:View.GONE);
+		setActionBarButtonCloseRight();
 		
 		listActive=(ListView)findViewById(R.id.moddedpemanageNModListActive);
 		listQuiet=(ListView)findViewById(R.id.moddedpemanageNModListQuiet);
@@ -254,10 +247,4 @@ public class ModdedPEManageNModActivity extends Activity
 		}
 		
     }
-	
-	
-	public void onCloseClicked(View view)
-	{
-		finish();
-	}
 }

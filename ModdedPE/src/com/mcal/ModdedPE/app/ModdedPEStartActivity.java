@@ -12,7 +12,7 @@ import com.mcal.ModdedPE.resources.*;
 import com.mcal.ModdedPE.utils.*;
 import com.mcal.ModdedPE.widget.*;
 
-public class ModdedPEStartActivity extends Activity 
+public class ModdedPEStartActivity extends MCDActivity 
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -20,12 +20,6 @@ public class ModdedPEStartActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_start);
 
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeStartBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		
-		
 		new Thread()
 		{
 			public void run()

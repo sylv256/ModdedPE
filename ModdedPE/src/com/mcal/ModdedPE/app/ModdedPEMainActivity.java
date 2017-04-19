@@ -1,21 +1,20 @@
 package com.mcal.ModdedPE.app;
-import android.app.*;
 import android.content.*;
 import android.content.pm.*;
 import android.graphics.*;
 import android.os.*;
+import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import com.mcal.MCDesign.app.*;
+import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.resources.*;
-import com.mcal.ModdedPE.utils.*;
-import com.mcal.ModdedPE.widget.*;
 import com.mcal.ModdedPE.nmod.*;
+import com.mcal.ModdedPE.utils.*;
 import java.util.*;
-import android.support.v7.widget.*;
+import com.mcal.ModdedPE.widget.*;
 
-public class ModdedPEMainActivity extends Activity 
+public class ModdedPEMainActivity extends MCDActivity 
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -27,43 +26,46 @@ public class ModdedPEMainActivity extends Activity
 		final Settings settings=new Settings(this);
 		if(!settings.getFirstLoaded())
 		{
-			final MCDDialog mdialog = new MCDDialog(this);
-			mdialog.setTitleText(getString(R.string.welcome_title));
-			mdialog.setText(getString(R.string.welcome_text));
-			mdialog.setPositiveButton(getString(R.string.ok),new View.OnClickListener()
-				{
-
-					@Override
-					public void onClick(View p1)
-					{
-						settings.setFirstLoaded(true);
-						mdialog.dismiss();
-					}
-					
-				
-			});
+//			final MCDAlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
+//			mdialog.setTitle(getString(R.string.welcome_title));
+//			mdialog.setMessage(getString(R.string.welcome_text));
+//			mdialog.setNegativeButton(getString(R.string.ok),new DialogInterface.OnClickListener()
+//				{
+//
+//					@Override
+//					public void onClick(DialogInterface p1,int id)
+//					{
+//						settings.setFirstLoaded(true);
+//						p1.dismiss();
+//					}
+//			});
+//			mdialog.show();
 		}
 	}
 	
 	private void resetViews()
 	{
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpemainHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpemainImageViewBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-
 		final Settings settings=new Settings(this);
 
 		findViewById(R.id.moddedpemainMCDPlayButton).getLayoutParams().width=getWindowManager().getDefaultDisplay().getWidth()/3;
-		((TextView)findViewById(R.id.moddedpemainTextViewTitle)).setText(getTitle());
 		((TextView)findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
 		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(getString(R.string.targetMCPE));
 		((TextView)findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode()?View.VISIBLE:View.GONE);
 		((TextView)findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion()?Color.GREEN:Color.RED);
+		
+		MCDBurgerButton burgerButton=new MCDBurgerButton(this);
+		burgerButton.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onMenuClicked(p1);
+				}
+				
+			
+		});
+		setActionBarViewRight(burgerButton);
 		
 		prepareNews();
 	}
@@ -115,20 +117,18 @@ public class ModdedPEMainActivity extends Activity
 	{
 		Vector<NMod> nmods=NModManager.getNModManager(this).getActiveNModsHasNews();
 		
-		ImageView newsImage=(ImageView)findViewById(R.id.moddedpemainTextViewNewsNModImage);
-		AppCompatTextView newsTitle=(AppCompatTextView)findViewById(R.id.moddedpemainTextViewNewsNModTitle);
-		
+		NewsLayout newsLayout=(NewsLayout) findViewById(R.id.moddedpemainNewsLayout);
 		if(nmods.size()>0)
 		{
 			showingNMod=nmods.get(new Random(System.nanoTime()).nextInt(nmods.size()));
-			newsImage.setImageBitmap(showingNMod.getVersionImage());
-			newsTitle.setText(showingNMod.getNewsTitle());
+			newsLayout.setNewsImage(showingNMod.getVersionImage());
+			newsLayout.setNewsTitle(showingNMod.getNewsTitle());
 		}
 		else
 		{
 			showingNMod=null;
-			newsImage.setImageResource(R.drawable.image_default_minecraft);
-			newsTitle.setText(getString(R.string.default_minecraft_title));
+			newsLayout.setNewsImage(BitmapFactory.decodeResource(getResources(),R.drawable.image_default_minecraft));
+			newsLayout.setNewsTitle(getString(R.string.main_default_minecraft_title));
 		}
 	}
 	
@@ -140,55 +140,53 @@ public class ModdedPEMainActivity extends Activity
 	
 	public void onPlayClicked(View v)
 	{
-		if(getMcContext()==null)
-		{
-			//MinecraftPE did not installed
-			final MCDDialog mdialog = new MCDDialog(this);
-			mdialog.setTitleText(getString(R.string.error));
-			mdialog.setText(getString(R.string.nomcpe_error));
-			mdialog.setPositiveButton(getString(R.string.ok),new View.OnClickListener()
-				{
-
-					@Override
-					public void onClick(View p1)
-					{
-						mdialog.dismiss();
-					}
-					
-				
-			});
-		}
-		else if(!isSupportedMinecraftPEVersion())
-		{
-			//Unavailable version of MinecraftPE
-			final MCDDialog mdialog = new MCDDialog(this);
-			mdialog.setTitleText(getString(R.string.noavmcpe_title));
-			mdialog.setText(getString(R.string.noavmcpe_description)+getString(R.string.targetMCPE));
-			mdialog.setNegativeButton(getString(R.string.cancel),new View.OnClickListener()
-				{
-
-					@Override
-					public void onClick(View p1)
-					{
-						mdialog.dismiss();
-					}
-
-
-				});
-			mdialog.setPositiveButton(getString(R.string.jump),new View.OnClickListener()
-				{
-
-					@Override
-					public void onClick(View p1)
-					{
-						startMinecraft();
-					}
-
-
-				});
-			return;
-		}
-		else
+//		if(getMcContext()==null)
+//		{
+//			MinecraftPE did not installed
+//			final MCDAlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
+//			mdialog.setTitle(getString(R.string.error));
+//			mdialog.setMessage(getString(R.string.nomcpe_error));
+//			mdialog.setNegativeButton(getString(R.string.ok),new DialogInterface.OnClickListener()
+//				{
+//
+//					@Override
+//					public void onClick(DialogInterface p1,int id)
+//					{
+//						p1.dismiss();
+//					}
+//				});
+//			mdialog.show();
+//		}
+//		else if(!isSupportedMinecraftPEVersion())
+//		{
+//			Unavailable version of MinecraftPE
+//			final MCDAlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
+//			mdialog.setTitle(getString(R.string.noavmcpe_title));
+//			mdialog.setMessage(getString(R.string.noavmcpe_description));
+//			mdialog.setNeutralButton(getString(R.string.ok),new DialogInterface.OnClickListener()
+//				{
+//
+//					@Override
+//					public void onClick(DialogInterface p1,int id)
+//					{
+//						p1.dismiss();
+//					}
+//				});
+//			mdialog.setNegativeButton(getString(R.string.jump),new DialogInterface.OnClickListener()
+//				{
+//
+//					@Override
+//					public void onClick(DialogInterface p1,int id)
+//					{
+//						startMinecraft();
+//					}
+//
+//
+//				});
+//			mdialog.show();
+//			return;
+//		}
+//		else
 			startMinecraft();
 	}
 	

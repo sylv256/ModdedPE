@@ -7,8 +7,9 @@ import android.support.v7.widget.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.resources.*;
+import com.mcal.MCDesign.app.*;
 
-public class ModdedPEErrorActivity extends Activity
+public class ModdedPEErrorActivity extends MCDActivity
 {
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -23,14 +24,5 @@ public class ModdedPEErrorActivity extends Activity
 			AppCompatTextView text=(AppCompatTextView)findViewById(R.id.moddedpeerroractivityAppCompatTextViewErrorMsg);
 			text.setText(msg);
 		}
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpeErrorHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeErrorBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		((TextView)findViewById(R.id.moddedpeErrorTitleTextView)).setText(getTitle());
 	}
 }

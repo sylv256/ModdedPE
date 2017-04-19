@@ -7,14 +7,14 @@ import android.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.resources.*;
+import android.graphics.drawable.*;
+import android.content.*;
 public class LoadingDialog extends Dialog
 {
-	private Activity mActivity = null;
-	
-	public LoadingDialog(Activity context)
+	public LoadingDialog(Context context)
 	{
 		super(context, R.style.FullScreenTheme);
-		mActivity=context;
+		
 		setCancelable(false);
 	}
 
@@ -34,14 +34,14 @@ public class LoadingDialog extends Dialog
 	{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.moddedpe_loading);
+		View contentView=getLayoutInflater().inflate(R.layout.moddedpe_loading,null);
+		setContentView(contentView);
 		
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeloadingImageViewBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(mActivity.getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
+		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);
+		bitmap=BitmapRepeater.createRepeater(getWindow().getWindowManager().getDefaultDisplay().getWidth(), getWindow().getWindowManager().getDefaultDisplay().getHeight(), bitmap);
+		contentView.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		
-		setLoadingMessage(getContext().getString(R.string.loading));
+		setLoadingMessage(getContext().getString(R.string.opengame_loading));
 		
 		new Thread()
 		{

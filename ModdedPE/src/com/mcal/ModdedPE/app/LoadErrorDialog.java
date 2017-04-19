@@ -35,10 +35,10 @@ public class LoadErrorDialog extends Dialog
 		}
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeLFBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(parentActivity.getWindowManager().getDefaultDisplay().getWidth(), bitmap));
+			((ImageView)findViewById(R.id.moddedpeLFBackground)).setImageBitmap(BitmapRepeater.createRepeater(parentActivity.getWindowManager().getDefaultDisplay().getWidth(),parentActivity.getWindowManager().getDefaultDisplay().getHeight(),bitmap));
 		}
 		
-		((AppCompatTextView)findViewById(R.id.moddedpeLFTitleTextView)).setText(errorNMod.getName()+"  "+parentActivity.getString(R.string.loadFailed));
+		((AppCompatTextView)findViewById(R.id.moddedpeLFTitleTextView)).setText(parentActivity.getString(R.string.nmod_loadFailed,new String[]{errorNMod.getName()}));
 		findViewById(R.id.moddedpenmodloadfailedMCDBurgerButtonClose).setOnClickListener(new View.OnClickListener()
 			{
 

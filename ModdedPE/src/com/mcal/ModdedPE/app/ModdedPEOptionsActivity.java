@@ -8,8 +8,9 @@ import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.resources.*;
 import com.mcal.ModdedPE.utils.*;
+import com.mcal.MCDesign.app.*;
 
-public class ModdedPEOptionsActivity extends Activity
+public class ModdedPEOptionsActivity extends MCDActivity
 {
 	private MCDSwitch switchSafetyMode;
 	private MCDSwitch switchRedstoneDot;
@@ -23,16 +24,6 @@ public class ModdedPEOptionsActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_options);
 
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpeOptionsHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		{
-			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeOptionsBackground)).setImageBitmap(BitmapRepeater.createRepeaterW(getWindowManager().getDefaultDisplay().getWidth(), bitmap));
-		}
-		((TextView)findViewById(R.id.moddedpeOptionsTitleTextView)).setText(getTitle());
-		
 		switchSafetyMode=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchSafetyMode);
 		switchRedstoneDot=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchRedstoneDot);
 		switchHideDebugText=(MCDSwitch)findViewById(R.id.moddedpeoptionsMCDSwitchToggleDebugText);
@@ -61,12 +52,7 @@ public class ModdedPEOptionsActivity extends Activity
 		switchSelectAllInLeft.setOnClickListener(switchUpdateListener);
 		
 		refreshViews();
-	}
-	
-	
-	public void onCloseClicked(View view)
-	{
-		finish();
+		setActionBarButtonCloseRight();
 	}
 
 	@Override

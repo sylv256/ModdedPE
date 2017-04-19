@@ -5,6 +5,7 @@ import android.os.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.utils.*;
+import android.app.*;
 
 public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {

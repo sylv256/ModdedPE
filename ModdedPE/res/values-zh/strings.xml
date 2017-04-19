@@ -1,41 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">ModdedPE</string>
-	<string name="menu">菜单</string>
-	<string name="eduUI">教育版UI</string>
-	<string name="customFlatWorldLayers">自定义平坦世界</string>
-	<string name="hideDebugText">隐藏测试版水印</string>
-	<string name="loadFailed">加载失败！</string>
-	<string name="redstoneDot">点状红石</string>
-	<string name="autoSaveLevel">自动保存世界</string>
-	<string name="copyright">Copyright</string>
-	<string name="safetyMode">安全模式</string>
-	<string name="license">开源许可</string>
-	<string name="error_title">:( 有一些东西坏了</string>
-	<string name="load_fail_msg">错误报告:</string>
-	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>
-	<string name="error_text">这可能是因为一个不支持的MCPE版本或者代码错误引起的。请把错误报告发送给开发者来修复它。</string> 
-	<string name="nmod_load_failed">加载NMod失败</string>
-	<string name="loading">加载中...</string>
-	<string name="leftHandEverything">左手持任何物品</string>
+	
+	<!--titles-->
+	<string name="menu_title">菜单</string>
 	<string name="manage_nmod_title">管理NMod</string>
-	<string name="settings">设置</string>
-	<string name="error">错误</string>
-	<string name="loading_blocks_message">一个方块，两个方块，三个方块……</string>
-	<string name="welcome_title">欢迎</string>
-	<string name="welcome_text">欢迎来到ModdedPE。玩得开心！</string>
-	<string name="play">开始</string>
-	<string name="cancel">取消</string>
-	<string name="unknow">未知</string>
-	<string name="nomcpe_error">我们在您的设备上没有发现mojang的MinecraftPE。</string>
-	<string name="download_mcpe_descripion">请前往GooglePlay购买或下载mojang的MinecraftPE。</string>
-	<string name="exit">退出</string>
-	<string name="about">关于</string>
-	<string name="restart_app">重启</string>
-	<string name="jump">跳过</string>
-	<string name="noavmcpe_title">未找到合适版本的MinecraftPE。</string>
-	<string name="noavmcpe_subtitle">安装在您设备上的MCPE与ModdedPE不匹配。</string>
-	<string name="noavmcpe_description">你可以跳过以开启游戏，但是游戏可能会崩溃或者报错。\n请下载</string>
+	<string name="error_title">〒▽〒有一些东西坏了</string>
+	<string name="settings_title">设置</string>
+	<string name="about_title">关于</string>
+	<string name="main_title">主页</string>
+	
+	<!--NMod-->
+	<string name="nmod_loadFailed">%1$s 加载失败！</string>
+	<string name="load_fail_msg">错误报告：</string>
+	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>
+	<string name="nmod_load_failed">加载NMod失败</string>
+
 	<string name="load_exception_bad_jni_return_value">函数JNI_OnLoad返回值错误！</string>
 	<string name="load_exception_bad_jni_return_value_d">请创建函数JNI_OnLoad并且返回一个正确的JNI_VERSION。</string>
 	<string name="load_exception_bad_manifest_grammar">加载nmod_manifest.json文件出错。</string>
@@ -54,13 +33,50 @@
 	<string name="load_exception_unknow_d">未知。</string>
 	<string name="load_exception_bad_image_size">错误的图片大小：介绍图应该是1024（宽）*500（高）。</string>
 	<string name="load_exception_bad_image_size_d">请调整介绍图片到1024（宽）*500（高）。</string>
+	<string name="load_exception_image_decode">解码图片失败： %1$s。</string>
+	<string name="load_exception_image_decode_d">请确保图片是否有效： %1$s。</string>
 	<string name="load_fail_main">错误介绍</string>
 	<string name="load_fail_deal">解决方案</string>
 	<string name="load_fail_all">全部错误内容</string>
 	<string name="load_fail_warning">NMod %1$s 造成了一个错误。这个NMod已经被禁用，您可以继续享受游戏。</string>
-	<string name="default_minecraft_title">我的世界携带版：原版</string>
+	
 	<string name="nmod_description_description_title">介绍</string>
 	<string name="nmod_description_about_title">关于</string>
 	<string name="nmod_description_about_author">作者：</string>
 	<string name="nmod_description_about_version_name">版本名：</string>
+	<string name="nmod_description_unknow">未知</string>
+	<!--About-->
+	<string name="about_copyright">Copyright</string>
+	<string name="about_license">开源许可</string>
+
+	<!--Settings-->
+	<string name="settings_autoSaveLevel">自动保存世界</string>
+	<string name="settings_leftHandEverything">左手持任何物品</string>
+	<string name="settings_safetyMode">安全模式</string>
+	<string name="settings_eduUI">教育版界面</string>
+	<string name="settings_hideDebugText">隐藏测试版水印</string>
+	<string name="settings_redstoneDot">点状红石</string>
+	<string name="settings_customFlatWorldLayers">自定义平坦世界</string>
+
+	<!--Open Game Dialog-->
+	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
+	<string name="opengame_loading">加载中...</string>
+
+	<!--MCPE Version-->
+	<string name="noavmcpe_title">No available mcpe found</string>
+	<string name="noavmcpe_subtitle">MinecraftPE installed on your device isn\'t available for ModdedPE.</string>
+	<string name="noavmcpe_description">You can jump to launch MCPE,but the game may crash or report an error.\nYou should Install MCPE with the version of </string>
+	<string name="error">错误</string>
+	<string name="nomcpe_error">No MCPE made by mojang found on this device.</string>
+	<string name="download_mcpe_descripion">Buy or download MCPE of mojang in GooglePlay!</string>
+
+	<!--Main Activity-->
+	<string name="main_play">开始游戏</string>
+	<string name="main_jump">跳过</string>
+	<string name="main_default_minecraft_title">我的世界携带版：原版</string>
+	<string name="main_ok">好的</string>
+
+	<!--Error Activity-->
+	<string name="error_restart_app">重启</string>
+	<string name="error_text">这可能是因为一个不支持的MCPE版本或者代码错误引起的。请把错误报告发送给开发者来修复它。</string> 
 </resources>
