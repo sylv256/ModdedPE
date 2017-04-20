@@ -4,13 +4,6 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<android.support.v7.widget.AppCompatImageView
-		android:scaleType="fitXY"
-		android:layout_height="match_parent"
-		android:layout_width="match_parent"
-		android:src="@drawable/mcd_header_bg"
-		android:id="@+id/mcd_actionbar_bg"/>
-
 	<android.support.v7.widget.AppCompatTextView
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceMedium"

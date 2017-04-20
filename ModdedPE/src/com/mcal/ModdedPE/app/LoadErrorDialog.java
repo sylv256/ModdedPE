@@ -7,7 +7,7 @@ import android.view.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nmod.*;
-import com.mcal.ModdedPE.resources.*;
+import com.mcal.MCDesign.util.*;
 
 public class LoadErrorDialog extends Dialog
 {
@@ -31,11 +31,11 @@ public class LoadErrorDialog extends Dialog
 		
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpeLFHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeaterW(parentActivity.getWindowManager().getDefaultDisplay().getWidth(), bitmap));
+			((ImageView)findViewById(R.id.moddedpeLFHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.repeatW(parentActivity.getWindowManager().getDefaultDisplay().getWidth(), bitmap));
 		}
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeLFBackground)).setImageBitmap(BitmapRepeater.createRepeater(parentActivity.getWindowManager().getDefaultDisplay().getWidth(),parentActivity.getWindowManager().getDefaultDisplay().getHeight(),bitmap));
+			((ImageView)findViewById(R.id.moddedpeLFBackground)).setImageBitmap(BitmapRepeater.repeat(parentActivity.getWindowManager().getDefaultDisplay().getWidth(),parentActivity.getWindowManager().getDefaultDisplay().getHeight(),bitmap));
 		}
 		
 		((AppCompatTextView)findViewById(R.id.moddedpeLFTitleTextView)).setText(parentActivity.getString(R.string.nmod_loadFailed,new String[]{errorNMod.getName()}));

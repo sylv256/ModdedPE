@@ -6,9 +6,9 @@ import android.view.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
-import com.mcal.ModdedPE.resources.*;
 import android.graphics.drawable.*;
 import android.content.*;
+import com.mcal.MCDesign.util.*;
 public class LoadingDialog extends Dialog
 {
 	public LoadingDialog(Context context)
@@ -38,7 +38,7 @@ public class LoadingDialog extends Dialog
 		setContentView(contentView);
 		
 		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);
-		bitmap=BitmapRepeater.createRepeater(getWindow().getWindowManager().getDefaultDisplay().getWidth(), getWindow().getWindowManager().getDefaultDisplay().getHeight(), bitmap);
+		bitmap=BitmapRepeater.repeat(getWindow().getWindowManager().getDefaultDisplay().getWidth(), getWindow().getWindowManager().getDefaultDisplay().getHeight(), bitmap);
 		contentView.setBackgroundDrawable(new BitmapDrawable(bitmap));
 		
 		setLoadingMessage(getContext().getString(R.string.opengame_loading));

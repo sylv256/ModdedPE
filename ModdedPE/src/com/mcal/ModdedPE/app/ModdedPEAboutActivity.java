@@ -6,7 +6,6 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.resources.*;
 import com.mcal.MCDesign.app.*;
 
 public class ModdedPEAboutActivity extends MCDActivity

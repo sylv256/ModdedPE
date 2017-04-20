@@ -1,10 +1,9 @@
-package com.mcal.ModdedPE.resources;
-
+package com.mcal.MCDesign.util;
 import android.graphics.*;
 
 public class BitmapRepeater
 {
-	public static Bitmap createRepeaterW(int width, Bitmap src)
+	public static Bitmap repeatW(int width, Bitmap src)
 	{
 		int count = (width + src.getWidth() - 1) / src.getWidth() + 1;
 		Bitmap bitmap = Bitmap.createBitmap(width, src.getHeight(), Bitmap.Config.ARGB_8888);
@@ -19,7 +18,7 @@ public class BitmapRepeater
 		return bitmap;
 	}
 
-	public static Bitmap createRepeaterH(int height, Bitmap src)
+	public static Bitmap repeatH(int height, Bitmap src)
 	{
 		int count = (height + src.getHeight() - 1) / src.getHeight() + 1;
 		Bitmap bitmap = Bitmap.createBitmap(src.getWidth(), height, Bitmap.Config.ARGB_8888);
@@ -34,10 +33,10 @@ public class BitmapRepeater
 		return bitmap;
 	}
 
-	public static Bitmap createRepeater(int width, int height, Bitmap src)
+	public static Bitmap repeat(int width, int height, Bitmap src)
 	{
-		Bitmap ret = createRepeaterW(width, src);
-		ret = createRepeaterH(height, ret);
+		Bitmap ret = repeatW(width, src);
+		ret = repeatH(height, ret);
 		return ret;
 	}
 }

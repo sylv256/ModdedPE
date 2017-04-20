@@ -8,7 +8,6 @@ import com.mcal.ModdedPE.*;
 import android.support.v7.app.*;
 import android.view.ViewGroup.*;
 import android.graphics.*;
-import com.mcal.ModdedPE.resources.*;
 import android.graphics.drawable.*;
 
 public class MCDAlertDialog extends android.support.v7.app.AlertDialog

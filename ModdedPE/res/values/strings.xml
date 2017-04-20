@@ -2,7 +2,7 @@
 <resources>
 	<!--Default-->
 	<string name="app_version">1.0.0.1</string>
-	<string name="targetMCPE">1.1.0.4</string>
+	<string name="targetMCPE">1.1.0.5</string>
 	
 	<!--titles-->
 	<string name="menu_title">Menu</string>

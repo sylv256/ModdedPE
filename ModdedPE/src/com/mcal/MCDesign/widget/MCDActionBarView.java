@@ -1,9 +1,10 @@
 package com.mcal.MCDesign.widget;
 import android.widget.*;
 import android.support.v7.widget.*;
-import com.mcal.ModdedPE.resources.*;
 import com.mcal.ModdedPE.*;
 import android.graphics.*;
+import android.graphics.drawable.*;
+import com.mcal.MCDesign.util.*;
 
 public class MCDActionBarView extends RelativeLayout
 {
@@ -32,9 +33,7 @@ public class MCDActionBarView extends RelativeLayout
 	{
 		super.onSizeChanged(w, h, oldw, oldh);
 		
-		AppCompatImageView imageView=(AppCompatImageView)findViewById(R.id.mcd_actionbar_bg);
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_header_bg);  
-		imageView.setImageBitmap(BitmapRepeater.createRepeater(w,h,bitmap));
-		
+		setBackgroundDrawable(new BitmapDrawable(BitmapRepeater.repeat(w,h,bitmap)));
 	}
 }

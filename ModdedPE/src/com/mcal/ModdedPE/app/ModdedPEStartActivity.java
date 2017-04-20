@@ -8,7 +8,6 @@ import android.view.*;
 import android.widget.*;
 import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.resources.*;
 import com.mcal.ModdedPE.utils.*;
 import com.mcal.ModdedPE.widget.*;
 

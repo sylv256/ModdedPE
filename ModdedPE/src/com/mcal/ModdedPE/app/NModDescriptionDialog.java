@@ -7,10 +7,10 @@ import android.os.*;
 import android.view.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.resources.*;
 import com.mcal.ModdedPE.nmod.*;
 import com.mcal.MCDesign.widget.*;
 import android.support.v7.widget.*;
+import com.mcal.MCDesign.util.*;
 
 public class NModDescriptionDialog extends Dialog 
 {
@@ -32,11 +32,11 @@ public class NModDescriptionDialog extends Dialog
 
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getOwnerActivity().getResources(), R.drawable.mcd_header_bg);  
-			((ImageView)findViewById(R.id.moddedpeDescriptionHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.createRepeater(getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth(),getOwnerActivity().getWindowManager().getDefaultDisplay().getHeight(), bitmap));
+			((ImageView)findViewById(R.id.moddedpeDescriptionHeaderBackgroundStatus)).setImageBitmap(BitmapRepeater.repeat(getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth(),getOwnerActivity().getWindowManager().getDefaultDisplay().getHeight(), bitmap));
 		}
 		{
 			Bitmap bitmap = BitmapFactory.decodeResource(getOwnerActivity().getResources(), R.drawable.mcd_bg);  
-			((ImageView)findViewById(R.id.moddedpeDescriptionBackground)).setImageBitmap(BitmapRepeater.createRepeater(getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth(), getOwnerActivity().getWindowManager().getDefaultDisplay().getHeight(),bitmap));
+			((ImageView)findViewById(R.id.moddedpeDescriptionBackground)).setImageBitmap(BitmapRepeater.repeat(getOwnerActivity().getWindowManager().getDefaultDisplay().getWidth(), getOwnerActivity().getWindowManager().getDefaultDisplay().getHeight(),bitmap));
 		}
 		((TextView)findViewById(R.id.moddedpeDescriptionTitleTextView)).setText(targetNMod.getName());
 		

@@ -5,27 +5,29 @@ import com.mcal.ModdedPE.*;
 import android.view.*;
 import android.support.v7.widget.*;
 import android.graphics.*;
-import com.mcal.ModdedPE.resources.*;
 import android.widget.*;
 import java.io.*;
 import android.graphics.drawable.*;
 import com.mcal.MCDesign.widget.*;
+import com.mcal.MCDesign.util.*;
 
 public class MCDActivity extends AppCompatActivity
 {
+	private boolean customActionBar;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		
-		resetViewParams();
+		setDefaultActionBar();
 
 		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);
-		bitmap=BitmapRepeater.createRepeater(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
+		bitmap=BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
 		getWindow().getDecorView().setBackgroundDrawable(new BitmapDrawable(bitmap));
 	}
 	
-	private void resetViewParams()
+	protected void setDefaultActionBar()
 	{
 		ActionBar actionBar=getSupportActionBar();
 		if (actionBar != null)
@@ -44,21 +46,16 @@ public class MCDActivity extends AppCompatActivity
 			AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
 			titleTV.setText(getTitle());
 		}
-		
+		setCustomActionBar(false);
 	}
-
-	@Override
-	protected void onRestart()
-	{
-		super.onRestart();
-		resetViewParams();
-	}
-	
 
 	@Override
 	public void setTitle(int titleId)
 	{
 		super.setTitle(titleId);
+		
+		if(customActionBar)
+			return;
 		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
@@ -70,6 +67,9 @@ public class MCDActivity extends AppCompatActivity
 	{
 		super.setTitle(title);
 		
+		if(customActionBar)
+			return;
+		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
 		titleTV.setText(title);
@@ -77,6 +77,9 @@ public class MCDActivity extends AppCompatActivity
 	
 	protected void setActionBarViewRight(View view)
 	{
+		if(customActionBar)
+			return;
+		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewRight);
 		layout.removeAllViews();
@@ -85,6 +88,9 @@ public class MCDActivity extends AppCompatActivity
 	
 	protected void setActionBarViewLeft(View view)
 	{
+		if(customActionBar)
+			return;
+		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewLeft);
 		layout.removeAllViews();
@@ -93,6 +99,9 @@ public class MCDActivity extends AppCompatActivity
 	
 	protected void setActionBarButtonCloseRight()
 	{
+		if(customActionBar)
+			return;
+		
 		MCDBurgerButtonClose buttonClose=new MCDBurgerButtonClose(this);
 		buttonClose.setOnClickListener(new View.OnClickListener()
 			{
@@ -106,5 +115,10 @@ public class MCDActivity extends AppCompatActivity
 
 			});
 		setActionBarViewRight(buttonClose);
+	}
+	
+	protected void setCustomActionBar(boolean z)
+	{
+		customActionBar=z;
 	}
 }

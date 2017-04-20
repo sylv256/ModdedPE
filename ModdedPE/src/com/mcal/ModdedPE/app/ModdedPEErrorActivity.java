@@ -6,7 +6,6 @@ import android.os.*;
 import android.support.v7.widget.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.resources.*;
 import com.mcal.MCDesign.app.*;
 
 public class ModdedPEErrorActivity extends MCDActivity
