@@ -46,32 +46,11 @@ public class ModdedPEApplication extends Application
 
 	public void restartAppAndReport(Throwable ex)
 	{
-		Intent intent=new Intent(this,ModdedPEErrorActivity.class);
-		Bundle b=new Bundle();
 		StackTraceElement[] strs=ex.getStackTrace();
-		String msg=ex.toString();
-		msg+="\n\n";
+		String msg=ex.toString()+"\n\n";
 		for(StackTraceElement ste:strs)
-		{
 			msg+=(ste.toString()+"\n");
-		}
-		b.putString("msg",msg);
-		
-		Time time=new Time();
-		time.setToNow();
-		File file=new File(Environment.getExternalStorageDirectory(),"/ModdedPE-crash-"+time.toString()+".txt");
-		try
-		{
-			file.createNewFile();
-			FileOutputStream fos=new FileOutputStream(file);
-			fos.write(msg.getBytes());
-		}
-		catch (IOException e)
-		{}
-
-		intent.putExtras(b);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		instance.startActivity(intent);
+		ModdedPEErrorActivity.startThisActivity(this,msg);
 		android.os.Process.killProcess(android.os.Process.myPid());
 		System.exit(0);
 		try

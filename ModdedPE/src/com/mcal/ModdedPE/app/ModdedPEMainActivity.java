@@ -310,7 +310,7 @@ public class ModdedPEMainActivity extends MCDActivity
 	public void onNewsClicked(View view)
 	{
 		if(main_showingNMod!=null)
-			new NModDescriptionDialog(this,main_showingNMod).show();
+			ModdedPENModDescriptionActivity.startThisActivity(this,main_showingNMod);
 	}
 	
 	public void onPlayClicked(View v)
@@ -461,7 +461,7 @@ public class ModdedPEMainActivity extends MCDActivity
 					@Override
 					public void onClick(View p1)
 					{
-						new NModDescriptionDialog(ModdedPEMainActivity.this,itemNMod).show();
+						ModdedPENModDescriptionActivity.startThisActivity(ModdedPEMainActivity.this,itemNMod);
 					}
 
 
@@ -595,7 +595,7 @@ public class ModdedPEMainActivity extends MCDActivity
 						@Override
 						public void onClick(View p1)
 						{
-							new NModDescriptionDialog(ModdedPEMainActivity.this,itemNMod).show();
+							ModdedPENModDescriptionActivity.startThisActivity(ModdedPEMainActivity.this,itemNMod);
 						}
 
 
@@ -617,7 +617,7 @@ public class ModdedPEMainActivity extends MCDActivity
 						@Override
 						public void onClick(View p1)
 						{
-							new LoadErrorDialog(ModdedPEMainActivity.this,itemNMod).show();
+							ModdedPENModLoadFailActivity.startThisActivity(ModdedPEMainActivity.this,itemNMod);
 						}
 					});
 			}

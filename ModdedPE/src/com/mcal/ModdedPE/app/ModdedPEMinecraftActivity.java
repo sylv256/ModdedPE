@@ -101,8 +101,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 			catch (Throwable e)
 			{
 				nmod.setBugPack(NModLoadException.getLoadElfFail(e,getResources()));
-				LoadErrorDialog loadErrorDialog=new LoadErrorDialog(this,nmod);
-				loadErrorDialog.show();
+				ModdedPENModLoadFailActivity.startThisActivity(this,nmod);
 				continue;
 			}
 			

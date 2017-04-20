@@ -156,4 +156,14 @@ public class NModManager
 	{
 		return disabledNMods;
 	}
+	
+	public NMod getNModByPackageName(String packageName)
+	{
+		for(NMod nmod:allNMods)
+		{
+			if(nmod.getPackageName().equals(packageName))
+				return nmod;
+		}
+		return null;
+	}
 }
