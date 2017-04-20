@@ -8,7 +8,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import android.graphics.drawable.*;
 import android.content.*;
-import com.mcal.MCDesign.util.*;
+import com.mcal.MCDesign.utils.*;
 public class LoadingDialog extends Dialog
 {
 	public LoadingDialog(Context context)

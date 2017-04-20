@@ -9,7 +9,7 @@ import android.widget.*;
 import java.io.*;
 import android.graphics.drawable.*;
 import com.mcal.MCDesign.widget.*;
-import com.mcal.MCDesign.util.*;
+import com.mcal.MCDesign.utils.*;
 
 public class MCDActivity extends AppCompatActivity
 {

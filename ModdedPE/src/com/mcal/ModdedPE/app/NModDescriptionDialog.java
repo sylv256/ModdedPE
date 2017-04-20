@@ -10,7 +10,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nmod.*;
 import com.mcal.MCDesign.widget.*;
 import android.support.v7.widget.*;
-import com.mcal.MCDesign.util.*;
+import com.mcal.MCDesign.utils.*;
 
 public class NModDescriptionDialog extends Dialog 
 {
