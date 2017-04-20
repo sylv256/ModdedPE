@@ -62,19 +62,16 @@
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">加载中...</string>
 
-	<!--MCPE Version-->
-	<string name="noavmcpe_title">No available mcpe found</string>
-	<string name="noavmcpe_subtitle">MinecraftPE installed on your device isn\'t available for ModdedPE.</string>
-	<string name="noavmcpe_description">You can jump to launch MCPE,but the game may crash or report an error.\nYou should Install MCPE with the version of </string>
-	<string name="error">错误</string>
-	<string name="nomcpe_error">No MCPE made by mojang found on this device.</string>
-	<string name="download_mcpe_descripion">Buy or download MCPE of mojang in GooglePlay!</string>
-
 	<!--Main Activity-->
 	<string name="main_play">开始游戏</string>
-	<string name="main_jump">跳过</string>
 	<string name="main_default_minecraft_title">我的世界携带版：原版</string>
-	<string name="main_ok">好的</string>
+	<string name="no_available_mcpe_version_found">ModdedPE不支持您安装的 我的世界携带版 %1$s！（只支持%2$s）如果您继续打开游戏，ModdedPE可能会崩溃或者造成错误。</string>
+	<string name="no_available_mcpe_version_found_title">不支持的 我的世界携带版</string>
+	<string name="no_available_mcpe_version_continue">继续</string>
+	<string name="no_available_mcpe_version_cancel">取消</string>
+	<string name="no_mcpe_found">ModdedPE是 我的世界携带版 的一个启动器，但是我们没有在这台设备上发现Mojang做的 我的世界携带版。</string>
+	<string name="no_mcpe_found_title">未发现 我的世界携带版</string>
+	<string name="no_mcpe_found_cancel">取消</string>
 
 	<!--Error Activity-->
 	<string name="error_restart_app">重启</string>

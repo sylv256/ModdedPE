@@ -192,6 +192,21 @@ public class ModdedPEMainActivity extends MCDActivity
 			
 		});
 		setActionBarViewRight(burgerButton);
+		
+		AppCompatImageButton imageButton=new AppCompatImageButton(this);
+		imageButton.setBackgroundResource(R.drawable.mcd_creeperface);
+		imageButton.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					startActivity(new Intent(ModdedPEMainActivity.this,ModdedPEAboutActivity.class));
+				}
+			
+		});
+		setActionBarViewLeft(imageButton);
+		
 		setCustomActionBar(false);
 	}
 	
@@ -307,6 +322,19 @@ public class ModdedPEMainActivity extends MCDActivity
 		return false;
 	}
 	
+	private String getMinecraftPEVersionName()
+	{
+		if(getMcContext()==null)
+			return null;
+		try
+		{
+			return getMcContext().getPackageManager().getPackageInfo(getMcContext().getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName;
+		}
+		catch (PackageManager.NameNotFoundException e)
+		{}
+		return null;
+	}
+	
 	public void onNewsClicked(View view)
 	{
 		if(main_showingNMod!=null)
@@ -315,53 +343,51 @@ public class ModdedPEMainActivity extends MCDActivity
 	
 	public void onPlayClicked(View v)
 	{
-//		if(getMcContext()==null)
-//		{
-//			MinecraftPE did not installed
-//			final MCDAlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
-//			mdialog.setTitle(getString(R.string.error));
-//			mdialog.setMessage(getString(R.string.nomcpe_error));
-//			mdialog.setNegativeButton(getString(R.string.ok),new DialogInterface.OnClickListener()
-//				{
-//
-//					@Override
-//					public void onClick(DialogInterface p1,int id)
-//					{
-//						p1.dismiss();
-//					}
-//				});
-//			mdialog.show();
-//		}
-//		else if(!isSupportedMinecraftPEVersion())
-//		{
-//			Unavailable version of MinecraftPE
-//			final MCDAlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
-//			mdialog.setTitle(getString(R.string.noavmcpe_title));
-//			mdialog.setMessage(getString(R.string.noavmcpe_description));
-//			mdialog.setNeutralButton(getString(R.string.ok),new DialogInterface.OnClickListener()
-//				{
-//
-//					@Override
-//					public void onClick(DialogInterface p1,int id)
-//					{
-//						p1.dismiss();
-//					}
-//				});
-//			mdialog.setNegativeButton(getString(R.string.jump),new DialogInterface.OnClickListener()
-//				{
-//
-//					@Override
-//					public void onClick(DialogInterface p1,int id)
-//					{
-//						startMinecraft();
-//					}
-//
-//
-//				});
-//			mdialog.show();
-//			return;
-//		}
-//		else
+		if(getMcContext()==null)
+		{
+			android.support.v7.app.AlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
+			mdialog.setTitle(getString(R.string.no_mcpe_found_title));
+			mdialog.setMessage(getString(R.string.no_mcpe_found));
+			mdialog.setNegativeButton(getString(R.string.no_mcpe_found_cancel),new DialogInterface.OnClickListener()
+				{
+
+					@Override
+					public void onClick(DialogInterface p1,int id)
+					{
+						p1.dismiss();
+					}
+				});
+			mdialog.show();
+		}
+		else if(!isSupportedMinecraftPEVersion())
+		{
+			android.support.v7.app.AlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
+			mdialog.setTitle(getString(R.string.no_available_mcpe_version_found_title));
+			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found,new String[]{getMinecraftPEVersionName(),getString(R.string.targetMCPE)}));
+			mdialog.setNeutralButton(getString(R.string.no_available_mcpe_version_cancel),new DialogInterface.OnClickListener()
+				{
+
+					@Override
+					public void onClick(DialogInterface p1,int id)
+					{
+						p1.dismiss();
+					}
+				});
+			mdialog.setNegativeButton(getString(R.string.no_available_mcpe_version_continue),new DialogInterface.OnClickListener()
+				{
+
+					@Override
+					public void onClick(DialogInterface p1,int id)
+					{
+						startMinecraft();
+					}
+
+
+				});
+			mdialog.show();
+			return;
+		}
+		else
 			startMinecraft();
 	}
 	
