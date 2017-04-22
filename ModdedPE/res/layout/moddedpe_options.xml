@@ -118,6 +118,28 @@
 				android:id="@+id/moddedpeoptionsMCDSwitchSelectAllInLeft"/>
 
 		</RelativeLayout>
+		
+		<RelativeLayout
+			android:layout_height="50dp"
+			android:layout_width="match_parent">
+
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="wrap_content"
+				android:text="@string/settings_disableTextureIsotropic"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="20dp"/>
+
+			<com.mcal.MCDesign.widget.MCDSwitch
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_centerVertical="true"
+				android:layout_alignParentRight="true"
+				android:layout_marginRight="20dp"
+				android:id="@+id/moddedpeoptionsMCDSwitchDisableTextureIsotropic"/>
+
+		</RelativeLayout>
 
 	</LinearLayout>
 

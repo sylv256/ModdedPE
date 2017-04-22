@@ -4,7 +4,7 @@
 	<string name="app_version">1.0.0.2</string>
 	<string name="targetMCPE">1.1.0.5</string>
 	
-	<!--titles-->
+	<!--Titles-->
 	<string name="menu_title">Menu</string>
 	<string name="error_title">:( Something has broken...</string>
 	<string name="manage_nmod_title">Manage NMods</string>
@@ -60,7 +60,7 @@
 	<string name="settings_hideDebugText">Hide Debug Text</string>
 	<string name="settings_redstoneDot">Restone Dot</string>
 	<string name="settings_customFlatWorldLayers">Custom Flat World Layers</string>
-	
+	<string name="settings_disableTextureIsotropic">Disable Texture Isotropic</string>
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
 	<string name="opengame_loading">Loading</string>

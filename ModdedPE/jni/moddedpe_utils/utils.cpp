@@ -45,6 +45,7 @@ bool redstoneDot=false;
 bool hideDebugText=false;
 bool autoSaveLevel=false;
 bool selectAllInLeft=false;
+bool disableTextureIsoTropic=false;
 JavaVM* jvm;
 
 std::string toString(JNIEnv* env, jstring jstr)
@@ -186,6 +187,10 @@ extern "C"
 	{
 		selectAllInLeft=z;
 	}
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetDisableTextureIsotropic(JNIEnv*env,jobject thiz,jboolean z)
+	{
+		disableTextureIsoTropic=z;
+	}
 	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
 		void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
@@ -276,16 +281,25 @@ bool allowOffhand(ItemInstance* self)
 	return allowOffhand_(self);
 }
 
+bool (*isTextureIsotropic_)(BlockGraphics*,signed char);
+bool isTextureIsotropic(BlockGraphics* self,signed char side)
+{
+	if(disableTextureIsoTropic)
+		return false;
+	return isTextureIsotropic_(self,side);
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 {
 	jvm=vm;
 	
+	MSHookFunction((void*)((void(BlockTessellator::*)(Block const&,BlockPos const&,unsigned char,bool))&BlockTessellator::tessellateInWorld),(void*)&tessellateInWorld,(void**)&tessellateInWorld_);
 	MSHookFunction((void*)&Level::tick,(void*)&levelTick,(void**)&levelTick_);
 	MSHookFunction((void*)&Localization::_load,(void*)&loadLocalization,(void**)&loadLocalization_);
-	MSHookFunction((void*)((void(BlockTessellator::*)(Block const&,BlockPos const&,unsigned char,bool))&BlockTessellator::tessellateInWorld),(void*)&tessellateInWorld,(void**)&tessellateInWorld_);
 	MSHookFunction((void*)&BlockTessellator::renderFaceDown,(void*)&renderFaceDown,(void**)&renderFaceDown_);
 	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
 	MSHookFunction((void*)&ClientInputCallbacks::handleRenderDebugButtonPress,(void*)&handleRenderDebugButtonPress,(void**)&handleRenderDebugButtonPress_);
 	MSHookFunction((void*)&ItemInstance::isOffhandItem,(void*)&allowOffhand,(void**)&allowOffhand_);
+	MSHookFunction((void*)&BlockGraphics::isTextureIsotropic,(void*)&isTextureIsotropic,(void**)&isTextureIsotropic_);
 	return JNI_VERSION_1_6;
 }

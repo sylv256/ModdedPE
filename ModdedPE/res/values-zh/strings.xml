@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	
-	<!--titles-->
+	<!--Titles-->
 	<string name="menu_title">菜单</string>
 	<string name="manage_nmod_title">管理NMod</string>
 	<string name="error_title">〒▽〒有一些东西坏了</string>
@@ -57,7 +56,8 @@
 	<string name="settings_hideDebugText">隐藏测试版水印</string>
 	<string name="settings_redstoneDot">点状红石</string>
 	<string name="settings_customFlatWorldLayers">自定义平坦世界</string>
-
+	<string name="settings_disableTextureIsotropic">禁止材质随机旋转</string>
+	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">加载中...</string>

@@ -63,6 +63,7 @@ public:
 	bool isAlphaTested();
 	bool isFullAndOpaque(const Block&);
 	bool isFullAndOpaque();
+	bool isTextureIsotropic(signed char) const;
 	void lookupByName(const std::string&, bool);
 	void reloadBlockUVs(TextureAtlas&);
 	void setAllFacesIsotropic();

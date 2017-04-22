@@ -70,6 +70,18 @@ public class Settings
 		editor.commit();
 	}
 	
+	public boolean getDisableTextureIsotropic()
+	{
+		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("disableTextureIsotropic",false);
+	}
+
+	public void setDisableTextureIsotropic(boolean z)
+	{
+		SharedPreferences.Editor editor=context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).edit();
+		editor.putBoolean("disableTextureIsotropic",z);
+		editor.commit();
+	}
+	
 	public boolean getHideDebugText()
 	{
 		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("hide_debug_text",false);

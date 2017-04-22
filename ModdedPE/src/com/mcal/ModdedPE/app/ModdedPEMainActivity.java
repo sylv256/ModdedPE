@@ -35,6 +35,7 @@ public class ModdedPEMainActivity extends MCDActivity
 	private MCDSwitch options_switchHideDebugText;
 	private MCDSwitch options_switchAutoSaveLevel;
 	private MCDSwitch options_switchSelectAllInLeft;
+	private MCDSwitch options_switchDisableTextureIsotropic;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -112,7 +113,8 @@ public class ModdedPEMainActivity extends MCDActivity
 			options_switchHideDebugText=(MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchToggleDebugText);
 			options_switchAutoSaveLevel=(MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchAutoSaveLevel);
 			options_switchSelectAllInLeft=(MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchSelectAllInLeft);
-
+			options_switchDisableTextureIsotropic=(MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchDisableTextureIsotropic);
+			
 			loadOptions();
 
 			CompoundButton.OnCheckedChangeListener options_switchUpdateListener=new CompoundButton.OnCheckedChangeListener()
@@ -132,7 +134,8 @@ public class ModdedPEMainActivity extends MCDActivity
 			options_switchHideDebugText.setOnCheckedChangeListener(options_switchUpdateListener);
 			options_switchAutoSaveLevel.setOnCheckedChangeListener(options_switchUpdateListener);
 			options_switchSelectAllInLeft.setOnCheckedChangeListener(options_switchUpdateListener);
-
+			options_switchDisableTextureIsotropic.setOnCheckedChangeListener(options_switchUpdateListener);
+			
 			refreshOptionsViews();
 			
 			views_adapter.add(options_view);
@@ -267,6 +270,8 @@ public class ModdedPEMainActivity extends MCDActivity
 			options_switchAutoSaveLevel.setClickable(false);
 			options_switchSelectAllInLeft.setChecked(false);
 			options_switchSelectAllInLeft.setClickable(false);
+			options_switchDisableTextureIsotropic.setChecked(false);
+			options_switchDisableTextureIsotropic.setClickable(false);
 		}
 		else
 		{
@@ -274,6 +279,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			options_switchHideDebugText.setClickable(true);
 			options_switchAutoSaveLevel.setClickable(true);
 			options_switchSelectAllInLeft.setClickable(true);
+			options_switchDisableTextureIsotropic.setClickable(true);
 		}
 	}
 
@@ -285,6 +291,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		settings.setHideDebugText(options_switchHideDebugText.isChecked());
 		settings.setAutoSaveLevel(options_switchAutoSaveLevel.isChecked());
 		settings.setSelectAllInLeft(options_switchSelectAllInLeft.isChecked());
+		settings.setDisableTextureIsotropic(options_switchDisableTextureIsotropic.isChecked());
 	}
 
 	private void loadOptions()
@@ -295,6 +302,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		options_switchHideDebugText.setChecked(settings.getHideDebugText());
 		options_switchAutoSaveLevel.setChecked(settings.getAutoSaveLevel());
 		options_switchSelectAllInLeft.setChecked(settings.getSelectAllInLeft());
+		options_switchDisableTextureIsotropic.setChecked(settings.getDisableTextureIsotropic());
 	}
 	
 	private Context getMcContext()

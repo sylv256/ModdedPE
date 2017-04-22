@@ -11,6 +11,7 @@ public class Utils
 	public static native void nativeSetRedstoneDot(boolean z);
 	public static native void nativeSetHideDebugText(boolean z);
 	public static native void nativeSetFlatWorldLayers(boolean z);
+	public static native void nativeSetDisableTextureIsotropic(boolean z);
 	
 	public static native String nativeDemangle(String symbol_name);
 }

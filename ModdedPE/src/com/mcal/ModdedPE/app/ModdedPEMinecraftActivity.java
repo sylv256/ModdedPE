@@ -60,7 +60,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	{
 		initFields();
 		loadNativeLibraries();
-		new LoadingDialog(this).show();
+		new OpenGameLoadingDialog(this).show();
 		mcPackageContext.getPackageResourcePath();
 		AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
 		setNativeUtilsAttributes();
@@ -77,6 +77,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		Utils.nativeSetHideDebugText(settings.getHideDebugText());
 		Utils.nativeSetAutoSaveLevel(settings.getAutoSaveLevel());
 		Utils.nativeSetSelectAllInLeft(settings.getSelectAllInLeft());
+		Utils.nativeSetDisableTextureIsotropic(settings.getDisableTextureIsotropic());
 	}
 
 	private void loadNMods(Bundle savedInstanceState)
