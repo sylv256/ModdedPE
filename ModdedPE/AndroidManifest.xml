@@ -2,10 +2,10 @@
 <manifest 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.mcal.ModdedPE"
-	platformBuildVersionCode="28"
+	platformBuildVersionCode="29"
     platformBuildVersionName="@string/app_version"
 	android:installLocation="preferExternal"
-    android:versionCode="28"
+    android:versionCode="29"
 	android:versionName="@string/app_version">
 	
 	<uses-feature android:glEsVersion="20000"

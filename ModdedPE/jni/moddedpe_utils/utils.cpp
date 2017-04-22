@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <cxxabi.h>
+#include <sstream>
 
 #include "mcpe/client/ClientInputCallbacks.h"
 #include "mcpe/client/ClientInstance.h"
@@ -20,6 +21,7 @@
 #include "mcpe/entity/player/LocalPlayer.h"
 #include "mcpe/client/settings/Options.h"
 #include "mcpe/client/resources/Localization.h"
+#include "mcpe/client/resources/I18n.h"
 #include "NeighborUtil.h"
 
 struct LanguageBean
@@ -66,6 +68,42 @@ std::string toString(JNIEnv* env, jstring jstr)
 	std::string stemp(rtn);
 	free(rtn);
 	return stemp;
+}
+
+inline std::string getStringFromLanguageBean(std::string const&languageName,std::string const&textKey)
+{
+	for(LanguageBean const&bean:languageBeans)
+	{
+		if(bean.name==languageName)
+		{
+			if(bean.translation.find("=")!=std::string::npos)
+			{
+				if(textKey==bean.translation.substr(0,bean.translation.find("=")))
+					return bean.translation.substr(bean.translation.find("=")+1,bean.translation.length());
+			}
+		}
+	}
+	return textKey;
+}
+
+inline std::string getStringFromLanguageBean(std::string const&languageName,std::string const&textKey,std::vector<std::string>textList)
+{
+	std::string text=getStringFromLanguageBean(languageName,textKey);
+	if(text==textKey)
+		return textKey;
+	
+	for(size_t index=0;index<textList.size();++index)
+	{
+		std::stringstream stream;
+		stream<<index+1;
+		std::string str;
+		stream>>str;
+		while(text.find("%"+str+"$s")!=std::string::npos)
+		{
+			text.replace(text.find("%"+str+"$s"),4,textList[index]);
+		}
+	}
+	return text;
 }
 
 inline bool shouldTessellateRedstoneDot(BlockSource&region,BlockPos const&pos)
@@ -261,15 +299,14 @@ void handleRenderDebugButtonPress(ClientInputCallbacks*self,ClientInstance&clien
 		handleRenderDebugButtonPress_(self,client);
 }
 
-void (*loadLocalization_)(Localization *self, const std::string &languageName);
-void loadLocalization(Localization *self, const std::string &languageName)
+void (*loadFromResourcePackManager_)(Localization*,ResourcePackManager&, std::vector<std::string, std::allocator<std::string> > const&);
+void loadFromResourcePackManager(Localization*self,ResourcePackManager&manager, std::vector<std::string, std::allocator<std::string> > const&others)
 {
-	loadLocalization_(self,languageName);
-	
+	loadFromResourcePackManager_(self,manager,others);
 	for(LanguageBean const& bean:languageBeans)
 	{
-		if(bean.name==languageName)
-			self->appendTranslations(bean.translation);
+		if(bean.name==self->getFullLanguageCode())
+			self->appendTranslations(bean.translation,others,others,bean.translation);
 	}
 }
 
@@ -289,17 +326,40 @@ bool isTextureIsotropic(BlockGraphics* self,signed char side)
 	return isTextureIsotropic_(self,side);
 }
 
+std::string (*getI18n_)(std::string const&);
+std::string getI18n(std::string const&key)
+{
+	std::string result=getStringFromLanguageBean(I18n::getCurrentLanguage()->getFullLanguageCode(),key);
+	if(result==key)
+		return getI18n_(key);
+	return result;
+}
+
+std::string (*getI18nl_)(std::string const&,std::vector<std::string> const&);
+std::string getI18nl(std::string const&key,std::vector<std::string> const&list)
+{
+	std::string result=getStringFromLanguageBean(I18n::getCurrentLanguage()->getFullLanguageCode(),key,list);
+	if(result==key)
+		return getI18nl_(key,list);
+	return result;
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 {
 	jvm=vm;
 	
-	MSHookFunction((void*)((void(BlockTessellator::*)(Block const&,BlockPos const&,unsigned char,bool))&BlockTessellator::tessellateInWorld),(void*)&tessellateInWorld,(void**)&tessellateInWorld_);
+	void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
+	
+	MSHookFunction((void*)(std::string (*)(std::string const&,std::vector<std::string> const&))&I18n::get,(void*)&getI18nl,(void**)&getI18nl_);
+	MSHookFunction((void*)(std::string (*)(std::string const&))&I18n::get,(void*)&getI18n,(void**)&getI18n_);
+	MSHookFunction((void*)((void (BlockTessellator::*)(Block const&,BlockPos const&,unsigned char,bool))&BlockTessellator::tessellateInWorld),(void*)&tessellateInWorld,(void**)&tessellateInWorld_);
 	MSHookFunction((void*)&Level::tick,(void*)&levelTick,(void**)&levelTick_);
-	MSHookFunction((void*)&Localization::_load,(void*)&loadLocalization,(void**)&loadLocalization_);
 	MSHookFunction((void*)&BlockTessellator::renderFaceDown,(void*)&renderFaceDown,(void**)&renderFaceDown_);
 	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
 	MSHookFunction((void*)&ClientInputCallbacks::handleRenderDebugButtonPress,(void*)&handleRenderDebugButtonPress,(void**)&handleRenderDebugButtonPress_);
 	MSHookFunction((void*)&ItemInstance::isOffhandItem,(void*)&allowOffhand,(void**)&allowOffhand_);
 	MSHookFunction((void*)&BlockGraphics::isTextureIsotropic,(void*)&isTextureIsotropic,(void**)&isTextureIsotropic_);
+	
+	dlclose(image);
 	return JNI_VERSION_1_6;
 }
