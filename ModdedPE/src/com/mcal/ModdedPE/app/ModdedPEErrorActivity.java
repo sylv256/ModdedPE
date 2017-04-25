@@ -34,6 +34,7 @@ public class ModdedPEErrorActivity extends MCDActivity
 		Bundle bundle=new Bundle();
 		bundle.putString(KEY_INTENT_EXTRAS_ERROR_TEXT,errorText);
 		intent.putExtras(bundle);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		context.startActivity(intent);
 	}
 }

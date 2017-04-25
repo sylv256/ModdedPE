@@ -76,4 +76,9 @@
 	<!--Error Activity-->
 	<string name="error_restart_app">重启</string>
 	<string name="error_text">这可能是因为一个不支持的MCPE版本或者代码错误引起的。请把错误报告发送给开发者来修复它。</string> 
+	
+	<!--Manage NMods-->
+	<string name="manage_nmod_no_nmod_found">我们没有在这台设备上发现任何NMod。</string>
+	<string name="manage_nmod_install_nmod">请安装它们（*.apk）并且重启ModdedPE！</string>
+	
 </resources>

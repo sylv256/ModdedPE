@@ -56,10 +56,9 @@ public class NModLoader
 				String[] translations=allChars.split("\n");
 				for (String translation:translations)
 				{
-					
 					if (translation != null && !translation.isEmpty())
 					{
-						if (true)
+						if (languageBean.format_space)
 						{
 							String tmp=translation;
 							if (tmp.indexOf("=") != -1 && tmp.indexOf(" ") != -1)

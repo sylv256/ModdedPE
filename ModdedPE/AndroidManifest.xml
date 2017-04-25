@@ -2,10 +2,8 @@
 <manifest 
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.mcal.ModdedPE"
-	platformBuildVersionCode="29"
-    platformBuildVersionName="@string/app_version"
 	android:installLocation="preferExternal"
-    android:versionCode="29"
+    android:versionCode="31"
 	android:versionName="@string/app_version">
 	
 	<uses-feature android:glEsVersion="20000"
@@ -73,7 +71,6 @@
 			android:name="com.mcal.ModdedPE.app.ModdedPEMinecraftActivity"
 			android:debuggable="false"
             android:excludeFromRecents="false"
-            android:launchMode="singleTask"
             android:screenOrientation="sensorLandscape"
             android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
             android:alwaysRetainTaskState="true">
@@ -139,6 +136,7 @@
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModLoadFailActivity"
 			android:theme="@style/AppTheme"
+			android:launchMode="singleTask"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		

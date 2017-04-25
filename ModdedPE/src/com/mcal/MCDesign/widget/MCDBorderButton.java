@@ -32,6 +32,12 @@ public class MCDBorderButton extends android.widget.Button
 	}
 
 	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh)
+	{
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+	
+	@Override
 	public void setEnabled(boolean enabled)
 	{
 		super.setEnabled(enabled);
@@ -46,28 +52,34 @@ public class MCDBorderButton extends android.widget.Button
 
 	private void setBackgroundResId(int id)
 	{
+		if(getWidth()<=0||getHeight()<=0)
+			return;
+		
+		setWidth(getHeight() * (146/37));
+		
 		bitmap = BitmapFactory.decodeResource(getContext().getResources(), id);
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();
-		int newWidth = getWidth();
+		int newWidth = getHeight() * (146/37);
 		int newHeight = getHeight();
 		float scaleWidth = ((float) newWidth) / width;
 		float scaleHeight = ((float) newHeight) / height;
 		Matrix matrix = new Matrix();
-		matrix.setScale(scaleWidth,scaleHeight);
+		matrix.setScale(scaleWidth, scaleHeight);
 		Bitmap newbm = null;
 		try
 		{
 			newbm = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
 		}
-		catch (Exception e){}
+		catch (Exception e)
+		{}
 		bitmap = newbm;
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		if( bitmap == null)
+		if(bitmap==null)
 			setBackgroundResId(R.drawable.mcd_button_border);
 		canvas.drawBitmap(bitmap, 0, 0, null);
 		super.onDraw(canvas);
@@ -75,7 +87,6 @@ public class MCDBorderButton extends android.widget.Button
 
 	public boolean onTouchEvent(MotionEvent event)
 	{
-
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
 		{
 			setBackgroundResId(R.drawable.mcd_button_hover_border);

@@ -41,6 +41,9 @@ public class MCDPlayButton extends android.widget.Button
 
 	private void setBackgroundResId(int id)
 	{
+		if(getWidth()<=0||getHeight()<=0)
+			return;
+		
 		bitmap = BitmapFactory.decodeResource(getContext().getResources(), id);
 		int width = bitmap.getWidth();
 		int height = bitmap.getHeight();

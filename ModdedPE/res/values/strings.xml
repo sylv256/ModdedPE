@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!--Default-->
-	<string name="app_version">1.0.0.2</string>
+	<string name="app_version">1.0.2</string>
 	<string name="targetMCPE">1.1.0.8</string>
 	
 	<!--Titles-->
@@ -85,6 +85,10 @@
     <string name="app_name_demo">ModdedPE Demo</string>
     <string name="app_name_short">ModdedPE</string>
     <string name="app_name_short_demo">ModdedPE Demo</string>
+	
+	<!--Manage NMods-->
+	<string name="manage_nmod_no_nmod_found">We haven\'t found any NMod on this device.</string>
+	<string name="manage_nmod_install_nmod">Please install them(*.apk) and restart ModdedPE!</string>
 	
 	<string name="com_facebook_like_button_not_liked">Like</string>
     <string name="com_facebook_like_button_liked">Liked</string>

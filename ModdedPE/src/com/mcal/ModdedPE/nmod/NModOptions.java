@@ -12,6 +12,17 @@ public class NModOptions
 	{
 		contextThis=thisContext;
 	}
+
+	public void removeByName(String name)
+	{
+		SharedPreferences preferences=getSharedPreferences();
+		Vector<String> activeList=getActiveList();
+		if(activeList.indexOf(name) != -1)
+			activeList.remove(name);
+		SharedPreferences.Editor editor=preferences.edit();
+		editor.putString(TAG_ACTIVE_LIST,fromVector(activeList));
+		editor.commit();
+	}
 	
 	public void setIsActive(NMod nmod,boolean isActive)
 	{

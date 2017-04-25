@@ -23,6 +23,7 @@ public class ModdedPEMainActivity extends MCDActivity
 	//main
 	private NewsLayout newsLayout;
 	private NMod main_showingNMod;
+	private AppCompatTextView textViewIsSafeMode;
 	//manage nmod
 	private ListView managenmod_listViewActive;
 	private ListView managenmod_listViewDisabled;
@@ -76,10 +77,11 @@ public class ModdedPEMainActivity extends MCDActivity
 			main_view.findViewById(R.id.moddedpemainMCDPlayButton).getLayoutParams().width = getWindowManager().getDefaultDisplay().getWidth() / 3;
 			((TextView)main_view.findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
 			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(getString(R.string.targetMCPE));
-			((TextView)main_view.findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode() ?View.VISIBLE: View.GONE);
 			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion() ?Color.GREEN: Color.RED);
-
-			newsLayout=(NewsLayout)main_view.findViewById(R.id.moddedpemainNewsLayout);
+			(textViewIsSafeMode=(AppCompatTextView)main_view.findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode() ?View.VISIBLE: View.GONE);
+			
+			newsLayout=new NewsLayout(this);
+			((RelativeLayout)main_view.findViewById(R.id.moddedpemainNewsLayout)).addView(newsLayout);
 			updateNewsLayout();
 			
 			views_adapter.add(main_view);
@@ -99,6 +101,11 @@ public class ModdedPEMainActivity extends MCDActivity
 			managenmod_listViewDisabled.getLayoutParams().width=getWindowManager().getDefaultDisplay().getWidth()/2-1;
 
 			refreshNModDatas();
+			
+			if(managenmod_activeList.isEmpty()&&managenmod_disabledList.isEmpty())
+				manage_nmod_view.findViewById(R.id.moddedpemanagenmodLayoutNoFound).setVisibility(View.VISIBLE);
+			else
+				manage_nmod_view.findViewById(R.id.moddedpemanagenmodLayoutNormal).setVisibility(View.VISIBLE);
 			
 			views_adapter.add(manage_nmod_view);
 			titles_adapter.add(getString(R.string.manage_nmod_title));
@@ -125,6 +132,7 @@ public class ModdedPEMainActivity extends MCDActivity
 				{
 					refreshOptionsViews();
 					saveOptions();
+					textViewIsSafeMode.setVisibility(new Settings(ModdedPEMainActivity.this).getSafeMode() ?View.VISIBLE: View.GONE);
 				}
 
 			};
@@ -353,7 +361,7 @@ public class ModdedPEMainActivity extends MCDActivity
 	{
 		if(getMcContext()==null)
 		{
-			android.support.v7.app.AlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
+			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_mcpe_found_title));
 			mdialog.setMessage(getString(R.string.no_mcpe_found));
 			mdialog.setNegativeButton(getString(R.string.no_mcpe_found_cancel),new DialogInterface.OnClickListener()
@@ -369,7 +377,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		}
 		else if(!isSupportedMinecraftPEVersion())
 		{
-			android.support.v7.app.AlertDialog.Builder mdialog = new MCDAlertDialog.Builder(this);
+			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_available_mcpe_version_found_title));
 			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found,new String[]{getMinecraftPEVersionName(),getString(R.string.targetMCPE)}));
 			mdialog.setNeutralButton(getString(R.string.no_available_mcpe_version_cancel),new DialogInterface.OnClickListener()
@@ -406,8 +414,8 @@ public class ModdedPEMainActivity extends MCDActivity
 			i=new Intent(this,com.mcal.ModdedPE.app.ModdedPESafetyModeMinecraftActivity.class);
 		else
 			i=new Intent(this,com.mcal.ModdedPE.app.ModdedPEMinecraftActivity.class);
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(i);
-		
 		finish();
 	}
 	

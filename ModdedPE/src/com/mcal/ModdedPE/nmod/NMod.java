@@ -345,7 +345,7 @@ public class NMod
 	{
 		public String name;
 		public String location;
-		public boolean auto_split;
+		public boolean format_space;
 	}
 	
 	public static class NModVersionBean

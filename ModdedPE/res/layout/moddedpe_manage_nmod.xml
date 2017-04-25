@@ -1,24 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="match_parent"
 	android:orientation="horizontal"
 	android:layout_width="match_parent">
 
-	<ListView
+	<LinearLayout
 		android:layout_height="match_parent"
-		android:id="@+id/moddedpemanageNModListActive"
-		android:layout_width="wrap_content"/>
+		android:orientation="horizontal"
+		android:layout_width="match_parent"
+		android:visibility="gone"
+		android:id="@+id/moddedpemanagenmodLayoutNormal">
 
-	<View
+		<ListView
+			android:layout_height="match_parent"
+			android:id="@+id/moddedpemanageNModListActive"
+			android:layout_width="wrap_content"/>
+
+		<View
+			android:layout_height="match_parent"
+			android:layout_width="2dp"
+			android:background="#000000"/>
+
+		<ListView
+			android:layout_height="match_parent"
+			android:id="@+id/moddedpemanageNModListDisabled"
+			android:layout_width="wrap_content"/>
+
+	</LinearLayout>
+
+	<RelativeLayout
 		android:layout_height="match_parent"
-		android:layout_width="2dp"
-		android:background="#000000"/>
+		android:layout_width="match_parent"
+		android:visibility="gone"
+		android:id="@+id/moddedpemanagenmodLayoutNoFound">
 
-	<ListView
-		android:layout_height="match_parent"
-		android:id="@+id/moddedpemanageNModListDisabled"
-		android:layout_width="wrap_content"/>
+		<LinearLayout
+			android:layout_centerInParent="true"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:orientation="vertical">
 
-</LinearLayout>
+			<RelativeLayout
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/manage_nmod_no_nmod_found"
+					android:layout_centerInParent="true"
+					android:gravity="center"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_height="wrap_content"
+				android:layout_width="wrap_content"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp">
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/manage_nmod_install_nmod"
+					android:layout_centerInParent="true"
+					android:gravity="center"/>
+
+			</RelativeLayout>
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+</RelativeLayout>
 

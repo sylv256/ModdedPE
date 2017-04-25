@@ -9,14 +9,22 @@
 		android:layout_height="match_parent"
 		android:layout_marginBottom="60dp">
 
-		<com.mcal.ModdedPE.widget.NewsLayout
+		<RelativeLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:id="@+id/moddedpemainNewsLayout"
 			android:layout_marginTop="30dp"
 			android:layout_marginBottom="30dp"
-			android:layout_centerInParent="true"
-			android:onClick="onNewsClicked"/>
+			android:layout_centerInParent="true">
+
+			<RelativeLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:id="@+id/moddedpemainNewsLayout"
+				android:layout_centerInParent="true"
+				android:onClick="onNewsClicked"
+				android:layout_margin="15dp"/>
+
+		</RelativeLayout>
 
 	</RelativeLayout>
 

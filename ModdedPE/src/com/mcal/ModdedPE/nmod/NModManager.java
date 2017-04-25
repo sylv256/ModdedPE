@@ -108,7 +108,7 @@ public class NModManager
 		for(String item:activeList)
 		{
 			if(getNMod(item)==null||getNMod(item).isBugPack())
-				removeActive(getNMod(item));
+				options.removeByName(item);
 		}
 	}
 	

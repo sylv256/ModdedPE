@@ -3,42 +3,28 @@ package com.mcal.MCDesign.widget;
 import android.content.*;
 import android.view.*;
 import com.mcal.ModdedPE.*;
+import android.graphics.*;
+import android.graphics.drawable.*;
+import android.support.v7.widget.*;
 
-public class MCDBurgerButton extends android.widget.Button
+public class MCDBurgerButton extends AppCompatButton
 {
 	public MCDBurgerButton(Context c)
 	{
 		super(c);
-		init();
+		setBackgroundResource(R.drawable.mcd_burger);
 	}
 
 	public MCDBurgerButton(android.content.Context context, android.util.AttributeSet attrs)
 	{
 		super(context, attrs);
-		init();
+		setBackgroundResource(R.drawable.mcd_burger);
 	}
 
     public MCDBurgerButton(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr) 
 	{
 		super(context, attrs, defStyleAttr);
-		init();
-	}
-
-    public MCDBurgerButton(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr, int defStyleRes) 
-	{
-		super(context, attrs, defStyleAttr, defStyleRes);
-		init();
-	}
-
-
-	private void init()
-	{
-		setBackgroundResId(R.drawable.mcd_burger);
-	}
-
-	private void setBackgroundResId(int id)
-	{
-		super.setBackgroundResource(id);
+		setBackgroundResource(R.drawable.mcd_burger);
 	}
 
 	@Override
@@ -46,11 +32,11 @@ public class MCDBurgerButton extends android.widget.Button
 	{
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
 		{
-			setBackgroundResId(R.drawable.mcd_burger_hover);
+			setBackgroundResource(R.drawable.mcd_burger_hover);
 		}
 		else if (event.getAction() == MotionEvent.ACTION_UP)
 		{
-			setBackgroundResId(R.drawable.mcd_burger);
+			setBackgroundResource(R.drawable.mcd_burger);
 		}
 		return super.onTouchEvent(event);
 	}
