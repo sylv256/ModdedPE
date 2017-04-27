@@ -76,9 +76,10 @@ public class ModdedPEMainActivity extends MCDActivity
 
 			main_view.findViewById(R.id.moddedpemainMCDPlayButton).getLayoutParams().width = getWindowManager().getDefaultDisplay().getWidth() / 3;
 			((TextView)main_view.findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
-			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(getString(R.string.targetMCPE));
 			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion() ?Color.GREEN: Color.RED);
 			(textViewIsSafeMode=(AppCompatTextView)main_view.findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode() ?View.VISIBLE: View.GONE);
+			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(R.string.targetMCPEVersionInfo);
+			
 			
 			newsLayout=new NewsLayout(this);
 			((RelativeLayout)main_view.findViewById(R.id.moddedpemainNewsLayout)).addView(newsLayout);
@@ -331,7 +332,12 @@ public class ModdedPEMainActivity extends MCDActivity
 			return false;
 		try
 		{
-			return getMcContext().getPackageManager().getPackageInfo(getMcContext().getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName.equals(getString(R.string.targetMCPE));
+			String mcpeVersionName=getMcContext().getPackageManager().getPackageInfo(getMcContext().getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName;
+			for(String nameItem : getResources().getStringArray(R.array.targetMCPEVersions))
+			{
+				if(nameItem.equals(mcpeVersionName))
+					return true;
+			}
 		}
 		catch (PackageManager.NameNotFoundException e)
 		{}
@@ -379,7 +385,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		{
 			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_available_mcpe_version_found_title));
-			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found,new String[]{getMinecraftPEVersionName(),getString(R.string.targetMCPE)}));
+			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found,new String[]{getMinecraftPEVersionName(),getString(R.string.targetMCPEVersionInfo)}));
 			mdialog.setNeutralButton(getString(R.string.no_available_mcpe_version_cancel),new DialogInterface.OnClickListener()
 				{
 

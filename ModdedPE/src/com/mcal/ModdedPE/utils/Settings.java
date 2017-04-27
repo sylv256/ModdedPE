@@ -93,4 +93,16 @@ public class Settings
 		editor.putBoolean("hide_debug_text",z);
 		editor.commit();
 	}
+	
+	public boolean getDoNotShowXposedWarning()
+	{
+		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("not_show_xposed_warning",false);
+	}
+
+	public void setDoNotShowXposedWarning(boolean z)
+	{
+		SharedPreferences.Editor editor=context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).edit();
+		editor.putBoolean("not_show_xposed_warning",z);
+		editor.commit();
+	}
 }

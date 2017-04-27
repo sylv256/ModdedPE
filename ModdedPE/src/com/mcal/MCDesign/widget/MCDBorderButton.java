@@ -55,7 +55,8 @@ public class MCDBorderButton extends android.widget.Button
 		if(getWidth()<=0||getHeight()<=0)
 			return;
 		
-		setWidth(getHeight() * (146/37));
+		if(getWidth() < getHeight() * (146/37))
+			setWidth(getHeight() * (146/37));
 		
 		bitmap = BitmapFactory.decodeResource(getContext().getResources(), id);
 		int width = bitmap.getWidth();
