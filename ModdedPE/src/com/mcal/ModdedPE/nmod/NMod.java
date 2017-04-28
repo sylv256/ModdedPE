@@ -141,6 +141,9 @@ public class NMod
 
 	private NModLoadException checkJSONs()
 	{
+		if(dataBean == null || !dataBean.check_json_syntax)
+			return null;
+		
 		Vector<String> allFiles=new LoopFileSearcher(getAsset()).getAllFiles();
 		if (allFiles == null)
 			return null;
@@ -161,7 +164,7 @@ public class NMod
 					}
 					catch (Throwable t)
 					{
-						return NModLoadException.getBadJsonGrammar(t, thisContext.getResources(), path);
+						return NModLoadException.getBadJsonSyntax(t, thisContext.getResources(), path);
 					}
 				}
 				catch (IOException e)
@@ -201,7 +204,7 @@ public class NMod
 		catch (Exception e)
 		{
 			dataBean = null;
-			setBugPack(NModLoadException.getBadManifestGrammar(e, thisContext.getResources()));
+			setBugPack(NModLoadException.getBadManifestSyntax(e, thisContext.getResources()));
 			loader = new NModLoader(this);
 			return;
 		}
@@ -344,18 +347,18 @@ public class NMod
 
 	public static class NModLanguageBean
 	{
-		public String name;
-		public String location;
-		public boolean format_space;
+		public String name = null;
+		public String location = null;
+		public boolean format_space = false;
 	}
 
 	public static class NModVersionBean
 	{
-		public String version_name;
-		public int version_code;
-		public String version_description_short;
-		public String version_description;
-		public String version_description_image;
+		public String version_name = null;
+		public int version_code = -1;
+		public String version_description_short = null;
+		public String version_description = null;
+		public String version_description_image = null;
 	}
 
 	public NModLanguageBean[] getLanguageBeans()
@@ -365,11 +368,12 @@ public class NMod
 
 	public static class NModDataBean
 	{
-		public String[] native_libs;
-		public String name;
-		public String description;
-		public String author;
-		public NModLanguageBean[] languages;
-		public NModVersionBean version_info;
+		public String[] native_libs = null;
+		public String name = null;
+		public String description = null;
+		public String author = null;
+		public NModLanguageBean[] languages = null;
+		public NModVersionBean version_info = null;
+		public boolean check_json_syntax = false;
 	}
 }

@@ -11,8 +11,8 @@ public abstract class NModLoadException extends Exception
 	public static final int CANNOT_DLOPEN_LIB=3;
 	public static final int CANNOT_FIND_LIB=4;
 	public static final int NO_FILE_FOUND=5;
-	public static final int BAD_MANIFEST_GRAMMAR=6;
-	public static final int BAD_JSON_GRAMMAR=7;
+	public static final int BAD_MANIFEST_SYNTAX=6;
+	public static final int BAD_JSON_SYNTAX=7;
 	public static final int BAD_IMAGE_SIZE=8;
 	public static final int IMAGE_DECODE=9;
 
@@ -38,9 +38,9 @@ public abstract class NModLoadException extends Exception
 		return new ImageDecodeException(throwable, r, version_description_image);
 	}
 
-	public static NModLoadException getBadJsonGrammar(Throwable throwable, Resources r, String jsonName)
+	public static NModLoadException getBadJsonSyntax(Throwable throwable, Resources r, String jsonName)
 	{
-		return new BadJsonGrammarException(throwable, r, jsonName);
+		return new BadJsonSyntaxException(throwable, r, jsonName);
 	}
 
 	public static NModLoadException getBadJNIReturnValue(Throwable throwable, Resources r)
@@ -48,9 +48,9 @@ public abstract class NModLoadException extends Exception
 		return new BadOnLoadReturnValueException(throwable, r);
 	}
 
-	public static NModLoadException getBadManifestGrammar(Throwable throwable, Resources r)
+	public static NModLoadException getBadManifestSyntax(Throwable throwable, Resources r)
 	{
-		return new BadManifestGrammarException(throwable, r);
+		return new BadManifestSyntaxException(throwable, r);
 	}
 
 	public static NModLoadException getCannotLocateSmbol(Throwable throwable, Resources r)
@@ -142,41 +142,41 @@ public abstract class NModLoadException extends Exception
 		}
 	}
 
-	public static class BadManifestGrammarException extends NModLoadException
+	public static class BadManifestSyntaxException extends NModLoadException
 	{
-		public BadManifestGrammarException(Throwable t, Resources r)
+		public BadManifestSyntaxException(Throwable t, Resources r)
 		{
-			super(NModLoadException.BAD_MANIFEST_GRAMMAR, t, r);
+			super(NModLoadException.BAD_MANIFEST_SYNTAX, t, r);
 		}
 
 		public String getBugMessage()
 		{
-			return resources.getString(R.string.load_exception_bad_manifest_grammar);
+			return resources.getString(R.string.load_exception_bad_manifest_syntax);
 		}
 		public String getDealMessage()
 		{
-			return resources.getString(R.string.load_exception_bad_manifest_grammar_d);
+			return resources.getString(R.string.load_exception_bad_manifest_syntax_d);
 		}
 	}
 
-	public static class BadJsonGrammarException extends NModLoadException
+	public static class BadJsonSyntaxException extends NModLoadException
 	{
 		private String jsonName;
 
-		public BadJsonGrammarException(Throwable t, Resources r, String jsonName)
+		public BadJsonSyntaxException(Throwable t, Resources r, String jsonName)
 		{
-			super(NModLoadException.BAD_JSON_GRAMMAR, t, r);
+			super(NModLoadException.BAD_JSON_SYNTAX, t, r);
 
 			this.jsonName = jsonName;
 		}
 
 		public String getBugMessage()
 		{
-			return resources.getString(R.string.load_exception_bad_json_grammar, new String[]{jsonName});
+			return resources.getString(R.string.load_exception_bad_json_syntax, new String[]{jsonName});
 		}
 		public String getDealMessage()
 		{
-			return resources.getString(R.string.load_exception_bad_json_grammar_d, new String[]{jsonName});
+			return resources.getString(R.string.load_exception_bad_json_syntax_d, new String[]{jsonName});
 		}
 	}
 

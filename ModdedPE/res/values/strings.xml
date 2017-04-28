@@ -2,11 +2,11 @@
 <resources>
 	<!--Default-->
 	<string name="app_version">1.0.4</string>
-	<string-array name="targetMCPEVersions">
+	<string-array name="target_mcpe_versions">
 		<item>1.1.0.8</item>
 		<item>1.1.0.9</item>
 	</string-array>
-	<string name="targetMCPEVersionInfo">1.1.0.[8/9]</string>
+	<string name="target_mcpe_version_info">1.1.0.[8/9]</string>
 	
 	<!--Titles-->
 	<string name="menu_title">Menu</string>
@@ -24,10 +24,10 @@
 	
 	<string name="load_exception_bad_jni_return_value">Bad return value in method JNI_OnLoad!</string>
 	<string name="load_exception_bad_jni_return_value_d">Please create method JNI_OnLoad and return JNI_VERSION value in it!</string>
-	<string name="load_exception_bad_manifest_grammar">An error caused in loading nmod_manifest.json.</string>
-	<string name="load_exception_bad_manifest_grammar_d">Please check if there is a mistake in nmod_manifest.json.</string>
-	<string name="load_exception_bad_json_grammar">An error caused in loading %1$s.</string>
-	<string name="load_exception_bad_json_grammar_d">Please check if there is a mistake in %1$s.</string>
+	<string name="load_exception_bad_manifest_syntax">An error caused in loading nmod_manifest.json.</string>
+	<string name="load_exception_bad_manifest_syntax_d">Please check if there is a syntax mistake in nmod_manifest.json.</string>
+	<string name="load_exception_bad_json_syntax">An error caused in loading %1$s.</string>
+	<string name="load_exception_bad_json_syntax_d">Please check if there is a mistake in %1$s.</string>
 	<string name="load_exception_symbol_not_found">Cannot locate symbol %1$s[%2$s].</string>
 	<string name="load_exception_symbol_not_found_d">Please create symbol %1$s[%2$s].</string>
 	<string name="load_exception_file_not_found">Cannot open file:%1$s.</string>

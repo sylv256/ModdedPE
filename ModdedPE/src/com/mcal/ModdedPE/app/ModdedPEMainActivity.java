@@ -78,7 +78,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			((TextView)main_view.findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
 			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion() ?Color.GREEN: Color.RED);
 			(textViewIsSafeMode = (AppCompatTextView)main_view.findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode() ?View.VISIBLE: View.GONE);
-			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(R.string.targetMCPEVersionInfo);
+			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(R.string.target_mcpe_version_info);
 
 
 			newsLayout = new NewsLayout(this);
@@ -333,7 +333,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		try
 		{
 			String mcpeVersionName=getMcContext().getPackageManager().getPackageInfo(getMcContext().getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName;
-			for (String nameItem : getResources().getStringArray(R.array.targetMCPEVersions))
+			for (String nameItem : getResources().getStringArray(R.array.target_mcpe_versions))
 			{
 				if (nameItem.equals(mcpeVersionName))
 					return true;
@@ -385,7 +385,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		{
 			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_available_mcpe_version_found_title));
-			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found, new String[]{getMinecraftPEVersionName(),getString(R.string.targetMCPEVersionInfo)}));
+			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found, new String[]{getMinecraftPEVersionName(),getString(R.string.target_mcpe_version_info)}));
 			mdialog.setNeutralButton(getString(R.string.no_available_mcpe_version_cancel), new DialogInterface.OnClickListener()
 				{
 
