@@ -1,9 +1,7 @@
 package com.mcal.ModdedPE.utils;
 
 import android.content.res.*;
-import java.io.*;
 import java.lang.reflect.*;
-import java.util.*;
 
 public class AssetOverrideManager
 {
@@ -19,13 +17,13 @@ public class AssetOverrideManager
 		}
 		catch (Throwable e)
 		{}
-		
+
 		try
 		{
-			Method method=AssetManager.class.getMethod("addAssetPath",String.class);
+			Method method = AssetManager.class.getMethod("addAssetPath", String.class);
 			method.invoke(localManager, packageResourcePath);
 		}
-		catch(Throwable t)
+		catch (Throwable t)
 		{}
 	}
 
@@ -36,8 +34,8 @@ public class AssetOverrideManager
 
 	public static AssetOverrideManager getInstance()
 	{
-		if(instance==null)
-			return instance=new AssetOverrideManager();
+		if (instance == null)
+			return instance = new AssetOverrideManager();
 		return instance;
 	}
 }

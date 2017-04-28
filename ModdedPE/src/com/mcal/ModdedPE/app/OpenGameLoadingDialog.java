@@ -1,20 +1,20 @@
 package com.mcal.ModdedPE.app;
 import android.app.*;
+import android.content.*;
 import android.graphics.*;
+import android.graphics.drawable.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
+import com.mcal.MCDesign.utils.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
-import android.graphics.drawable.*;
-import android.content.*;
-import com.mcal.MCDesign.utils.*;
 public class OpenGameLoadingDialog extends Dialog
 {
 	public OpenGameLoadingDialog(Context context)
 	{
 		super(context, R.style.FullScreenTheme);
-		
+
 		setCancelable(false);
 	}
 
@@ -34,15 +34,15 @@ public class OpenGameLoadingDialog extends Dialog
 	{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.onCreate(savedInstanceState);
-		View contentView=getLayoutInflater().inflate(R.layout.moddedpe_loading,null);
+		View contentView=getLayoutInflater().inflate(R.layout.moddedpe_loading, null);
 		setContentView(contentView);
-		
+
 		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);
-		bitmap=BitmapRepeater.repeat(getWindow().getWindowManager().getDefaultDisplay().getWidth(), getWindow().getWindowManager().getDefaultDisplay().getHeight(), bitmap);
+		bitmap = BitmapRepeater.repeat(getWindow().getWindowManager().getDefaultDisplay().getWidth(), getWindow().getWindowManager().getDefaultDisplay().getHeight(), bitmap);
 		contentView.setBackgroundDrawable(new BitmapDrawable(bitmap));
-		
+
 		setLoadingMessage(getContext().getString(R.string.opengame_loading));
-		
+
 		new Thread()
 		{
 			@Override
@@ -63,7 +63,7 @@ public class OpenGameLoadingDialog extends Dialog
 			}
 		}.start();
 	}
-	
+
 	public void setLoadingMessage(String msg)
 	{
 		((TextView)findViewById(R.id.moddedpeloadingMessageTextView)).setText(msg);

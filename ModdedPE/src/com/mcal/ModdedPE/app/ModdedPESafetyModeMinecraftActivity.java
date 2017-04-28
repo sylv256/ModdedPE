@@ -5,7 +5,6 @@ import android.os.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.utils.*;
-import android.app.*;
 
 public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
@@ -20,11 +19,11 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 
 	private Context getMcContext()
 	{
-		if(mcPackageContext!=null)
+		if (mcPackageContext != null)
 			return mcPackageContext;
 		try
 		{
-			return mcPackageContext=createPackageContext(ModdedPEApplication.MC_PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+			return mcPackageContext = createPackageContext(ModdedPEApplication.MC_PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
 		}
 		catch (Exception e)
 		{
@@ -35,7 +34,7 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 	protected void loadNativeLibraries()
 	{
 		checkNullMcContext();
-		LibraryLoader.loadGameLibs(mcLibDir,true);
+		LibraryLoader.loadGameLibs(mcLibDir, true);
 	}
 
 	protected void initAssetOverrides()
@@ -71,7 +70,7 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 	public AssetManager getAssets()
 	{
 		AssetManager mgr=AssetOverrideManager.getInstance().getLocalAssetManager();
-		if(mgr!=null)
+		if (mgr != null)
 			return mgr;
 		return super.getAssets();
 	}

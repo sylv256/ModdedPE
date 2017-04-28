@@ -1,6 +1,5 @@
 package com.mcal.ModdedPE.app;
 import android.content.*;
-import android.content.pm.*;
 import android.os.*;
 import android.support.v7.app.*;
 import com.mcal.MCDesign.app.*;
@@ -64,10 +63,21 @@ public class ModdedPEStartActivity extends MCDActivity
 					}
 
 
+				}).setOnCancelListener(new DialogInterface.OnCancelListener()
+				{
+
+					@Override
+					public void onCancel(DialogInterface p1)
+					{
+						p1.dismiss();
+						initInstance();
+					}
+
+
 				}).show();
 		}
 	}
-	
+
 	private void initInstance()
 	{
 		new Thread()
@@ -79,17 +89,17 @@ public class ModdedPEStartActivity extends MCDActivity
 			}
 		}.start();
 	}
-	
+
 	Handler mHandler=new Handler()
 	{
 		@Override
 		public void handleMessage(Message msg)
 		{
 			super.handleMessage(msg);
-			
-			Intent intent=new Intent(ModdedPEStartActivity.this,ModdedPEMainActivity.class);
+
+			Intent intent=new Intent(ModdedPEStartActivity.this, ModdedPEMainActivity.class);
 			startActivity(intent);
-			
+
 			finish();
 		}
 	};

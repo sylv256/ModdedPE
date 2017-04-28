@@ -3,11 +3,10 @@ import android.content.*;
 import android.content.pm.*;
 import android.content.res.*;
 import android.graphics.*;
-import java.io.*;
-import org.json.*;
-import com.mcal.ModdedPE.*;
-import java.util.*;
 import com.google.gson.*;
+import com.mcal.ModdedPE.*;
+import java.io.*;
+import java.util.*;
 
 public class NMod
 {
@@ -23,48 +22,48 @@ public class NMod
 
 	public String getDescription()
 	{
-		if(dataBean.description!=null)
+		if (dataBean.description != null)
 			return dataBean.description;
 		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
-	
+
 	public String getAuthor()
 	{
-		if(dataBean.author!=null)
+		if (dataBean.author != null)
 			return dataBean.author;
 		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
-	
+
 	public String getVersionName()
 	{
-		if(dataBean.version_info!=null&&dataBean.version_info.version_name!=null)
+		if (dataBean.version_info != null && dataBean.version_info.version_name != null)
 			return dataBean.version_info.version_name;
 		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
-	
+
 	public boolean isBugPack()
 	{
-		return bugExpection!=null;
+		return bugExpection != null;
 	}
-	
+
 	public void setBugPack(NModLoadException e)
 	{
-		bugExpection=e;
+		bugExpection = e;
 	}
-	
+
 	public NModLoadException getLoadException()
 	{
 		return bugExpection;
 	}
-	
+
 	private NModLoadException findLoadException()
 	{
 		NModLoadException ejson=checkJSONs();
-		if(ejson!=null)
+		if (ejson != null)
 			return ejson;
-		if(dataBean.languages!=null)
+		if (dataBean.languages != null)
 		{
-			for(NModLanguageBean lang:dataBean.languages)
+			for (NModLanguageBean lang:dataBean.languages)
 			{
 				try
 				{
@@ -72,30 +71,30 @@ public class NMod
 				}
 				catch (IOException e)
 				{
-					return NModLoadException.getFileNotFound(e,thisContext.getResources(),lang.location);
+					return NModLoadException.getFileNotFound(e, thisContext.getResources(), lang.location);
 				}
 			}
 		}
-		
+
 		return null;
 	}
-	
+
 	private static class LoopFileSearcher
 	{
 		private AssetManager mgr;
 		private Vector<String> exploredFiles;
 		public LoopFileSearcher(AssetManager mgr)
 		{
-			this.mgr=mgr;
-			this.exploredFiles=new Vector<String>();
+			this.mgr = mgr;
+			this.exploredFiles = new Vector<String>();
 		}
-		
+
 		public Vector<String> getAllFiles()
 		{
 			calculate("");
 			return exploredFiles;
 		}
-		
+
 		public void calculate(String oldPath)
 		{
 			try
@@ -105,11 +104,11 @@ public class NMod
 					String fileNames[] = mgr.list(oldPath);
 					for (String fileName : fileNames)
 					{
-						if(oldPath==null||oldPath.isEmpty())
+						if (oldPath == null || oldPath.isEmpty())
 							calculate(fileName);
 						else
 							calculate(oldPath + "/" + fileName);
-						
+
 					}
 				}
 				else
@@ -122,7 +121,7 @@ public class NMod
 				e.printStackTrace();  
 			}                             
 		}
-		
+
 		private boolean isFile(String path)
 		{
 			try
@@ -136,18 +135,19 @@ public class NMod
 			return true;
 		}
 	}
-	
-	private static class EmptyClass{}
-	
+
+	private static class EmptyClass
+	{}
+
 	private NModLoadException checkJSONs()
 	{
 		Vector<String> allFiles=new LoopFileSearcher(getAsset()).getAllFiles();
-		if(allFiles==null)
+		if (allFiles == null)
 			return null;
-		
-		for(String path:allFiles)
+
+		for (String path:allFiles)
 		{
-			if(path.toLowerCase().endsWith(".json"))
+			if (path.toLowerCase().endsWith(".json"))
 			{
 				try
 				{
@@ -157,7 +157,7 @@ public class NMod
 					String jsonStr=new String(buffer);
 					try
 					{
-						new Gson().fromJson(jsonStr,EmptyClass.class);
+						new Gson().fromJson(jsonStr, EmptyClass.class);
 					}
 					catch (Throwable t)
 					{
@@ -172,22 +172,22 @@ public class NMod
 		}
 		return null;
 	}
-	
+
 	public Bitmap getIcon()
 	{
 		return icon;
 	}
-	
-	public NMod(Context packageContext,Context contextThiz)
+
+	public NMod(Context packageContext, Context contextThiz)
 	{
-		this.packageContext=packageContext;
-		this.thisContext=contextThiz;
-		this.bugExpection=null;
-		
-		this.icon=createIcon();
-		if(icon==null)
-			icon=BitmapFactory.decodeResource(contextThiz.getResources(),R.drawable.mcd_null_pack);
-		
+		this.packageContext = packageContext;
+		this.thisContext = contextThiz;
+		this.bugExpection = null;
+
+		this.icon = createIcon();
+		if (icon == null)
+			icon = BitmapFactory.decodeResource(contextThiz.getResources(), R.drawable.mcd_null_pack);
+
 		try
 		{
 			InputStream is=packageContext.getAssets().open(TAG_MANIFEST_NAME);
@@ -195,70 +195,70 @@ public class NMod
 			is.read(buffer);
 			String jsonStr=new String(buffer);
 			Gson gson=new Gson();
-			NModDataBean theDataBean=gson.fromJson(jsonStr,NModDataBean.class);
-			dataBean=theDataBean;
+			NModDataBean theDataBean=gson.fromJson(jsonStr, NModDataBean.class);
+			dataBean = theDataBean;
 		}
 		catch (Exception e)
 		{
-			dataBean=null;
-			setBugPack(NModLoadException.getBadManifestGrammar(e,thisContext.getResources()));
-			loader=new NModLoader(this);
+			dataBean = null;
+			setBugPack(NModLoadException.getBadManifestGrammar(e, thisContext.getResources()));
+			loader = new NModLoader(this);
 			return;
 		}
-		
+
 		NModLoadException loadE=findLoadException();
-		if(loadE!=null)
+		if (loadE != null)
 		{
-			dataBean=null;
+			dataBean = null;
 			setBugPack(loadE);
-			loader=new NModLoader(this);
+			loader = new NModLoader(this);
 			return;
 		}
-		
+
 		try
 		{
-			this.version_image=createVersionImage();
+			this.version_image = createVersionImage();
 		}
-		catch(NModLoadException nmodle)
+		catch (NModLoadException nmodle)
 		{
-			dataBean=null;
+			dataBean = null;
 			setBugPack(nmodle);
-			loader=new NModLoader(this);
+			loader = new NModLoader(this);
 			return;
 		}
-		
+
 		NModOptions options=new NModOptions(contextThiz);
-		isActive=options.isActive(this);
-		loader=new NModLoader(this);
+		isActive = options.isActive(this);
+		loader = new NModLoader(this);
 	}
-	
+
 	public boolean isActive()
 	{
 		return isActive;
 	}
-	
+
 	public void setActive(boolean isActive)
 	{
-		this.isActive=isActive;
+		this.isActive = isActive;
 	}
-	
+
 	public Context getPackageContext()
 	{
 		return packageContext;
 	}
-	
+
 	public AssetManager getAsset()
 	{
 		return packageContext.getAssets();
 	}
-	
+
 	public String getPackageName()
 	{
-		if(getPackageContext()==null)
+		if (getPackageContext() == null)
 			return toString();
 		return getPackageContext().getPackageName();
 	}
-	
+
 	public Bitmap createIcon()
 	{
 		try
@@ -267,25 +267,26 @@ public class NMod
 			PackageInfo packageInfo = null;
 			packageInfo = packageManager.getPackageInfo(getPackageContext().getPackageName(), 0);
 			int iconRes = packageInfo.applicationInfo.icon;
-			return BitmapFactory.decodeResource(getPackageContext().getResources(),iconRes);
+			return BitmapFactory.decodeResource(getPackageContext().getResources(), iconRes);
 		}
-		catch (PackageManager.NameNotFoundException e){}
+		catch (PackageManager.NameNotFoundException e)
+		{}
 		return null;
 	}
-	
+
 	public String[] getNativeLibs()
 	{
 		return dataBean.native_libs;
 	}
-	
+
 	public NModLoader getLoader()
 	{
 		return loader;
 	}
-	
+
 	public String getName()
 	{
-		if(isBugPack())
+		if (isBugPack())
 			return getPackageName();
 		return dataBean.name;
 	}
@@ -293,61 +294,61 @@ public class NMod
 	@Override
 	public boolean equals(Object obj)
 	{
-		if(getClass()==obj.getClass())
+		if (getClass() == obj.getClass())
 			return getPackageName().equals(((NMod)obj).getPackageName());
 		return false;
 	}
-	
+
 	public Bitmap createVersionImage() throws NModLoadException
 	{
 		Bitmap ret = null;
 		try
 		{
-			if(dataBean.version_info==null||dataBean.version_info.version_description_image==null)
+			if (dataBean.version_info == null || dataBean.version_info.version_description_image == null)
 				return null;
 			InputStream is = getAsset().open(dataBean.version_info.version_description_image);
 			ret = BitmapFactory.decodeStream(is);
 		}
 		catch (IOException e)
 		{
-			throw NModLoadException.getFileNotFound(e,thisContext.getResources(),dataBean.version_info.version_description_image);
+			throw NModLoadException.getFileNotFound(e, thisContext.getResources(), dataBean.version_info.version_description_image);
 		}
-		catch(Throwable t)
+		catch (Throwable t)
 		{
-			throw NModLoadException.getImageDecode(t,thisContext.getResources(),dataBean.version_info.version_description_image);
+			throw NModLoadException.getImageDecode(t, thisContext.getResources(), dataBean.version_info.version_description_image);
 		}
-		if(ret==null)
-			throw NModLoadException.getImageDecode(null,thisContext.getResources(),dataBean.version_info.version_description_image);
-		
-		if(ret.getWidth()!=1024||ret.getHeight()!=500)
+		if (ret == null)
+			throw NModLoadException.getImageDecode(null, thisContext.getResources(), dataBean.version_info.version_description_image);
+
+		if (ret.getWidth() != 1024 || ret.getHeight() != 500)
 			throw NModLoadException.getBadImageSize(thisContext.getResources());
 		return ret;
 	}
-	
+
 	public Bitmap getVersionImage()
 	{
 		return version_image;
 	}
-	
+
 	public String getNewsTitle()
 	{
-		if(dataBean.version_info!=null&&dataBean.version_info.version_description_short!=null)
-			return dataBean.name+" : "+dataBean.version_info.version_description_short;
+		if (dataBean.version_info != null && dataBean.version_info.version_description_short != null)
+			return dataBean.name + " : " + dataBean.version_info.version_description_short;
 		return null;
 	}
-	
+
 	public boolean isValidNews()
 	{
-		return getVersionImage()!=null&&getNewsTitle()!=null;
+		return getVersionImage() != null && getNewsTitle() != null;
 	}
-	
+
 	public static class NModLanguageBean
 	{
 		public String name;
 		public String location;
 		public boolean format_space;
 	}
-	
+
 	public static class NModVersionBean
 	{
 		public String version_name;
@@ -356,12 +357,12 @@ public class NMod
 		public String version_description;
 		public String version_description_image;
 	}
-	
+
 	public NModLanguageBean[] getLanguageBeans()
 	{
 		return dataBean.languages;
 	}
-	
+
 	public static class NModDataBean
 	{
 		public String[] native_libs;

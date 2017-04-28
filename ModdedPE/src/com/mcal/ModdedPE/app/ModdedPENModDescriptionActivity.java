@@ -16,16 +16,16 @@ public class ModdedPENModDescriptionActivity extends MCDActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_nmod_description);
-		
+
 		String nmodPackageName=getIntent().getExtras().getString(KEY_INTENT_EXTRAS_PACKAGE_NAME);
-		targetNMod=NModManager.getNModManager(this).getNModByPackageName(nmodPackageName);
-		
+		targetNMod = NModManager.getNModManager(this).getNModByPackageName(nmodPackageName);
+
 		setTitle(targetNMod.getName());
 		setActionBarButtonCloseRight();
-		
+
 		AppCompatImageView iconImage=(AppCompatImageView)findViewById(R.id.moddedpenmoddescriptionImageViewIcon);
 		iconImage.setImageBitmap(targetNMod.getIcon());
-		iconImage.getLayoutParams().width=iconImage.getLayoutParams().height=getWindowManager().getDefaultDisplay().getWidth()/5;
+		iconImage.getLayoutParams().width = iconImage.getLayoutParams().height = getWindowManager().getDefaultDisplay().getWidth() / 5;
 
 		AppCompatTextView textViewName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewNModName);
 		textViewName.setText(targetNMod.getName());
@@ -38,12 +38,12 @@ public class ModdedPENModDescriptionActivity extends MCDActivity
 		AppCompatTextView textViewVersionName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewVersionName);
 		textViewVersionName.setText(targetNMod.getVersionName());
 	}
-	
-	public static void startThisActivity(Context context,NMod nmod)
+
+	public static void startThisActivity(Context context, NMod nmod)
 	{
-		Intent intent=new Intent(context,ModdedPENModDescriptionActivity.class);
+		Intent intent=new Intent(context, ModdedPENModDescriptionActivity.class);
 		Bundle bundle=new Bundle();
-		bundle.putString(KEY_INTENT_EXTRAS_PACKAGE_NAME,nmod.getPackageName());
+		bundle.putString(KEY_INTENT_EXTRAS_PACKAGE_NAME, nmod.getPackageName());
 		intent.putExtras(bundle);
 		context.startActivity(intent);
 	}

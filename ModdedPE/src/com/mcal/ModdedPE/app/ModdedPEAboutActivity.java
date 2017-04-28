@@ -1,12 +1,8 @@
 package com.mcal.ModdedPE.app;
 
-import android.app.*;
-import android.graphics.*;
 import android.os.*;
-import android.view.*;
-import android.widget.*;
-import com.mcal.ModdedPE.*;
 import com.mcal.MCDesign.app.*;
+import com.mcal.ModdedPE.*;
 
 public class ModdedPEAboutActivity extends MCDActivity
 {
