@@ -64,6 +64,7 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 		loadNativeLibraries();
 		initAssetOverrides();
 		super.onCreate(p1);
+		GameLauncher.launch();
 	}
 
 	@Override

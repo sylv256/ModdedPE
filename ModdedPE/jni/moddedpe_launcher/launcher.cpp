@@ -4,13 +4,15 @@
 
 #include "Substrate.h"
 
+ANativeActivity* native_activity;
+void* saved_state;
+size_t saved_state_size;
+
 extern "C" void ANativeActivity_onCreate(ANativeActivity* activity,void* savedState, size_t savedStateSize)
 {
-	//Starting MCPE by calling ANativeActivity_onCreate in libminecraftpe.so
-	void* imageMCPE=(void*) dlopen("libminecraftpe.so",RTLD_LAZY);
-	void (*onCreateFunc)(ANativeActivity*,void*,size_t) = (void(*)(ANativeActivity*,void*,size_t)) dlsym(imageMCPE,"ANativeActivity_onCreate");
-	onCreateFunc(activity,savedState,savedStateSize);
-	dlclose(imageMCPE);
+	native_activity = activity;
+	saved_state = savedState;
+	saved_state_size = savedStateSize;
 }
 
 extern "C" void ANativeActivity_finish(ANativeActivity* activity)
@@ -21,6 +23,21 @@ extern "C" void ANativeActivity_finish(ANativeActivity* activity)
 	finishFunc(activity);
 	dlclose(imageMCPE);
 }
+
+extern "C" JNIEXPORT jint JNI_OnLoad(JavaVM*,void*)
+{
+	return JNI_VERSION_1_6;
+}
+
+extern "C" JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_GameLauncher_launch(JNIEnv*env,jobject thiz)
+{
+	//Starting MCPE by calling ANativeActivity_onCreate in libminecraftpe.so
+	void* imageMCPE=(void*) dlopen("libminecraftpe.so",RTLD_LAZY);
+	void (*onCreateFunc)(ANativeActivity*,void*,size_t) = (void(*)(ANativeActivity*,void*,size_t)) dlsym(imageMCPE,"ANativeActivity_onCreate");
+	onCreateFunc(native_activity,saved_state,saved_state_size);
+	dlclose(imageMCPE);
+}
+
 
 extern "C" void android_main(struct android_app* state)
 {

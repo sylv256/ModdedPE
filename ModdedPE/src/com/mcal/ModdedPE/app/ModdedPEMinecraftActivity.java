@@ -57,14 +57,24 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	@Override
 	public void onCreate(Bundle p1)
 	{
+		final Bundle copy_bundle = p1;
+		
 		initFields();
 		loadNativeLibraries();
+		super.onCreate(copy_bundle);
 		new OpenGameLoadingDialog(this).show();
-		mcPackageContext.getPackageResourcePath();
-		AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
-		setNativeUtilsAttributes();
-		loadNMods(p1);
-		super.onCreate(p1);
+		
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
+				setNativeUtilsAttributes();
+				loadNMods(copy_bundle);
+				GameLauncher.launch();
+			}
+		}.start();
 	}
 
 	private void setNativeUtilsAttributes()
@@ -81,6 +91,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 
 	private void loadNMods(Bundle savedInstanceState)
 	{
+		NModManager.reCalculate(this);
 		NModManager nmodManager=NModManager.getNModManager(this);
 		String mcVer=new String();
 		String moddedpeVer=getString(R.string.app_version);
