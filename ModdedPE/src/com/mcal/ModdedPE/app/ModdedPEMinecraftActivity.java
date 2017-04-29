@@ -7,12 +7,13 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.utils.*;
+import java.util.*;
 
 public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
 	private Context mcPackageContext=null;
 	private String mcLibDir=ModdedPEApplication.MC_NATIVE_DIR;
-
+	
 	private void initFields()
 	{
 		mcPackageContext = getMcContext();
@@ -57,24 +58,49 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	@Override
 	public void onCreate(Bundle p1)
 	{
-		final Bundle copy_bundle = p1;
-		
 		initFields();
 		loadNativeLibraries();
-		super.onCreate(copy_bundle);
+		mergeGameAssets();
+		setNativeUtilsAttributes();
 		new OpenGameLoadingDialog(this).show();
-		
-		new Thread()
+		prepareNMods(p1);
+		super.onCreate(p1);
+		GameLauncher.launch();
+	}
+	
+	private void prepareNMods(Bundle saved_instance_state)
+	{
+		NModManager.reCalculate(this);
+		loadNMods();
+		mergeNModAssets();
+		callOnNModActivityCreate(saved_instance_state);
+	}
+	
+	private void mergeGameAssets()
+	{
+		AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
+	}
+	
+	private void callOnNModActivityCreate(Bundle savedInstanceState)
+	{
+		NModManager nmodManager=NModManager.getNModManager(this);
+		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
-			@Override
-			public void run()
-			{
-				AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
-				setNativeUtilsAttributes();
-				loadNMods(copy_bundle);
-				GameLauncher.launch();
-			}
-		}.start();
+			NMod nmod=nmodManager.getActiveNMods().get(i);
+			if(!nmod.isBugPack())
+				nmod.getLoader().callOnActivityCreate(this, savedInstanceState);
+		}
+	}
+	
+	private void mergeNModAssets()
+	{
+		NModManager nmodManager=NModManager.getNModManager(this);
+		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
+		{
+			NMod nmod=nmodManager.getActiveNMods().get(i);
+			if(!nmod.isBugPack())
+				AssetOverrideManager.getInstance().addAssetOverride(nmod.getPackageContext().getPackageResourcePath());
+		}
 	}
 
 	private void setNativeUtilsAttributes()
@@ -89,9 +115,8 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		Utils.nativeSetDisableTextureIsotropic(settings.getDisableTextureIsotropic());
 	}
 
-	private void loadNMods(Bundle savedInstanceState)
+	private void loadNMods()
 	{
-		NModManager.reCalculate(this);
 		NModManager nmodManager=NModManager.getNModManager(this);
 		String mcVer=new String();
 		String moddedpeVer=getString(R.string.app_version);
@@ -115,9 +140,6 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 				ModdedPENModLoadFailActivity.startThisActivity(this, nmod);
 				continue;
 			}
-
-			AssetOverrideManager.getInstance().addAssetOverride(nmod.getPackageContext().getPackageResourcePath());
-			nmod.getLoader().callOnActivityCreate(this, savedInstanceState);
 		}
 	}
 
@@ -136,15 +158,9 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		NModManager nmodManager=NModManager.getNModManager(this);
 		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
-			try
-			{
-				NMod nmod=nmodManager.getActiveNMods().get(i);
+			NMod nmod=nmodManager.getActiveNMods().get(i);
+			if(!nmod.isBugPack())
 				nmod.getLoader().callOnActivityFinish(this);
-			}
-			catch (Throwable t)
-			{
-
-			}
 		}
 		super.onDestroy();
 	}

@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.mcal.ModdedPE"
 	android:installLocation="preferExternal"
-    android:versionCode="33"
+    android:versionCode="34"
 	android:versionName="@string/app_version">
 	
 	<uses-feature android:glEsVersion="20000"
@@ -71,6 +71,7 @@
 			android:name="com.mcal.ModdedPE.app.ModdedPEMinecraftActivity"
 			android:debuggable="false"
             android:excludeFromRecents="false"
+			android:launchMode="singleTask"
             android:screenOrientation="sensorLandscape"
             android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
             android:alwaysRetainTaskState="true">
