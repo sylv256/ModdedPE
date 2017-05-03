@@ -10,6 +10,7 @@
 #include "ItemInstance.h"
 #include "mcpe/util/BlockID.h"
 #include "mcpe/util/Random.h"
+#include "mcpe/util/Util.h"
 #include "mcpe/block/BlockShape.h"
 #include "../client/renderer/texture/TextureUVCoordinateSet.h"
 
@@ -41,7 +42,7 @@ namespace Json
 class Item 
 {
 public:
-	char filler[200];
+	char filler[260];
 public:
 	virtual ~Item();
 	virtual Item* setIcon(std::string const&, int);
@@ -82,6 +83,7 @@ public:
 	virtual int getDamageChance(int) const;
 	virtual bool uniqueAuxValues() const;
 	virtual int getColor(ItemInstance const&) const;
+	virtual bool isTintable() const;
 	virtual bool use(ItemInstance&, Player&)const;
 	virtual void dispense(BlockSource&, Container&, int, Vec3 const&, signed char) const;
 	virtual void useTimeDepleted(ItemInstance&, Level*, Player*) const;
@@ -111,7 +113,7 @@ public:
 public:
 	static Item* lookupByName(std::string const&, bool);
 	static TextureUVCoordinateSet getTextureUVCoordinateSet(std::string const&, int);
-	static TextureUVCoordinateSet getTextureItem(std::string const&);
+	static std::shared_ptr<TextureAtlas> getTextureItem(std::string const&);
 	static void addBlockItems();
 	static void registerItems();
 	static void teardownItems();
@@ -133,11 +135,11 @@ public:
 	bool allowOffhand() const;
 	float destroySpeedBonus(ItemInstance const&) const;
 	void updateCustomBlockEntityTag(BlockSource&, ItemInstance&, BlockPos&) const;
-	void useOn(ItemInstance&, Entity&, int, int, int, signed char, float, float, float) const;
+	bool useOn(ItemInstance&, Entity&, int, int, int, signed char, float, float, float) const;
 public:
 	static Item * mItems[ITEM_ID_SIZE];
 	static std::vector<ItemInstance> mCreativeList;
-	static std::unordered_map<std::string,std::unique_ptr<Item>> mItemLookupMap;
+	static std::unordered_map<std::string,std::pair<std::string const,std::unique_ptr<Item> > > mItemLookupMap;
 public:
 	static Item * mSword_wood;
 	static Item * mShovel_wood;
@@ -329,7 +331,21 @@ public:
 	static Item * mCamera;
 	static Item * mCookie;
 public:
-	static int ICON_DESCRIPTION_PREFIX;
+	static char const* ICON_DESCRIPTION_PREFIX;
 	static Random mRandom;
 	static std::shared_ptr<TextureAtlas> mItemTextureAtlas[ITEM_ID_SIZE];
 };
+
+//template function decompiled from libminecraftpe.so
+template <typename ItemType,typename...Args>
+ItemType& registerItem(std::string const&name,int id,const Args&...rest)
+{
+	std::string const item_name = Util::toLower(name);
+	if(Item::mItemLookupMap.count(item_name)!=0)
+		return *(ItemType*)Item::mItems[id + 0x100];
+	
+	ItemType* new_instance = new ItemType(name,id,rest...);
+	Item::mItems[id + 0x100] = new_instance;
+	Item::mItemLookupMap.emplace(item_name,std::pair<std::string const,std::unique_ptr<Item> >(item_name,std::unique_ptr<Item>((Item*)new_instance)));
+	return *new_instance;
+}

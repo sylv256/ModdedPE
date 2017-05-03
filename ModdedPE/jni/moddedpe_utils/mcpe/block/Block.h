@@ -9,6 +9,7 @@
 #include "../client/renderer/texture/TextureUVCoordinateSet.h"
 #include "mcpe/util/Color.h"
 #include "mcpe/util/BlockID.h"
+#include "mcpe/util/Util.h"
 #include "mcpe/util/AABB.h"
 #include "material/Material.h"
 #include "BlockShape.h"
@@ -42,9 +43,9 @@ class Block
 {
 public:
 	uint8_t blockId; // 4
-	char filler_Block[148];
+	char filler_Block[400];
 
-	static std::unordered_map<std::string,std::unique_ptr<Block>> mBlockLookupMap;
+	static std::unordered_map<std::string,Block const*> mBlockLookupMap;
 	static std::vector<std::unique_ptr<Block>> mOwnedBlocks;
 	static Block* mBlocks[BLOCK_ID_SIZE];
 	static bool mSolid[BLOCK_ID_SIZE];
@@ -458,5 +459,19 @@ public:
 	static Block * mIronDoor;
 public:
 	static float SIZE_OFFSET;
-	static std::string BLOCK_DESCRIPTION_PREFIX;
+	static const char* BLOCK_DESCRIPTION_PREFIX;
 };
+
+//template function decompiled from libminecraftpe.so
+template <typename BlockType,typename...Args>
+BlockType& registerBlock(std::string const&name,int id,const Args&...rest)
+{
+	std::string const block_name = Util::toLower(name);
+	if(Block::mBlockLookupMap.count(block_name)!=0)
+		return *(BlockType*)Block::mBlocks[id];
+	
+	BlockType* new_instance = new BlockType(name,id,rest...);
+	Block::mBlocks[id] = new_instance;
+	Block::mBlockLookupMap.emplace(block_name,(Block const*)new_instance);
+	return *new_instance;
+}

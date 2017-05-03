@@ -4,20 +4,21 @@
 class Color
 {
 public:
-	static const Color BLACK;
-	static const Color BLUE;
-	static const Color CYAN;
-	static const Color GREEN;
-	static const Color GREY;
-	static const Color NIL;
-	static const Color PURPLE;
-	static const Color RED;
-	static const Color WHITE;
-	static const Color YELLOW;
-	static const Color SHADE_DOWN;
-	static const Color SHADE_NORTH_SOUTH;
-	static const Color SHADE_UP;
-	static const Color SHADE_WEST_EAST;
+	static Color WHITE;
+	static Color GREEN;
+	static Color ORANGE;
+	static Color NIL;
+	static Color RED;
+	static Color BLUE;
+	static Color CYAN;
+	static Color GREY;
+	static Color BLACK;
+	static Color PURPLE;
+	static Color YELLOW;
+	static Color SHADE_DOWN;
+	static Color SHADE_WEST_EAST;
+	static Color SHADE_NORTH_SOUTH;
+	static Color SHADE_UP;
 
 public:
 	float red;		// 0
@@ -26,9 +27,13 @@ public:
 	float alpha;	// 12
 
 public:
-	Color(){}
+	Color()=default;
 	Color(float r, float g, float b, float a) : red(r), green(g), blue(b), alpha(a) {};
-	static Color *fromHSB(float, float, float);
+	static Color fromHSB(float, float, float);
 	int toARGB()const;
 	int toABGR()const;
+	bool operator==(Color const&c)
+	{
+		return red==c.red&&green==c.green&&blue==c.blue&&alpha==c.alpha;
+	}
 };

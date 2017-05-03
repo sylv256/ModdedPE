@@ -118,7 +118,6 @@ public:
 	virtual void onLanguageSubpacksChanged();
 	virtual void onVanillaPackDownloadComplete();
 public:
-	//Methods
 	MinecraftGame(int, char**);
 	ClientInstance* getPrimaryClientInstance();
 	GuiData* getGuiData();
