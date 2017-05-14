@@ -108,6 +108,19 @@ public class ModdedPEMainActivity extends MCDActivity
 			else
 				manage_nmod_view.findViewById(R.id.moddedpemanagenmodLayoutNormal).setVisibility(View.VISIBLE);
 
+			MCDAddButton addBtn = (MCDAddButton)manage_nmod_view.findViewById(R.id.moddedpemanageNModAddNew);
+			manage_nmod_view.findViewById(R.id.moddedpemanageNModAddNewCardView).getLayoutParams().width=getWindowManager().getDefaultDisplay().getWidth() / 2;
+			addBtn.setOnClickListener(new View.OnClickListener()
+				{
+
+					@Override
+					public void onClick(View p1)
+					{
+						onAddNewNMod();
+					}
+
+
+				});
 			views_adapter.add(manage_nmod_view);
 			titles_adapter.add(getString(R.string.manage_nmod_title));
 		}
@@ -625,31 +638,11 @@ public class ModdedPEMainActivity extends MCDActivity
 						@Override
 						public void onClick(View p1)
 						{
-							new AlertDialog.Builder(ModdedPEMainActivity.this).setTitle(R.string.nmod_add_new_title).setMessage(R.string.nmod_add_new_message).setNegativeButton(R.string.nmod_add_new_pick_installed,new DialogInterface.OnClickListener()
-								{
-
-									@Override
-									public void onClick(DialogInterface p1, int p2)
-									{
-										p1.dismiss();
-									}
-									
-								
-							}).setPositiveButton(R.string.nmod_add_new_pick_storage,new DialogInterface.OnClickListener()
-								{
-
-									@Override
-									public void onClick(DialogInterface p1, int p2)
-									{
-										p1.dismiss();
-									}
-									
-								
-							}).show();
+							onAddNewNMod();
 						}
-						
-					
-				});
+
+
+					});
 				return convertView;
 			}
 			if (position >= getCount())
@@ -718,4 +711,29 @@ public class ModdedPEMainActivity extends MCDActivity
 		}
 
     }
+
+	private void onAddNewNMod()
+	{
+		new AlertDialog.Builder(ModdedPEMainActivity.this).setTitle(R.string.nmod_add_new_title).setMessage(R.string.nmod_add_new_message).setNegativeButton(R.string.nmod_add_new_pick_installed, new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface p1, int p2)
+				{
+					p1.dismiss();
+				}
+
+
+			}).setPositiveButton(R.string.nmod_add_new_pick_storage, new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface p1, int p2)
+				{
+					p1.dismiss();
+				}
+
+
+			}).show();
+	}
 }
