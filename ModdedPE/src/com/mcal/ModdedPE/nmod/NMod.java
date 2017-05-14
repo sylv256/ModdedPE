@@ -334,8 +334,8 @@ public abstract class NMod
 	public static class NModJsonEditBean
 	{
 		public String path = null;
-		public String edit_type = "replace";
-		//edit_type = replace / mix
+		public String mode = "replace";
+		//mode = replace / mix
 	}
 
 	public static class NModVersionBean
@@ -357,5 +357,6 @@ public abstract class NMod
 		public NModLanguageBean[] languages = null;
 		public NModVersionBean version_info = null;
 		public boolean check_json_syntax = false;
+		public NModJsonEditBean[] json_edit = null;
 	}
 }
