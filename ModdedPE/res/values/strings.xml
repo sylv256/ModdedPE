@@ -17,11 +17,15 @@
 	<string name="main_title">Home Page</string>
 	
 	<!--NMod-->
-	<string name="nmod_loadFailed">%1$s Load Failed!</string>
+	<string name="nmod_loadFailed">Load %1$s Failed!</string>
 	<string name="load_fail_msg">Load Error:</string>
 	<string name="load_fail_description">NMod load failed,but the game still can run.</string>
 	<string name="nmod_load_failed">Failed to load NMod.</string>
-	
+	<string name="nmod_add_new">Add New</string>
+	<string name="nmod_add_new_title">Add New...</string>
+	<string name="nmod_add_new_message">Where do you want to pick NMod from?</string>
+	<string name="nmod_add_new_pick_installed">Installed</string>
+	<string name="nmod_add_new_pick_storage">External storage</string>
 	<string name="load_exception_bad_jni_return_value">Bad return value in method JNI_OnLoad!</string>
 	<string name="load_exception_bad_jni_return_value_d">Please create method JNI_OnLoad and return JNI_VERSION value in it!</string>
 	<string name="load_exception_bad_manifest_syntax">An error caused in loading nmod_manifest.json.</string>

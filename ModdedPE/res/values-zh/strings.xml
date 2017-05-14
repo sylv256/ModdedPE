@@ -13,7 +13,11 @@
 	<string name="load_fail_msg">错误报告：</string>
 	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>
 	<string name="nmod_load_failed">加载NMod失败</string>
-
+	<string name="nmod_add_new">添加新的</string>
+	<string name="nmod_add_new_title">添加新的...</string>
+	<string name="nmod_add_new_message">你想从哪里选取？</string>
+	<string name="nmod_add_new_pick_installed">已安装中</string>
+	<string name="nmod_add_new_pick_storage">外部存储</string>
 	<string name="load_exception_bad_jni_return_value">函数JNI_OnLoad返回值错误！</string>
 	<string name="load_exception_bad_jni_return_value_d">请创建函数JNI_OnLoad并且返回一个正确的JNI_VERSION。</string>
 	<string name="load_exception_bad_manifest_syntax">加载nmod_manifest.json文件出错。</string>

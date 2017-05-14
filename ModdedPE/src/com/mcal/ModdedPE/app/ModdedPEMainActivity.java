@@ -370,7 +370,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_mcpe_found_title));
 			mdialog.setMessage(getString(R.string.no_mcpe_found));
-			mdialog.setNegativeButton(getString(R.string.no_mcpe_found_cancel), new DialogInterface.OnClickListener()
+			mdialog.setPositiveButton(getString(R.string.no_mcpe_found_cancel), new DialogInterface.OnClickListener()
 				{
 
 					@Override
@@ -386,7 +386,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_available_mcpe_version_found_title));
 			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found, new String[]{getMinecraftPEVersionName(),getString(R.string.target_mcpe_version_info)}));
-			mdialog.setNeutralButton(getString(R.string.no_available_mcpe_version_cancel), new DialogInterface.OnClickListener()
+			mdialog.setNegativeButton(getString(R.string.no_available_mcpe_version_cancel), new DialogInterface.OnClickListener()
 				{
 
 					@Override
@@ -395,7 +395,7 @@ public class ModdedPEMainActivity extends MCDActivity
 						p1.dismiss();
 					}
 				});
-			mdialog.setNegativeButton(getString(R.string.no_available_mcpe_version_continue), new DialogInterface.OnClickListener()
+			mdialog.setPositiveButton(getString(R.string.no_available_mcpe_version_continue), new DialogInterface.OnClickListener()
 				{
 
 					@Override
@@ -596,7 +596,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		@Override 
 		public int getCount()
 		{
-			return managenmod_disabledList.size();
+			return managenmod_disabledList.size() + 1;
 		}
 
 		@Override 
@@ -614,6 +614,44 @@ public class ModdedPEMainActivity extends MCDActivity
 		@Override 
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
+			if (position == managenmod_disabledList.size())
+			{
+				convertView = getLayoutInflater().inflate(R.layout.moddedpe_nmod_item_new, null);
+
+				MCDAddButton addBtn = (MCDAddButton) convertView.findViewById(R.id.moddedpenmoditemaddNewButton);
+				addBtn.setOnClickListener(new View.OnClickListener()
+					{
+
+						@Override
+						public void onClick(View p1)
+						{
+							new AlertDialog.Builder(ModdedPEMainActivity.this).setTitle(R.string.nmod_add_new_title).setMessage(R.string.nmod_add_new_message).setNegativeButton(R.string.nmod_add_new_pick_installed,new DialogInterface.OnClickListener()
+								{
+
+									@Override
+									public void onClick(DialogInterface p1, int p2)
+									{
+										p1.dismiss();
+									}
+									
+								
+							}).setPositiveButton(R.string.nmod_add_new_pick_storage,new DialogInterface.OnClickListener()
+								{
+
+									@Override
+									public void onClick(DialogInterface p1, int p2)
+									{
+										p1.dismiss();
+									}
+									
+								
+							}).show();
+						}
+						
+					
+				});
+				return convertView;
+			}
 			if (position >= getCount())
 				return convertView;
 

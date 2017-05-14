@@ -132,7 +132,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 
 			try
 			{
-				nmod.getLoader().load(mcVer, moddedpeVer);
+				nmod.load(mcVer, moddedpeVer);
 			}
 			catch (Throwable e)
 			{

@@ -6,12 +6,20 @@ public class NModOptions
 {
 	private Context contextThis;
 	public static final String TAG_SHARED_PREFERENCE = "nmod_list";
-	public static final String TAG_ACTIVE_LIST = "nmod_active_list";
-	public static final String TAG_DISABLE_LIST = "nmod_disabled_list";
+	public static final String TAG_ACTIVE_LIST = "nmod_active_list_tag";
+	public static final String TAG_DISABLE_LIST = "nmod_disabled_list_tag";
 
 	public NModOptions(Context thisContext)
 	{
 		contextThis = thisContext;
+	}
+
+	public Vector<String> getAllList()
+	{
+		Vector<String> ret = new Vector<String>();
+		ret.addAll(getDisabledList());
+		ret.addAll(getActiveList());
+		return ret;
 	}
 
 	public void removeByName(String name)
@@ -129,7 +137,7 @@ public class NModOptions
 	}
 	private static Vector<String> toVector(String str)
 	{
-		String[] mstr=str.split("/");
+		String[] mstr=str.split("|");
 		Vector<String> list = new Vector<String>();
 		if (mstr != null)
 		{
@@ -150,7 +158,7 @@ public class NModOptions
 			for (String mstr:vector)
 			{
 				str += mstr;
-				str += "/";
+				str += "|";
 			}
 		}
 		return str;

@@ -3,6 +3,7 @@ import android.content.*;
 import android.content.pm.*;
 import java.io.*;
 import java.util.*;
+import android.content.pm.PackageManager.*;
 
 public class NModManager
 {
@@ -55,9 +56,43 @@ public class NModManager
 	{
 		allNMods = new Vector<NMod>();
 		activeNMods = new Vector<NMod>();
+		disabledNMods = new Vector<NMod>();
+		
+		NModOptions options=new NModOptions(contextThis);
+		Vector<String> allList=options.getAllList();
+		
+		for(String packageName:allList)
+		{
+			try
+			{
+				Context contextPackage=contextThis.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+				try
+				{
+					InputStream is=contextPackage.getAssets().open(NMod.TAG_MANIFEST_NAME);
+					if (is != null)
+					{
+						is.close();
+						addNewNMod(new PackagedNMod(contextThis,contextPackage));
+					}
+				}
+				catch (IOException e)
+				{}
+			}
+			catch (PackageManager.NameNotFoundException e)
+			{
+				
+			}
 
+		}
+		
+		refreshDatas();
+	}
+	
+	public Vector<String> findInstalledNMods()
+	{
 		PackageManager packageManager = contextThis.getPackageManager();
 		List<PackageInfo> infos=packageManager.getInstalledPackages(0);
+		Vector<String> ret = new Vector<String>();
 		for (PackageInfo info:infos)
 		{
 			try
@@ -65,15 +100,17 @@ public class NModManager
 				Context contextPackage=contextThis.createPackageContext(info.applicationInfo.packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
 				InputStream is=contextPackage.getAssets().open(NMod.TAG_MANIFEST_NAME);
 				if (is != null)
-					addNewNMod(new PackagedNMod(contextPackage, contextThis));
+				{
+					is.close();
+					ret.add(info.applicationInfo.packageName);
+				}
 			}
 			catch (Throwable e)
 			{
 
 			}
 		}
-
-		refreshDatas();
+		return ret;
 	}
 
 	private void addNewNMod(NMod newNMod)
@@ -87,6 +124,9 @@ public class NModManager
 	public void refreshDatas()
 	{
 		NModOptions options=new NModOptions(contextThis);
+		
+		
+		
 		Vector<String> activeList=options.getActiveList();
 
 		activeNMods = new Vector<NMod>();
