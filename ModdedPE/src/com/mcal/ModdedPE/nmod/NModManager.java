@@ -65,7 +65,7 @@ public class NModManager
 				Context contextPackage=contextThis.createPackageContext(info.applicationInfo.packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
 				InputStream is=contextPackage.getAssets().open(NMod.TAG_MANIFEST_NAME);
 				if (is != null)
-					addNewNMod(new NMod(contextPackage, contextThis));
+					addNewNMod(new PackagedNMod(contextPackage, contextThis));
 			}
 			catch (Throwable e)
 			{

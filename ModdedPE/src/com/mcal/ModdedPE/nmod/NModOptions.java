@@ -7,6 +7,7 @@ public class NModOptions
 	private Context contextThis;
 	public static final String TAG_SHARED_PREFERENCE = "nmod_list";
 	public static final String TAG_ACTIVE_LIST = "nmod_active_list";
+	public static final String TAG_DISABLE_NAME = "nmod_disabled_list";
 
 	public NModOptions(Context thisContext)
 	{

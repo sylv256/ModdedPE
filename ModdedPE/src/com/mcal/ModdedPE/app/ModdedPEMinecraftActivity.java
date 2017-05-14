@@ -99,7 +99,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		{
 			NMod nmod=nmodManager.getActiveNMods().get(i);
 			if(!nmod.isBugPack())
-				AssetOverrideManager.getInstance().addAssetOverride(nmod.getPackageContext().getPackageResourcePath());
+				AssetOverrideManager.getInstance().addAssetOverride(nmod.getPackageResourcePath());
 		}
 	}
 

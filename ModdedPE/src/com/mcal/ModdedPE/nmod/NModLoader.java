@@ -27,7 +27,7 @@ public class NModLoader
 	{
 		try
 		{
-			System.load(nmod.getPackageContext().getApplicationInfo().nativeLibraryDir+"/"+name);
+			System.load(nmod.getNativeLibsPath()+"/"+name);
 		}
 		catch(Throwable e)
 		{
@@ -48,7 +48,7 @@ public class NModLoader
 				continue;
 			try
 			{
-				InputStream locationIns=nmod.getAsset().open(languageBean.location);
+				InputStream locationIns=nmod.getAssets().open(languageBean.location);
 				byte[] buffer=new byte[locationIns.available()];
 				locationIns.read(buffer);
 				locationIns.close();
