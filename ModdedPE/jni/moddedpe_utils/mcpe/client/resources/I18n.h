@@ -11,7 +11,6 @@ public:
 	//static void mCurrentLanguage;
 	//static void mFormatDictionary;
 	//static void mLanguages;
-
 public:
 	static void _addFormatToDictionary(std::string const &, std::vector<std::string> const &);
 	static void _getFormatParmas(std::string const &, std::vector<std::string>  &);
@@ -21,7 +20,7 @@ public:
 	static void chooseLanguage(std::string const &);
 	static std::string get(std::string const &);
 	static std::string get(std::string const &,std::vector<std::string>const&);
-	static std::string getCurrentLanguage();
+	static Localization* getCurrentLanguage();
 	static void getLocaleFor(std::string const &);
 	static void getSupportedLocales();
 	static void loadLanguages();

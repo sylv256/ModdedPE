@@ -7,7 +7,7 @@ public class NModOptions
 	private Context contextThis;
 	public static final String TAG_SHARED_PREFERENCE = "nmod_list";
 	public static final String TAG_ACTIVE_LIST = "nmod_active_list";
-	public static final String TAG_DISABLE_NAME = "nmod_disabled_list";
+	public static final String TAG_DISABLE_LIST = "nmod_disabled_list";
 
 	public NModOptions(Context thisContext)
 	{
@@ -18,10 +18,14 @@ public class NModOptions
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		Vector<String> activeList=getActiveList();
+		Vector<String> disableList=getDisabledList();
 		if (activeList.indexOf(name) != -1)
 			activeList.remove(name);
+		if (disableList.indexOf(name) != -1)
+			disableList.remove(name);
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ACTIVE_LIST, fromVector(activeList));
+		editor.putString(TAG_ACTIVE_LIST, fromVector(disableList));
 		editor.commit();
 	}
 
@@ -48,10 +52,14 @@ public class NModOptions
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		Vector<String> activeList=getActiveList();
+		Vector<String> disableList=getDisabledList();
 		if (activeList.indexOf(nmod.getPackageName()) == -1)
 			activeList.add(nmod.getPackageName());
+		if (disableList.indexOf(nmod.getPackageName()) != -1)
+			disableList.remove(nmod.getPackageName());
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ACTIVE_LIST, fromVector(activeList));
+		editor.putString(TAG_DISABLE_LIST, fromVector(disableList));
 		editor.commit();
 	}
 
@@ -59,10 +67,14 @@ public class NModOptions
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		Vector<String> activeList=getActiveList();
+		Vector<String> disableList=getDisabledList();
 		if (activeList.indexOf(nmod.getPackageName()) != -1)
 			activeList.remove(nmod.getPackageName());
+		if (disableList.indexOf(nmod.getPackageName()) == -1)
+			disableList.add(nmod.getPackageName());
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ACTIVE_LIST, fromVector(activeList));
+		editor.putString(TAG_DISABLE_LIST, fromVector(disableList));
 		editor.commit();
 	}
 
@@ -109,7 +121,12 @@ public class NModOptions
 		SharedPreferences preferences=getSharedPreferences();
 		return toVector(preferences.getString(TAG_ACTIVE_LIST, ""));
 	}
-
+	
+	public Vector<String> getDisabledList()
+	{
+		SharedPreferences preferences=getSharedPreferences();
+		return toVector(preferences.getString(TAG_DISABLE_LIST, ""));
+	}
 	private static Vector<String> toVector(String str)
 	{
 		String[] mstr=str.split("/");
