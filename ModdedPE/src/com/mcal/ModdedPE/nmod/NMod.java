@@ -179,9 +179,6 @@ public abstract class NMod
 		}
 	}
 
-	private static class EmptyClass
-	{}
-
 	private NModLoadException checkJSONs()
 	{
 		if (dataBean == null || !dataBean.check_json_syntax)
@@ -203,7 +200,7 @@ public abstract class NMod
 					String jsonStr=new String(buffer);
 					try
 					{
-						new Gson().fromJson(jsonStr, EmptyClass.class);
+						new Gson().fromJson(jsonStr, Object.class);
 					}
 					catch (Throwable t)
 					{
