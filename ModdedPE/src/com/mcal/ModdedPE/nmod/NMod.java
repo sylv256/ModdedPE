@@ -358,5 +358,9 @@ public abstract class NMod
 		public NModVersionBean version_info = null;
 		public boolean check_json_syntax = false;
 		public NModJsonEditBean[] json_edit = null;
+		public String[] parents_package_names = null;
+		public String[] target_mcpe_versions = null;
+		public String check_target_version_mode = "no_check";
+		//check_target_version_mode = no_check / must_target / show_warning_if_not_target
 	}
 }
