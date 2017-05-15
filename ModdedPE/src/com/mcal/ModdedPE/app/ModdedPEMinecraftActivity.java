@@ -8,6 +8,7 @@ import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.utils.*;
 import java.util.*;
+import java.io.*;
 
 public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
@@ -107,7 +108,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	{
 		Settings settings=new Settings(this);
 
-		Utils.nativeSetDataDirectory("/data/data/" + getPackageName() + "/");
+		Utils.nativeSetDataDirectory("/data/data/" + getPackageName() + File.separator);
 		Utils.nativeSetRedstoneDot(settings.getRedstoneDot());
 		Utils.nativeSetHideDebugText(settings.getHideDebugText());
 		Utils.nativeSetAutoSaveLevel(settings.getAutoSaveLevel());

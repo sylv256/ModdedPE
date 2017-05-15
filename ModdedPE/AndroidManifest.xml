@@ -135,6 +135,18 @@
         </activity>
 		
 		<activity
+			android:name="com.mcal.ModdedPE.app.ModdedPENModFilePickerActivity"
+			android:theme="@style/AppTheme"
+			android:screenOrientation="sensorLandscape">
+        </activity>
+		
+		<activity
+			android:name="com.mcal.ModdedPE.app.ModdedPENModPackagePickerActivity"
+			android:theme="@style/AppTheme"
+			android:screenOrientation="sensorLandscape">
+        </activity>
+		
+		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModLoadFailActivity"
 			android:theme="@style/AppTheme"
 			android:launchMode="singleTask"

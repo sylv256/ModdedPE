@@ -36,6 +36,11 @@ public class NModOptions
 		editor.putString(TAG_ACTIVE_LIST, fromVector(disableList));
 		editor.commit();
 	}
+	
+	public void remove(NMod nmod)
+	{
+		removeByName(nmod.getPackageName());
+	}
 
 	public void setIsActive(NMod nmod, boolean isActive)
 	{

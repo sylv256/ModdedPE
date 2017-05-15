@@ -18,7 +18,7 @@ public class ModdedPENModDescriptionActivity extends MCDActivity
 		setContentView(R.layout.moddedpe_nmod_description);
 
 		String nmodPackageName=getIntent().getExtras().getString(KEY_INTENT_EXTRAS_PACKAGE_NAME);
-		targetNMod = NModManager.getNModManager(this).getNModByPackageName(nmodPackageName);
+		targetNMod = NModManager.getNModManager(this).getNMod(nmodPackageName);
 
 		setTitle(targetNMod.getName());
 		setActionBarButtonCloseRight();

@@ -150,7 +150,7 @@ public abstract class NMod
 						if (oldPath == null || oldPath.isEmpty())
 							calculate(fileName);
 						else
-							calculate(oldPath + "/" + fileName);
+							calculate(oldPath + File.separator + fileName);
 
 					}
 				}

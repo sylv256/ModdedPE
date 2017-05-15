@@ -4,40 +4,40 @@ import java.io.*;
 public class NModLoader
 {
 	private NMod nmod;
-	
+
 	public NModLoader(NMod nmod)
 	{
-		this.nmod=nmod;
+		this.nmod = nmod;
 	}
-	
-	public void load(String mcver,String moddedpever) throws Exception
+
+	public void load(String mcver, String moddedpever) throws Exception
 	{
-		loadLibs(mcver,moddedpever);
+		loadLibs(mcver, moddedpever);
 	}
-	
-	private void loadLibs(String mcver,String moddedpever) throws Exception
+
+	private void loadLibs(String mcver, String moddedpever) throws Exception
 	{
-		if(nmod==null||nmod.getNativeLibs()==null)
+		if (nmod == null || nmod.getNativeLibs() == null)
 			return;
-		for(String lib : nmod.getNativeLibs())
-			tryToLoadLib(lib,mcver,moddedpever);
+		for (String lib : nmod.getNativeLibs())
+			tryToLoadLib(lib, mcver, moddedpever);
 	}
-	
-	private void tryToLoadLib(String name,String mcver,String moddedpever)throws Exception
+
+	private void tryToLoadLib(String name, String mcver, String moddedpever)throws Exception
 	{
 		try
 		{
-			System.load(nmod.getNativeLibsPath()+"/"+name);
+			System.load(nmod.getNativeLibsPath() + File.separator + name);
 		}
-		catch(Throwable e)
+		catch (Throwable e)
 		{
 			throw new Exception(e);
 		}
-		nativeCallOnLoad(name,mcver,moddedpever);
-		
+		nativeCallOnLoad(name, mcver, moddedpever);
+
 		loadLanguages();
 	}
-	
+
 	private void loadLanguages()
 	{
 		if (nmod.getLanguageBeans() == null)
@@ -65,7 +65,7 @@ public class NModLoader
 							{
 								String str_left=tmp.substring(0, tmp.indexOf("="));
 								String str_right=tmp.substring(tmp.indexOf("="), tmp.length());
-								str_left = str_left.replaceAll(" ","");
+								str_left = str_left.replaceAll(" ", "");
 								translation = str_left + str_right;
 							}
 						}
@@ -80,20 +80,20 @@ public class NModLoader
 		}
 	}
 
-	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity mainActivity,Bundle bundle)
+	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity mainActivity, Bundle bundle)
 	{
-		for(String lib : nmod.getNativeLibs())
-			nativeCallOnActivityCreate(lib,mainActivity,bundle);
+		for (String lib : nmod.getNativeLibs())
+			nativeCallOnActivityCreate(lib, mainActivity, bundle);
 	}
-	
+
 	public void callOnActivityFinish(com.mojang.minecraftpe.MainActivity mainActivity)
 	{
-		for(String lib : nmod.getNativeLibs())
-			nativeCallOnActivityFinish(lib,mainActivity);
+		for (String lib : nmod.getNativeLibs())
+			nativeCallOnActivityFinish(lib, mainActivity);
 	}
-	
-	private static native void nativeAppendTranslation(String name,String translation);
-	private static native void nativeCallOnActivityFinish(String name,com.mojang.minecraftpe.MainActivity mainActivity);
-	private static native void nativeCallOnLoad(String name,String mcver,String moddedpever);
-	private static native void nativeCallOnActivityCreate(String mame,com.mojang.minecraftpe.MainActivity mainActivity,Bundle savedInstanceState);
+
+	private static native void nativeAppendTranslation(String name, String translation);
+	private static native void nativeCallOnActivityFinish(String name, com.mojang.minecraftpe.MainActivity mainActivity);
+	private static native void nativeCallOnLoad(String name, String mcver, String moddedpever);
+	private static native void nativeCallOnActivityCreate(String mame, com.mojang.minecraftpe.MainActivity mainActivity, Bundle savedInstanceState);
 }

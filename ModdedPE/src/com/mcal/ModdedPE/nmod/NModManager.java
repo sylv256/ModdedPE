@@ -57,11 +57,11 @@ public class NModManager
 		allNMods = new Vector<NMod>();
 		activeNMods = new Vector<NMod>();
 		disabledNMods = new Vector<NMod>();
-		
-		NModOptions options=new NModOptions(contextThis);
-		Vector<String> allList=options.getAllList();
-		
-		for(String packageName:allList)
+
+		NModOptions options = new NModOptions(contextThis);
+		Vector<String> allList = options.getAllList();
+
+		for (String packageName:allList)
 		{
 			try
 			{
@@ -72,22 +72,33 @@ public class NModManager
 					if (is != null)
 					{
 						is.close();
-						addNewNMod(new PackagedNMod(contextThis,contextPackage));
+						addNewNMod(new PackagedNMod(contextThis, contextPackage));
 					}
 				}
 				catch (IOException e)
-				{}
+				{
+
+				}
 			}
 			catch (PackageManager.NameNotFoundException e)
 			{
-				
+				File nmod_file=new File("/data/data/" + contextThis.getPackageName() + "/nmod_packs/" + packageName);
+				if (nmod_file.exists())
+				{
+					try
+					{
+						NMod newZippedNMod = new ZippedNMod(contextThis, nmod_file);
+						addNewNMod(newZippedNMod);
+					}
+					catch (IOException e2)
+					{}
+				}
 			}
-
 		}
-		
+
 		refreshDatas();
 	}
-	
+
 	public Vector<String> findInstalledNMods()
 	{
 		PackageManager packageManager = contextThis.getPackageManager();
@@ -124,11 +135,16 @@ public class NModManager
 	public void refreshDatas()
 	{
 		NModOptions options=new NModOptions(contextThis);
-		
-		
-		
-		Vector<String> activeList=options.getActiveList();
 
+		for (String item:options.getAllList())
+		{
+			if (getNMod(item) == null)
+			{
+				options.removeByName(item);
+			}
+		}
+
+		Vector<String> activeList=options.getActiveList();
 		activeNMods = new Vector<NMod>();
 		for (String item:activeList)
 		{
@@ -137,24 +153,20 @@ public class NModManager
 				activeNMods.add(nmod);
 		}
 
+		Vector<String> disabledList=options.getDisabledList();
 		disabledNMods = new Vector<NMod>();
-		for (NMod nmod:allNMods)
+		for (String item:disabledList)
 		{
-			if (activeNMods.indexOf(nmod) == -1)
+			NMod nmod=getNMod(item);
+			if (nmod != null)
 				disabledNMods.add(nmod);
-		}
-
-		for (String item:activeList)
-		{
-			if (getNMod(item) == null || getNMod(item).isBugPack())
-				options.removeByName(item);
 		}
 	}
 
-	private NMod getNMod(String name)
+	public NMod getNMod(String pkgname)
 	{
 		for (NMod nmod:allNMods)
-			if (nmod.getPackageName().equals(name))
+			if (nmod.getPackageName().equals(pkgname))
 				return nmod;
 		return null;
 	}
@@ -194,15 +206,5 @@ public class NModManager
 	public Vector<NMod> getDisabledNMods()
 	{
 		return disabledNMods;
-	}
-
-	public NMod getNModByPackageName(String packageName)
-	{
-		for (NMod nmod:allNMods)
-		{
-			if (nmod.getPackageName().equals(packageName))
-				return nmod;
-		}
-		return null;
 	}
 }
