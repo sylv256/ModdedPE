@@ -106,7 +106,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 
 	private void setNativeUtilsAttributes()
 	{
-		Settings settings=new Settings(this);
+		UtilsSettings settings=new UtilsSettings(this);
 
 		Utils.nativeSetDataDirectory("/data/data/" + getPackageName() + File.separator);
 		Utils.nativeSetRedstoneDot(settings.getRedstoneDot());

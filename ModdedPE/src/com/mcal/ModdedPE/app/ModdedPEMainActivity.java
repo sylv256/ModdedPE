@@ -16,39 +16,39 @@ import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.utils.*;
 import com.mcal.ModdedPE.widget.*;
 import java.util.*;
+import android.support.v4.app.*;
 
 public class ModdedPEMainActivity extends MCDActivity 
 {
 	private ViewPager mainViewPager;
-	//main
-	private NewsLayout newsLayout;
-	private NMod main_showingNMod;
-	private AppCompatTextView textViewIsSafeMode;
-	//manage nmod
-	private ListView managenmod_listViewActive;
-	private ListView managenmod_listViewDisabled;
-	private Vector<NMod> managenmod_activeList;
-	private Vector<NMod> managenmod_disabledList;
-	private NModManager managenmod_nmodManager;
-	//options
-	private MCDSwitch options_switchSafetyMode;
-	private MCDSwitch options_switchRedstoneDot;
-	private MCDSwitch options_switchHideDebugText;
-	private MCDSwitch options_switchAutoSaveLevel;
-	private MCDSwitch options_switchSelectAllInLeft;
-	private MCDSwitch options_switchDisableTextureIsotropic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.moddedpe_main_pager);
+		
+		List<Fragment> fragment_list=new Vector<Fragment>();
+		List<CharSequence> titles_list=new Vector<CharSequence>();
 
-		final Settings settings=new Settings(this);
-		mainViewPager = new ViewPager(this);
-		setContentView(mainViewPager);
+		MainStartFragment startFragment = new MainStartFragment();
+		fragment_list.add(startFragment);
+		titles_list.add(getString(R.string.main_title));
+		
+		MainManageNModFragment manageNModFragment = new MainManageNModFragment();
+		fragment_list.add(manageNModFragment);
+		titles_list.add(getString(R.string.manage_nmod_title));
+		
+		MainSettingsFragment settingsFragment = new MainSettingsFragment();
+		fragment_list.add(settingsFragment);
+		titles_list.add(getString(R.string.settings_title));
+
+		MainFragmentPagerAdapter pagerAdapter = new MainFragmentPagerAdapter(fragment_list, titles_list);
+
+		mainViewPager = (ViewPager) findViewById(R.id.moddedpe_main_view_pager);
+		mainViewPager.setAdapter(pagerAdapter);
 		mainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
 			{
-
 				@Override
 				public void onPageScrolled(int p1, float p2, int p3)
 				{
@@ -67,104 +67,6 @@ public class ModdedPEMainActivity extends MCDActivity
 
 				}
 			});
-
-		List<View> views_adapter=new Vector<View>();
-		List<CharSequence> titles_adapter=new Vector<CharSequence>();
-		//view main
-		{
-			View main_view=getLayoutInflater().inflate(R.layout.moddedpe_main, null);
-
-			main_view.findViewById(R.id.moddedpemainMCDPlayButton).getLayoutParams().width = getWindowManager().getDefaultDisplay().getWidth() / 3;
-			((TextView)main_view.findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
-			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setTextColor(isSupportedMinecraftPEVersion() ?Color.GREEN: Color.RED);
-			(textViewIsSafeMode = (AppCompatTextView)main_view.findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(settings.getSafeMode() ?View.VISIBLE: View.GONE);
-			((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(R.string.target_mcpe_version_info);
-
-
-			newsLayout = new NewsLayout(this);
-			((RelativeLayout)main_view.findViewById(R.id.moddedpemainNewsLayout)).addView(newsLayout);
-			updateNewsLayout();
-
-			views_adapter.add(main_view);
-			titles_adapter.add(getString(R.string.main_title));
-		}
-
-		//view manage nmods
-		{
-			View manage_nmod_view=getLayoutInflater().inflate(R.layout.moddedpe_manage_nmod, null);
-
-			managenmod_nmodManager = managenmod_nmodManager.getNModManager(this);
-
-			managenmod_listViewActive = (ListView)manage_nmod_view.findViewById(R.id.moddedpemanageNModListActive);
-			managenmod_listViewDisabled = (ListView)manage_nmod_view.findViewById(R.id.moddedpemanageNModListDisabled);
-
-			managenmod_listViewActive.getLayoutParams().width = getWindowManager().getDefaultDisplay().getWidth() / 2 - 1;
-			managenmod_listViewDisabled.getLayoutParams().width = getWindowManager().getDefaultDisplay().getWidth() / 2 - 1;
-
-			refreshNModDatas();
-
-			if (managenmod_activeList.isEmpty() && managenmod_disabledList.isEmpty())
-				manage_nmod_view.findViewById(R.id.moddedpemanagenmodLayoutNoFound).setVisibility(View.VISIBLE);
-			else
-				manage_nmod_view.findViewById(R.id.moddedpemanagenmodLayoutNormal).setVisibility(View.VISIBLE);
-
-			MCDAddButton addBtn = (MCDAddButton)manage_nmod_view.findViewById(R.id.moddedpemanageNModAddNew);
-			manage_nmod_view.findViewById(R.id.moddedpemanageNModAddNewCardView).getLayoutParams().width=getWindowManager().getDefaultDisplay().getWidth() / 2;
-			addBtn.setOnClickListener(new View.OnClickListener()
-				{
-
-					@Override
-					public void onClick(View p1)
-					{
-						onAddNewNMod();
-					}
-
-
-				});
-			views_adapter.add(manage_nmod_view);
-			titles_adapter.add(getString(R.string.manage_nmod_title));
-		}
-
-		//options
-		{
-			View options_view=getLayoutInflater().inflate(R.layout.moddedpe_options, null);
-
-			options_switchSafetyMode = (MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchSafetyMode);
-			options_switchRedstoneDot = (MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchRedstoneDot);
-			options_switchHideDebugText = (MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchToggleDebugText);
-			options_switchAutoSaveLevel = (MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchAutoSaveLevel);
-			options_switchSelectAllInLeft = (MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchSelectAllInLeft);
-			options_switchDisableTextureIsotropic = (MCDSwitch)options_view.findViewById(R.id.moddedpeoptionsMCDSwitchDisableTextureIsotropic);
-
-			loadOptions();
-
-			CompoundButton.OnCheckedChangeListener options_switchUpdateListener=new CompoundButton.OnCheckedChangeListener()
-			{
-
-				@Override
-				public void onCheckedChanged(CompoundButton p1, boolean p2)
-				{
-					refreshOptionsViews();
-					saveOptions();
-					textViewIsSafeMode.setVisibility(new Settings(ModdedPEMainActivity.this).getSafeMode() ?View.VISIBLE: View.GONE);
-				}
-
-			};
-
-			options_switchSafetyMode.setOnCheckedChangeListener(options_switchUpdateListener);
-			options_switchRedstoneDot.setOnCheckedChangeListener(options_switchUpdateListener);
-			options_switchHideDebugText.setOnCheckedChangeListener(options_switchUpdateListener);
-			options_switchAutoSaveLevel.setOnCheckedChangeListener(options_switchUpdateListener);
-			options_switchSelectAllInLeft.setOnCheckedChangeListener(options_switchUpdateListener);
-			options_switchDisableTextureIsotropic.setOnCheckedChangeListener(options_switchUpdateListener);
-
-			refreshOptionsViews();
-
-			views_adapter.add(options_view);
-			titles_adapter.add(getString(R.string.settings_title));
-		}
-
-		mainViewPager.setAdapter(new ViewPagerAdapter(views_adapter, titles_adapter));
 	}
 
 	private void setViewOnClickScrollTo(View view, final int to)
@@ -183,20 +85,22 @@ public class ModdedPEMainActivity extends MCDActivity
 
 	private void updateNewsLayout()
 	{
-		Vector<NMod> nmods=managenmod_nmodManager.getNModManager(this).getActiveNModsHasNews();
+		/*
+		 Vector<NMod> nmods=managenmod_nmodManager.getNModManager(this).getActiveNModsHasNews();
 
-		if (nmods.size() > 0)
-		{
-			main_showingNMod = nmods.get(new Random(System.nanoTime()).nextInt(nmods.size()));
-			newsLayout.setNewsImage(main_showingNMod.getVersionImage());
-			newsLayout.setNewsTitle(main_showingNMod.getNewsTitle());
-		}
-		else
-		{
-			main_showingNMod = null;
-			newsLayout.setNewsImage(BitmapFactory.decodeResource(getResources(), R.drawable.image_default_minecraft));
-			newsLayout.setNewsTitle(getString(R.string.main_default_minecraft_title));
-		}
+		 if (nmods.size() > 0)
+		 {
+		 main_showingNMod = nmods.get(new Random(System.nanoTime()).nextInt(nmods.size()));
+		 newsLayout.setNewsImage(main_showingNMod.getVersionImage());
+		 newsLayout.setNewsTitle(main_showingNMod.getNewsTitle());
+		 }
+		 else
+		 {
+		 main_showingNMod = null;
+		 newsLayout.setNewsImage(BitmapFactory.decodeResource(getResources(), R.drawable.image_default_minecraft));
+		 newsLayout.setNewsTitle(getString(R.string.main_default_minecraft_title));
+		 }*/
+
 	}
 
 	@Override
@@ -273,60 +177,6 @@ public class ModdedPEMainActivity extends MCDActivity
 		setCustomActionBar(true);
 	}
 
-	@Override
-	protected void onDestroy()
-	{
-		saveOptions();
-		super.onDestroy();
-	}
-
-	private void refreshOptionsViews()
-	{
-		if (options_switchSafetyMode.isChecked())
-		{
-			options_switchRedstoneDot.setChecked(false);
-			options_switchRedstoneDot.setClickable(false);
-			options_switchHideDebugText.setChecked(false);
-			options_switchHideDebugText.setClickable(false);
-			options_switchAutoSaveLevel.setChecked(false);
-			options_switchAutoSaveLevel.setClickable(false);
-			options_switchSelectAllInLeft.setChecked(false);
-			options_switchSelectAllInLeft.setClickable(false);
-			options_switchDisableTextureIsotropic.setChecked(false);
-			options_switchDisableTextureIsotropic.setClickable(false);
-		}
-		else
-		{
-			options_switchRedstoneDot.setClickable(true);
-			options_switchHideDebugText.setClickable(true);
-			options_switchAutoSaveLevel.setClickable(true);
-			options_switchSelectAllInLeft.setClickable(true);
-			options_switchDisableTextureIsotropic.setClickable(true);
-		}
-	}
-
-	private void saveOptions()
-	{
-		Settings settings=new Settings(this);
-		settings.setRedstoneDot(options_switchRedstoneDot.isChecked());
-		settings.setSafeMode(options_switchSafetyMode.isChecked());
-		settings.setHideDebugText(options_switchHideDebugText.isChecked());
-		settings.setAutoSaveLevel(options_switchAutoSaveLevel.isChecked());
-		settings.setSelectAllInLeft(options_switchSelectAllInLeft.isChecked());
-		settings.setDisableTextureIsotropic(options_switchDisableTextureIsotropic.isChecked());
-	}
-
-	private void loadOptions()
-	{
-		Settings settings=new Settings(this);
-		options_switchSafetyMode.setChecked(settings.getSafeMode());
-		options_switchRedstoneDot.setChecked(settings.getRedstoneDot());
-		options_switchHideDebugText.setChecked(settings.getHideDebugText());
-		options_switchAutoSaveLevel.setChecked(settings.getAutoSaveLevel());
-		options_switchSelectAllInLeft.setChecked(settings.getSelectAllInLeft());
-		options_switchDisableTextureIsotropic.setChecked(settings.getDisableTextureIsotropic());
-	}
-
 	private Context getMcContext()
 	{
 		try
@@ -370,11 +220,13 @@ public class ModdedPEMainActivity extends MCDActivity
 		return null;
 	}
 
-	public void onNewsClicked(View view)
-	{
-		if (main_showingNMod != null)
-			ModdedPENModDescriptionActivity.startThisActivity(this, main_showingNMod);
-	}
+	/*
+	 public void onNewsClicked(View view)
+	 {
+	 if (main_showingNMod != null)
+	 ModdedPENModDescriptionActivity.startThisActivity(this, main_showingNMod);
+	 }
+	 */
 
 	public void onPlayClicked(View v)
 	{
@@ -434,7 +286,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			public void run()
 			{
 				Intent i=null;
-				if (new Settings(ModdedPEMainActivity.this).getSafeMode())
+				if (new UtilsSettings(ModdedPEMainActivity.this).getSafeMode())
 					i = new Intent(ModdedPEMainActivity.this, ModdedPESafetyModeMinecraftActivity.class);
 				else
 					i = new Intent(ModdedPEMainActivity.this, ModdedPEMinecraftActivity.class);
@@ -444,296 +296,39 @@ public class ModdedPEMainActivity extends MCDActivity
 		}.start();
 	}
 
-
-	private class ViewPagerAdapter extends PagerAdapter
+	private class MainFragmentPagerAdapter extends FragmentPagerAdapter
 	{
-		private List<View> views;
+		private List<Fragment> fragments;
 		private List<CharSequence> titles;
-
-		public ViewPagerAdapter(List<View> views, List<CharSequence> titles)
+		public MainFragmentPagerAdapter(List<Fragment>fragments, List<CharSequence>titles)
 		{
-			this.views = views;
+			super(getSupportFragmentManager());
+			this.fragments = fragments;
 			this.titles = titles;
 		}
 
 		@Override
 		public int getCount()
 		{
-			return this.views.size();
-		}
-		@Override
-		public boolean isViewFromObject(View p1, Object p2)
-		{
-			return p1 == p2;
-		}
-		@Override
-		public View instantiateItem(ViewGroup container, int position)
-		{
-			container.addView(this.views.get(position));
-			return this.views.get(position);
-		}
-		@Override
-		public void destroyItem(ViewGroup container, int position, Object object)
-		{
-			container.removeView(this.views.get(position));
-		}
-		@Override
-		public CharSequence getPageTitle(int position)
-		{
-			return titles.get(position);
-		}
-	}
-
-	//Manage nmod
-
-	public class AdapterActive extends BaseAdapter 
-    {
-		@Override
-		public Object getItem(int p1)
-		{
-			return p1;
+			return fragments.size();
 		}
 
 		@Override
-		public long getItemId(int p1)
+		public Fragment getItem(int p1)
 		{
-			return p1;
+			return fragments.get(p1);
 		}
 
-		@Override 
-		public int getCount()
-		{ 
-			return managenmod_activeList.size();
-		} 
-
-		@Override 
-		public View getView(int position, View convertView, ViewGroup parent)
-		{ 
-			if (position >= getCount())
-				return convertView;
-
-			final int itemPosition=position;
-			final NMod itemNMod = managenmod_activeList.get(itemPosition);
-
-			LayoutInflater inflater=getLayoutInflater();
-			convertView = inflater.inflate(R.layout.moddedpe_nmod_item_active, null);
-
-			AppCompatTextView title=(AppCompatTextView)convertView.findViewById(R.id.moddedpenmoditemactiveTextViewTitle);
-			title.setText(itemNMod.getName());
-
-			Button btnDescription=(Button)convertView.findViewById(R.id.moddedpenmoditemactiveButtonDescription);
-			btnDescription.setOnClickListener(new View.OnClickListener()
-				{
-
-					@Override
-					public void onClick(View p1)
-					{
-						ModdedPENModDescriptionActivity.startThisActivity(ModdedPEMainActivity.this, itemNMod);
-					}
-
-
-				});
-
-			Button btn=(Button)convertView.findViewById(R.id.moddedpenmoditemactiveAdjustButton);
-			btn.setOnClickListener(new View.OnClickListener()
-				{
-
-					@Override
-					public void onClick(View p1)
-					{
-						managenmod_nmodManager.removeActive(itemNMod);
-						refreshNModDatas();
-					}
-
-
-				});
-
-			Button buttonDown=(Button)convertView.findViewById(R.id.moddedpenmoditemactiveButtonDown);
-			if (position == managenmod_activeList.size() - 1)
-				buttonDown.setClickable(false);
-			else 
-				buttonDown.setOnClickListener(new View.OnClickListener()
-					{
-
-						@Override
-						public void onClick(View p1)
-						{
-							managenmod_nmodManager.makeDown(itemNMod);
-							refreshNModDatas();
-						}
-
-
-					});
-
-			Button buttonUp=(Button)convertView.findViewById(R.id.moddedpenmoditemactiveButtonUp);
-			if (position == 0)
-				buttonUp.setClickable(false);
-			else 
-				buttonUp.setOnClickListener(new View.OnClickListener()
-					{
-
-						@Override
-						public void onClick(View p1)
-						{
-							managenmod_nmodManager.makeUp(itemNMod);
-							refreshNModDatas();
-						}
-
-
-					});
-
-			ImageView image=(ImageView)convertView.findViewById(R.id.moddedpenmoditemactiveImageView);
-			image.setBackground(new BitmapDrawable(itemNMod.getIcon()));
-			return convertView;
-		}
-
-
-    }
-
-	private void refreshNModDatas()
-	{
-		managenmod_activeList = managenmod_nmodManager.getActiveNMods();
-		managenmod_disabledList = managenmod_nmodManager.getDisabledNMods();
-
-		AdapterActive adapterActive = new AdapterActive();
-		managenmod_listViewActive.setAdapter(adapterActive);
-
-		AdapterDisabled adapterDisabled = new AdapterDisabled();
-		managenmod_listViewDisabled.setAdapter(adapterDisabled);
-
-		updateNewsLayout();
-	}
-
-	public class AdapterDisabled extends BaseAdapter 
-    {
-		@Override 
-		public int getCount()
-		{
-			return managenmod_disabledList.size() + 1;
-		}
-
-		@Override 
-		public Object getItem(int position)
-		{
-			return position;
-		}
-
-		@Override 
+		@Override
 		public long getItemId(int position)
 		{
 			return position;
 		}
 
-		@Override 
-		public View getView(int position, View convertView, ViewGroup parent)
+		@Override
+		public CharSequence getPageTitle(int position)
 		{
-			if (position == managenmod_disabledList.size())
-			{
-				convertView = getLayoutInflater().inflate(R.layout.moddedpe_nmod_item_new, null);
-
-				MCDAddButton addBtn = (MCDAddButton) convertView.findViewById(R.id.moddedpenmoditemaddNewButton);
-				addBtn.setOnClickListener(new View.OnClickListener()
-					{
-
-						@Override
-						public void onClick(View p1)
-						{
-							onAddNewNMod();
-						}
-
-
-					});
-				return convertView;
-			}
-			if (position >= getCount())
-				return convertView;
-
-			final int itemPosition=position;
-			final NMod itemNMod = managenmod_disabledList.get(itemPosition);
-
-			LayoutInflater inflater=getLayoutInflater();
-			if (!itemNMod.isBugPack())
-			{
-				convertView = inflater.inflate(R.layout.moddedpe_nmod_item_disabled, null);
-
-				ImageView image=(ImageView)convertView.findViewById(R.id.moddedpenmoditemdisabledImageView);
-				image.setBackground(new BitmapDrawable(itemNMod.getIcon()));
-
-				AppCompatTextView title=(AppCompatTextView)convertView.findViewById(R.id.moddedpenmoditemdisabledTextViewTitle);
-				title.setText(itemNMod.getName());
-
-				Button btn=(Button)convertView.findViewById(R.id.moddedpenmoditemdisabledAdjustButton);
-				btn.setOnClickListener(new View.OnClickListener()
-					{
-						@Override
-						public void onClick(View p1)
-						{
-							managenmod_nmodManager.addActive(itemNMod);
-							refreshNModDatas();
-						}
-					});
-
-				Button btnDescription=(Button)convertView.findViewById(R.id.moddedpenmoditemdisabledButtonDescription);
-				btnDescription.setOnClickListener(new View.OnClickListener()
-					{
-
-						@Override
-						public void onClick(View p1)
-						{
-							ModdedPENModDescriptionActivity.startThisActivity(ModdedPEMainActivity.this, itemNMod);
-						}
-
-
-					});
-			}
-			else
-			{
-				convertView = inflater.inflate(R.layout.moddedpe_nmod_item_bugged, null);
-
-				ImageView image=(ImageView)convertView.findViewById(R.id.moddedpenmoditembuggedImageView);
-				image.setBackground(new BitmapDrawable(itemNMod.getIcon()));
-
-				AppCompatTextView title=(AppCompatTextView)convertView.findViewById(R.id.moddedpenmoditembuggedTextViewTitle);
-				title.setText(itemNMod.getName());
-
-				Button btn=(Button)convertView.findViewById(R.id.moddedpenmoditembuggedAdjustButton);
-				btn.setOnClickListener(new View.OnClickListener()
-					{
-						@Override
-						public void onClick(View p1)
-						{
-							ModdedPENModLoadFailActivity.startThisActivity(ModdedPEMainActivity.this, itemNMod);
-						}
-					});
-			}
-
-			return convertView; 
+			return titles.get(position);
 		}
-
-    }
-
-	private void onAddNewNMod()
-	{
-		new AlertDialog.Builder(ModdedPEMainActivity.this).setTitle(R.string.nmod_add_new_title).setMessage(R.string.nmod_add_new_message).setNegativeButton(R.string.nmod_add_new_pick_installed, new DialogInterface.OnClickListener()
-			{
-
-				@Override
-				public void onClick(DialogInterface p1, int p2)
-				{
-					p1.dismiss();
-				}
-
-
-			}).setPositiveButton(R.string.nmod_add_new_pick_storage, new DialogInterface.OnClickListener()
-			{
-
-				@Override
-				public void onClick(DialogInterface p1, int p2)
-				{
-					p1.dismiss();
-				}
-
-
-			}).show();
 	}
 }

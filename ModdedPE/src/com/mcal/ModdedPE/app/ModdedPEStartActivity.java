@@ -14,7 +14,7 @@ public class ModdedPEStartActivity extends MCDActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_start);
 		
-		final Settings settings=new Settings(this);
+		final UtilsSettings settings=new UtilsSettings(this);
 
 		Context xposedContext = null;
 		try

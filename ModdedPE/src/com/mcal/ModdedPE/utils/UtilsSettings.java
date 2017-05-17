@@ -1,11 +1,11 @@
 package com.mcal.ModdedPE.utils;
 import android.content.*;
 
-public class Settings
+public class UtilsSettings
 {
 	private Context context;
 	private final static String TAG_SETTINGS="moddedpe_settings";
-	public Settings(Context context)
+	public UtilsSettings(Context context)
 	{
 		this.context=context;
 	}
