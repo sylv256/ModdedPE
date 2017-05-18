@@ -40,11 +40,7 @@ public class NewsLayout extends RelativeLayout
 	{
 		super.onSizeChanged(w, h, oldw, oldh);
 
-		float dividedWidth=((float)w) / 1024F;
-		float dividedHeight=((float)h) / 500F;
-		float standardSize=Math.min(dividedWidth, dividedHeight);
-		getLayoutParams().width = (int)(standardSize * 1024F);
-		getLayoutParams().height = (int)(standardSize * 500F);
+		
 
 		findViewById(R.id.moddedpeNewsNModImage).getLayoutParams().width = getLayoutParams().width;
 		findViewById(R.id.moddedpeTextViewNewsNModTitle).getLayoutParams().width = getLayoutParams().width;

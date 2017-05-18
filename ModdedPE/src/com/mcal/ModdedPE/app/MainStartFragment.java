@@ -11,13 +11,11 @@ import com.mcal.ModdedPE.utils.*;
 
 public class MainStartFragment extends Fragment
 {
-	private NewsLayout newsLayout;
-	private NMod main_showingNMod;
 	private AppCompatTextView textViewIsSafeMode;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		View main_view=inflater.inflate(R.layout.moddedpe_main, null);
+		View main_view = inflater.inflate(R.layout.moddedpe_main, null);
 
 		main_view.findViewById(R.id.moddedpemainMCDPlayButton).getLayoutParams().width = getActivity().getWindowManager().getDefaultDisplay().getWidth() / 3;
 		((TextView)main_view.findViewById(R.id.moddedpemainTextViewAppVersion)).setText(getString(R.string.app_version));
@@ -25,10 +23,6 @@ public class MainStartFragment extends Fragment
 		(textViewIsSafeMode = (AppCompatTextView)main_view.findViewById(R.id.moddedpemainTextViewisSafetyMode)).setVisibility(new UtilsSettings(getContext()).getSafeMode() ?View.VISIBLE: View.GONE);
 		((TextView)main_view.findViewById(R.id.moddedpemainTextViewTargetMCVersion)).setText(R.string.target_mcpe_version_info);
 
-
-		newsLayout = new NewsLayout(getContext());
-		((RelativeLayout)main_view.findViewById(R.id.moddedpemainNewsLayout)).addView(newsLayout);
-		
 		return main_view;
 	}
 }

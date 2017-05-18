@@ -4,6 +4,9 @@ import android.content.pm.*;
 import java.io.*;
 import java.util.*;
 import android.content.pm.PackageManager.*;
+import com.mcal.ModdedPE.widget.*;
+import android.graphics.*;
+import com.mcal.ModdedPE.*;
 
 public class NModManager
 {
@@ -12,6 +15,7 @@ public class NModManager
 	private Vector<NMod> disabledNMods=new Vector<NMod>();
 	private Context contextThis;
 	private static NModManager instance=null;
+	private boolean shouldResetView=true;
 
 	public static void reCalculate(Context c)
 	{
@@ -206,5 +210,32 @@ public class NModManager
 	public Vector<NMod> getDisabledNMods()
 	{
 		return disabledNMods;
+	}
+
+	public void resetShowingNMod()
+	{
+		shouldResetView = true;
+	}
+
+	public void refreshShowingNModView(NewsView newsLayout)
+	{
+		if (shouldResetView)
+		{
+			Vector<NMod> nmods = getActiveNModsHasNews();
+			NMod main_showingNMod = null;
+
+			if (nmods.size() > 0)
+			{
+				main_showingNMod = nmods.get(new Random(System.nanoTime()).nextInt(nmods.size()));
+				newsLayout.setNewsImage(main_showingNMod.getVersionImage());
+				newsLayout.setNewsTitle(main_showingNMod.getNewsTitle());
+			}
+			else
+			{
+				newsLayout.setNewsImage(BitmapFactory.decodeResource(newsLayout.getContext().getResources(), R.drawable.image_default_minecraft));
+				newsLayout.setNewsTitle(newsLayout.getContext().getString(R.string.main_default_minecraft_title));
+			}
+			shouldResetView = false;
+		}
 	}
 }

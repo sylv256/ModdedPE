@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="50dp"
+	android:layout_width="match_parent">
+
+	<android.support.v7.widget.AppCompatTextView
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_width="wrap_content"
+		android:id="@+id/moddedpe_settings_item_name"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="15dp"/>
+
+	<com.mcal.MCDesign.widget.MCDSwitch
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_centerVertical="true"
+		android:layout_alignParentRight="true"
+		android:layout_marginRight="10dp"
+		android:id="@+id/moddedpe_settings_item_switch"/>
+
+</RelativeLayout>
+

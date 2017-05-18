@@ -86,20 +86,7 @@ public class ModdedPEMainActivity extends MCDActivity
 	private void updateNewsLayout()
 	{
 		/*
-		 Vector<NMod> nmods=managenmod_nmodManager.getNModManager(this).getActiveNModsHasNews();
-
-		 if (nmods.size() > 0)
-		 {
-		 main_showingNMod = nmods.get(new Random(System.nanoTime()).nextInt(nmods.size()));
-		 newsLayout.setNewsImage(main_showingNMod.getVersionImage());
-		 newsLayout.setNewsTitle(main_showingNMod.getNewsTitle());
-		 }
-		 else
-		 {
-		 main_showingNMod = null;
-		 newsLayout.setNewsImage(BitmapFactory.decodeResource(getResources(), R.drawable.image_default_minecraft));
-		 newsLayout.setNewsTitle(getString(R.string.main_default_minecraft_title));
-		 }*/
+		 */
 
 	}
 
