@@ -7,7 +7,7 @@
 	<string name="settings_title">设置</string>
 	<string name="about_title">关于</string>
 	<string name="main_title">主页</string>
-	
+
 	<!--NMod-->
 	<string name="nmod_loadFailed">%1$s 加载失败！</string>
 	<string name="load_fail_msg">错误报告：</string>
@@ -32,8 +32,8 @@
 	<string name="load_exception_dlopen_fail_d">请添加 %1$s（被%2$s所需要）并且在native_libs（在nmod_manifest.json）中，%2$s之前注册它。</string>
 	<string name="load_exception_native_lib_not_found">无法找到原生库： %1$s。</string>
 	<string name="load_exception_native_lib_not_found_d">请添加原生库： %1$s。</string>
-	<string name="load_exception_unknow">未知。</string>
-	<string name="load_exception_unknow_d">未知。</string>
+	<string name="load_exception_unknow">未知</string>
+	<string name="load_exception_unknow_d">未知</string>
 	<string name="load_exception_bad_image_size">错误的图片大小：介绍图应该是1024（宽）*500（高）。</string>
 	<string name="load_exception_bad_image_size_d">请调整介绍图片到1024（宽）*500（高）。</string>
 	<string name="load_exception_image_decode">解码图片失败： %1$s。</string>
@@ -41,13 +41,13 @@
 	<string name="load_fail_main">错误介绍</string>
 	<string name="load_fail_deal">解决方案</string>
 	<string name="load_fail_all">全部错误内容</string>
-	<string name="load_fail_warning">NMod %1$s 造成了一个错误。这个NMod已经被禁用，您可以继续享受游戏。</string>
-	
+	<string name="load_fail_warning">NMod %1$s 造成了一个错误。这个NMod已经被禁用，您可以继续使用游戏。</string>
+
 	<string name="nmod_description_description_title">介绍</string>
 	<string name="nmod_description_about_title">关于</string>
 	<string name="nmod_description_about_author">作者：</string>
 	<string name="nmod_description_about_version_name">版本名：</string>
-	<string name="nmod_description_unknow">未知</string>
+	<string name="nmod_description_unknow">未填写</string>
 	<!--About-->
 	<string name="about_copyright">Copyright</string>
 	<string name="about_license">开源许可</string>
@@ -56,12 +56,12 @@
 	<string name="settings_autoSaveLevel">自动保存世界</string>
 	<string name="settings_leftHandEverything">左手持任何物品</string>
 	<string name="settings_safetyMode">安全模式</string>
-	<string name="settings_eduUI">教育版界面</string>
+	<string name="settings_eduUI">教育版视图</string>
 	<string name="settings_hideDebugText">隐藏测试版水印</string>
 	<string name="settings_redstoneDot">点状红石</string>
 	<string name="settings_customFlatWorldLayers">自定义平坦世界</string>
 	<string name="settings_disableTextureIsotropic">禁止材质随机旋转</string>
-	
+
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">加载中...</string>
@@ -72,22 +72,20 @@
 	<string name="no_available_mcpe_version_found">ModdedPE不支持您安装的 我的世界携带版 %1$s！（只支持%2$s）如果您继续打开游戏，ModdedPE可能会崩溃或者造成错误。</string>
 	<string name="no_available_mcpe_version_found_title">不支持的 我的世界携带版</string>
 	<string name="no_available_mcpe_version_continue">继续</string>
-	<string name="no_available_mcpe_version_cancel">取消</string>
 	<string name="no_mcpe_found">ModdedPE是 我的世界携带版 的一个启动器，但是我们没有在这台设备上发现Mojang做的 我的世界携带版。</string>
 	<string name="no_mcpe_found_title">未发现 我的世界携带版</string>
-	<string name="no_mcpe_found_cancel">取消</string>
 
 	<!--Error Activity-->
 	<string name="error_restart_app">重启</string>
 	<string name="error_text">这可能是因为一个不支持的MCPE版本或者代码错误引起的。请把错误报告发送给开发者来修复它。</string> 
-	
+
 	<!--Manage NMods-->
 	<string name="manage_nmod_no_nmod_found">我们没有在这台设备上发现任何NMod。</string>
 	<string name="manage_nmod_install_nmod">请安装它们（*.apk）并且重启ModdedPE！</string>
-	
+
 	<!--Start Activity-->
 	<string name="start_warning_xposed_title">警告</string>
 	<string name="start_warning_xposed_message">我们在您的设备上发现了Xposed框架。ModdedPE在Xposed框架开启的情况下可能不会工作。请确保您禁用了Xposed框架。</string>
 	<string name="start_warning_xposed_continue">继续</string>
-	<string name="start_warning_xposed_do_not_show_again">不要再显示这个了！</string>
+	<string name="start_warning_xposed_do_not_show_again">不再显示</string>
 </resources>

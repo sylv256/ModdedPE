@@ -83,13 +83,6 @@ public class ModdedPEMainActivity extends MCDActivity
 			});
 	}
 
-	private void updateNewsLayout()
-	{
-		/*
-		 */
-
-	}
-
 	@Override
 	protected void setDefaultActionBar()
 	{
@@ -222,7 +215,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_mcpe_found_title));
 			mdialog.setMessage(getString(R.string.no_mcpe_found));
-			mdialog.setPositiveButton(getString(R.string.no_mcpe_found_cancel), new DialogInterface.OnClickListener()
+			mdialog.setPositiveButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener()
 				{
 
 					@Override
@@ -238,7 +231,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_available_mcpe_version_found_title));
 			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found, new String[]{getMinecraftPEVersionName(),getString(R.string.target_mcpe_version_info)}));
-			mdialog.setNegativeButton(getString(R.string.no_available_mcpe_version_cancel), new DialogInterface.OnClickListener()
+			mdialog.setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener()
 				{
 
 					@Override
