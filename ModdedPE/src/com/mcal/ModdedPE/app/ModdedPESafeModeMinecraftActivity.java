@@ -6,7 +6,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.utils.*;
 
-public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.MainActivity
+public class ModdedPESafeModeMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
 	protected void loadNativeLibraries()
 	{
@@ -30,9 +30,6 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.getInstance().getAssetManager();
-		if (mgr != null)
-			return mgr;
-		return super.getAssets();
+		return MinecraftInfo.getInstance(this).getAssets();
 	}
 }

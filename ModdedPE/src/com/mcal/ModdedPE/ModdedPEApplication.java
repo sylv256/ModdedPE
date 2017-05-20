@@ -49,10 +49,7 @@ public class ModdedPEApplication extends Application
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.getInstance().getAssetManager();
-		if (mgr != null)
-			return mgr;
-		return super.getAssets();
+		return MinecraftInfo.getInstance(this).getAssets();
 	}
 
 	static

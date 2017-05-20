@@ -162,7 +162,7 @@ public class ModdedPEMainActivity extends MCDActivity
 			{
 				Intent i=null;
 				if (new UtilsSettings(ModdedPEMainActivity.this).getSafeMode())
-					i = new Intent(ModdedPEMainActivity.this, ModdedPESafetyModeMinecraftActivity.class);
+					i = new Intent(ModdedPEMainActivity.this, ModdedPESafeModeMinecraftActivity.class);
 				else
 					i = new Intent(ModdedPEMainActivity.this, ModdedPEMinecraftActivity.class);
 				startActivity(i);

@@ -64,12 +64,6 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		}
 	}
 
-	private void setNativeUtilsAttributes()
-	{
-
-
-	}
-
 	private void loadNMods()
 	{
 		NModManager nmodManager=NModManager.getNModManager(this);
@@ -96,10 +90,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.getInstance().getAssetManager();
-		if (mgr != null)
-			return mgr;
-		return super.getAssets();
+		return MinecraftInfo.getInstance(this).getAssets();
 	}
 
 	@Override

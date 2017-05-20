@@ -92,7 +92,7 @@
 		<activity
 			android:theme="@style/FullScreenTheme"
 			android:label="@string/app_name"
-			android:name="com.mcal.ModdedPE.app.ModdedPESafetyModeMinecraftActivity"
+			android:name="com.mcal.ModdedPE.app.ModdedPESafeModeMinecraftActivity"
 			android:debuggable="false"
             android:excludeFromRecents="false"
             android:launchMode="singleTask"
