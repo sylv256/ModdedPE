@@ -204,32 +204,32 @@ void levelTick(Level*self)
 
 extern "C"
 {
-	JNIEXPORT jboolean Java_com_mcal_ModdedPE_nativeapi_Utils_nativeIsGameStarted(JNIEnv*env,jobject thiz)
+	JNIEXPORT jboolean Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeIsGameStarted(JNIEnv*env,jobject thiz)
 	{
 		return started;
 	}
 	
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetRedstoneDot(JNIEnv*env,jobject thiz,jboolean z)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetRedstoneDot(JNIEnv*env,jobject thiz,jboolean z)
 	{
 		redstoneDot=z;
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetHideDebugText(JNIEnv*env,jobject thiz,jboolean z)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetHideDebugText(JNIEnv*env,jobject thiz,jboolean z)
 	{
 		hideDebugText=z;
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetAutoSaveLevel(JNIEnv*env,jobject thiz,jboolean z)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetAutoSaveLevel(JNIEnv*env,jobject thiz,jboolean z)
 	{
 		autoSaveLevel=z;
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetSelectAllInLeft(JNIEnv*env,jobject thiz,jboolean z)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetSelectAllInLeft(JNIEnv*env,jobject thiz,jboolean z)
 	{
 		selectAllInLeft=z;
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetDisableTextureIsotropic(JNIEnv*env,jobject thiz,jboolean z)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetDisableTextureIsotropic(JNIEnv*env,jobject thiz,jboolean z)
 	{
 		disableTextureIsoTropic=z;
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_Utils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
 		void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
 	
@@ -279,7 +279,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT jstring Java_com_mcal_ModdedPE_nativeapi_Utils_nativeDemangle(JNIEnv*env,jobject thiz,jstring str)
+	JNIEXPORT jstring Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeDemangle(JNIEnv*env,jobject thiz,jstring str)
 	{
 		char const* symbol_name = toString(env,str).c_str();
 		if(symbol_name)

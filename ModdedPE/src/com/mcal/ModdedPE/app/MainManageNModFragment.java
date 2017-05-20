@@ -12,6 +12,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nmod.*;
 import java.util.*;
 import com.microsoft.onlineid.internal.sso.service.operation.*;
+import android.support.design.widget.*;
 
 public class MainManageNModFragment extends Fragment
 {
@@ -41,7 +42,7 @@ public class MainManageNModFragment extends Fragment
 		else
 			manage_nmod_view.findViewById(R.id.moddedpemanagenmodLayoutNormal).setVisibility(View.VISIBLE);
 
-		Button addBtn = (Button)manage_nmod_view.findViewById(R.id.moddedpemanageNModAddNew);
+		FloatingActionButton addBtn = (FloatingActionButton)manage_nmod_view.findViewById(R.id.moddedpe_manage_nmod_add_new);
 		manage_nmod_view.findViewById(R.id.moddedpemanageNModAddNewCardView).getLayoutParams().width = getActivity().getWindowManager().getDefaultDisplay().getWidth() / 2;
 		addBtn.setOnClickListener(new View.OnClickListener()
 			{

@@ -62,7 +62,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		initFields();
 		loadNativeLibraries();
 		mergeGameAssets();
-		setNativeUtilsAttributes();
+		NativeUtils.setValues(this);
 		new OpenGameLoadingDialog(this).show();
 		prepareNMods(p1);
 		super.onCreate(p1);
@@ -106,14 +106,8 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 
 	private void setNativeUtilsAttributes()
 	{
-		UtilsSettings settings=new UtilsSettings(this);
+		
 
-		Utils.nativeSetDataDirectory("/data/data/" + getPackageName() + File.separator);
-		Utils.nativeSetRedstoneDot(settings.getRedstoneDot());
-		Utils.nativeSetHideDebugText(settings.getHideDebugText());
-		Utils.nativeSetAutoSaveLevel(settings.getAutoSaveLevel());
-		Utils.nativeSetSelectAllInLeft(settings.getSelectAllInLeft());
-		Utils.nativeSetDisableTextureIsotropic(settings.getDisableTextureIsotropic());
 	}
 
 	private void loadNMods()

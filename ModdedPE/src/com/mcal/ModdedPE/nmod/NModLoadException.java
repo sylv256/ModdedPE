@@ -124,7 +124,7 @@ public abstract class NModLoadException extends Exception
 			try
 			{
 				symbol_mangled = msg.toString().split("\"")[1];
-				symbol_demangled = Utils.nativeDemangle(symbol_mangled);
+				symbol_demangled = NativeUtils.nativeDemangle(symbol_mangled);
 			}
 			catch (Throwable t2)
 			{

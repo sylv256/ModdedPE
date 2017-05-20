@@ -59,7 +59,8 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:layout_centerInParent="true"
-					android:orientation="vertical">
+					android:orientation="vertical"
+					android:gravity="center">
 
 					<android.support.v7.widget.AppCompatTextView
 						android:layout_height="wrap_content"
@@ -67,19 +68,16 @@
 						android:layout_width="wrap_content"
 						android:text="@string/nmod_add_new"/>
 
-					<RelativeLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content">
-
-						<com.mcal.MCDesign.widget.MCDAddButton
-							android:layout_height="50dp"
-							android:layout_width="50dp"
-							android:id="@+id/moddedpemanageNModAddNew"
-							android:layout_centerInParent="true"/>
-
-					</RelativeLayout>
+					<android.support.design.widget.FloatingActionButton
+						android:layout_height="50dp"
+						android:layout_width="50dp"
+						android:src="@drawable/ic_plus"
+						android:id="@+id/moddedpe_manage_nmod_add_new"
+						android:layout_centerInParent="true"
+						android:layout_margin="10dp"/>
 
 				</LinearLayout>
+				
 
 			</RelativeLayout>
 

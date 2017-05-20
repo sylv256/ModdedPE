@@ -69,20 +69,6 @@ public class ModdedPEMainActivity extends MCDActivity
 			});
 	}
 
-	private void setViewOnClickScrollTo(View view, final int to)
-	{
-		view.setOnClickListener(new View.OnClickListener()
-			{
-
-				@Override
-				public void onClick(View p1)
-				{
-					mainViewPager.setCurrentItem(to);
-				}
-
-			});
-	}
-
 	@Override
 	protected void setDefaultActionBar()
 	{
@@ -95,7 +81,7 @@ public class ModdedPEMainActivity extends MCDActivity
 				@Override
 				public void onClick(View p1)
 				{
-					//on menu clicked
+					
 				}
 
 
@@ -159,15 +145,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		{}
 		return null;
 	}
-
-	/*
-	 public void onNewsClicked(View view)
-	 {
-	 if (main_showingNMod != null)
-	 ModdedPENModDescriptionActivity.startThisActivity(this, main_showingNMod);
-	 }
-	 */
-
+	
 	public void onPlayClicked(View v)
 	{
 		if (getMcContext() == null)

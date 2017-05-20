@@ -53,7 +53,7 @@ public class OpenGameLoadingDialog extends Dialog
 					catch (Exception e)
 					{}
 
-					if (Utils.nativeIsGameStarted())
+					if (NativeUtils.nativeIsGameStarted())
 						dismiss();
 				}
 			}
