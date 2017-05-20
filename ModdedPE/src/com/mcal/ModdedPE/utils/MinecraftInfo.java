@@ -5,6 +5,7 @@ import android.content.pm.PackageManager.*;
 import android.content.pm.*;
 import java.io.*;
 import android.os.*;
+import android.content.res.*;
 
 public class MinecraftInfo
 {
@@ -13,9 +14,7 @@ public class MinecraftInfo
 
 	private Context thisContext;
 	private Context mcPkgContext;
-	private AssetOverrideManager assetOverrideManager;
-	private NModManager nmodManager;
-
+	
 	private static MinecraftInfo instance;
 
 	public boolean isSupportedMinecraftVersion(String[] versions)
@@ -74,6 +73,11 @@ public class MinecraftInfo
 		}
 		catch (PackageManager.NameNotFoundException e)
 		{}
+		
+		AssetOverrideManager.newInstance();
+		if (mcPkgContext != null)
+			AssetOverrideManager.getInstance().addAssetOverride(mcPkgContext.getPackageResourcePath());
+		AssetOverrideManager.getInstance().addAssetOverride(thisContext.getPackageResourcePath());
 	}
 
 	public static MinecraftInfo getInstance(Context context)
@@ -86,5 +90,25 @@ public class MinecraftInfo
 	public static void initInstance(Context context)
 	{
 		instance = new MinecraftInfo(context);
+	}
+	
+	public NModManager getNModManager()
+	{
+		return NModManager.getNModManager(thisContext);
+	}
+	
+	public AssetOverrideManager getAssetOverrideManager()
+	{
+		return AssetOverrideManager.getInstance();
+	}
+	
+	public AssetManager getAssets()
+	{
+		return getAssetOverrideManager().getAssetManager();
+	}
+	
+	public void initNModData()
+	{
+		NModManager.getNModManager(thisContext).reCalculate(thisContext);
 	}
 }

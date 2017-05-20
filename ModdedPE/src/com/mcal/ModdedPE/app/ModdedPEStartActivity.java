@@ -87,7 +87,7 @@ public class ModdedPEStartActivity extends MCDActivity
 		{
 			public void run()
 			{
-				ModdedPEApplication.instance.init();
+				MinecraftInfo.getInstance(ModdedPEStartActivity.this).initNModData();
 				mHandler.sendEmptyMessage(MSG_NEXT);
 			}
 		}.start();

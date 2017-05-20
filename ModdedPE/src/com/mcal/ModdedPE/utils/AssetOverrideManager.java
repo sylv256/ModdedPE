@@ -12,14 +12,6 @@ public class AssetOverrideManager
 	{
 		try
 		{
-			if (localManager == null)
-				localManager = AssetManager.class.newInstance();
-		}
-		catch (Throwable e)
-		{}
-
-		try
-		{
 			Method method = AssetManager.class.getMethod("addAssetPath", String.class);
 			method.invoke(localManager, packageResourcePath);
 		}
@@ -27,7 +19,7 @@ public class AssetOverrideManager
 		{}
 	}
 
-	public AssetManager getLocalAssetManager()
+	public AssetManager getAssetManager()
 	{
 		return localManager;
 	}
@@ -37,5 +29,22 @@ public class AssetOverrideManager
 		if (instance == null)
 			return instance = new AssetOverrideManager();
 		return instance;
+	}
+	
+	public static void newInstance()
+	{
+		instance = new AssetOverrideManager();
+	}
+	
+	private AssetOverrideManager()
+	{
+		try
+		{
+			localManager = AssetManager.class.newInstance();
+		}
+		catch (InstantiationException e)
+		{}
+		catch (IllegalAccessException e)
+		{}
 	}
 }

@@ -49,7 +49,7 @@ public class ModdedPEApplication extends Application
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.getInstance().getLocalAssetManager();
+		AssetManager mgr=AssetOverrideManager.getInstance().getAssetManager();
 		if (mgr != null)
 			return mgr;
 		return super.getAssets();
@@ -58,30 +58,5 @@ public class ModdedPEApplication extends Application
 	static
 	{
 		LibraryLoader.loadLocalLibs();
-	}
-
-	public void init()
-	{
-		/*
-		try
-		{
-			if (mcPkgContext != null)
-				AssetOverrideManager.getInstance().addAssetOverride(mcPkgContext.getPackageResourcePath());
-			AssetOverrideManager.getInstance().addAssetOverride(this.getPackageResourcePath());
-		}
-		catch (Throwable t)
-		{
-			restartAppAndReport(t);
-		}
-
-		try
-		{
-			NModManager.getNModManager(this).reCalculate(this);
-		}
-		catch (Throwable t)
-		{
-			restartAppAndReport(t);
-		}
-		*/
 	}
 }

@@ -96,7 +96,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.getInstance().getLocalAssetManager();
+		AssetManager mgr=AssetOverrideManager.getInstance().getAssetManager();
 		if (mgr != null)
 			return mgr;
 		return super.getAssets();

@@ -30,7 +30,7 @@ public class ModdedPESafetyModeMinecraftActivity extends com.mojang.minecraftpe.
 	@Override
 	public AssetManager getAssets()
 	{
-		AssetManager mgr=AssetOverrideManager.getInstance().getLocalAssetManager();
+		AssetManager mgr=AssetOverrideManager.getInstance().getAssetManager();
 		if (mgr != null)
 			return mgr;
 		return super.getAssets();
