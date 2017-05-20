@@ -7,18 +7,21 @@ import java.util.*;
 import android.content.*;
 import android.util.*;
 import android.os.*;
+import com.mcal.ModdedPE.nmod.*;
+import com.mcal.ModdedPE.*;
+import android.support.v7.widget.*;
 
 @SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 public class NModBanner extends RelativeLayout
 {
 	private ViewPager mPager;
-	private List<ImageView> mViewList = new ArrayList<ImageView>();
-	private RadioGroup mGroup;
-	private int mCount;
-	private LayoutInflater mInflater;
 	private BannerHandler mHandler;
-	private int dip_13;
-	private static int mInterval = 3000;
+	private BannerThread mBannerThread = new BannerThread();
+	private Vector<NMod> mNModVector = new Vector<NMod>();
+	
+	private static final int SLEEP_TIME = 3500;
+	private static final int MSG_UPDATE_NMODS = 1;
+	private static final int MSG_DO_SCROLL = 2;
 
 	public NModBanner(Context context)
 	{
@@ -31,65 +34,29 @@ public class NModBanner extends RelativeLayout
 		super(context, attrs);
 		init();
 	}
-	
-	public void start()
+
+	public NModBanner(Context context, AttributeSet attrs, int defStyleAttr)
 	{
-		mHandler.sendEmptyMessageDelayed(0, mInterval);
+		super(context, attrs, defStyleAttr);
+		init();
 	}
 
-	public void setImage(ArrayList<Integer> imageList)
+	private void updateNModList()
 	{
-		/*for (int i = 0; i < imageList.size(); i++)
+		Vector<NMod> newNModList = NModManager.getNModManager(getContext()).getActiveNModsIsValidBanner();
+		if (mNModVector.equals(newNModList))
 		{
-			Integer imageID = imageList.get(i).intValue();
-			ImageView ivNew = new ImageView(getContext());
-			ivNew.setLayoutParams(new LayoutParams(
-									  LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-			ivNew.setScaleType(ImageView.ScaleType.FIT_XY);
-			ivNew.setImageResource(imageID);
-			ivNew.setOnClickListener(this);
-			mViewList.add(ivNew);
+			mNModVector.clear();
+			mNModVector.addAll(newNModList);
 		}
-		mPager.setAdapter(new ImageAdapater());
-		mPager.setOnPageChangeListener(new BannerChangeListener(this));
-
-		mCount = imageList.size();
-		for (int i = 0; i < mCount; i++)
-		{
-			RadioButton radio = new RadioButton(mContext);
-			radio.setLayoutParams(new RadioGroup.LayoutParams(dip_13, dip_13));
-			radio.setGravity(Gravity.CENTER);
-			radio.setButtonDrawable(R.drawable.rbt_selector);
-			mGroup.addView(radio);
-		}
-
-		mPager.setCurrentItem(0);
-		setButton(0);
-		mHandler = new BannerHandler();
-		start();*/
-	}
-
-	private void setButton(int position)
-	{
-		((RadioButton) mGroup.getChildAt(position)).setChecked(true);
+		mPager.setAdapter(new BannerItemAdapater());
 	}
 
 	private void init()
 	{
-		/*
-		mInflater = LayoutInflater.from(getContext());
-		View view = mInflater.inflate(R.layout.banner_pager, null);
-		mPager = (ViewPager) view.findViewById(R.id.banner_pager);
-		mGroup = (RadioGroup) view.findViewById(R.id.banner_pager_group);
-		addView(view);
-		dip_13 = Utils.dip2px(mContext, 13);
-		*/
-	}
-
-	public boolean dispatchTouchEvent(MotionEvent event)
-	{
-		getParent().requestDisallowInterceptTouchEvent(true);
-		return super.dispatchTouchEvent(event);
+		mPager = new ViewPager(getContext());
+		updateNModList();
+		addView(mPager);
 	}
 
 	@SuppressLint("HandlerLeak")
@@ -99,28 +66,59 @@ public class NModBanner extends RelativeLayout
 		@Override
 		public void handleMessage(Message msg)
 		{
-			scrollToNext();
-			sendEmptyMessageDelayed(0, mInterval);
+			if (msg.what == MSG_UPDATE_NMODS)
+			{
+				updateNModList();
+			}
+			else if (msg.what == MSG_DO_SCROLL)
+			{
+				scrollToNext();
+			}
 		}
 	}
 
 	public void scrollToNext()
 	{
 		int index = mPager.getCurrentItem() + 1;
-		if (mViewList.size() <= index)
-		{
-			index = 0;
-		}
-		mPager.setCurrentItem(index);
+		mPager.setCurrentItem(index % (Math.max(mNModVector.size(), 1)));
 	}
 
-	private class ImageAdapater extends PagerAdapter
+	@Override
+	protected void onAttachedToWindow()
 	{
+		super.onAttachedToWindow();
+		mBannerThread.start();
+	}
 
+	@Override
+	protected void onDetachedFromWindow()
+	{
+		mBannerThread.setStopped();
+		super.onDetachedFromWindow();
+	}
+
+	private RelativeLayout createEmptyBannerItem()
+	{
+		return (RelativeLayout) LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_banner_item, null);
+	}
+
+	private RelativeLayout createBannerItemFor(NMod nmod)
+	{
+		RelativeLayout view = createEmptyBannerItem();
+		AppCompatImageView image = (AppCompatImageView)view.findViewById(R.id.moddedpe_nmod_banner_item_image_view);
+		image.setImageBitmap(nmod.getBannerImage());
+		AppCompatTextView bannerTitle = (AppCompatTextView)view.findViewById(R.id.moddedpe_nmod_banner_item_text_view_title);
+		bannerTitle.setText(nmod.getBannerTitle());
+		return view;
+	}
+
+
+	private class BannerItemAdapater extends PagerAdapter
+	{
 		@Override
 		public int getCount()
 		{
-			return mViewList.size();
+			return Math.max(mNModVector.size(), 1);
 		}
 
 		@Override
@@ -132,15 +130,55 @@ public class NModBanner extends RelativeLayout
 		@Override
 		public void destroyItem(ViewGroup container, int position, Object object)
 		{
-			container.removeView(mViewList.get(position));
+			container.removeView((View)object);
 		}
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position)
 		{
-			container.addView(mViewList.get(position));
-			return mViewList.get(position);
+			if (mNModVector.size() <= 0)
+			{
+				View view = createEmptyBannerItem();
+				container.addView(view);
+				return view;
+			}
+			View view = createBannerItemFor(mNModVector.get(position));
+			container.addView(view);
+			return view;
+		}
+	}
+
+	private class BannerThread extends Thread
+	{
+		private boolean stopped = false;
+
+		@Override
+		public void run()
+		{
+			while (!stopped)
+			{
+				try
+				{
+					Thread.sleep(SLEEP_TIME);
+				}
+				catch (InterruptedException e)
+				{}
+
+				try
+				{
+					if (!stopped)
+						mHandler.sendEmptyMessage(MSG_UPDATE_NMODS);
+					if (!stopped)
+						mHandler.sendEmptyMessage(MSG_DO_SCROLL);
+				}
+				catch (Throwable t)
+				{}
+			}
 		}
 
+		public void setStopped()
+		{
+			stopped = true;
+		}
 	}
 }

@@ -95,7 +95,7 @@ public class ModdedPEMainActivity extends MCDActivity
 				@Override
 				public void onClick(View p1)
 				{
-					setMenuActionBar();
+					//on menu clicked
 				}
 
 
@@ -115,46 +115,6 @@ public class ModdedPEMainActivity extends MCDActivity
 
 			});
 		setActionBarViewLeft(imageButton);
-
-		setCustomActionBar(false);
-	}
-
-	private void setMenuActionBar()
-	{
-		ActionBar actionBar=getSupportActionBar();
-
-		MCDActionBarView actionBarCustomView = (MCDActionBarView)LayoutInflater.from(this).inflate(R.layout.moddedpemain_menu_actionbar, null);
-		ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-		layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-		actionBar.setDisplayShowHomeEnabled(false);
-		actionBar.setDisplayShowCustomEnabled(true);
-		actionBar.setDisplayShowTitleEnabled(false);
-		actionBar.setCustomView(actionBarCustomView, layoutParams);
-		android.support.v7.widget.Toolbar parent = (android.support.v7.widget.Toolbar) actionBarCustomView.getParent();
-		parent.setContentInsetsAbsolute(0, 0);
-
-		MCDBurgerButtonClose burgerButtonClose=new MCDBurgerButtonClose(this);
-		burgerButtonClose.setOnClickListener(new View.OnClickListener()
-			{
-
-				@Override
-				public void onClick(View p1)
-				{
-					setDefaultActionBar();
-				}
-
-
-			});
-		RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.moddedpe_menu_actionbar_ViewRight);
-		layout.removeAllViews();
-		layout.addView(burgerButtonClose);
-
-		setViewOnClickScrollTo(actionBarCustomView.findViewById(R.id.moddedpe_menu_actionbar_main), 0);
-		setViewOnClickScrollTo(actionBarCustomView.findViewById(R.id.moddedpe_menu_actionbar_manage_nmod), 1);
-		setViewOnClickScrollTo(actionBarCustomView.findViewById(R.id.moddedpe_menu_actionbar_settings), 2);
-
-		setCustomActionBar(true);
 	}
 
 	private Context getMcContext()

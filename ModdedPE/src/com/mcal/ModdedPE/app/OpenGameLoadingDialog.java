@@ -37,10 +37,6 @@ public class OpenGameLoadingDialog extends Dialog
 		View contentView=getLayoutInflater().inflate(R.layout.moddedpe_loading, null);
 		setContentView(contentView);
 
-		Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_bg);
-		bitmap = BitmapRepeater.repeat(getWindow().getWindowManager().getDefaultDisplay().getWidth(), getWindow().getWindowManager().getDefaultDisplay().getHeight(), bitmap);
-		contentView.setBackgroundDrawable(new BitmapDrawable(bitmap));
-
 		setLoadingMessage(getContext().getString(R.string.opengame_loading));
 
 		new Thread()

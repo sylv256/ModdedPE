@@ -16,7 +16,7 @@ public abstract class NMod
 	protected boolean isActive;
 	protected NModLoader loader;
 	protected Bitmap icon;
-	protected Bitmap version_image;
+	protected Bitmap banner_image;
 	public static final String TAG_MANIFEST_NAME = "nmod_manifest.json";
 
 	public abstract void load(String mcVer, String moddedpeVer) throws Exception;
@@ -51,7 +51,7 @@ public abstract class NMod
 		return false;
 	}
 
-	public Bitmap createVersionImage() throws NModLoadException
+	public Bitmap createBannerImage() throws NModLoadException
 	{
 		Bitmap ret = null;
 		try
@@ -77,21 +77,21 @@ public abstract class NMod
 		return ret;
 	}
 
-	public Bitmap getVersionImage()
+	public Bitmap getBannerImage()
 	{
-		return version_image;
+		return banner_image;
 	}
 
-	public String getNewsTitle()
+	public String getBannerTitle()
 	{
 		if (dataBean.version_info != null && dataBean.version_info.version_description_short != null)
 			return dataBean.name + " : " + dataBean.version_info.version_description_short;
 		return null;
 	}
 
-	public boolean isValidNews()
+	public boolean isValidBanner()
 	{
-		return getVersionImage() != null && getNewsTitle() != null;
+		return getBannerImage() != null && getBannerTitle() != null;
 	}
 
 	public NModLanguageBean[] getLanguageBeans()
@@ -304,7 +304,7 @@ public abstract class NMod
 
 		try
 		{
-			this.version_image = createVersionImage();
+			this.banner_image = createBannerImage();
 		}
 		catch (NModLoadException nmodle)
 		{

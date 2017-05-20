@@ -4,102 +4,19 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<RelativeLayout
+	<com.mcal.ModdedPE.widget.NModBanner
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_marginBottom="60dp">
-
-		<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_marginTop="30dp"
-			android:layout_marginBottom="30dp"
-			android:layout_centerInParent="true">
-
-			<RelativeLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_centerInParent="true"
-				android:layout_margin="15dp">
-
-				<ImageView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:id="@+id/moddedpe_main_news_image_view"
-					android:src="@drawable/image_default_minecraft"
-					android:adjustViewBounds="true"/>
-
-				<RelativeLayout
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:layout_alignParentBottom="true"
-					android:background="#000000"
-					android:id="@+id/moddedpeNewsNModTitleBG"
-					android:alpha="0.5"
-					android:layout_alignLeft="@id/moddedpe_main_news_image_view"
-					android:layout_alignRight="@id/moddedpe_main_news_image_view">
-
-					<android.support.v7.widget.AppCompatTextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:textColor="#DEDEDE"
-						android:layout_alignParentLeft="true"
-						android:singleLine="true"
-						android:id="@+id/moddedpeTextViewNewsNModTitle"
-						android:layout_margin="3dp"/>
-
-				</RelativeLayout>
-
-			</RelativeLayout>
-
-		</RelativeLayout>
-
-	</RelativeLayout>
-
-	<View
-		android:layout_height="60dp"
+		android:layout_marginBottom="105dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginTop="15dp"
+		android:layout_marginRight="15dp"/>
+	
+	<com.mcal.ModdedPE.widget.ConsoleTableView
 		android:layout_width="match_parent"
-		android:background="#000000"
+		android:layout_height="90dp"
+		android:id="@+id/moddedpe_main_console_table_view"
 		android:layout_alignParentBottom="true"/>
-
-	<com.mcal.MCDesign.widget.MCDPlayButton
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_alignParentBottom="true"
-		android:layout_marginBottom="40dp"
-		android:id="@+id/moddedpemainMCDPlayButton"
-		android:text="@string/main_play"
-		android:onClick="onPlayClicked"/>
-
-	<android.support.v7.widget.AppCompatTextView
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceSmall"
-		android:layout_width="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:textColor="#DEDEDE"
-		android:layout_alignParentLeft="true"
-		android:id="@+id/moddedpemainTextViewAppVersion"/>
-
-	<android.support.v7.widget.AppCompatTextView
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceSmall"
-		android:layout_width="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:textColor="#FF0000"
-		android:text="@string/settings_safetyMode"
-		android:layout_centerHorizontal="true"
-		android:id="@+id/moddedpemainTextViewisSafetyMode"
-		android:visibility="gone"/>
-
-	<android.support.v7.widget.AppCompatTextView
-		android:layout_height="wrap_content"
-		android:textAppearance="?android:attr/textAppearanceSmall"
-		android:layout_width="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:textColor="#DEDEDE"
-		android:layout_alignParentRight="true"
-		android:id="@+id/moddedpemainTextViewTargetMCVersion"/>
 
 </RelativeLayout>
 

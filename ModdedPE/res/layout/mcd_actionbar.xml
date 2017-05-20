@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.mcal.MCDesign.widget.MCDActionBarView
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
+	
+	<com.mcal.MCDesign.widget.RepeatableImageView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:src="@drawable/mcd_header_bg"/>
 
 	<android.support.v7.widget.AppCompatTextView
 		android:layout_height="wrap_content"
@@ -28,5 +33,5 @@
 		android:layout_centerVertical="true"
 		android:id="@+id/mcd_actionbar_ViewLeft"/>
 
-</com.mcal.MCDesign.widget.MCDActionBarView>
+</RelativeLayout>
 

@@ -15,8 +15,7 @@ public class NModManager
 	private Vector<NMod> disabledNMods=new Vector<NMod>();
 	private Context contextThis;
 	private static NModManager instance=null;
-	private boolean shouldResetView=true;
-
+	
 	public static void reCalculate(Context c)
 	{
 		instance = new NModManager(c);
@@ -40,12 +39,12 @@ public class NModManager
 		return activeNMods;
 	}
 
-	public Vector<NMod> getActiveNModsHasNews()
+	public Vector<NMod> getActiveNModsIsValidBanner()
 	{
 		Vector<NMod> ret=new Vector<NMod>();
 		for (NMod nmod:getActiveNMods())
 		{
-			if (nmod.isValidNews())
+			if (nmod.isValidBanner())
 				ret.add(nmod);
 		}
 		return ret;
@@ -210,32 +209,5 @@ public class NModManager
 	public Vector<NMod> getDisabledNMods()
 	{
 		return disabledNMods;
-	}
-
-	public void resetShowingNMod()
-	{
-		shouldResetView = true;
-	}
-
-	public void refreshShowingNModView(NewsView newsLayout)
-	{
-		if (shouldResetView)
-		{
-			Vector<NMod> nmods = getActiveNModsHasNews();
-			NMod main_showingNMod = null;
-
-			if (nmods.size() > 0)
-			{
-				main_showingNMod = nmods.get(new Random(System.nanoTime()).nextInt(nmods.size()));
-				newsLayout.setNewsImage(main_showingNMod.getVersionImage());
-				newsLayout.setNewsTitle(main_showingNMod.getNewsTitle());
-			}
-			else
-			{
-				newsLayout.setNewsImage(BitmapFactory.decodeResource(newsLayout.getContext().getResources(), R.drawable.image_default_minecraft));
-				newsLayout.setNewsTitle(newsLayout.getContext().getString(R.string.main_default_minecraft_title));
-			}
-			shouldResetView = false;
-		}
 	}
 }

@@ -13,8 +13,6 @@ import com.mcal.MCDesign.utils.*;
 
 public class MCDActivity extends AppCompatActivity
 {
-	private boolean customActionBar;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -32,7 +30,7 @@ public class MCDActivity extends AppCompatActivity
 		ActionBar actionBar=getSupportActionBar();
 		if (actionBar != null)
 		{
-			MCDActionBarView actionBarCustomView = (MCDActionBarView)LayoutInflater.from(this).inflate(R.layout.mcd_actionbar, null);
+			RelativeLayout actionBarCustomView = (RelativeLayout)LayoutInflater.from(this).inflate(R.layout.mcd_actionbar, null);
 			ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
 			layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
 			actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -46,16 +44,12 @@ public class MCDActivity extends AppCompatActivity
 			AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
 			titleTV.setText(getTitle());
 		}
-		setCustomActionBar(false);
 	}
 
 	@Override
 	public void setTitle(int titleId)
 	{
 		super.setTitle(titleId);
-		
-		if(customActionBar)
-			return;
 		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
@@ -67,9 +61,6 @@ public class MCDActivity extends AppCompatActivity
 	{
 		super.setTitle(title);
 		
-		if(customActionBar)
-			return;
-		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
 		titleTV.setText(title);
@@ -77,9 +68,6 @@ public class MCDActivity extends AppCompatActivity
 	
 	protected void setActionBarViewRight(View view)
 	{
-		if(customActionBar)
-			return;
-		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewRight);
 		layout.removeAllViews();
@@ -88,9 +76,6 @@ public class MCDActivity extends AppCompatActivity
 	
 	protected void setActionBarViewLeft(View view)
 	{
-		if(customActionBar)
-			return;
-		
 		View actionBarCustomView=getSupportActionBar().getCustomView();
 		RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewLeft);
 		layout.removeAllViews();
@@ -99,9 +84,6 @@ public class MCDActivity extends AppCompatActivity
 	
 	protected void setActionBarButtonCloseRight()
 	{
-		if(customActionBar)
-			return;
-		
 		MCDBurgerButtonClose buttonClose=new MCDBurgerButtonClose(this);
 		buttonClose.setOnClickListener(new View.OnClickListener()
 			{
@@ -115,10 +97,5 @@ public class MCDActivity extends AppCompatActivity
 
 			});
 		setActionBarViewRight(buttonClose);
-	}
-	
-	protected void setCustomActionBar(boolean z)
-	{
-		customActionBar=z;
 	}
 }
