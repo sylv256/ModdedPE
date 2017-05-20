@@ -27,18 +27,18 @@ public class ModdedPEMainActivity extends MCDActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_main_pager);
-		
+
 		List<Fragment> fragment_list=new Vector<Fragment>();
 		List<CharSequence> titles_list=new Vector<CharSequence>();
 
 		MainStartFragment startFragment = new MainStartFragment();
 		fragment_list.add(startFragment);
 		titles_list.add(getString(R.string.main_title));
-		
+
 		MainManageNModFragment manageNModFragment = new MainManageNModFragment();
 		fragment_list.add(manageNModFragment);
 		titles_list.add(getString(R.string.manage_nmod_title));
-		
+
 		MainSettingsFragment settingsFragment = new MainSettingsFragment();
 		fragment_list.add(settingsFragment);
 		titles_list.add(getString(R.string.settings_title));
@@ -81,7 +81,7 @@ public class ModdedPEMainActivity extends MCDActivity
 				@Override
 				public void onClick(View p1)
 				{
-					
+
 				}
 
 
@@ -102,10 +102,10 @@ public class ModdedPEMainActivity extends MCDActivity
 			});
 		setActionBarViewLeft(imageButton);
 	}
-	
+
 	public void onPlayClicked(View v)
 	{
-		if (MinecraftInfo.getInstance(this).isMinecraftInstalled())
+		if (!MinecraftInfo.getInstance(this).isMinecraftInstalled())
 		{
 			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
 			mdialog.setTitle(getString(R.string.no_mcpe_found_title));
@@ -155,20 +155,18 @@ public class ModdedPEMainActivity extends MCDActivity
 
 	private void startMinecraft()
 	{
-		new Thread()
+		Intent i=null;
+		if (new UtilsSettings(ModdedPEMainActivity.this).getSafeMode())
 		{
-			@Override
-			public void run()
-			{
-				Intent i=null;
-				if (new UtilsSettings(ModdedPEMainActivity.this).getSafeMode())
-					i = new Intent(ModdedPEMainActivity.this, ModdedPESafeModeMinecraftActivity.class);
-				else
-					i = new Intent(ModdedPEMainActivity.this, ModdedPEMinecraftActivity.class);
-				startActivity(i);
-				finish();
-			}
-		}.start();
+			i = new Intent(ModdedPEMainActivity.this, ModdedPESafeModeMinecraftActivity.class);
+		}
+		else
+		{
+			i = new Intent(ModdedPEMainActivity.this, ModdedPEMinecraftActivity.class);
+		}
+		startActivity(i);
+		finish();
+		
 	}
 
 	private class MainFragmentPagerAdapter extends FragmentPagerAdapter
