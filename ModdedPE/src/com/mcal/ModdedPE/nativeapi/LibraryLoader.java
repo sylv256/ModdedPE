@@ -7,8 +7,12 @@ import java.io.*;
 public class LibraryLoader
 {
 	public static final String FMOD_LIB_NAME = "libfmod.so";
-	public static final String MINECRAFTPE_LIB_NAME = "libfmod.so";
+	public static final String MINECRAFTPE_LIB_NAME = "libminecraftpe.so";
 
+	public static final String UTILS_NAME = "moddedpe_utils";
+	public static final String SUBSTRATE_NAME = "substrate";
+	public static final String LAUNCHER_NAME = "moddedpe_launcher";
+	
 	static public void loadGameLibs(Context context, String mcLibDir, boolean isSafeMode)
 	{
 		try
@@ -30,12 +34,12 @@ public class LibraryLoader
 			}
 		}
 		if (!isSafeMode)
-			System.loadLibrary("moddedpe_utils");
+			System.loadLibrary(UTILS_NAME);
 	}
 
 	static public void loadLocalLibs()
 	{
-		System.loadLibrary("substrate");
-		System.loadLibrary("moddedpe_launcher");
+		System.loadLibrary(SUBSTRATE_NAME);
+		System.loadLibrary(LAUNCHER_NAME);
 	}
 }

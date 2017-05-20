@@ -2,29 +2,29 @@ package com.mcal.ModdedPE.nmod;
 import org.json.*;
 import java.util.*;
 
-public class JSONMixer
+public class JSONMerger
 {
 	private String json1;
 	private String json2;
 
-	public JSONMixer(String json1, String json2)
+	public JSONMerger(String json1, String json2)
 	{
 		this.json1 = json1;
 		this.json2 = json2;
 	}
 
-	public String mix() throws JSONException
+	public String merge() throws JSONException
 	{
 		if (isJSONObject(json1) && isJSONObject(json2))
 		{
-			return mixObject(new JSONObject(json1), new JSONObject(json2)).toString();
+			return mergeObject(new JSONObject(json1), new JSONObject(json2)).toString();
 		}
 		else if (isJSONArray(json1) && isJSONArray(json2))
 		{
-			return mixArray(new JSONArray(json1), new JSONArray(json2)).toString();
+			return mergeArray(new JSONArray(json1), new JSONArray(json2)).toString();
 		}
 		else
-			throw new JSONException("MIX FAILED: CAMNOT JUDGE STRING TYPE");
+			throw new JSONException("Merging FAILED: CAMNOT JUDGE STRING TYPE");
 	}
 
 	private static boolean isJSONArray(String json)
@@ -53,7 +53,7 @@ public class JSONMixer
 		}
 	}
 
-	private static JSONObject mixObject(JSONObject object1, JSONObject object2) throws JSONException
+	private static JSONObject mergeObject(JSONObject object1, JSONObject object2) throws JSONException
 	{
 		Iterator iter = object2.keys();
 		for (int index=0;iter.hasNext();++index)
@@ -64,7 +64,7 @@ public class JSONMixer
 		return object1;
 	}
 
-	private static JSONArray mixArray(JSONArray array1, JSONArray array2) throws JSONException
+	private static JSONArray mergeArray(JSONArray array1, JSONArray array2) throws JSONException
 	{
 		for (int index=0;index < array2.length();++index)
 		{
@@ -93,7 +93,7 @@ public class JSONMixer
 			array1.put(array2.getInt(index));
 		}
 		else
-			throw new JSONException("ERROR:CANNOT JUDGE ITEM TYPE.");
+			throw new JSONException("ERROR: CANNOT JUDGE ITEM TYPE.");
 	}
 
 	private static void judgeTypeAndPut(JSONObject object1, JSONObject object2, String key) throws JSONException
@@ -102,7 +102,7 @@ public class JSONMixer
 		{
 			if (object1.has(key))
 			{
-				object1.put(key, mixArray(object1.getJSONArray(key), object2.getJSONArray(key)));
+				object1.put(key, mergeArray(object1.getJSONArray(key), object2.getJSONArray(key)));
 			}
 			else
 			{
@@ -113,7 +113,7 @@ public class JSONMixer
 		{
 			if (object1.has(key))
 			{
-				object1.put(key, mixObject(object1.getJSONObject(key), object2.getJSONObject(key)));
+				object1.put(key, mergeObject(object1.getJSONObject(key), object2.getJSONObject(key)));
 			}
 			else
 			{

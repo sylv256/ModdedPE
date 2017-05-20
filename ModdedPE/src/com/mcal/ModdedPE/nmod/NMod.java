@@ -335,7 +335,7 @@ public abstract class NMod
 	{
 		public String path = null;
 		public String mode = "replace";
-		//mode = replace / mix
+		//mode = replace / merge
 	}
 
 	public static class NModVersionBean

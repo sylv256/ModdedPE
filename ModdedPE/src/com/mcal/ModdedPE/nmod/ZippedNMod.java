@@ -100,8 +100,7 @@ public class ZippedNMod extends NMod
 	@Override
 	public String getNativeLibsPath()
 	{
-		return new FilePathManager(thisContext).getNModLibsPath() + File
-.separator + getPackageName();
+		return new FilePathManager(thisContext).getNModLibsPath() + File.separator + getPackageName();
 	}
 
 	@Override

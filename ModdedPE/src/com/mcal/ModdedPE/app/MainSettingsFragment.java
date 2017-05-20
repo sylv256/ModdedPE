@@ -1,16 +1,12 @@
 package com.mcal.ModdedPE.app;
-import android.app.*;
 import android.content.*;
 import android.os.*;
 import android.support.v4.app.*;
+import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.utils.*;
-
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.*;
 
 public class MainSettingsFragment extends Fragment
 {

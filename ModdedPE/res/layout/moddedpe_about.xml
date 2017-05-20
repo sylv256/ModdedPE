@@ -14,6 +14,39 @@
 			android:layout_height="match_parent"
 			android:orientation="vertical">
 
+			<ImageView
+				android:layout_height="wrap_content"
+				android:layout_width="match_parent"
+				android:src="@drawable/ic_launcher"
+				android:layout_margin="30dp"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:layout_width="match_parent"
+				android:text="@string/app_name"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:gravity="center"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="match_parent"
+				android:text="Copyright © MCAL Team,Nextdev"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:gravity="center"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:layout_width="match_parent"
+				android:text="MADE BY ModelPart"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:gravity="center"/>
+
 			<RelativeLayout
 				android:layout_width="match_parent"
 				android:orientation="horizontal"
@@ -117,7 +150,18 @@
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="match_parent"
-				android:text="MCDesign under Apache License 2.0."
+				android:text="Support Design under Apache License 2.0."
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"
+				android:gravity="center"
+				android:singleLine="true"
+				android:textIsSelectable="true"/>
+
+			<TextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:text="CardView under Apache License 2.0."
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
 				android:gravity="center"

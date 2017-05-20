@@ -2,6 +2,7 @@ package com.mcal.ModdedPE.app;
 import android.content.*;
 import android.graphics.drawable.*;
 import android.os.*;
+import android.support.design.widget.*;
 import android.support.v4.app.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
@@ -11,8 +12,6 @@ import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nmod.*;
 import java.util.*;
-import com.microsoft.onlineid.internal.sso.service.operation.*;
-import android.support.design.widget.*;
 
 public class MainManageNModFragment extends Fragment
 {

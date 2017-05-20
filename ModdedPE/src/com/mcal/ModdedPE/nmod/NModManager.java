@@ -8,6 +8,7 @@ import com.mcal.ModdedPE.widget.*;
 import android.graphics.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.utils.*;
+import com.mcal.ModdedPE.app.*;
 
 public class NModManager
 {
@@ -15,8 +16,9 @@ public class NModManager
 	private Vector<NMod> allNMods=new Vector<NMod>();
 	private Vector<NMod> disabledNMods=new Vector<NMod>();
 	private Context contextThis;
+	private Loader loader = new Loader();
 	private static NModManager instance=null;
-	
+
 	public static void reCalculate(Context c)
 	{
 		instance = new NModManager(c);
@@ -210,5 +212,18 @@ public class NModManager
 	public Vector<NMod> getDisabledNMods()
 	{
 		return disabledNMods;
+	}
+
+	public Loader getLoader()
+	{
+		return loader;
+	}
+
+	public class Loader
+	{
+		public void loadNModLibs()
+		{
+			
+		}
 	}
 }
