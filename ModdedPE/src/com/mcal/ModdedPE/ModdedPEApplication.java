@@ -10,27 +10,14 @@ import com.mcal.ModdedPE.utils.*;
 
 public class ModdedPEApplication extends Application
 {
-	public static String MC_PACKAGE_NAME = "com.mojang.minecraftpe";
-	public static String MC_NATIVE_DIR = "/data/data/com.mojang.minecraftpe/lib";
 	public static ModdedPEApplication instance;
-	public static Context mcPkgContext;
-
-	public static Context getMcPackageContext()
-	{
-		return mcPkgContext;
-	}
 
 	public void onCreate()
 	{
 		super.onCreate();
 		instance = this;
-
-		try
-		{
-			mcPkgContext = this.createPackageContext(MC_PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
-		}
-		catch (Exception e)
-		{}
+		
+		MinecraftInfo.initInstance(this);
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 	}
 
@@ -59,11 +46,6 @@ public class ModdedPEApplication extends Application
 		{}
 	}
 
-	public void startLauncher(Context c)
-	{
-		c.startActivity(new Intent(c, ModdedPEMainActivity.class));
-	}
-
 	@Override
 	public AssetManager getAssets()
 	{
@@ -80,6 +62,7 @@ public class ModdedPEApplication extends Application
 
 	public void init()
 	{
+		/*
 		try
 		{
 			if (mcPkgContext != null)
@@ -99,5 +82,6 @@ public class ModdedPEApplication extends Application
 		{
 			restartAppAndReport(t);
 		}
+		*/
 	}
 }

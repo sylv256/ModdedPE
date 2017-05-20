@@ -12,54 +12,14 @@ import java.io.*;
 
 public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
-	private Context mcPackageContext=null;
-	private String mcLibDir=ModdedPEApplication.MC_NATIVE_DIR;
-	
-	private void initFields()
-	{
-		mcPackageContext = getMcContext();
-		mcLibDir = getNativeLibDirectory();
-	}
-
-	private Context getMcContext()
-	{
-		if (mcPackageContext != null)
-			return mcPackageContext;
-		try
-		{
-			return mcPackageContext = createPackageContext(ModdedPEApplication.MC_PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
-		}
-		catch (Exception e)
-		{
-			return null;
-		}
-	}
-
 	protected void loadNativeLibraries()
 	{
-		checkNullMcContext();
-		LibraryLoader.loadGameLibs(mcLibDir, false);
-	}
-
-	private String getNativeLibDirectory()
-	{
-		if (checkNullMcContext())
-			return mcPackageContext.getApplicationInfo().nativeLibraryDir;
-		else
-			return ModdedPEApplication.MC_NATIVE_DIR;
-	}
-
-	private boolean checkNullMcContext()
-	{
-		if (mcPackageContext == null)
-			mcPackageContext = getMcContext();
-		return mcPackageContext != null;
+		LibraryLoader.loadGameLibs(this, MinecraftInfo.getInstance(this).getMinecraftNativeLibraryDir(), false);
 	}
 
 	@Override
 	public void onCreate(Bundle p1)
 	{
-		initFields();
 		loadNativeLibraries();
 		mergeGameAssets();
 		NativeUtils.setValues(this);
@@ -68,7 +28,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		super.onCreate(p1);
 		GameLauncher.launch();
 	}
-	
+
 	private void prepareNMods(Bundle saved_instance_state)
 	{
 		NModManager.reCalculate(this);
@@ -76,51 +36,46 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		mergeNModAssets();
 		callOnNModActivityCreate(saved_instance_state);
 	}
-	
+
 	private void mergeGameAssets()
 	{
-		AssetOverrideManager.getInstance().addAssetOverride(mcPackageContext.getPackageResourcePath());
+		AssetOverrideManager.getInstance().addAssetOverride(MinecraftInfo.getInstance(this).getMinecraftPackageContext().getPackageResourcePath());
 	}
-	
+
 	private void callOnNModActivityCreate(Bundle savedInstanceState)
 	{
 		NModManager nmodManager=NModManager.getNModManager(this);
 		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
 			NMod nmod=nmodManager.getActiveNMods().get(i);
-			if(!nmod.isBugPack())
+			if (!nmod.isBugPack())
 				nmod.getLoader().callOnActivityCreate(this, savedInstanceState);
 		}
 	}
-	
+
 	private void mergeNModAssets()
 	{
 		NModManager nmodManager=NModManager.getNModManager(this);
 		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
 			NMod nmod=nmodManager.getActiveNMods().get(i);
-			if(!nmod.isBugPack())
+			if (!nmod.isBugPack())
 				AssetOverrideManager.getInstance().addAssetOverride(nmod.getPackageResourcePath());
 		}
 	}
 
 	private void setNativeUtilsAttributes()
 	{
-		
+
 
 	}
 
 	private void loadNMods()
 	{
 		NModManager nmodManager=NModManager.getNModManager(this);
-		String mcVer=new String();
+		String mcVer=MinecraftInfo.getInstance(this).getMinecraftVersionName();
 		String moddedpeVer=getString(R.string.app_version);
-		try
-		{
-			mcVer = getMcContext().getPackageManager().getPackageInfo(getMcContext().getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName;
-		}
-		catch (PackageManager.NameNotFoundException e)
-		{}
+		
 		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
 			NMod nmod=nmodManager.getActiveNMods().get(i);
@@ -154,7 +109,7 @@ public class ModdedPEMinecraftActivity extends com.mojang.minecraftpe.MainActivi
 		for (int i=nmodManager.getActiveNMods().size() - 1;i >= 0;--i)
 		{
 			NMod nmod=nmodManager.getActiveNMods().get(i);
-			if(!nmod.isBugPack())
+			if (!nmod.isBugPack())
 				nmod.getLoader().callOnActivityFinish(this);
 		}
 		super.onDestroy();

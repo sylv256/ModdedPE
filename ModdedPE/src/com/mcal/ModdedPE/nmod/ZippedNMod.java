@@ -8,6 +8,7 @@ import java.util.zip.*;
 import java.lang.reflect.*;
 import android.os.*;
 import java.util.*;
+import com.mcal.ModdedPE.utils.*;
 
 public class ZippedNMod extends NMod
 {
@@ -99,7 +100,8 @@ public class ZippedNMod extends NMod
 	@Override
 	public String getNativeLibsPath()
 	{
-		return "/data/data/" + thisContext.getPackageName() + "/files/nmod_libs/" + getPackageName();
+		return new FilePathManager(thisContext).getNModLibsPath() + File
+.separator + getPackageName();
 	}
 
 	@Override

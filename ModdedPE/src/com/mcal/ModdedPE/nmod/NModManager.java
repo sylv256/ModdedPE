@@ -7,6 +7,7 @@ import android.content.pm.PackageManager.*;
 import com.mcal.ModdedPE.widget.*;
 import android.graphics.*;
 import com.mcal.ModdedPE.*;
+import com.mcal.ModdedPE.utils.*;
 
 public class NModManager
 {
@@ -85,12 +86,12 @@ public class NModManager
 			}
 			catch (PackageManager.NameNotFoundException e)
 			{
-				File nmod_file=new File("/data/data/" + contextThis.getPackageName() + "/nmod_packs/" + packageName);
+				File nmod_file=new File(new FilePathManager(contextThis).getNModLibsPath() + File.separator + packageName);
 				if (nmod_file.exists())
 				{
 					try
 					{
-						NMod newZippedNMod = new ZippedNMod(contextThis, nmod_file);
+						ZippedNMod newZippedNMod = new ZippedNMod(contextThis, nmod_file);
 						addNewNMod(newZippedNMod);
 					}
 					catch (IOException e2)
