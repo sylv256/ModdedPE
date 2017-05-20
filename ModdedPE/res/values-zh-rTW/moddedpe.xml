@@ -72,6 +72,8 @@
 	<string name="no_available_mcpe_version_found">ModdedPE不支持您安裝的 我的世界攜帶版 %1$s！（只支持%2$s）如果您繼續打開遊戲，ModdedPE可能會崩潰或者造成錯誤。</string>
 	<string name="no_available_mcpe_version_found_title">不支持的 我的世界携带版</string>
 	<string name="no_available_mcpe_version_continue">繼續</string>
+	<string name="safe_mode_on_title">安全模式已開啟</string>
+	<string name="safe_mode_on_message">開啟安全模式時，ModdedPE不會加載任何NMod，並且設置中的功能也不會工作。</string>
 	<string name="no_mcpe_found">ModdedPE是 我的世界攜帶版 的一个啟動器，但是我們沒有在這台設備上發現Mojang的 我的世界攜帶版。</string>
 	<string name="no_mcpe_found_title">未發現 我的世界攜帶版</string>
 	

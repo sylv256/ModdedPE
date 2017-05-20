@@ -155,18 +155,42 @@ public class ModdedPEMainActivity extends MCDActivity
 
 	private void startMinecraft()
 	{
-		Intent i=null;
 		if (new UtilsSettings(ModdedPEMainActivity.this).getSafeMode())
 		{
-			i = new Intent(ModdedPEMainActivity.this, ModdedPESafeModeMinecraftActivity.class);
+			new AlertDialog.Builder(this).setTitle(R.string.safe_mode_on_title).setMessage(R.string.safe_mode_on_message).
+			setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+				{
+
+					@Override
+					public void onClick(DialogInterface p1, int p2)
+					{
+						Intent intent = null;
+						intent = new Intent(ModdedPEMainActivity.this, ModdedPESafeModeMinecraftActivity.class);
+						startActivity(intent);
+						finish();
+						p1.dismiss();
+					}
+					
+				
+			}).setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener()
+				{
+
+					@Override
+					public void onClick(DialogInterface p1, int p2)
+					{
+						p1.dismiss();
+					}
+					
+				
+			}).show();
 		}
 		else
 		{
-			i = new Intent(ModdedPEMainActivity.this, ModdedPEMinecraftActivity.class);
+			Intent intent = null;
+			intent = new Intent(ModdedPEMainActivity.this, ModdedPEMinecraftActivity.class);
+			startActivity(intent);
+			finish();
 		}
-		startActivity(i);
-		finish();
-		
 	}
 
 	private class MainFragmentPagerAdapter extends FragmentPagerAdapter

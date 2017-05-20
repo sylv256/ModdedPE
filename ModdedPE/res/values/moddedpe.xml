@@ -71,9 +71,11 @@
 	<string name="no_available_mcpe_version_found">ModdedPE has found a unsupported version of Minecraft:PE (%1$s) on this device.(ModdedPE only supports %2$s!)If you continue to open the game,ModdedPE may crash or cause issues.</string>
 	<string name="no_available_mcpe_version_found_title">Unsupported Version of Minecraft:PE</string>
 	<string name="no_available_mcpe_version_continue">Continue</string>
+	<string name="safe_mode_on_title">Safe Mode is Active</string>
+	<string name="safe_mode_on_message">With same mode on,ModdedPE won\'t load any NMod and all functions in ModdedPE\'s settings won\'t work.</string>
 	<string name="no_mcpe_found">ModdedPE is a launcher of Minecraft:PE,but we haven\'t find Minecraft:PE(Made by Mojang) on this device.</string>
 	<string name="no_mcpe_found_title">Minecraft:PE not found.</string>
-
+	
 	<!--Start Activity-->
 	<string name="start_warning_xposed_title">Warning</string>
 	<string name="start_warning_xposed_message">We have found Xposed on this device.ModdedPE may not work with Xposed Framework on.Please make sure you have disabled Xposed Framework.</string>
