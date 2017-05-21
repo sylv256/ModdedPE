@@ -106,7 +106,6 @@
 				android:text="@string/about_copyright_info_title"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
-				android:gravity="center"
 				android:singleLine="true"/>
 
 			<android.support.v7.widget.AppCompatTextView
@@ -115,8 +114,7 @@
 				android:layout_width="match_parent"
 				android:text="@string/about_copyright_info_message"
 				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:gravity="center"/>
+				android:layout_marginRight="10dp"/>
 
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -188,6 +186,14 @@
 					android:layout_toRightOf="@id/moddedpe_cutline_textview"/>
 
 			</RelativeLayout>
+			
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:text="@string/about_cr_title"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"/>
 
 			<RelativeLayout
 				android:layout_width="match_parent"
@@ -284,6 +290,53 @@
 					android:layout_centerVertical="true"/>
 
 			</RelativeLayout>
+			
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceSmall"
+					android:layout_width="wrap_content"
+					android:text="@string/about_translators"
+					android:id="@+id/moddedpe_cutline_textview"
+					android:layout_marginLeft="10dp"/>
+
+				<View
+					android:layout_width="match_parent"
+					android:layout_height="1dp"
+					android:background="#6E6E6E"
+					android:layout_centerVertical="true"
+					android:layout_marginLeft="5dp"
+					android:layout_marginRight="5dp"
+					android:layout_toRightOf="@id/moddedpe_cutline_textview"/>
+
+			</RelativeLayout>
+			
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:text="@string/about_translators_default"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"/>
+
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:text="@string/about_translators_zh_rcn"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"/>
+			
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:text="@string/about_translators_zh_rtw"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"/>
 
 		</LinearLayout>
 

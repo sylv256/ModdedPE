@@ -11,10 +11,4 @@ public class ModdedPENModFilePickerActivity extends MCDActivity
 		super.onCreate(savedInstanceState);
 		
 	}
-
-	@Override
-	public View findViewById(int id)
-	{
-		return super.findViewById(id);
-	}
 }

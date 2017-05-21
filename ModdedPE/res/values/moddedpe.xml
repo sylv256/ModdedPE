@@ -54,11 +54,15 @@
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 	<string name="about_author">MADE BY ModelPart.[Twitter: @model_part]</string>
 	<string name="about_translators">Translators</string>
+	<string name="about_translators_zh_rcn">zh-rCN translated by ModelPart</string>
+	<string name="about_translators_zh_rtw">zh-rTW translated by ModelPart</string>
+	<string name="about_translators_default">Default(en) translated by ModelPart,proofreaded by KenMizz.</string>
 	<string name="about_copyright_info_title">ModdedPE is licensed under the Apache License 2.0.</string>
 	<string name="about_copyright_info_message">Apache License 2.0 is a permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.</string>
 	<string name="about_view_github">View Github</string>
 	<string name="about_view_apache_license_2_0">View Apache License 2.0</string>
 	<string name="about_view_gnu_lesser_license">View GNU Lesser General Public License.</string>
+	<string name="about_cr_title">ModdedPE includes the following libraries：</string>
 	<string name="about_cr_substrate">Cydia Substrate framework by Saurik, licensed under the GNU Lesser General Public License.</string>
 	<string name="about_cr_cardview">Card View Library, licensed under the Apache License 2.0.</string>
 	<string name="about_cr_android_support">Android Support Library, licensed under the Apache License 2.0.</string>
