@@ -49,8 +49,21 @@
 	<string name="nmod_description_about_version_name">版本名：</string>
 	<string name="nmod_description_unknow">未填写</string>
 	<!--About-->
-	<string name="about_copyright">Copyright</string>
-	<string name="about_license">开源许可</string>
+	<string name="about_copyright">版权</string>
+	<string name="about_license">开放源代码许可</string>
+	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
+	<string name="about_author">ModelPart制作。[推特：@model_part，贴吧/MCBBS/MCPE+/M社：@ModelPart]</string>
+	<string name="about_translators">翻译人员</string>
+	<string name="about_copyright_info_title">ModdedPE在Apache License 2.0许可下。</string>
+	<string name="about_copyright_info_message">Apache License 2.0是一个许可证，其主要条件要求保留版权和许可证通知。贡献者提供专利权的明确授予。在此基础上许可的作品、修改过的作品可以不同的条款分发，同时可以不开放源代码。</string>
+	<string name="about_view_github">查看Github</string>
+	<string name="about_view_apache_license_2_0">查看Apache License 2.0</string>
+	<string name="about_view_gnu_lesser_license">查看GNU Lesser General Public License.</string>
+	<string name="about_cr_substrate">Saurik的Cydia Substrate框架，在GNU Lesser General Public License许可下。</string>
+	<string name="about_cr_cardview">Card View库，在Apache License 2.0许可下。</string>
+	<string name="about_cr_android_support">Android Support库,在Apache License 2.0许可下。</string>
+	<string name="about_cr_support_design">Support Design库,在Apache License 2.0许可下。</string>
+	
 
 	<!--Settings-->
 	<string name="settings_autoSaveLevel">自动保存世界</string>

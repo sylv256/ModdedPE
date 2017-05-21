@@ -40,6 +40,7 @@
 				android:layout_width="match_parent"
 				android:text="@string/app_name"
 				android:layout_marginLeft="15dp"
+				android:singleLine="true"
 				android:layout_marginRight="15dp"
 				android:gravity="center"/>
 
@@ -48,6 +49,7 @@
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_width="match_parent"
 				android:text="@string/app_version"
+				android:singleLine="true"
 				android:layout_marginLeft="15dp"
 				android:layout_marginRight="15dp"
 				android:gravity="center"/>
@@ -59,6 +61,7 @@
 				android:text="@string/about_copyright_owner"
 				android:layout_marginLeft="15dp"
 				android:layout_marginRight="15dp"
+				android:singleLine="true"
 				android:gravity="center"
 				android:layout_marginTop="10dp"/>
 
@@ -68,20 +71,21 @@
 				android:layout_width="match_parent"
 				android:text="@string/about_author"
 				android:layout_marginLeft="15dp"
+				android:singleLine="true"
 				android:layout_marginRight="15dp"
-				android:gravity="center"/>
+				android:gravity="center"
+				android:layout_marginBottom="35dp"/>
 
 			<RelativeLayout
 				android:layout_width="match_parent"
-				android:orientation="horizontal"
 				android:layout_height="wrap_content">
 
-				<TextView
+				<android.support.v7.widget.AppCompatTextView
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
 					android:text="@string/about_copyright"
-					android:id="@+id/moddedpenmodAboutTextViewAboutTitle"
+					android:id="@+id/moddedpe_cutline_textview"
 					android:layout_marginLeft="10dp"/>
 
 				<View
@@ -90,52 +94,88 @@
 					android:background="#6E6E6E"
 					android:layout_centerVertical="true"
 					android:layout_marginLeft="5dp"
-					android:layout_toRightOf="@id/moddedpenmodAboutTextViewAboutTitle"/>
+					android:layout_marginRight="5dp"
+					android:layout_toRightOf="@id/moddedpe_cutline_textview"/>
 
 			</RelativeLayout>
 
-			<TextView
+			<android.support.v7.widget.AppCompatTextView
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="match_parent"
-				android:text="Copyright © 2016-2017 MCAL Team"
+				android:text="@string/about_copyright_info_title"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
 				android:gravity="center"
 				android:singleLine="true"/>
 
-			<TextView
+			<android.support.v7.widget.AppCompatTextView
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="match_parent"
-				android:text="Made by ModelPart (Twitter:@model_part)"
+				android:text="@string/about_copyright_info_message"
 				android:layout_marginLeft="10dp"
 				android:layout_marginRight="10dp"
-				android:gravity="center"
-				android:singleLine="true"/>
-
-			<TextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="match_parent"
-				android:text="https://github.com/MCAL-Team/ModdedPE"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:gravity="center"
-				android:singleLine="true"
-				android:textIsSelectable="true"/>
+				android:gravity="center"/>
 
 			<RelativeLayout
 				android:layout_width="match_parent"
-				android:orientation="horizontal"
 				android:layout_height="wrap_content">
 
-				<TextView
+				<android.support.design.widget.FloatingActionButton
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:src="@drawable/ic_github"
+					android:id="@+id/moddedpe_floating_action_button"
+					android:layout_centerInParent="false"
+					android:layout_margin="10dp"
+					android:layout_centerVertical="true"
+					android:onClick="onViewGithubClicked"/>
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/about_view_github"
+					android:layout_toRightOf="@id/moddedpe_floating_action_button"
+					android:layout_centerVertical="true"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<android.support.design.widget.FloatingActionButton
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:src="@drawable/ic_document"
+					android:id="@+id/moddedpe_floating_action_button"
+					android:layout_centerInParent="false"
+					android:layout_margin="10dp"
+					android:layout_centerVertical="true"
+					android:onClick="onViewApacheLicenseClicked"/>
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/about_view_apache_license_2_0"
+					android:layout_toRightOf="@id/moddedpe_floating_action_button"
+					android:layout_centerVertical="true"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<android.support.v7.widget.AppCompatTextView
 					android:layout_height="wrap_content"
 					android:textAppearance="?android:attr/textAppearanceSmall"
 					android:layout_width="wrap_content"
 					android:text="@string/about_license"
-					android:id="@+id/moddedpenmodAboutTextViewLicenseTitle"
+					android:id="@+id/moddedpe_cutline_textview"
 					android:layout_marginLeft="10dp"/>
 
 				<View
@@ -144,53 +184,106 @@
 					android:background="#6E6E6E"
 					android:layout_centerVertical="true"
 					android:layout_marginLeft="5dp"
-					android:layout_toRightOf="@id/moddedpenmodAboutTextViewLicenseTitle"/>
+					android:layout_marginRight="5dp"
+					android:layout_toRightOf="@id/moddedpe_cutline_textview"/>
 
 			</RelativeLayout>
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
+			<RelativeLayout
 				android:layout_width="match_parent"
-				android:text="Android Support v4 under Apache License 2.0."
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:gravity="center"
-				android:singleLine="true"
-				android:textIsSelectable="true"/>
+				android:layout_height="wrap_content">
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="match_parent"
-				android:text="Android Support v7 under Apache License 2.0."
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:gravity="center"
-				android:singleLine="true"
-				android:textIsSelectable="true"/>
+				<android.support.design.widget.FloatingActionButton
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:src="@drawable/ic_document"
+					android:id="@+id/moddedpe_floating_action_button"
+					android:layout_centerInParent="false"
+					android:layout_margin="10dp"
+					android:layout_centerVertical="true"
+					android:onClick="onGNULesserGeneralPublicLicenseClicked"/>
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="match_parent"
-				android:text="Support Design under Apache License 2.0."
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:gravity="center"
-				android:singleLine="true"
-				android:textIsSelectable="true"/>
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/about_cr_substrate"
+					android:layout_toRightOf="@id/moddedpe_floating_action_button"
+					android:layout_centerVertical="true"/>
 
-			<TextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
+			</RelativeLayout>
+
+			<RelativeLayout
 				android:layout_width="match_parent"
-				android:text="CardView under Apache License 2.0."
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:gravity="center"
-				android:singleLine="true"
-				android:textIsSelectable="true"/>
+				android:layout_height="wrap_content">
+
+				<android.support.design.widget.FloatingActionButton
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:src="@drawable/ic_document"
+					android:id="@+id/moddedpe_floating_action_button"
+					android:layout_centerInParent="false"
+					android:layout_margin="10dp"
+					android:layout_centerVertical="true"
+					android:onClick="onViewApacheLicenseClicked"/>
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/about_cr_cardview"
+					android:layout_toRightOf="@id/moddedpe_floating_action_button"
+					android:layout_centerVertical="true"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<android.support.design.widget.FloatingActionButton
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:src="@drawable/ic_document"
+					android:id="@+id/moddedpe_floating_action_button"
+					android:layout_centerInParent="false"
+					android:layout_margin="10dp"
+					android:layout_centerVertical="true"
+					android:onClick="onViewApacheLicenseClicked"/>
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/about_cr_android_support"
+					android:layout_toRightOf="@id/moddedpe_floating_action_button"
+					android:layout_centerVertical="true"/>
+
+			</RelativeLayout>
+
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<android.support.design.widget.FloatingActionButton
+					android:layout_height="50dp"
+					android:layout_width="50dp"
+					android:src="@drawable/ic_document"
+					android:id="@+id/moddedpe_floating_action_button"
+					android:layout_centerInParent="false"
+					android:layout_margin="10dp"
+					android:layout_centerVertical="true"
+					android:onClick="onViewApacheLicenseClicked"/>
+
+				<android.support.v7.widget.AppCompatTextView
+					android:layout_height="wrap_content"
+					android:textAppearance="?android:attr/textAppearanceMedium"
+					android:layout_width="wrap_content"
+					android:text="@string/about_cr_support_design"
+					android:layout_toRightOf="@id/moddedpe_floating_action_button"
+					android:layout_centerVertical="true"/>
+
+			</RelativeLayout>
 
 		</LinearLayout>
 

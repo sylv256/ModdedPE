@@ -54,6 +54,15 @@
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 	<string name="about_author">MADE BY ModelPart.[Twitter: @model_part]</string>
 	<string name="about_translators">Translators</string>
+	<string name="about_copyright_info_title">ModdedPE is licensed under the Apache License 2.0.</string>
+	<string name="about_copyright_info_message">Apache License 2.0 is a permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.</string>
+	<string name="about_view_github">View Github</string>
+	<string name="about_view_apache_license_2_0">View Apache License 2.0</string>
+	<string name="about_view_gnu_lesser_license">View GNU Lesser General Public License.</string>
+	<string name="about_cr_substrate">Cydia Substrate framework by Saurik, licensed under the GNU Lesser General Public License.</string>
+	<string name="about_cr_cardview">Card View Library, licensed under the Apache License 2.0.</string>
+	<string name="about_cr_android_support">Android Support Library, licensed under the Apache License 2.0.</string>
+	<string name="about_cr_support_design">Support Design Library, licensed under the Apache License 2.0.</string>
 	
 	<!--Settings-->
 	<string name="settings_autoSaveLevel">Auto Save Level</string>
@@ -64,6 +73,7 @@
 	<string name="settings_redstoneDot">Restone Dot</string>
 	<string name="settings_customFlatWorldLayers">Custom Flat World Layers</string>
 	<string name="settings_disableTextureIsotropic">Disable Texture Isotropic</string>
+	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
 	<string name="opengame_loading">Loading</string>
