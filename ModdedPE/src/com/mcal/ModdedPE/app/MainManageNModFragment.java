@@ -1,4 +1,5 @@
 package com.mcal.ModdedPE.app;
+import android.app.*;
 import android.content.*;
 import android.graphics.drawable.*;
 import android.os.*;
@@ -12,6 +13,9 @@ import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nmod.*;
 import java.util.*;
+
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 
 public class MainManageNModFragment extends Fragment
 {
@@ -55,6 +59,16 @@ public class MainManageNModFragment extends Fragment
 
 			});
 		return manage_nmod_view;
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		if (resultCode == Activity.RESULT_OK)
+		{
+			
+		}
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	public class AdapterActive extends BaseAdapter 
@@ -171,8 +185,6 @@ public class MainManageNModFragment extends Fragment
 
 		AdapterDisabled adapterDisabled = new AdapterDisabled();
 		managenmod_listViewDisabled.setAdapter(adapterDisabled);
-
-		//updateNewsLayout();
 	}
 
 	public class AdapterDisabled extends BaseAdapter 
@@ -301,6 +313,7 @@ public class MainManageNModFragment extends Fragment
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
+					ModdedPENModFilePickerActivity.startThisActivity(getActivity());
 					p1.dismiss();
 				}
 
