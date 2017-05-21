@@ -14,13 +14,27 @@
 			android:layout_height="match_parent"
 			android:orientation="vertical">
 
-			<ImageView
+			<android.support.v7.widget.AppCompatImageView
 				android:layout_height="wrap_content"
 				android:layout_width="match_parent"
-				android:src="@drawable/ic_launcher"
+				android:src="@drawable/title_logo"
+				android:layout_margin="10dp"
+				android:scaleType="fitXY"
+				android:adjustViewBounds="true"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="#6E6E6E"
+				android:layout_margin="5dp"/>
+
+			<android.support.v7.widget.AppCompatImageView
+				android:layout_height="100dp"
+				android:layout_width="match_parent"
+				android:src="@drawable/icon_hdpi"
 				android:layout_margin="30dp"/>
 
-			<TextView
+			<android.support.v7.widget.AppCompatTextView
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:layout_width="match_parent"
@@ -29,20 +43,30 @@
 				android:layout_marginRight="15dp"
 				android:gravity="center"/>
 
-			<TextView
+			<android.support.v7.widget.AppCompatTextView
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceMedium"
 				android:layout_width="match_parent"
-				android:text="Copyright © MCAL Team,Nextdev"
+				android:text="@string/app_version"
 				android:layout_marginLeft="15dp"
 				android:layout_marginRight="15dp"
 				android:gravity="center"/>
 
-			<TextView
+			<android.support.v7.widget.AppCompatTextView
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="match_parent"
-				android:text="MADE BY ModelPart"
+				android:text="@string/about_copyright_owner"
+				android:layout_marginLeft="15dp"
+				android:layout_marginRight="15dp"
+				android:gravity="center"
+				android:layout_marginTop="10dp"/>
+
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="match_parent"
+				android:text="@string/about_author"
 				android:layout_marginLeft="15dp"
 				android:layout_marginRight="15dp"
 				android:gravity="center"/>
