@@ -54,7 +54,7 @@
 	<string name="about_copyright">Copyright</string>
 	<string name="about_license">Licenses</string>
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
-	<string name="about_author">MADE BY ModelPart.[Twitter: @model_part]</string>
+	<string name="about_author">MADE BY ModelPart[Twitter: @model_part]</string>
 	<string name="about_translators">Translators</string>
 	<string name="about_translators_zh_rcn">zh-rCN translated by ModelPart</string>
 	<string name="about_translators_zh_rtw">zh-rTW translated by ModelPart</string>

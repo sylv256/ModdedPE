@@ -54,7 +54,7 @@
 	<string name="about_copyright">版权</string>
 	<string name="about_license">开放源代码许可</string>
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
-	<string name="about_author">ModelPart制作。[推特：@model_part，贴吧/MCBBS/MCPE+/M社：@ModelPart]</string>
+	<string name="about_author">ModelPart制作[微博：@ModelPart]</string>
 	<string name="about_translators">翻译人员</string>
 	<string name="about_translators_zh_rcn">zh-rCN，ModelPart翻译。</string>
 	<string name="about_translators_zh_rtw">zh-rTW，ModelPart翻译。</string>
