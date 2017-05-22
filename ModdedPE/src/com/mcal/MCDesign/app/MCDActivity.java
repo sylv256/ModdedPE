@@ -54,9 +54,14 @@ public class MCDActivity extends AppCompatActivity
 	{
 		super.setTitle(titleId);
 
-		View actionBarCustomView=getSupportActionBar().getCustomView();
-		AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
-		titleTV.setText(titleId);
+		try
+		{
+			View actionBarCustomView=getSupportActionBar().getCustomView();
+			AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
+			titleTV.setText(titleId);
+		}
+		catch (Throwable t)
+		{}
 	}
 
 	@Override
@@ -64,25 +69,40 @@ public class MCDActivity extends AppCompatActivity
 	{
 		super.setTitle(title);
 
-		View actionBarCustomView=getSupportActionBar().getCustomView();
-		AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
-		titleTV.setText(title);
+		try
+		{
+			View actionBarCustomView=getSupportActionBar().getCustomView();
+			AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
+			titleTV.setText(title);
+		}
+		catch (Throwable t)
+		{}
 	}
 
 	protected void setActionBarViewRight(View view)
 	{
-		View actionBarCustomView=getSupportActionBar().getCustomView();
-		RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewRight);
-		layout.removeAllViews();
-		layout.addView(view);
+		try
+		{
+			View actionBarCustomView=getSupportActionBar().getCustomView();
+			RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewRight);
+			layout.removeAllViews();
+			layout.addView(view);
+		}
+		catch (Throwable t)
+		{}
 	}
 
 	protected void setActionBarViewLeft(View view)
 	{
-		View actionBarCustomView=getSupportActionBar().getCustomView();
-		RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewLeft);
-		layout.removeAllViews();
-		layout.addView(view);
+		try
+		{
+			View actionBarCustomView=getSupportActionBar().getCustomView();
+			RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewLeft);
+			layout.removeAllViews();
+			layout.addView(view);
+		}
+		catch (Throwable t)
+		{}
 	}
 
 	protected void setActionBarButtonCloseRight()

@@ -303,6 +303,7 @@ public class MainManageNModFragment extends Fragment
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
+					ModdedPENModPackagePickerActivity.startThisActivity(getActivity());
 					p1.dismiss();
 				}
 

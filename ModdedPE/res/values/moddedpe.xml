@@ -6,17 +6,19 @@
 	<string name="manage_nmod_title">Manage NMods</string>
 	<string name="settings_title">Settings</string>
 	<string name="about_title">About</string>
+	<string name="nmod_picker_file_title">Pick NMod (Storage)</string>
+	<string name="nmod_picker_package_title">Pick NMod (Apps)</string>
 	<string name="main_title">Home Page</string>
 	
 	<!--NMod-->
 	<string name="nmod_loadFailed">Load %1$s Failed!</string>
 	<string name="load_fail_msg">Load Error:</string>
-	<string name="load_fail_description">NMod load failed,but the game still can run.</string>
+	<string name="load_fail_description">NMod load failed,but the game can still be opened.</string>
 	<string name="nmod_load_failed">Failed to load NMod.</string>
 	<string name="nmod_add_new">Add New</string>
 	<string name="nmod_add_new_title">Add New...</string>
 	<string name="nmod_add_new_message">Where do you want to pick NMod from?</string>
-	<string name="nmod_add_new_pick_installed">Installed</string>
+	<string name="nmod_add_new_pick_installed">Apps</string>
 	<string name="nmod_add_new_pick_storage">Storage</string>
 	<string name="load_exception_bad_jni_return_value">Bad return value in method JNI_OnLoad!</string>
 	<string name="load_exception_bad_jni_return_value_d">Please create method JNI_OnLoad and return JNI_VERSION value in it!</string>
@@ -80,7 +82,10 @@
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
-	<string name="opengame_loading">Loading</string>
+	<string name="opengame_loading">Loading...</string>
+	
+	<!--Pick NMod from installed-->
+	<string name="pick_nmod_loading">Loading...</string>
 	
 	<!--Main Activity-->
 	<string name="main_play">Play</string>

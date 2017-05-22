@@ -7,7 +7,9 @@
 	<string name="settings_title">设置</string>
 	<string name="about_title">关于</string>
 	<string name="main_title">主页</string>
-
+	<string name="nmod_picker_file_title">选择NMod（存储）</string>
+	<string name="nmod_picker_package_title">选择NMod (应用)</string>
+	
 	<!--NMod-->
 	<string name="nmod_loadFailed">%1$s 加载失败！</string>
 	<string name="load_fail_msg">错误报告：</string>
@@ -82,6 +84,9 @@
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">加载中...</string>
 
+	<!--Pick NMod from installed-->
+	<string name="pick_nmod_loading">加载中...</string>
+	
 	<!--Main Activity-->
 	<string name="main_play">开始游戏</string>
 	<string name="main_default_minecraft_title">我的世界携带版：原版</string>

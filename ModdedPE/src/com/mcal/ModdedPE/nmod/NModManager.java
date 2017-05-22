@@ -105,11 +105,11 @@ public class NModManager
 		refreshDatas();
 	}
 
-	public Vector<String> findInstalledNMods()
+	public Vector<NMod> findInstalledNMods()
 	{
 		PackageManager packageManager = contextThis.getPackageManager();
 		List<PackageInfo> infos=packageManager.getInstalledPackages(0);
-		Vector<String> ret = new Vector<String>();
+		Vector<NMod> ret = new Vector<NMod>();
 		for (PackageInfo info:infos)
 		{
 			try
@@ -119,7 +119,7 @@ public class NModManager
 				if (is != null)
 				{
 					is.close();
-					ret.add(info.applicationInfo.packageName);
+					ret.add(new PackagedNMod(contextThis,contextPackage));
 				}
 			}
 			catch (Throwable e)

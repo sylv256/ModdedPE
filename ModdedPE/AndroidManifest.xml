@@ -137,12 +137,14 @@
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModFilePickerActivity"
 			android:theme="@style/AppTheme"
+			android:label="@string/nmod_picker_file_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModPackagePickerActivity"
 			android:theme="@style/AppTheme"
+			android:label="@string/nmod_picker_package_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 		
