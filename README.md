@@ -15,4 +15,8 @@ Support Design Library, licensed under the Apache License 2.0.<br>
 ### Privacy Policy
 <https://github.com/MCAL-Team/ModdedPE/tree/master/PrivacyPolicy>
 
+### Author
+> [ModelPart][2]
+
 [1]: https://raw.githubusercontent.com/MCAL-Team/ModdedPE/master/Art/title_logo.png
+[2]: https://github.com/ModelPart
