@@ -46,7 +46,6 @@
 	<string name="load_exception_invalid_package_name_d">Please make sure that the package name is a valid java-style package name.</string>
 	<string name="load_exception_lang_undefined_path">Undefined file path.</string>
 	<string name="load_exception_lang_undefined_path_d">Please define the element "path" in the language item:%1$s.</string>
-	
 	<string name="load_exception_bad_image_size">Bad image size:description image should be 1024(width)*500(height).</string>
 	<string name="load_exception_bad_image_size_d">Please change image size to 1024(width)*500(height).</string>
 	<string name="load_fail_main">Error Description</string>
