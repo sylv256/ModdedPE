@@ -15,7 +15,10 @@ public class ModdedPENModFilePickerActivity extends MCDActivity
 {
 	private File currentPath;
 	private Vector<File> filesInCurrentPath;
+	private SelectHandler mSelectHandler = new SelectHandler();
 
+	private static final int MSG_SELECT = 1;
+	public static final int REQUEST_PICK_FILE = 2;
 	public final static String TAG_FILE_PATH = "file_path";
 
 	@Override
@@ -23,10 +26,10 @@ public class ModdedPENModFilePickerActivity extends MCDActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.nmod_picker_file);
-		
-		setResult(RESULT_CANCELED,new Intent());
+
+		setResult(RESULT_CANCELED, new Intent());
 		setActionBarButtonCloseRight();
-		
+
 		String pathString = null;
 		try
 		{
@@ -49,12 +52,26 @@ public class ModdedPENModFilePickerActivity extends MCDActivity
 		return super.onOptionsItemSelected(item);
 	}
 
-	private void select(File file)
+	private void select(File file_arg)
 	{
-		if (file.isDirectory())
-			openDirectory(file);
-		else
-			selectFile(file);
+		final File file = file_arg;
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				try
+				{
+					Thread.sleep(450);
+				}
+				catch (InterruptedException e)
+				{}
+				Message mMessage = new Message();
+				mMessage.what = MSG_SELECT;
+				mMessage.obj = file;
+				mSelectHandler.sendMessage(mMessage);
+			}
+		}.start();
 	}
 
 	private void openDirectory(File directory)
@@ -136,14 +153,7 @@ public class ModdedPENModFilePickerActivity extends MCDActivity
 							@Override
 							public void onClick(View p1)
 							{
-								if (currentPath.getPath().lastIndexOf(File.separator) != -1 || currentPath.getPath().equals(File.separator))
-								{
-									String pathStr = currentPath.getPath().substring(0, currentPath.getPath().lastIndexOf(File.separator));
-									if (pathStr.isEmpty())
-										pathStr = File.separator;
-									File lastFile = new File(pathStr);
-									openDirectory(lastFile);
-								}
+								select(null);
 							}
 
 
@@ -226,6 +236,34 @@ public class ModdedPENModFilePickerActivity extends MCDActivity
 
 	}
 
+	private class SelectHandler extends Handler
+	{
+		@Override
+		public void handleMessage(Message msg)
+		{
+			super.handleMessage(msg);
+			if (msg.what == MSG_SELECT)
+			{
+				File file = (File)msg.obj;
+				if (file == null)
+				{
+					if (currentPath.getPath().lastIndexOf(File.separator) != -1 || currentPath.getPath().equals(File.separator))
+					{
+						String pathStr = currentPath.getPath().substring(0, currentPath.getPath().lastIndexOf(File.separator));
+						if (pathStr.isEmpty())
+							pathStr = File.separator;
+						File lastFile = new File(pathStr);
+						openDirectory(lastFile);
+					}
+				}
+				else if (file.isDirectory())
+					openDirectory(file);
+				else
+					selectFile(file);
+			}
+		}
+	}
+
 	public static void startThisActivity(Activity context, File path)
 	{
 		startThisActivity(context, path.getPath());
@@ -237,7 +275,7 @@ public class ModdedPENModFilePickerActivity extends MCDActivity
 		Bundle extras = new Bundle();
 		extras.putString(TAG_FILE_PATH, path);
 		intent.putExtras(extras);
-		context.startActivityForResult(intent, 0);
+		context.startActivityForResult(intent, REQUEST_PICK_FILE);
 	}
 
 	public static void startThisActivity(Activity context)

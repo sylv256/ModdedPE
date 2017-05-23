@@ -22,7 +22,7 @@ public class NModManager
 	public static void reCalculate(Context c)
 	{
 		instance = new NModManager(c);
-		instance.searchAndAddNMod();
+		instance.preAddNMod();
 	}
 
 	public static NModManager getNModManager(Context c)
@@ -58,7 +58,7 @@ public class NModManager
 		return allNMods;
 	}
 
-	public void searchAndAddNMod()
+	private void preAddNMod()
 	{
 		allNMods = new Vector<NMod>();
 		activeNMods = new Vector<NMod>();
@@ -71,10 +71,10 @@ public class NModManager
 		{
 			try
 			{
-				Context contextPackage=contextThis.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+				Context contextPackage = contextThis.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
 				try
 				{
-					InputStream is=contextPackage.getAssets().open(NMod.TAG_MANIFEST_NAME);
+					InputStream is = contextPackage.getAssets().open(NMod.MANIFEST_NAME);
 					if (is != null)
 					{
 						is.close();
@@ -108,24 +108,20 @@ public class NModManager
 	public Vector<NMod> findInstalledNMods()
 	{
 		PackageManager packageManager = contextThis.getPackageManager();
-		List<PackageInfo> infos=packageManager.getInstalledPackages(0);
+		List<PackageInfo> infos = packageManager.getInstalledPackages(0);
 		Vector<NMod> ret = new Vector<NMod>();
 		for (PackageInfo info:infos)
 		{
 			try
 			{
-				Context contextPackage=contextThis.createPackageContext(info.applicationInfo.packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
-				InputStream is=contextPackage.getAssets().open(NMod.TAG_MANIFEST_NAME);
-				if (is != null)
-				{
-					is.close();
-					ret.add(new PackagedNMod(contextThis,contextPackage));
-				}
+				Context contextPackage = contextThis.createPackageContext(info.applicationInfo.packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+				contextPackage.getAssets().open(NMod.MANIFEST_NAME).close();
+				ret.add(new PackagedNMod(contextThis,contextPackage));
 			}
-			catch (Throwable e)
-			{
-
-			}
+			catch (IOException e)
+			{}
+			catch(PackageManager.NameNotFoundException notFoundE)
+			{}
 		}
 		return ret;
 	}

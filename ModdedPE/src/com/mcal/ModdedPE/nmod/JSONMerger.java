@@ -56,9 +56,9 @@ public class JSONMerger
 	private static JSONObject mergeObject(JSONObject object1, JSONObject object2) throws JSONException
 	{
 		Iterator iter = object2.keys();
-		for (int index=0;iter.hasNext();++index)
+		for (int index = 0;iter.hasNext();++index)
 		{
-			String name=(String)iter.next();
+			String name = (String)iter.next();
 			judgeTypeAndPut(object1, object2, name);
 		}
 		return object1;
@@ -66,7 +66,7 @@ public class JSONMerger
 
 	private static JSONArray mergeArray(JSONArray array1, JSONArray array2) throws JSONException
 	{
-		for (int index=0;index < array2.length();++index)
+		for (int index = 0;index < array2.length();++index)
 		{
 			judgeTypeAndPut(array1, array2, index);
 		}

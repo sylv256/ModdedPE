@@ -17,14 +17,19 @@ public abstract class NMod
 	protected NModLoader loader;
 	protected Bitmap icon;
 	protected Bitmap banner_image;
-	public static final String TAG_MANIFEST_NAME = "nmod_manifest.json";
+
+	public static final String MANIFEST_NAME = "nmod_manifest.json";
+	public static final int NMOD_TYPE_ZIPPED = 1;
+	public static final int NMOD_TYPE_PACKAGED = 2;
 
 	public abstract void load(String mcVer, String moddedpeVer) throws Exception;
 	public abstract String getPackageName();
 	public abstract AssetManager getAssets();
 	public abstract String getPackageResourcePath();
 	public abstract String getNativeLibsPath();
-	public abstract Bitmap createIcon();
+	public abstract int getNModType();
+	protected abstract Bitmap createIcon();
+	protected abstract InputStream createDataBeanInputStream();
 
 	public String[] getNativeLibs()
 	{
@@ -39,6 +44,8 @@ public abstract class NMod
 	public String getName()
 	{
 		if (isBugPack())
+			return getPackageName();
+		if (dataBean == null || dataBean.name == null)
 			return getPackageName();
 		return dataBean.name;
 	}
@@ -56,21 +63,21 @@ public abstract class NMod
 		Bitmap ret = null;
 		try
 		{
-			if (dataBean.version_info == null || dataBean.version_info.version_description_image == null)
+			if (dataBean == null || dataBean.banner_image_path == null)
 				return null;
-			InputStream is = getAssets().open(dataBean.version_info.version_description_image);
+			InputStream is = getAssets().open(dataBean.banner_image_path);
 			ret = BitmapFactory.decodeStream(is);
 		}
 		catch (IOException e)
 		{
-			throw NModLoadException.getFileNotFound(e, thisContext.getResources(), dataBean.version_info.version_description_image);
+			throw NModLoadException.getFileNotFound(e, thisContext.getResources(), dataBean.banner_image_path);
 		}
 		catch (Throwable t)
 		{
-			throw NModLoadException.getImageDecode(t, thisContext.getResources(), dataBean.version_info.version_description_image);
+			throw NModLoadException.getImageDecode(t, thisContext.getResources(), dataBean.banner_image_path);
 		}
 		if (ret == null)
-			throw NModLoadException.getImageDecode(null, thisContext.getResources(), dataBean.version_info.version_description_image);
+			throw NModLoadException.getImageDecode(null, thisContext.getResources(), dataBean.banner_image_path);
 
 		if (ret.getWidth() != 1024 || ret.getHeight() != 500)
 			throw NModLoadException.getBadImageSize(thisContext.getResources());
@@ -84,14 +91,14 @@ public abstract class NMod
 
 	public String getBannerTitle()
 	{
-		if (dataBean.version_info != null && dataBean.version_info.version_description_short != null)
-			return dataBean.name + " : " + dataBean.version_info.version_description_short;
-		return null;
+		if (dataBean != null && dataBean.banner_title != null)
+			return getName() + " : " + dataBean.banner_title;
+		return getName();
 	}
 
 	public boolean isValidBanner()
 	{
-		return getBannerImage() != null && getBannerTitle() != null;
+		return getBannerImage() != null;
 	}
 
 	public NModLanguageBean[] getLanguageBeans()
@@ -101,7 +108,7 @@ public abstract class NMod
 
 	private NModLoadException findLoadException()
 	{
-		NModLoadException ejson=checkJSONs();
+		NModLoadException ejson = checkJSONs();
 		if (ejson != null)
 			return ejson;
 		if (dataBean.languages != null)
@@ -110,11 +117,11 @@ public abstract class NMod
 			{
 				try
 				{
-					getAssets().open(lang.location);
+					getAssets().open(lang.path);
 				}
-				catch (IOException e)
+				catch (Throwable e)
 				{
-					return NModLoadException.getFileNotFound(e, thisContext.getResources(), lang.location);
+					return NModLoadException.getFileNotFound(e, thisContext.getResources(), lang.path);
 				}
 			}
 		}
@@ -184,7 +191,7 @@ public abstract class NMod
 		if (dataBean == null || !dataBean.check_json_syntax)
 			return null;
 
-		Vector<String> allFiles=new LoopFileSearcher(getAssets()).getAllFiles();
+		Vector<String> allFiles = new LoopFileSearcher(getAssets()).getAllFiles();
 		if (allFiles == null)
 			return null;
 
@@ -223,22 +230,22 @@ public abstract class NMod
 
 	public String getDescription()
 	{
-		if (dataBean.description != null)
+		if (dataBean != null && dataBean.description != null)
 			return dataBean.description;
 		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 
 	public String getAuthor()
 	{
-		if (dataBean.author != null)
+		if (dataBean != null && dataBean.author != null)
 			return dataBean.author;
 		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 
 	public String getVersionName()
 	{
-		if (dataBean.version_info != null && dataBean.version_info.version_name != null)
-			return dataBean.version_info.version_name;
+		if (dataBean != null && dataBean.version_name != null)
+			return dataBean.version_name;
 		return thisContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 
@@ -277,12 +284,12 @@ public abstract class NMod
 
 		try
 		{
-			InputStream is=getAssets().open(TAG_MANIFEST_NAME);
-			byte[] buffer=new byte[is.available()];
+			InputStream is = createDataBeanInputStream();
+			byte[] buffer = new byte[is.available()];
 			is.read(buffer);
-			String jsonStr=new String(buffer);
-			Gson gson=new Gson();
-			NModDataBean theDataBean=gson.fromJson(jsonStr, NModDataBean.class);
+			String jsonStr = new String(buffer);
+			Gson gson = new Gson();
+			NModDataBean theDataBean = gson.fromJson(jsonStr, NModDataBean.class);
 			dataBean = theDataBean;
 		}
 		catch (Exception e)
@@ -293,7 +300,7 @@ public abstract class NMod
 			return;
 		}
 
-		NModLoadException loadE=findLoadException();
+		NModLoadException loadE = findLoadException();
 		if (loadE != null)
 		{
 			dataBean = null;
@@ -314,7 +321,7 @@ public abstract class NMod
 			return;
 		}
 
-		NModOptions options=new NModOptions(thisContext);
+		NModOptions options = new NModOptions(thisContext);
 		isActive = options.isActive(this);
 		loader = new NModLoader(this);
 	}
@@ -327,7 +334,7 @@ public abstract class NMod
 	public static class NModLanguageBean
 	{
 		public String name = null;
-		public String location = null;
+		public String path = null;
 		public boolean format_space = false;
 	}
 
@@ -338,24 +345,20 @@ public abstract class NMod
 		//mode = replace / merge
 	}
 
-	public static class NModVersionBean
-	{
-		public String version_name = null;
-		public int version_code = -1;
-		public String version_description_short = null;
-		public String version_description = null;
-		public String version_description_image = null;
-	}
-
 	public static class NModDataBean
 	{
 		public String[] native_libs = null;
 		public String name = null;
 		public String package_name = null;
+		public String icon_path = null;
 		public String description = null;
 		public String author = null;
 		public NModLanguageBean[] languages = null;
-		public NModVersionBean version_info = null;
+		public String version_name = null;
+		public int version_code = -1;
+		public String banner_title = null;
+		public String banner_image_path = null;
+		public String new_version_info = null;
 		public boolean check_json_syntax = false;
 		public NModJsonEditBean[] json_edit = null;
 		public String[] parents_package_names = null;

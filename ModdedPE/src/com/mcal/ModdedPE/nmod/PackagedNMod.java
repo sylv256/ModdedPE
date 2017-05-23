@@ -26,6 +26,12 @@ public class PackagedNMod extends NMod
 	}
 
 	@Override
+	public int getNModType()
+	{
+		return NMOD_TYPE_PACKAGED;
+	}
+	
+	@Override
 	public String getNativeLibsPath()
 	{
 		return getPackageContext().getApplicationInfo().nativeLibraryDir;
@@ -72,5 +78,16 @@ public class PackagedNMod extends NMod
 		return null;
 	}
 
-
+	@Override
+	protected InputStream createDataBeanInputStream()
+	{
+		try
+		{
+			return getAssets().open(MANIFEST_NAME);
+		}
+		catch (IOException e)
+		{
+			return null;
+		}
+	}
 }

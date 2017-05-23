@@ -7,7 +7,9 @@ import com.mcal.ModdedPE.*;
 import android.support.v7.widget.*;
 import com.mcal.ModdedPE.utils.*;
 import android.graphics.*;
+import android.annotation.*;
 
+@SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 public class ConsoleTableView extends RelativeLayout
 {
 	public ConsoleTableView(Context c)

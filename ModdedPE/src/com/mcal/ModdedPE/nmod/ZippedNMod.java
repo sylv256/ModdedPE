@@ -15,11 +15,18 @@ public class ZippedNMod extends NMod
 	private ZipFile zipFile;
 	private File filePath;
 	private AssetManager assets;
+	
 	@Override
 	public void load(String mcVer, String moddedpeVer) throws Exception
 	{
 		copyNativeLibs();
 		getLoader().load(mcVer, moddedpeVer);
+	}
+	
+	@Override
+	public int getNModType()
+	{
+		return NMOD_TYPE_ZIPPED;
 	}
 
 	private void copyNativeLibs()
@@ -112,6 +119,19 @@ public class ZippedNMod extends NMod
 			imageStream = zipFile.getInputStream(zipFile.getEntry("icon.png"));
 			Bitmap ret = BitmapFactory.decodeStream(imageStream);
 			return ret;
+		}
+		catch (IOException e)
+		{
+			return null;
+		}
+	}
+	
+	@Override
+	protected InputStream createDataBeanInputStream()
+	{
+		try
+		{
+			return zipFile.getInputStream(zipFile.getEntry(MANIFEST_NAME));
 		}
 		catch (IOException e)
 		{

@@ -10,6 +10,7 @@ import android.os.*;
 import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.*;
 import android.support.v7.widget.*;
+import com.mcal.ModdedPE.app.*;
 
 @SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 public class NModBanner extends RelativeLayout
@@ -102,13 +103,25 @@ public class NModBanner extends RelativeLayout
 		return (RelativeLayout) LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_banner_item, null);
 	}
 
-	private RelativeLayout createBannerItemFor(NMod nmod)
+	private RelativeLayout createBannerItemFor(NMod nmod_for)
 	{
+		final NMod nmod = nmod_for;
 		RelativeLayout view = createEmptyBannerItem();
 		AppCompatImageView image = (AppCompatImageView)view.findViewById(R.id.moddedpe_nmod_banner_item_image_view);
 		image.setImageBitmap(nmod.getBannerImage());
 		AppCompatTextView bannerTitle = (AppCompatTextView)view.findViewById(R.id.moddedpe_nmod_banner_item_text_view_title);
 		bannerTitle.setText(nmod.getBannerTitle());
+		view.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					ModdedPENModDescriptionActivity.startThisActivity(getContext(),nmod);
+				}
+				
+			
+		});
 		return view;
 	}
 

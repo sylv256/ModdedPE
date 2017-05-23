@@ -48,7 +48,7 @@ public class NModLoader
 				continue;
 			try
 			{
-				InputStream locationIns=nmod.getAssets().open(languageBean.location);
+				InputStream locationIns=nmod.getAssets().open(languageBean.path);
 				byte[] buffer=new byte[locationIns.available()];
 				locationIns.read(buffer);
 				locationIns.close();
