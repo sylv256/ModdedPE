@@ -6,6 +6,10 @@
 ### What is ModdedPE?
 ModdedPE is a launcher which allows you to open Minecraft:PE and load NMods.ModdedPE can also be used as a library for your project.
 
+### NMOD Examples
+Here are some samples can help you develop NMods:<br>
+<https://github.com/MCAL-Team/NMOD-Examples>
+
 ### Licenses
 Cydia Substrate framework by Saurik, licensed under the GNU Lesser General Public License.<br>
 Card View Library, licensed under the Apache License 2.0.<br>
