@@ -40,6 +40,15 @@
 	<string name="load_exception_bad_image_size_d">请调整介绍图片到1024（宽）*500（高）。</string>
 	<string name="load_exception_image_decode">解码图片失败： %1$s。</string>
 	<string name="load_exception_image_decode_d">请确保图片是否有效： %1$s。</string>
+	<string name="load_exception_unequaled_package_name">在AndroidManifest.xml和nmod_manifest.json中的包名(package_name)不一致。请确保它们相同。</string>
+	<string name="load_exception_unequaled_package_name_d">请把在AndroidManifest.xml和nmod_manifest.json中的包名改为相同的一个值。</string>
+	<string name="load_exception_unknow_package_name">未知的包名。</string>
+	<string name="load_exception_unknow_package_name_d">请在nmod_manifest.json里创建元素"package_name"。</string>
+	<string name="load_exception_invalid_package_name">不恰当的包名</string>
+	<string name="load_exception_invalid_package_name_d">请确保包名值是一个恰当的Java风格包名。</string>
+	<string name="load_exception_lang_undefined_path">元素"path"未定义。</string>
+	<string name="load_exception_lang_undefined_path_d">请在语言信息%1$s中定义元素"path"。</string>
+	
 	<string name="load_fail_main">错误介绍</string>
 	<string name="load_fail_deal">解决方案</string>
 	<string name="load_fail_all">全部错误内容</string>

@@ -38,6 +38,15 @@
 	<string name="load_exception_image_decode_d">Please make sure if the image is valid: %1$s.</string>
 	<string name="load_exception_unknow">UNKNOW.</string>
 	<string name="load_exception_unknow_d">UNKNOW.</string>
+	<string name="load_exception_unequaled_package_name">Unequaled package names in AndroidManifest.xml and nmod_manifest.json.Please make sure they\'re same.</string>
+	<string name="load_exception_unequaled_package_name_d">Please set package names in AndroidManifest.xml and nmod_manifest.json into a same value.</string>
+	<string name="load_exception_unknow_package_name">Unknown package name.</string>
+	<string name="load_exception_unknow_package_name_d">Please create "package_name" element in nmod_manifest.json</string>
+	<string name="load_exception_invalid_package_name">Invalid package name.</string>
+	<string name="load_exception_invalid_package_name_d">Please make sure that the package name is a valid java-style package name.</string>
+	<string name="load_exception_lang_undefined_path">Undefined file path.</string>
+	<string name="load_exception_lang_undefined_path_d">Please define the element "path" in the language item:%1$s.</string>
+	
 	<string name="load_exception_bad_image_size">Bad image size:description image should be 1024(width)*500(height).</string>
 	<string name="load_exception_bad_image_size_d">Please change image size to 1024(width)*500(height).</string>
 	<string name="load_fail_main">Error Description</string>
