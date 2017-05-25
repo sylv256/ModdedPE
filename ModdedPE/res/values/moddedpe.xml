@@ -17,6 +17,7 @@
 	<string name="nmod_load_failed">Failed to load NMod.</string>
 	<string name="nmod_add_new">Add New</string>
 	<string name="nmod_add_new_title">Add New...</string>
+	<string name="nmod_export">Export</string>
 	<string name="nmod_add_new_message">Where do you want to pick NMod from?</string>
 	<string name="nmod_add_new_pick_installed">Apps</string>
 	<string name="nmod_add_new_pick_storage">Storage</string>
@@ -42,9 +43,9 @@
 	<string name="load_exception_unequaled_package_name_d">Please set package names in AndroidManifest.xml and nmod_manifest.json into a same value.</string>
 	<string name="load_exception_unknow_package_name">Unknown package name.</string>
 	<string name="load_exception_unknow_package_name_d">Please create "package_name" element in nmod_manifest.json</string>
-	<string name="load_exception_invalid_package_name">Invalid package name.</string>
+	<string name="load_exception_invalid_package_name">Invalid package name: %1$s.</string>
 	<string name="load_exception_invalid_package_name_d">Please make sure that the package name is a valid java-style package name.</string>
-	<string name="load_exception_lang_undefined_path">Undefined file path.</string>
+	<string name="load_exception_lang_undefined_path">Undefined file path: %1$s.</string>
 	<string name="load_exception_lang_undefined_path_d">Please define the element "path" in the language item:%1$s.</string>
 	<string name="load_exception_bad_image_size">Bad image size:description image should be 1024(width)*500(height).</string>
 	<string name="load_exception_bad_image_size_d">Please change image size to 1024(width)*500(height).</string>
@@ -123,6 +124,5 @@
     <string name="app_name_short_demo">ModdedPE Demo</string>
 	
 	<!--Manage NMods-->
-	<string name="manage_nmod_no_nmod_found">We haven\'t found any NMod on this device.</string>
-	<string name="manage_nmod_install_nmod">Please install them(*.apk) and restart ModdedPE!</string>
+	<string name="manage_nmod_no_nmod_found">No NMod found on this device.</string>
 </resources>

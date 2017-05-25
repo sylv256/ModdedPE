@@ -133,6 +133,8 @@ public class NModManager
 				return;
 		allNMods.add(newNMod);
 	}
+	
+	
 
 	public void refreshDatas()
 	{

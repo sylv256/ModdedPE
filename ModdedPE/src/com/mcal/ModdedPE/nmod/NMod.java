@@ -31,6 +31,11 @@ public abstract class NMod
 	protected abstract Bitmap createIcon();
 	protected abstract InputStream createDataBeanInputStream();
 
+	public boolean isAddedToList()
+	{
+		return false;
+	}
+	
 	public String[] getNativeLibs()
 	{
 		return dataBean.native_libs;
@@ -358,7 +363,7 @@ public abstract class NMod
 		public int version_code = -1;
 		public String banner_title = null;
 		public String banner_image_path = null;
-		public String new_version_info = null;
+		public String version_info = null;
 		public boolean check_json_syntax = false;
 		public NModJsonEditBean[] json_edit = null;
 		public String[] parents_package_names = null;

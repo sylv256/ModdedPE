@@ -90,4 +90,19 @@ public class PackagedNMod extends NMod
 			return null;
 		}
 	}
+	
+	public static PackagedNMod archiveNMod(Context contextThis,String packageName)
+	{
+		try
+		{
+			Context contextPackage = contextThis.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+			contextPackage.getAssets().open(NMod.MANIFEST_NAME).close();
+			return new PackagedNMod(contextThis,contextPackage);
+		}
+		catch (IOException e)
+		{}
+		catch(PackageManager.NameNotFoundException notFoundE)
+		{}
+		return null;
+	}
 }

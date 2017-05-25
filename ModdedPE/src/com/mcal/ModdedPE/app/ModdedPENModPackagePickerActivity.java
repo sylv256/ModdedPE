@@ -18,7 +18,8 @@ public class ModdedPENModPackagePickerActivity extends MCDActivity
 	public static final String TAG_PACKAGE_NAME = "package_name";
 	public static final int REQUEST_PICK_PACKAGE = 1;
 	private static final int MSG_SHOW_LIST_VIEW = 1;
-	
+	private static final int MSG_SHOW_UNFOUND_VIEW = 2;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -26,7 +27,7 @@ public class ModdedPENModPackagePickerActivity extends MCDActivity
 		setContentView(R.layout.nmod_picker_package);
 		setResult(RESULT_CANCELED);
 		setActionBarButtonCloseRight();
-		
+
 		View loading_view = findViewById(R.id.nmod_picker_package_loading_view);
 		loading_view.setVisibility(View.VISIBLE);
 
@@ -45,6 +46,15 @@ public class ModdedPENModPackagePickerActivity extends MCDActivity
 		list.setAdapter(new PackageListAdapter());
 	}
 
+	private void showUnfoundView()
+	{
+		View loading_view = findViewById(R.id.nmod_picker_package_loading_view);
+		loading_view.setVisibility(View.GONE);
+
+		View view = findViewById(R.id.nmod_picker_package_unfound_view);
+		view.setVisibility(View.VISIBLE);
+	}
+
 	private class UIHandler extends Handler
 	{
 
@@ -56,6 +66,10 @@ public class ModdedPENModPackagePickerActivity extends MCDActivity
 			{
 				showListView();
 			}
+			else if (msg.what == MSG_SHOW_UNFOUND_VIEW)
+			{
+				showUnfoundView();
+			}
 		}
 	}
 
@@ -65,7 +79,10 @@ public class ModdedPENModPackagePickerActivity extends MCDActivity
 		public void run()
 		{
 			nmods = NModManager.getNModManager(ModdedPENModPackagePickerActivity.this).findInstalledNMods();
-			mUIHandler.sendEmptyMessage(MSG_SHOW_LIST_VIEW);
+			if (nmods.size() > 0)
+				mUIHandler.sendEmptyMessage(MSG_SHOW_LIST_VIEW);
+			else
+				mUIHandler.sendEmptyMessage(MSG_SHOW_UNFOUND_VIEW);
 		}
 	}
 
@@ -107,28 +124,35 @@ public class ModdedPENModPackagePickerActivity extends MCDActivity
 					@Override
 					public void onClick(View p1)
 					{
-						Intent intent = new Intent();
-						Bundle extras = new Bundle();
-						extras.putString(TAG_PACKAGE_NAME,nmod.getPackageName());
-						intent.putExtras(extras);
-						setResult(RESULT_OK,intent);
-						finish();
+						if (nmod.isBugPack())
+						{
+							ModdedPENModLoadFailActivity.startThisActivity(ModdedPENModPackagePickerActivity.this, nmod);
+						}
+						else
+						{
+							Intent intent = new Intent();
+							Bundle extras = new Bundle();
+							extras.putString(TAG_PACKAGE_NAME, nmod.getPackageName());
+							intent.putExtras(extras);
+							setResult(RESULT_OK, intent);
+							finish();
+						}
 					}
-					
-				
-			});
+
+
+				});
 			baseCardView.setOnLongClickListener(new View.OnLongClickListener()
 				{
 
 					@Override
 					public boolean onLongClick(View p1)
 					{
-						ModdedPENModDescriptionActivity.startThisActivity(ModdedPENModPackagePickerActivity.this,nmod);
+						ModdedPENModDescriptionActivity.startThisActivity(ModdedPENModPackagePickerActivity.this, nmod);
 						return false;
 					}
-					
-				
-			});
+
+
+				});
 			return baseCardView;
 		}
 

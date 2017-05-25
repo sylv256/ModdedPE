@@ -16,6 +16,7 @@
 	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>
 	<string name="nmod_load_failed">加载NMod失败</string>
 	<string name="nmod_add_new">添加新的</string>
+	<string name="nmod_export">导出</string>
 	<string name="nmod_add_new_title">添加新的...</string>
 	<string name="nmod_add_new_message">您想从哪里选取？</string>
 	<string name="nmod_add_new_pick_installed">已安装中</string>
@@ -39,15 +40,15 @@
 	<string name="load_exception_bad_image_size">错误的图片大小：介绍图应该是1024（宽）*500（高）。</string>
 	<string name="load_exception_bad_image_size_d">请调整介绍图片到1024（宽）*500（高）。</string>
 	<string name="load_exception_image_decode">解码图片失败： %1$s。</string>
-	<string name="load_exception_image_decode_d">请确保图片是否有效： %1$s。</string>
+	<string name="load_exception_image_decode_d">请确保图片是否有效：%1$s。</string>
 	<string name="load_exception_unequaled_package_name">在AndroidManifest.xml和nmod_manifest.json中的包名(package_name)不一致。请确保它们相同。</string>
 	<string name="load_exception_unequaled_package_name_d">请把在AndroidManifest.xml和nmod_manifest.json中的包名改为相同的一个值。</string>
 	<string name="load_exception_unknow_package_name">未知的包名。</string>
 	<string name="load_exception_unknow_package_name_d">请在nmod_manifest.json里创建元素"package_name"。</string>
-	<string name="load_exception_invalid_package_name">不恰当的包名</string>
+	<string name="load_exception_invalid_package_name">不恰当的包名：%1$s。</string>
 	<string name="load_exception_invalid_package_name_d">请确保包名值是一个恰当的Java风格包名。</string>
-	<string name="load_exception_lang_undefined_path">元素"path"未定义。</string>
-	<string name="load_exception_lang_undefined_path_d">请在语言信息%1$s中定义元素"path"。</string>
+	<string name="load_exception_lang_undefined_path">元素"path"在语言信息 %1$s 中未定义。</string>
+	<string name="load_exception_lang_undefined_path_d">请在语言信息 %1$s 中定义元素"path"。</string>
 	
 	<string name="load_fail_main">错误介绍</string>
 	<string name="load_fail_deal">解决方案</string>
@@ -112,8 +113,7 @@
 	<string name="error_text">这可能是因为一个不支持的MCPE版本或者代码错误引起的。请把错误报告发送给开发者来修复它。</string> 
 
 	<!--Manage NMods-->
-	<string name="manage_nmod_no_nmod_found">我们没有在这台设备上发现任何NMod。</string>
-	<string name="manage_nmod_install_nmod">请安装它们（*.apk）并且重启ModdedPE！</string>
+	<string name="manage_nmod_no_nmod_found">没有在这台设备上发现任何NMod。</string>
 
 	<!--Start Activity-->
 	<string name="start_warning_xposed_title">警告</string>

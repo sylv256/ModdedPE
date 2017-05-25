@@ -66,7 +66,11 @@ public class MainManageNModFragment extends Fragment
 	{
 		if (resultCode == Activity.RESULT_OK)
 		{
-			
+			if (requestCode == ModdedPENModPackagePickerActivity.REQUEST_PICK_PACKAGE)
+			{
+				PackagedNMod packagedNMod = PackagedNMod.archiveNMod(this.getContext(),data.getExtras().getString(ModdedPENModPackagePickerActivity.TAG_PACKAGE_NAME));
+				NModManager.getNModManager(this.getContext()).addNew(packagedNMod);
+			}
 		}
 		super.onActivityResult(requestCode, resultCode, data);
 	}
