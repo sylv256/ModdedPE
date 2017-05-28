@@ -15,8 +15,8 @@ public class ModdedPEMinecraftActivity extends ModdedPEBaseMCActivity
 	@Override
 	public void onCreate(Bundle p1)
 	{
-		new OpenGameLoadingDialog(this).show();
 		loadNativeLibraries(false);
+		new OpenGameLoadingDialog(this).show();
 		mergeGameAssets();
 		NativeUtils.setValues(this);
 		getNModAPI().loadToGame(getIntent().getExtras(), getAssets(), null);
