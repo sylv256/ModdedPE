@@ -1,47 +1,18 @@
 package com.mcal.ModdedPE.nmod;
 import android.os.*;
 import java.io.*;
+import java.util.*;
+import com.mcal.ModdedPE.utils.*;
+import dalvik.system.*;
+
 public class NModLoader
 {
-	private NMod nmod;
-
-	public NModLoader(NMod nmod)
+	private static NModLoadException loadLanguages(NMod nmod)
 	{
-		this.nmod = nmod;
-	}
 
-	public void load(String mcver, String moddedpever) throws Exception
-	{
-		loadLibs(mcver, moddedpever);
-	}
-
-	private void loadLibs(String mcver, String moddedpever) throws Exception
-	{
-		if (nmod == null || nmod.getNativeLibs() == null)
-			return;
-		for (String lib : nmod.getNativeLibs())
-			tryToLoadLib(lib, mcver, moddedpever);
-	}
-
-	private void tryToLoadLib(String name, String mcver, String moddedpever)throws Exception
-	{
-		try
-		{
-			System.load(nmod.getNativeLibsPath() + File.separator + name);
-		}
-		catch (Throwable e)
-		{
-			throw new Exception(e);
-		}
-		nativeCallOnLoad(name, mcver, moddedpever);
-
-		loadLanguages();
-	}
-
-	private void loadLanguages()
-	{
 		if (nmod.getLanguageBeans() == null)
-			return;
+			return null;
+
 		for (NMod.NModLanguageBean languageBean:nmod.getLanguageBeans())
 		{
 			if (languageBean.name == null || languageBean.name.isEmpty())
@@ -54,44 +25,58 @@ public class NModLoader
 				locationIns.close();
 				String allChars=new String(buffer);
 				String[] translations=allChars.split("\n");
-				for (String translation:translations)
+				if (translations != null && translations.length > 0)
 				{
-					if (translation != null && !translation.isEmpty())
+					for (String translation:translations)
 					{
-						if (languageBean.format_space)
+						if (translation != null && !translation.isEmpty())
 						{
-							String tmp=translation;
-							if (tmp.indexOf("=") != -1 && tmp.indexOf(" ") != -1)
+							if (languageBean.format_space)
 							{
-								String str_left=tmp.substring(0, tmp.indexOf("="));
-								String str_right=tmp.substring(tmp.indexOf("="), tmp.length());
-								str_left = str_left.replaceAll(" ", "");
-								translation = str_left + str_right;
+								String tmp=translation;
+								if (tmp.indexOf("=") != -1 && tmp.indexOf(" ") != -1)
+								{
+									String str_left=tmp.substring(0, tmp.indexOf("="));
+									String str_right=tmp.substring(tmp.indexOf("="), tmp.length());
+									str_left = str_left.replaceAll(" ", "");
+									translation = str_left + str_right;
+								}
+							}
+							if (translation != null && !translation.isEmpty())
+							{
+								nativeAppendTranslation(languageBean.name, translation);
 							}
 						}
-						if (translation != null && !translation.isEmpty())
-							nativeAppendTranslation(languageBean.name, translation);
 					}
 				}
-
 			}
 			catch (Exception e)
 			{}
 		}
+		return null;
 	}
 
-	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity mainActivity, Bundle bundle)
+	public static void writeLanguageData(FilePathManager mgr, Vector<NMod> nmods)
 	{
-		for (String lib : nmod.getNativeLibs())
-			nativeCallOnActivityCreate(lib, mainActivity, bundle);
+
 	}
 
-	public void callOnActivityFinish(com.mojang.minecraftpe.MainActivity mainActivity)
+	public static void callOnActivityCreate(String nativeLibName, com.mojang.minecraftpe.MainActivity mainActivity, Bundle bundle)
 	{
-		for (String lib : nmod.getNativeLibs())
-			nativeCallOnActivityFinish(lib, mainActivity);
+		nativeCallOnActivityCreate(nativeLibName, mainActivity, bundle);
 	}
 
+	public static void callOnActivityFinish(String nativeLibMame, com.mojang.minecraftpe.MainActivity mainActivity)
+	{
+		nativeCallOnActivityFinish(nativeLibMame, mainActivity);
+	}
+	
+	public static void callOnLoad(String name,String mcver, String moddedpever)
+	{
+		nativeCallOnLoad(name,mcver,moddedpever);
+	}
+
+	private static native void nativeCallOnDexLoaded(String name, DexClassLoader classLoader);
 	private static native void nativeAppendTranslation(String name, String translation);
 	private static native void nativeCallOnActivityFinish(String name, com.mojang.minecraftpe.MainActivity mainActivity);
 	private static native void nativeCallOnLoad(String name, String mcver, String moddedpever);

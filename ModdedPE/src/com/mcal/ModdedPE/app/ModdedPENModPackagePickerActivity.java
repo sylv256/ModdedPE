@@ -10,7 +10,7 @@ import com.mcal.ModdedPE.nmod.*;
 import java.util.*;
 import android.support.v7.widget.*;
 
-public class ModdedPENModPackagePickerActivity extends MCDActivity
+public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 {
 	private UIHandler mUIHandler = new UIHandler();
 	private Vector<NMod> nmods = new Vector<NMod>();
@@ -78,7 +78,7 @@ public class ModdedPENModPackagePickerActivity extends MCDActivity
 		@Override
 		public void run()
 		{
-			nmods = NModManager.getNModManager(ModdedPENModPackagePickerActivity.this).findInstalledNMods();
+			nmods = getNModAPI().findInstalledNMods();
 			if (nmods.size() > 0)
 				mUIHandler.sendEmptyMessage(MSG_SHOW_LIST_VIEW);
 			else

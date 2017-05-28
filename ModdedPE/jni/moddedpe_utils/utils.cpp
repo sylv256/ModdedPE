@@ -1,3 +1,7 @@
+//-------------------------------------------------------------
+// Includes
+//-------------------------------------------------------------
+
 #include "Substrate.h"
 #include <jni.h>
 #include <vector>
@@ -6,23 +10,13 @@
 #include <cxxabi.h>
 #include <sstream>
 
-#include "mcpe/client/ClientInputCallbacks.h"
-#include "mcpe/client/ClientInstance.h"
-#include "mcpe/client/MinecraftGame.h"
 #include "mcpe/client/gui/screen/ScreenChooser.h"
-#include "mcpe/client/renderer/BlockTessellator.h"
-#include "mcpe/block/BlockGraphics.h"
-#include "mcpe/block/Block.h"
-#include "mcpe/item/Item.h"
-#include "mcpe/item/ItemInstance.h"
-#include "mcpe/util/BlockPos.h"
-#include "mcpe/util/Vec3.h"
-#include "mcpe/level/Level.h"
-#include "mcpe/entity/player/LocalPlayer.h"
-#include "mcpe/client/settings/Options.h"
 #include "mcpe/client/resources/Localization.h"
 #include "mcpe/client/resources/I18n.h"
-#include "NeighborUtil.h"
+
+//-------------------------------------------------------------
+// Structure Definition
+//-------------------------------------------------------------
 
 struct LanguageBean
 {
@@ -40,15 +34,17 @@ struct LanguageBean
 	}
 };
 
-std::vector<LanguageBean> languageBeans;
+//-------------------------------------------------------------
+// Variant Definition
+//-------------------------------------------------------------
 
-bool started=false;
-bool redstoneDot=false;
-bool hideDebugText=false;
-bool autoSaveLevel=false;
-bool selectAllInLeft=false;
-bool disableTextureIsoTropic=false;
-JavaVM* jvm;
+std::vector<LanguageBean> mLanguageBeans;
+bool mGameStarted=false;
+JavaVM* mJvm;
+
+//-------------------------------------------------------------
+// Methods Definition
+//-------------------------------------------------------------
 
 std::string toString(JNIEnv* env, jstring jstr)
 {
@@ -72,7 +68,7 @@ std::string toString(JNIEnv* env, jstring jstr)
 
 inline std::string getStringFromLanguageBean(std::string const&languageName,std::string const&textKey)
 {
-	for(LanguageBean const&bean:languageBeans)
+	for(LanguageBean const&bean:mLanguageBeans)
 	{
 		if(bean.name==languageName)
 		{
@@ -106,129 +102,57 @@ inline std::string getStringFromLanguageBean(std::string const&languageName,std:
 	return text;
 }
 
-inline bool shouldTessellateRedstoneDot(BlockSource&region,BlockPos const&pos)
-{
-	if(!redstoneDot)
-		return false;
-	
-	NeighborUtil neighbor(region);
-	
-	if(neighbor.isShouldRedstoneWireBlockConnectionBlockAround(pos))
-		return false;
-	
-	if(!neighbor.isFullBlockAt({pos.x,pos.y+1,pos.z}))
-		if(neighbor.isRedStoneWireBlockAround({pos.x,pos.y+1,pos.z}))
-			return false;
-	
-	if(!neighbor.isFullBlockAt({pos.x+1,pos.y,pos.z}))
-	{
-		if(neighbor.isRedStoneWireBlockAt({pos.x+1,pos.y-1,pos.z}))
-			return false;
-	}
-	if(!neighbor.isFullBlockAt({pos.x-1,pos.y,pos.z}))
-	{
-		if(neighbor.isRedStoneWireBlockAt({pos.x-1,pos.y-1,pos.z}))
-			return false;
-	}
-	if(!neighbor.isFullBlockAt({pos.x,pos.y,pos.z-1}))
-	{
-		if(neighbor.isRedStoneWireBlockAt({pos.x,pos.y-1,pos.z-1}))
-			return false;
-	}
-	if(!neighbor.isFullBlockAt({pos.x,pos.y,pos.z+1}))
-	{
-		if(neighbor.isRedStoneWireBlockAt({pos.x,pos.y-1,pos.z+1}))
-			return false;
-	}
-	return true;
-}
-
-//REDSTONE DOT
-bool (*tessellateInWorld_)(BlockTessellator*tessellator,Block const&block,BlockPos const&pos,uchar aux,bool wtf);
-bool tessellateInWorld(BlockTessellator*tessellator,Block const&block,BlockPos const&pos,uchar aux,bool wtf)
-{
-	if(&block==Block::mRedStoneDust)
-	{
-		if(shouldTessellateRedstoneDot(tessellator->getRegion(),pos))
-			tessellator->_setShapeAndTessellate(Vec3(0.3125,0.001,0.3125),Vec3(0.6875,0.003,0.6875),block,pos,aux);
-		else
-			return tessellateInWorld_(tessellator,block,pos,aux,wtf);
-		return true;
-	}
-	return tessellateInWorld_(tessellator,block,pos,aux,wtf);
-}
-
-void (*renderFaceDown_)(BlockTessellator*,Block const&, Vec3 const&, TextureUVCoordinateSet const&);
-void renderFaceDown(BlockTessellator*self,Block const&b, Vec3 const&pos, TextureUVCoordinateSet const&tex)
-{
-	if(&b==Block::mRedStoneDust)
-	{
-		if(shouldTessellateRedstoneDot(self->getRegion(),pos))
-			return;
-		else
-			return renderFaceDown_(self,b,pos,tex);
-	}
-	else
-		return renderFaceDown_(self,b,pos,tex);
-}
+//-------------------------------------------------------------
+// Hook Methods
+//-------------------------------------------------------------
 
 void (*setStartMenuScreen_)(void*);
 void setStartMenuScreen(void*self)
 {
 	setStartMenuScreen_(self);
-	started=true;
+	mGameStarted=true;
 }
 
-void (*levelTick_)(Level*);
-void levelTick(Level*self)
+void (*loadFromResourcePackManager_)(Localization*,ResourcePackManager&, std::vector<std::string, std::allocator<std::string> > const&);
+void loadFromResourcePackManager(Localization*self,ResourcePackManager&manager, std::vector<std::string, std::allocator<std::string> > const&others)
 {
-	levelTick_(self);
-	
-	if(autoSaveLevel)
+	loadFromResourcePackManager_(self,manager,others);
+	for(LanguageBean const& bean:mLanguageBeans)
 	{
-		static unsigned char timer;
-		if(!((++timer)%20))
-		{
-			self->saveGameData();
-			self->savePlayers();
-			self->saveBiomeData();
-			self->saveLevelData();
-			self->_saveAllMapData();
-			self->saveDirtyChunks();
-			self->_saveSomeChunks();
-			self->_saveDimensionStructures();
-			self->saveAutonomousEntities();
-		}
+		if(bean.name==self->getFullLanguageCode())
+			self->appendTranslations(bean.translation,others,others,bean.translation);
 	}
 }
+
+std::string (*getI18n_)(std::string const&);
+std::string getI18n(std::string const&key)
+{
+	std::string result=getStringFromLanguageBean(I18n::getCurrentLanguage()->getFullLanguageCode(),key);
+	if(result==key)
+		return getI18n_(key);
+	return result;
+}
+
+std::string (*getI18nl_)(std::string const&,std::vector<std::string> const&);
+std::string getI18nl(std::string const&key,std::vector<std::string> const&list)
+{
+	std::string result=getStringFromLanguageBean(I18n::getCurrentLanguage()->getFullLanguageCode(),key,list);
+	if(result==key)
+		return getI18nl_(key,list);
+	return result;
+}
+
+//-------------------------------------------------------------
+// Native Interface
+//-------------------------------------------------------------
 
 extern "C"
 {
 	JNIEXPORT jboolean Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeIsGameStarted(JNIEnv*env,jobject thiz)
 	{
-		return started;
+		return mGameStarted;
 	}
 	
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetRedstoneDot(JNIEnv*env,jobject thiz,jboolean z)
-	{
-		redstoneDot=z;
-	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetHideDebugText(JNIEnv*env,jobject thiz,jboolean z)
-	{
-		hideDebugText=z;
-	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetAutoSaveLevel(JNIEnv*env,jobject thiz,jboolean z)
-	{
-		autoSaveLevel=z;
-	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetSelectAllInLeft(JNIEnv*env,jobject thiz,jboolean z)
-	{
-		selectAllInLeft=z;
-	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetDisableTextureIsotropic(JNIEnv*env,jobject thiz,jboolean z)
-	{
-		disableTextureIsoTropic=z;
-	}
 	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
 		void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
@@ -244,7 +168,7 @@ extern "C"
 		std::string translationN=toString(env,translation);
 		
 		LanguageBean bean(nameN,translationN);
-		languageBeans.emplace_back(bean);
+		mLanguageBeans.emplace_back(bean);
 	}
 	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
 	{
@@ -264,7 +188,7 @@ extern "C"
 		(void (*)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)) dlsym(image,"NMod_onLoad");
 		if(NMod_onLoad)
 		{
-			NMod_onLoad(jvm,env,toString(env,mcVer),toString(env,moddedpeVer));
+			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,moddedpeVer));
 		}
 		dlclose(image);
 	}
@@ -289,77 +213,29 @@ extern "C"
 		}
 		return env->NewStringUTF("");
 	}
-	
-}
-
-void (*handleRenderDebugButtonPress_)(ClientInputCallbacks*,ClientInstance&);
-void handleRenderDebugButtonPress(ClientInputCallbacks*self,ClientInstance&client)
-{
-	if(!hideDebugText)
-		handleRenderDebugButtonPress_(self,client);
-}
-
-void (*loadFromResourcePackManager_)(Localization*,ResourcePackManager&, std::vector<std::string, std::allocator<std::string> > const&);
-void loadFromResourcePackManager(Localization*self,ResourcePackManager&manager, std::vector<std::string, std::allocator<std::string> > const&others)
-{
-	loadFromResourcePackManager_(self,manager,others);
-	for(LanguageBean const& bean:languageBeans)
+	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
 	{
-		if(bean.name==self->getFullLanguageCode())
-			self->appendTranslations(bean.translation,others,others,bean.translation);
+		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
+		void (*NMod_onDexLoaded)(JNIEnv*env,jobject dexClassLoader)=
+		(void (*)(JNIEnv*,jobject)) dlsym(image,"NMod_onDexLoaded");
+		if(NMod_onDexLoaded)
+		{
+			NMod_onDexLoaded(env,dexClassLoader);
+		}
+		dlclose(image);
 	}
-}
-
-bool (*allowOffhand_)(ItemInstance*);
-bool allowOffhand(ItemInstance* self)
-{
-	if(selectAllInLeft)
-		return true;
-	return allowOffhand_(self);
-}
-
-bool (*isTextureIsotropic_)(BlockGraphics*,signed char);
-bool isTextureIsotropic(BlockGraphics* self,signed char side)
-{
-	if(disableTextureIsoTropic)
-		return false;
-	return isTextureIsotropic_(self,side);
-}
-
-std::string (*getI18n_)(std::string const&);
-std::string getI18n(std::string const&key)
-{
-	std::string result=getStringFromLanguageBean(I18n::getCurrentLanguage()->getFullLanguageCode(),key);
-	if(result==key)
-		return getI18n_(key);
-	return result;
-}
-
-std::string (*getI18nl_)(std::string const&,std::vector<std::string> const&);
-std::string getI18nl(std::string const&key,std::vector<std::string> const&list)
-{
-	std::string result=getStringFromLanguageBean(I18n::getCurrentLanguage()->getFullLanguageCode(),key,list);
-	if(result==key)
-		return getI18nl_(key,list);
-	return result;
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 {
-	jvm=vm;
+	mJvm=vm;
 	
 	void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
 	
 	MSHookFunction((void*)(std::string (*)(std::string const&,std::vector<std::string> const&))&I18n::get,(void*)&getI18nl,(void**)&getI18nl_);
 	MSHookFunction((void*)(std::string (*)(std::string const&))&I18n::get,(void*)&getI18n,(void**)&getI18n_);
-	MSHookFunction((void*)((void (BlockTessellator::*)(Block const&,BlockPos const&,unsigned char,bool))&BlockTessellator::tessellateInWorld),(void*)&tessellateInWorld,(void**)&tessellateInWorld_);
-	MSHookFunction((void*)&Level::tick,(void*)&levelTick,(void**)&levelTick_);
-	MSHookFunction((void*)&BlockTessellator::renderFaceDown,(void*)&renderFaceDown,(void**)&renderFaceDown_);
 	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
-	MSHookFunction((void*)&ClientInputCallbacks::handleRenderDebugButtonPress,(void*)&handleRenderDebugButtonPress,(void**)&handleRenderDebugButtonPress_);
-	MSHookFunction((void*)&ItemInstance::isOffhandItem,(void*)&allowOffhand,(void**)&allowOffhand_);
-	MSHookFunction((void*)&BlockGraphics::isTextureIsotropic,(void*)&isTextureIsotropic,(void**)&isTextureIsotropic_);
-	
+
 	dlclose(image);
 	return JNI_VERSION_1_6;
 }

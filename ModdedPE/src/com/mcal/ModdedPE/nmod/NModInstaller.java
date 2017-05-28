@@ -1,7 +1,7 @@
 package com.mcal.ModdedPE.nmod;
 import android.content.*;
 
-public class NModInstaller
+class NModInstaller
 {
 	private Context context;
 	public NModInstaller(Context c)

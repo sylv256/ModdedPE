@@ -18,6 +18,7 @@ public class ModdedPEApplication extends Application
 		instance = this;
 		
 		MinecraftInfo.initInstance(this);
+		NModAPI.createInstance(this);
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 	}
 

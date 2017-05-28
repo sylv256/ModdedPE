@@ -10,7 +10,7 @@ import android.graphics.*;
 import java.io.*;
 import com.mcal.ModdedPE.utils.*;
 
-public class ModdedPENModDescriptionActivity extends MCDActivity
+public class ModdedPENModDescriptionActivity extends ModdedPEActivity
 {
 	public final static String TAG_PACKAGE_NAME="nmod_package_name";
 	public final static String TAG_NAME="nmod_name";

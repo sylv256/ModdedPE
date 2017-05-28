@@ -2,7 +2,7 @@ package com.mcal.ModdedPE.app;
 import com.mcal.MCDesign.app.*;
 import android.os.*;
 
-public class ModdedPEPreStartActivity extends MCDActivity
+public class ModdedPEPreStartActivity extends ModdedPEActivity
 {
 	private static final int MSG_START_MINECRAFT = 1;
 	private static final int MSG_MERGING_ASSETS = 2;

@@ -17,20 +17,9 @@ public class ZippedNMod extends NMod
 	private AssetManager assets;
 	
 	@Override
-	public void load(String mcVer, String moddedpeVer) throws Exception
+	public NModPerloadBean copyNModFiles()
 	{
-		copyNativeLibs();
-		getLoader().load(mcVer, moddedpeVer);
-	}
-	
-	@Override
-	public int getNModType()
-	{
-		return NMOD_TYPE_ZIPPED;
-	}
-
-	private void copyNativeLibs()
-	{
+		NModPerloadBean ret = new NModPerloadBean();
 		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) zipFile.entries();
 		while (zipfile_ents.hasMoreElements())
 		{
@@ -82,6 +71,14 @@ public class ZippedNMod extends NMod
 			}
 
 		}
+		
+		return ret;
+	}
+	
+	@Override
+	public int getNModType()
+	{
+		return NMOD_TYPE_ZIPPED;
 	}
 
 	@Override

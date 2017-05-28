@@ -12,9 +12,10 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.utils.*;
 import java.util.*;
 
-public class ModdedPEMainActivity extends MCDActivity 
+public class ModdedPEMainActivity extends ModdedPEActivity 
 {
 	private ViewPager mainViewPager;
+	private MainManageNModFragment mManageNModFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -29,8 +30,8 @@ public class ModdedPEMainActivity extends MCDActivity
 		fragment_list.add(startFragment);
 		titles_list.add(getString(R.string.main_title));
 
-		MainManageNModFragment manageNModFragment = new MainManageNModFragment();
-		fragment_list.add(manageNModFragment);
+		mManageNModFragment = new MainManageNModFragment();
+		fragment_list.add(mManageNModFragment);
 		titles_list.add(getString(R.string.manage_nmod_title));
 
 		MainSettingsFragment settingsFragment = new MainSettingsFragment();
@@ -152,7 +153,7 @@ public class ModdedPEMainActivity extends MCDActivity
 		if (new UtilsSettings(ModdedPEMainActivity.this).getSafeMode())
 		{
 			new AlertDialog.Builder(this).setTitle(R.string.safe_mode_on_title).setMessage(R.string.safe_mode_on_message).
-			setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+				setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 				{
 
 					@Override
@@ -164,9 +165,9 @@ public class ModdedPEMainActivity extends MCDActivity
 						finish();
 						p1.dismiss();
 					}
-					
-				
-			}).setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener()
+
+
+				}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
 				{
 
 					@Override
@@ -174,9 +175,9 @@ public class ModdedPEMainActivity extends MCDActivity
 					{
 						p1.dismiss();
 					}
-					
-				
-			}).show();
+
+
+				}).show();
 		}
 		else
 		{
@@ -185,6 +186,13 @@ public class ModdedPEMainActivity extends MCDActivity
 			startActivity(intent);
 			finish();
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		mManageNModFragment.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private class MainFragmentPagerAdapter extends FragmentPagerAdapter

@@ -44,7 +44,7 @@ public class NModBanner extends RelativeLayout
 
 	private void updateNModList()
 	{
-		Vector<NMod> newNModList = NModManager.getNModManager(getContext()).getActiveNModsIsValidBanner();
+		Vector<NMod> newNModList = NModAPI.getInstance(this.getContext()).getLoadedEnabledNModsHaveBanners();
 		if (mNModVector.equals(newNModList))
 		{
 			mNModVector.clear();

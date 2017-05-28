@@ -18,6 +18,7 @@
 		android:layout_centerInParent="true"/>
 
 	<RelativeLayout
+		android:foreground="?android:attr/selectableItemBackgroundBorderless"
 		android:layout_height="30dp"
 		android:layout_width="30dp"
 		android:layout_alignParentRight="true"
@@ -26,6 +27,7 @@
 		android:id="@+id/mcd_actionbar_ViewRight"/>
 	
 	<RelativeLayout
+		android:foreground="?android:attr/selectableItemBackgroundBorderless"
 		android:layout_height="30dp"
 		android:layout_width="30dp"
 		android:layout_alignParentLeft="true"

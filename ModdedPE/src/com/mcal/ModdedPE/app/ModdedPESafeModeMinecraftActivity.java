@@ -6,13 +6,8 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.utils.*;
 
-public class ModdedPESafeModeMinecraftActivity extends com.mojang.minecraftpe.MainActivity
+public class ModdedPESafeModeMinecraftActivity extends ModdedPEBaseMCActivity
 {
-	protected void loadNativeLibraries()
-	{
-		LibraryLoader.loadGameLibs(this,MinecraftInfo.getInstance(this).getMinecraftNativeLibraryDir(), true);
-	}
-
 	protected void initAssetOverrides()
 	{
 		AssetOverrideManager.getInstance().addAssetOverride(MinecraftInfo.getInstance(this).getMinecraftPackageContext().getPackageResourcePath());
@@ -21,15 +16,11 @@ public class ModdedPESafeModeMinecraftActivity extends com.mojang.minecraftpe.Ma
 	@Override
 	public void onCreate(Bundle p1)
 	{
-		loadNativeLibraries();
+		loadNativeLibraries(true);
 		initAssetOverrides();
 		super.onCreate(p1);
 		GameLauncher.launch();
 	}
 
-	@Override
-	public AssetManager getAssets()
-	{
-		return MinecraftInfo.getInstance(this).getAssets();
-	}
+	
 }

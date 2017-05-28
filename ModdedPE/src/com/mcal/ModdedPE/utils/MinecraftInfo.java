@@ -11,7 +11,7 @@ public class MinecraftInfo
 {
 	public static String MC_PACKAGE_NAME = "com.mojang.minecraftpe";
 	public static String MC_NATIVE_DIR = "/data/data/com.mojang.minecraftpe/lib";
-
+	
 	private Context thisContext;
 	private Context mcPkgContext;
 	
@@ -92,11 +92,6 @@ public class MinecraftInfo
 		instance = new MinecraftInfo(context);
 	}
 	
-	public NModManager getNModManager()
-	{
-		return NModManager.getNModManager(thisContext);
-	}
-	
 	public AssetOverrideManager getAssetOverrideManager()
 	{
 		return AssetOverrideManager.getInstance();
@@ -105,10 +100,5 @@ public class MinecraftInfo
 	public AssetManager getAssets()
 	{
 		return getAssetOverrideManager().getAssetManager();
-	}
-	
-	public void initNModData()
-	{
-		NModManager.getNModManager(thisContext).reCalculate(thisContext);
 	}
 }

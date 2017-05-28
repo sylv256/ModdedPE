@@ -8,7 +8,7 @@ import android.widget.*;
 import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
 
-public class MainSettingsFragment extends Fragment
+public class MainSettingsFragment extends ModdedPEFragment
 {
 	private ListView optionsListView;
 

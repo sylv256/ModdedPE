@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:card_view="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
-	android:layout_height="100dp"
+	android:layout_height="wrap_content"
 	android:foreground="?android:attr/selectableItemBackgroundBorderless"
 	card_view:cardCornerRadius="5dp"
 	card_view:cardPreventCornerOverlap="true"
@@ -12,62 +12,81 @@
 
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="100dp"
-		android:background="#FFFFFF"
-		android:id="@+id/moddedpenmoditemactiveRelativeLayout">
-
-		<android.support.v7.widget.AppCompatImageView
-			android:layout_height="90dp"
-			android:layout_width="90dp"
-			android:layout_centerVertical="true"
-			android:layout_marginLeft="5dp"
-			android:id="@+id/moddedpenmoditemactiveImageView"
-			android:layout_marginTop="5dp"
-			android:layout_marginBottom="5dp"/>
-
-		<android.support.v7.widget.AppCompatTextView
-			android:layout_height="wrap_content"
-			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_width="wrap_content"
-			android:layout_marginTop="5dp"
-			android:layout_toRightOf="@id/moddedpenmoditemactiveImageView"
-			android:layout_marginLeft="10dp"
-			android:id="@+id/moddedpenmoditemactiveTextViewTitle"/>
-
-		<com.mcal.MCDesign.widget.MCDDownButton
-			android:layout_height="90dp"
-			android:layout_width="45dp"
-			android:layout_alignParentRight="true"
-			android:layout_centerVertical="true"
-			android:id="@+id/moddedpenmoditemactiveButtonDown"/>
-
-		<com.mcal.MCDesign.widget.MCDUpButton
-			android:layout_height="90dp"
-			android:layout_width="45dp"
-			android:layout_centerVertical="true"
-			android:layout_toLeftOf="@id/moddedpenmoditemactiveButtonDown"
-			android:id="@+id/moddedpenmoditemactiveButtonUp"/>
+		android:layout_height="70dp">
 
 		<LinearLayout
-			android:layout_height="45dp"
-			android:orientation="horizontal"
-			android:layout_marginLeft="10dp"
-			android:layout_toRightOf="@id/moddedpenmoditemactiveImageView"
-			android:layout_width="wrap_content"
-			android:layout_marginTop="50dp">
+			android:layout_width="match_parent"
+			android:layout_height="70dp"
+			android:orientation="horizontal">
 
-			<com.mcal.MCDesign.widget.MCDCostButton
-				android:layout_height="45dp"
-				android:layout_width="45dp"
-				android:id="@+id/moddedpenmoditemactiveAdjustButton"/>
+			<android.support.v7.widget.AppCompatImageView
+				android:layout_width="50dp"
+				android:layout_height="50dp"
+				android:id="@+id/nmod_enabled_item_card_view_image_view"
+				android:layout_margin="10dp"/>
 
-			<com.mcal.MCDesign.widget.MCDAboutButton
-				android:layout_height="45dp"
-				android:layout_width="45dp"
-				android:id="@+id/moddedpenmoditemactiveButtonDescription"/>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
+
+				<LinearLayout
+					android:layout_centerVertical="true"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceMedium"
+						android:id="@+id/nmod_enabled_item_card_view_text_name"
+						android:singleLine="true"
+						android:layout_alignParentLeft="true"
+						android:layout_marginLeft="5dp"/>
+
+					<android.support.v7.widget.AppCompatTextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="?android:attr/textAppearanceSmall"
+						android:id="@+id/nmod_enabled_item_card_view_text_package_name"
+						android:singleLine="true"
+						android:layout_alignParentLeft="true"
+						android:layout_marginLeft="5dp"/>
+
+				</LinearLayout>
+
+			</RelativeLayout>
 
 		</LinearLayout>
 
+		<android.support.design.widget.FloatingActionButton
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:src="@drawable/ic_minus"
+			android:id="@+id/nmod_enabled_minus"
+			android:layout_margin="10dp"
+			android:layout_centerHorizontal="true"
+			android:layout_alignParentRight="true"/>
+
+		<android.support.design.widget.FloatingActionButton
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:src="@drawable/ic_arrow_down"
+			android:id="@+id/nmod_enabled_arrow_down"
+			android:layout_margin="10dp"
+			android:layout_centerHorizontal="true"
+			android:layout_toLeftOf="@id/nmod_enabled_minus"/>
+		
+		
+		<android.support.design.widget.FloatingActionButton
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:src="@drawable/ic_arrow_up"
+			android:id="@+id/nmod_enabled_arrow_up"
+			android:layout_margin="10dp"
+			android:layout_centerHorizontal="true"
+			android:layout_toLeftOf="@id/nmod_enabled_arrow_down"/>
+		
 	</RelativeLayout>
 
 </android.support.v7.widget.CardView>

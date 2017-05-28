@@ -10,7 +10,7 @@ import android.widget.*;
 import com.mcal.ModdedPE.utils.*;
 import com.mcal.MCDesign.widget.*;
 
-public class MainStartFragment extends Fragment
+public class MainStartFragment extends ModdedPEFragment
 {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

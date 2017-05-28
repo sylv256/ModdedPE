@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class ModdedPENModFilePickerActivity extends MCDActivity
+public class ModdedPENModFilePickerActivity extends ModdedPEActivity
 {
 	private File currentPath;
 	private Vector<File> filesInCurrentPath;

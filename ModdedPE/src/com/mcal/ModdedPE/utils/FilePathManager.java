@@ -8,6 +8,7 @@ public class FilePathManager
 	
 	public static final String DIR_NAME_NMOD_PACKS = "nmod_packs";
 	public static final String DIR_NAME_NMOD_LIBS = "nmod_libs";
+	public static final String DIR_NAME_NMOD_LANG_DATA = "nmod_lang";
 	public static final String FILE_NAME_NMOD_ICON = "nmod_icon";
 	
 	public FilePathManager(Context context)
@@ -28,5 +29,10 @@ public class FilePathManager
 	public String getNModIconFilePath()
 	{
 		return context.getFilesDir().toString() + FILE_NAME_NMOD_ICON;
+	}
+	
+	public String getNModLanguageDataPath()
+	{
+		return context.getFilesDir().toString() + DIR_NAME_NMOD_LANG_DATA;
 	}
 }

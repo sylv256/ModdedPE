@@ -1,4 +1,7 @@
 package com.mcal.ModdedPE.nmod;
+import java.util.zip.*;
+import java.io.*;
+import android.content.pm.*;
 
 public class NModUtils
 {
@@ -59,5 +62,21 @@ public class NModUtils
 			flag = false;
 		}
 		return flag;
+	}
+	
+	public static IOException apkToNModPack(PackageManager mgr,File apkFile,File toFile)
+	{
+		try
+		{
+			toFile.createNewFile();
+			ZipFile zipFile = new ZipFile(apkFile);
+			PackageInfo info = mgr.getPackageArchiveInfo(apkFile.getPath(),PackageManager.GET_CONFIGURATIONS);
+			
+		}
+		catch(IOException ioe)
+		{
+			return ioe;
+		}
+		return null;
 	}
 }

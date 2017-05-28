@@ -18,6 +18,17 @@ public class AssetOverrideManager
 		catch (Throwable t)
 		{}
 	}
+	
+	public static void addAssetOverride(AssetManager mgr,String packageResourcePath)
+	{
+		try
+		{
+			Method method = AssetManager.class.getMethod("addAssetPath", String.class);
+			method.invoke(mgr, packageResourcePath);
+		}
+		catch (Throwable t)
+		{}
+	}
 
 	public AssetManager getAssetManager()
 	{

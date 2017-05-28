@@ -20,9 +20,11 @@ public class PackagedNMod extends NMod
 	}
 
 	@Override
-	public void load(String mcVer, String moddedpeVer) throws Exception
+	public NModPerloadBean copyNModFiles()
 	{
-		getLoader().load(mcVer, moddedpeVer);
+		NModPerloadBean ret = new NModPerloadBean();
+		
+		return ret;
 	}
 
 	@Override

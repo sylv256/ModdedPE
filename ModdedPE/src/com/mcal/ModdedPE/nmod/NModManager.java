@@ -10,13 +10,12 @@ import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.utils.*;
 import com.mcal.ModdedPE.app.*;
 
-public class NModManager
+class NModManager
 {
 	private Vector<NMod> activeNMods=new Vector<NMod>();
 	private Vector<NMod> allNMods=new Vector<NMod>();
 	private Vector<NMod> disabledNMods=new Vector<NMod>();
 	private Context contextThis;
-	private Loader loader = new Loader();
 	private static NModManager instance=null;
 
 	public static void reCalculate(Context c)
@@ -65,44 +64,30 @@ public class NModManager
 		disabledNMods = new Vector<NMod>();
 
 		NModOptions options = new NModOptions(contextThis);
-		Vector<String> allList = options.getAllList();
-
-		for (String packageName:allList)
+		
+		for (String item:options.getAllList())
 		{
-			try
+			if (!NModUtils.isValidPackageName(item))
 			{
-				Context contextPackage = contextThis.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
-				try
-				{
-					InputStream is = contextPackage.getAssets().open(NMod.MANIFEST_NAME);
-					if (is != null)
-					{
-						is.close();
-						addNewNMod(new PackagedNMod(contextThis, contextPackage));
-					}
-				}
-				catch (IOException e)
-				{
-
-				}
-			}
-			catch (PackageManager.NameNotFoundException e)
-			{
-				File nmod_file=new File(new FilePathManager(contextThis).getNModLibsPath() + File.separator + packageName);
-				if (nmod_file.exists())
-				{
-					try
-					{
-						ZippedNMod newZippedNMod = new ZippedNMod(contextThis, nmod_file);
-						addNewNMod(newZippedNMod);
-					}
-					catch (IOException e2)
-					{}
-				}
+				options.removeByName(item);
 			}
 		}
 
+		forEachItemToAddNMod(options.getActiveList(), true);
+		forEachItemToAddNMod(options.getDisabledList(), false);
 		refreshDatas();
+	}
+
+	private void forEachItemToAddNMod(Vector<String> list, boolean enabled)
+	{
+		for (String packageName:list)
+		{
+			PackagedNMod packagedNMod = PackagedNMod.archiveNMod(contextThis, packageName);
+			if (packagedNMod != null)
+			{
+				addNewNMod(packagedNMod, false, enabled);
+			}
+		}
 	}
 
 	public Vector<NMod> findInstalledNMods()
@@ -112,29 +97,47 @@ public class NModManager
 		Vector<NMod> ret = new Vector<NMod>();
 		for (PackageInfo info:infos)
 		{
-			try
+			PackagedNMod packagedNMod = PackagedNMod.archiveNMod(contextThis, info.packageName);
+			if (packagedNMod != null)
 			{
-				Context contextPackage = contextThis.createPackageContext(info.applicationInfo.packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
-				contextPackage.getAssets().open(NMod.MANIFEST_NAME).close();
-				ret.add(new PackagedNMod(contextThis,contextPackage));
+				ret.add(packagedNMod);
 			}
-			catch (IOException e)
-			{}
-			catch(PackageManager.NameNotFoundException notFoundE)
-			{}
 		}
 		return ret;
 	}
 
-	private void addNewNMod(NMod newNMod)
+	public boolean addNewNMod(NMod newNMod, boolean replace, boolean enabled)
 	{
+		if (replace)
+		{
+			for (NMod nmod:allNMods)
+				if (nmod.getPackageName().equals(newNMod.getPackageName()))
+					allNMods.remove(nmod);
+			for (NMod nmod:activeNMods)
+				if (nmod.getPackageName().equals(newNMod.getPackageName()))
+					activeNMods.remove(nmod);
+			for (NMod nmod:disabledNMods)
+				if (nmod.getPackageName().equals(newNMod.getPackageName()))
+					disabledNMods.remove(nmod);
+			allNMods.add(newNMod);
+			if (enabled)
+				activeNMods.add(newNMod);
+			else
+				disabledNMods.add(newNMod);
+			return true;
+		}
 		for (NMod nmod:allNMods)
 			if (nmod.getPackageName().equals(newNMod.getPackageName()))
-				return;
+				return false;
 		allNMods.add(newNMod);
+		if (enabled)
+			activeNMods.add(newNMod);
+		else
+			disabledNMods.add(newNMod);
+		return true;
 	}
-	
-	
+
+
 
 	public void refreshDatas()
 	{
@@ -147,24 +150,6 @@ public class NModManager
 				options.removeByName(item);
 			}
 		}
-
-		Vector<String> activeList=options.getActiveList();
-		activeNMods = new Vector<NMod>();
-		for (String item:activeList)
-		{
-			NMod nmod=getNMod(item);
-			if (nmod != null)
-				activeNMods.add(nmod);
-		}
-
-		Vector<String> disabledList=options.getDisabledList();
-		disabledNMods = new Vector<NMod>();
-		for (String item:disabledList)
-		{
-			NMod nmod=getNMod(item);
-			if (nmod != null)
-				disabledNMods.add(nmod);
-		}
 	}
 
 	public NMod getNMod(String pkgname)
@@ -175,53 +160,38 @@ public class NModManager
 		return null;
 	}
 
-	public void removeActive(NMod nmod)
-	{
-		NModOptions options=new NModOptions(contextThis);
-		options.setIsActive(nmod, false);
-		activeNMods.remove(nmod);
-		refreshDatas();
-	}
-
 	public void makeUp(NMod nmod)
 	{
 		NModOptions options=new NModOptions(contextThis);
 		options.upNMod(nmod);
-		refreshDatas();
 	}
 
 	public void makeDown(NMod nmod)
 	{
 		NModOptions options=new NModOptions(contextThis);
 		options.downNMod(nmod);
-		refreshDatas();
 	}
 
-	public void addActive(NMod nmod)
+	public void setActive(NMod nmod)
 	{
 		if (nmod.isBugPack())
 			return;
 		NModOptions options=new NModOptions(contextThis);
 		options.setIsActive(nmod, true);
 		activeNMods.add(nmod);
-		refreshDatas();
+		disabledNMods.remove(nmod);
+	}
+	
+	public void setDisable(NMod nmod)
+	{
+		NModOptions options=new NModOptions(contextThis);
+		options.setIsActive(nmod, false);
+		disabledNMods.add(nmod);
+		activeNMods.remove(nmod);
 	}
 
 	public Vector<NMod> getDisabledNMods()
 	{
 		return disabledNMods;
-	}
-
-	public Loader getLoader()
-	{
-		return loader;
-	}
-
-	public class Loader
-	{
-		public void loadNModLibs()
-		{
-			
-		}
 	}
 }

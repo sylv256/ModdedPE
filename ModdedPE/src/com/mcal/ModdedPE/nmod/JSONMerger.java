@@ -2,7 +2,7 @@ package com.mcal.ModdedPE.nmod;
 import org.json.*;
 import java.util.*;
 
-public class JSONMerger
+class JSONMerger
 {
 	private String json1;
 	private String json2;

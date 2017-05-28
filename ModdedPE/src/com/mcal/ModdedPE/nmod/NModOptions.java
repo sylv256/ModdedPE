@@ -2,12 +2,12 @@ package com.mcal.ModdedPE.nmod;
 import android.content.*;
 import java.util.*;
 
-public class NModOptions
+class NModOptions
 {
 	private Context contextThis;
 	public static final String TAG_SHARED_PREFERENCE = "nmod_list";
-	public static final String TAG_ACTIVE_LIST = "nmod_active_list_tag";
-	public static final String TAG_DISABLE_LIST = "nmod_disabled_list_tag";
+	public static final String TAG_ACTIVE_LIST = "nmod_enabled_nmods_list";
+	public static final String TAG_DISABLE_LIST = "nmod_disabled_nmods_list";
 
 	public NModOptions(Context thisContext)
 	{
@@ -142,7 +142,7 @@ public class NModOptions
 	}
 	private static Vector<String> toVector(String str)
 	{
-		String[] mstr=str.split("|");
+		String[] mstr=str.split("/");
 		Vector<String> list = new Vector<String>();
 		if (mstr != null)
 		{
@@ -163,7 +163,7 @@ public class NModOptions
 			for (String mstr:vector)
 			{
 				str += mstr;
-				str += "|";
+				str += "/";
 			}
 		}
 		return str;
