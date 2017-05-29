@@ -12,20 +12,22 @@ import com.mcal.ModdedPE.utils.*;
 
 public class ZippedNMod extends NMod
 {
-	private ZipFile zipFile;
-	private File filePath;
-	private AssetManager assets;
-	
+	private ZipFile zipFile = null;
+	private File filePath = null;
+	private AssetManager assets = null;
+	private String package_name = null;
+
 	@Override
 	public NModPerloadBean copyNModFiles()
 	{
 		NModPerloadBean ret = new NModPerloadBean();
 		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) zipFile.entries();
+
 		while (zipfile_ents.hasMoreElements())
 		{
 			ZipEntry entry=zipfile_ents.nextElement();
 
-			if (!entry.isDirectory() && entry.getName().startsWith("libs/" + Build.CPU_ABI2 + File.separator))
+			if (!entry.isDirectory() && entry.getName().startsWith("lib/" + Build.CPU_ABI2 + File.separator))
 			{
 				try
 				{
@@ -47,7 +49,7 @@ public class ZippedNMod extends NMod
 				catch (IOException e)
 				{}
 			}
-			if (!entry.isDirectory() && entry.getName().startsWith("libs/" + Build.CPU_ABI + File.separator))
+			if (!entry.isDirectory() && entry.getName().startsWith("lib/" + Build.CPU_ABI + File.separator))
 			{
 				try
 				{
@@ -71,10 +73,10 @@ public class ZippedNMod extends NMod
 			}
 
 		}
-		
+
 		return ret;
 	}
-	
+
 	@Override
 	public int getNModType()
 	{
@@ -84,9 +86,24 @@ public class ZippedNMod extends NMod
 	@Override
 	public String getPackageName()
 	{
+		if (package_name != null)
+			return package_name;
 		if (dataBean != null && dataBean.package_name != null)
 			return dataBean.package_name;
-		return toString();
+		String autoPkgName = filePath.toString().replaceAll("/", ".");
+		if (autoPkgName.startsWith("."))
+		{
+			autoPkgName = autoPkgName.replaceFirst(".", "");
+		}
+		if (autoPkgName.endsWith("."))
+		{
+			autoPkgName = autoPkgName + "nmod";
+		}
+		if (autoPkgName.indexOf(".") == -1)
+		{
+			autoPkgName = autoPkgName + ".nmod";
+		}
+		return autoPkgName;
 	}
 
 	@Override
@@ -104,7 +121,7 @@ public class ZippedNMod extends NMod
 	@Override
 	public String getNativeLibsPath()
 	{
-		return new FilePathManager(thisContext).getNModLibsPath() + File.separator + getPackageName();
+		return new FilePathManager(thisContext).getNModLibsDir() + File.separator + getPackageName();
 	}
 
 	@Override
@@ -122,7 +139,7 @@ public class ZippedNMod extends NMod
 			return null;
 		}
 	}
-	
+
 	@Override
 	protected InputStream createDataBeanInputStream()
 	{
@@ -136,11 +153,19 @@ public class ZippedNMod extends NMod
 		}
 	}
 
+	void setPackageName(String pkgName)
+	{
+		package_name = pkgName;
+	}
+
 	public ZippedNMod(Context thisContext, File file) throws IOException
 	{
 		super(thisContext);
 		this.zipFile = new ZipFile(file);
 		this.filePath = file;
+
+		zipFile.getInputStream(zipFile.getEntry(MANIFEST_NAME)).close();
+
 		try
 		{
 			assets = AssetManager.class.newInstance();
@@ -153,7 +178,7 @@ public class ZippedNMod extends NMod
 		try
 		{
 			Method method=AssetManager.class.getMethod("addAssetPath", String.class);
-			method.invoke(assets, getPackageResourcePath());
+			method.invoke(assets, file.getPath());
 		}
 		catch (NoSuchMethodException e)
 		{}
@@ -166,5 +191,14 @@ public class ZippedNMod extends NMod
 		catch (IllegalArgumentException e)
 		{}
 		preload();
+
+		if (dataBean != null && dataBean.package_name == null)
+		{
+			setBugPack(new NModLoadException("Unknown package name!Please define a \"package_name\" element in " + NMod.MANIFEST_NAME + "."));
+		}
+		else if (dataBean != null && !NModUtils.isValidPackageName(dataBean.package_name))
+		{
+			setBugPack(new NModLoadException("Invalid package name!Package name should be a java-style package name."));
+		}
 	}
 }

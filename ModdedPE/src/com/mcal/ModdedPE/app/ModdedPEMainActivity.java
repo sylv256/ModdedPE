@@ -69,17 +69,25 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 	{
 		super.setDefaultActionBar();
 
-		MCDBurgerButton burgerButton=new MCDBurgerButton(this);
+		final MCDBurgerButton burgerButton=new MCDBurgerButton(this);
 		burgerButton.setOnClickListener(new View.OnClickListener()
 			{
 
 				@Override
 				public void onClick(View p1)
 				{
-
+					PopupMenu popup =new PopupMenu(ModdedPEMainActivity.this, burgerButton);
+                    popup.getMenuInflater().inflate(R.menu.moddedpe_main_menu, popup.getMenu());
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
+						{
+							public boolean onMenuItemClick(MenuItem item)
+							{
+								switchViewPager(item);
+								return true;
+							}
+						});
+					popup.show();
 				}
-
-
 			});
 		setActionBarViewRight(burgerButton);
 
@@ -96,6 +104,22 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 
 			});
 		setActionBarViewLeft(imageButton);
+	}
+
+	private void switchViewPager(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case R.id.item_main_page:
+				mainViewPager.setCurrentItem(0, true);
+				break;
+			case R.id.item_manage_nmods:
+				mainViewPager.setCurrentItem(1, true);
+				break;
+			case R.id.item_launcher_settings:
+				mainViewPager.setCurrentItem(2, true);
+				break;
+		}
 	}
 
 	public void onPlayClicked(View v)

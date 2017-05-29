@@ -67,6 +67,16 @@
 			android:layout_margin="10dp"
 			android:layout_centerHorizontal="true"
 			android:layout_alignParentRight="true"/>
+		
+
+		<android.support.design.widget.FloatingActionButton
+			android:layout_height="50dp"
+			android:layout_width="50dp"
+			android:src="@drawable/ic_delete"
+			android:id="@+id/nmod_disabled_delete"
+			android:layout_margin="10dp"
+			android:layout_toLeftOf="@id/nmod_disabled_add"
+			android:layout_centerHorizontal="true"/>
 
 	</RelativeLayout>
 

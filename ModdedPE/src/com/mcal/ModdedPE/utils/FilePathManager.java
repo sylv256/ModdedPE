@@ -10,29 +10,34 @@ public class FilePathManager
 	public static final String DIR_NAME_NMOD_LIBS = "nmod_libs";
 	public static final String DIR_NAME_NMOD_LANG_DATA = "nmod_lang";
 	public static final String FILE_NAME_NMOD_ICON = "nmod_icon";
-	
+	public static final String FILE_NAME_NMOD_CAHCHE = "cached_nmod";
 	public FilePathManager(Context context)
 	{
 		this.context = context;
 	}
 	
-	public String getNModsPath()
+	public String getNModsDir()
 	{
 		return context.getFilesDir().toString() + File.separator + DIR_NAME_NMOD_PACKS;
 	}
 	
-	public String getNModLibsPath()
+	public String getNModLibsDir()
 	{
 		return context.getFilesDir().toString() + File.separator + DIR_NAME_NMOD_LIBS;
 	}
 	
 	public String getNModIconFilePath()
 	{
-		return context.getFilesDir().toString() + FILE_NAME_NMOD_ICON;
+		return context.getFilesDir().toString() + File.separator + FILE_NAME_NMOD_ICON;
 	}
 	
-	public String getNModLanguageDataPath()
+	public String getNModCacheDir()
 	{
-		return context.getFilesDir().toString() + DIR_NAME_NMOD_LANG_DATA;
+		return context.getCacheDir().getPath();
+	}
+	
+	public String getNModCachePath()
+	{
+		return context.getCacheDir().getPath() + File.separator + FILE_NAME_NMOD_CAHCHE;
 	}
 }

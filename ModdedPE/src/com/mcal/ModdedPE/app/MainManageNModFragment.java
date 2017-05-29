@@ -72,8 +72,47 @@ public class MainManageNModFragment extends ModdedPEFragment
 				}
 				else if (requestCode == ModdedPENModFilePickerActivity.REQUEST_PICK_FILE)
 				{
-					refreshNModDatas();
+					try
+					{
+						final ZippedNMod zippednmod = getNModAPI().archiveZippedNMod(data.getExtras().getString(ModdedPENModFilePickerActivity.TAG_FILE_PATH));
+						if (zippednmod != null)
+						{
+							if (!getNModAPI().addNewNMod(zippednmod, false))
+							{
+								new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_existed_nmod_title).setMessage(R.string.nmod_existed_nmod_msg_replace).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+									{
+
+										@Override
+										public void onClick(DialogInterface p1, int p2)
+										{
+											getNModAPI().addNewNMod(zippednmod, true);
+											p1.dismiss();
+										}
+									}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+									{
+
+										@Override
+										public void onClick(DialogInterface p1, int p2)
+										{
+											p1.dismiss();
+										}
+
+
+									}).show();
+							}
+						}
+						else
+						{
+							//decode error
+						}
+						refreshNModDatas();
+					}
+					catch (NModLoadException nmodLoadE)
+					{
+						//load error
+					}
 				}
+
 			}
 		}
 		catch (Throwable t)
@@ -130,196 +169,269 @@ public class MainManageNModFragment extends ModdedPEFragment
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
 			boolean shouldShowEnabledList = managenmod_activeList.size() > 0 && (position  < managenmod_activeList.size() + 1);
-
 			if (shouldShowEnabledList)
 			{
 				if (position == 0)
 				{
-					convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_ui_cutline, null);
-					AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.moddedpe_cutline_textview);
-					textTitle.setText(R.string.nmod_enabled_title);
-					return convertView;
+					return createCutlineView(R.string.nmod_enabled_title);
 				}
 				else
 				{
 					int nmodIndex = position - 1;
-					final NMod nmod = managenmod_activeList.get(nmodIndex);
-					if (nmod.isBugPack())
-					{
-						convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
-						AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_name);
-						textTitle.setText(nmod.getName());
-						AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
-						textPkgTitle.setText(nmod.getPackageName());
-						AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
-						imageIcon.setImageBitmap(nmod.getIcon());
-						FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
-						View.OnClickListener onInfoClickedListener = new View.OnClickListener()
-						{
-
-							@Override
-							public void onClick(View p1)
-							{
-								ModdedPENModLoadFailActivity.startThisActivity(getContext(), nmod);
-							}
-
-
-						};
-						infoButton.setOnClickListener(onInfoClickedListener);
-						convertView.setOnClickListener(onInfoClickedListener);
-						return convertView;
-					}
-					convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_active, null);
-					AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_name);
-					textTitle.setText(nmod.getName());
-					AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_package_name);
-					textPkgTitle.setText(nmod.getPackageName());
-					AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_enabled_item_card_view_image_view);
-					imageIcon.setImageBitmap(nmod.getIcon());
-					FloatingActionButton minusButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_minus);
-					minusButton.setOnClickListener(new View.OnClickListener()
-						{
-
-							@Override
-							public void onClick(View p1)
-							{
-								getNModAPI().setEnabled(nmod, false);
-								refreshNModDatas();
-							}
-
-
-						});
-					FloatingActionButton downButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_arrow_down);
-					downButton.setOnClickListener(new View.OnClickListener()
-						{
-
-							@Override
-							public void onClick(View p1)
-							{
-								getNModAPI().downPosNMod(nmod);
-								refreshNModDatas();
-							}
-
-
-						});
-					FloatingActionButton upButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_arrow_up);
-					upButton.setOnClickListener(new View.OnClickListener()
-						{
-
-							@Override
-							public void onClick(View p1)
-							{
-								getNModAPI().upPosNMod(nmod);
-								refreshNModDatas();
-							}
-
-
-						});
-					convertView.setOnClickListener(new View.OnClickListener()
-						{
-
-							@Override
-							public void onClick(View p1)
-							{
-								ModdedPENModDescriptionActivity.startThisActivity(getContext(), nmod);
-							}
-
-
-						});
-					return convertView;
+					return createEnabledNModView(managenmod_activeList.get(nmodIndex));
 				}
 			}
-
 			int disableStartPosition = managenmod_activeList.size() > 0 ? managenmod_activeList.size() + 1: 0;
-
 			if (position == disableStartPosition)
 			{
-				convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_ui_cutline, null);
-				AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.moddedpe_cutline_textview);
-				textTitle.setText(R.string.nmod_disabled_title);
-				return convertView;
+				return createCutlineView(R.string.nmod_disabled_title);
 			}
 			int itemInListPosition = position - 1 - disableStartPosition;
-
 			if (itemInListPosition >= 0 && itemInListPosition < managenmod_disabledList.size())
 			{
-				final NMod nmod = managenmod_disabledList.get(itemInListPosition);
-				if (nmod.isBugPack())
-				{
-					convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
-					AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_name);
-					textTitle.setText(nmod.getName());
-					AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
-					textPkgTitle.setText(nmod.getPackageName());
-					AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
-					imageIcon.setImageBitmap(nmod.getIcon());
-					FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
-					View.OnClickListener onInfoClickedListener = new View.OnClickListener()
-					{
-
-						@Override
-						public void onClick(View p1)
-						{
-							ModdedPENModLoadFailActivity.startThisActivity(getContext(), nmod);
-						}
-
-
-					};
-					infoButton.setOnClickListener(onInfoClickedListener);
-					convertView.setOnClickListener(onInfoClickedListener);
-					return convertView;
-				}
-				convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_disabled, null);
-				AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_name);
-				textTitle.setText(nmod.getName());
-				AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_package_name);
-				textPkgTitle.setText(nmod.getPackageName());
-				AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_disabled_item_card_view_image_view);
-				imageIcon.setImageBitmap(nmod.getIcon());
-				FloatingActionButton addButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_disabled_add);
-				addButton.setOnClickListener(new View.OnClickListener()
-					{
-
-						@Override
-						public void onClick(View p1)
-						{
-							getNModAPI().setEnabled(nmod, true);
-							refreshNModDatas();
-						}
-
-
-					});
-				convertView.setOnClickListener(new View.OnClickListener()
-					{
-
-						@Override
-						public void onClick(View p1)
-						{
-							ModdedPENModDescriptionActivity.startThisActivity(getContext(), nmod);
-						}
-
-
-					});
-				return convertView;
+				return createDisabledNModView(managenmod_disabledList.get(itemInListPosition));
 			}
+			return createAddNewView();
+		}
 
-			convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_new, null);
-			convertView.setOnClickListener(new View.OnClickListener()
+    }
+
+	private View createCutlineView(int textResId)
+	{
+		View convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_ui_cutline, null);
+		AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.moddedpe_cutline_textview);
+		textTitle.setText(textResId);
+		return convertView;
+	}
+
+	private View createAddNewView()
+	{
+		View convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_new, null);
+		convertView.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onAddNewNMod();
+				}
+
+
+			});
+		return convertView;
+	}
+
+	private View createDisabledNModView(NMod nmod_)
+	{
+		final NMod nmod = nmod_;
+		View convertView = null;
+		if (nmod.isBugPack())
+		{
+			convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
+			AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_name);
+			textTitle.setText(nmod.getName());
+			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
+			textPkgTitle.setText(nmod.getPackageName());
+			AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
+			imageIcon.setImageBitmap(nmod.getIcon());
+			FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
+			View.OnClickListener onInfoClickedListener = new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					ModdedPENModLoadFailActivity.startThisActivity(getContext(), nmod);
+				}
+
+
+			};
+			FloatingActionButton deleteButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_delete);
+			deleteButton.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					getNModAPI().removeNMod(nmod);
+					refreshNModDatas();
+				}
+
+
+			});
+			infoButton.setOnClickListener(onInfoClickedListener);
+			convertView.setOnClickListener(onInfoClickedListener);
+			return convertView;
+		}
+		convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_disabled, null);
+		AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_name);
+		textTitle.setText(nmod.getName());
+		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_package_name);
+		textPkgTitle.setText(nmod.getPackageName());
+		AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_disabled_item_card_view_image_view);
+		imageIcon.setImageBitmap(nmod.getIcon());
+		FloatingActionButton addButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_disabled_add);
+		addButton.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					getNModAPI().setEnabled(nmod, true);
+					refreshNModDatas();
+				}
+
+
+			});
+		FloatingActionButton deleteButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_disabled_delete);
+		deleteButton.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						{
+
+							@Override
+							public void onClick(DialogInterface p1, int p2)
+							{
+								getNModAPI().removeNMod(nmod);
+								refreshNModDatas();
+								p1.dismiss();
+							}
+
+
+						}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+						{
+
+							@Override
+							public void onClick(DialogInterface p1, int p2)
+							{
+								p1.dismiss();
+							}
+
+
+						}).show();
+				}
+
+
+			});
+		convertView.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					ModdedPENModDescriptionActivity.startThisActivity(getContext(), nmod);
+				}
+
+
+			});
+		return convertView;
+	}
+
+	private View createEnabledNModView(NMod nmod_)
+	{
+		final NMod nmod = nmod_;
+		View convertView = null;
+		if (nmod.isBugPack())
+		{
+			convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
+			AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_name);
+			textTitle.setText(nmod.getName());
+			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
+			textPkgTitle.setText(nmod.getPackageName());
+			AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
+			imageIcon.setImageBitmap(nmod.getIcon());
+			FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
+			View.OnClickListener onInfoClickedListener = new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					ModdedPENModLoadFailActivity.startThisActivity(getContext(), nmod);
+				}
+
+
+			};
+			FloatingActionButton deleteButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_delete);
+			deleteButton.setOnClickListener(new View.OnClickListener()
 				{
 
 					@Override
 					public void onClick(View p1)
 					{
-						onAddNewNMod();
+						getNModAPI().removeNMod(nmod);
+						refreshNModDatas();
 					}
 
 
 				});
-
+			infoButton.setOnClickListener(onInfoClickedListener);
+			convertView.setOnClickListener(onInfoClickedListener);
 			return convertView;
 		}
+		convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_active, null);
+		AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_name);
+		textTitle.setText(nmod.getName());
+		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_package_name);
+		textPkgTitle.setText(nmod.getPackageName());
+		AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_enabled_item_card_view_image_view);
+		imageIcon.setImageBitmap(nmod.getIcon());
+		FloatingActionButton minusButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_minus);
+		minusButton.setOnClickListener(new View.OnClickListener()
+			{
 
-    }
+				@Override
+				public void onClick(View p1)
+				{
+					getNModAPI().setEnabled(nmod, false);
+					refreshNModDatas();
+				}
+
+
+			});
+		FloatingActionButton downButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_arrow_down);
+		downButton.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					getNModAPI().downPosNMod(nmod);
+					refreshNModDatas();
+				}
+
+
+			});
+		FloatingActionButton upButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_arrow_up);
+		upButton.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					getNModAPI().upPosNMod(nmod);
+					refreshNModDatas();
+				}
+
+
+			});
+		convertView.setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					ModdedPENModDescriptionActivity.startThisActivity(getContext(), nmod);
+				}
+
+
+			});
+		return convertView;
+	}
 
 	private void onAddNewNMod()
 	{

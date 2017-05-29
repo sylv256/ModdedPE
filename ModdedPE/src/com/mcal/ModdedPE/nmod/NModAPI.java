@@ -9,6 +9,7 @@ import com.mcal.ModdedPE.utils.*;
 import android.support.annotation.*;
 import java.io.*;
 import android.content.pm.*;
+import java.util.zip.*;
 
 public final class NModAPI
 {
@@ -26,6 +27,11 @@ public final class NModAPI
 	private NModAPI(Context context)
 	{
 		this.context = context;
+	}
+
+	public ZippedNMod archiveZippedNMod(String filePath) throws NModLoadException
+	{
+		return NModUtils.archiveZippedNMod(context,filePath);
 	}
 
 	public static NModAPI getInstance(Context context)
@@ -133,7 +139,11 @@ public final class NModAPI
 			AssetOverrideManager.addAssetOverride(mgr, assetsPath);
 		}
 
+	}
 
+	public void removeNMod(NMod nmod)
+	{
+		NModManager.getNModManager(context).deleteNMod(nmod);
 	}
 
 	public void setEnabled(NMod nmod, boolean enabled)
@@ -153,10 +163,10 @@ public final class NModAPI
 	{
 		NModManager.getNModManager(context).makeDown(nmod);
 	}
-	
+
 	public PackagedNMod archivePackagedNMod(String packageName)
 	{
-		return PackagedNMod.archiveNMod(context,packageName);
+		return PackagedNMod.archiveNMod(context, packageName);
 	}
 
 	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity activity, Bundle savedInstanceState, Bundle data)

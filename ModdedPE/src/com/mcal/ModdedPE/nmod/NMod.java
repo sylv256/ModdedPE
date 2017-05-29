@@ -202,7 +202,7 @@ public abstract class NMod
 		catch (JsonSyntaxException e)
 		{
 			dataBean = null;
-			setBugPack(new NModLoadException("Read json " + MANIFEST_NAME + "failed.", e));
+			setBugPack(new NModLoadException("Read json " + MANIFEST_NAME + " failed.", e));
 			return;
 		}
 		catch (IOException ioe)

@@ -30,7 +30,8 @@
 	<string name="load_fail_deal">How to Deal</string>
 	<string name="load_fail_all">Full Description</string>
 	<string name="load_fail_warning">An error was caused by the NMod %1$s.The NMod is disabled now,you can continue to enjoy the game!</string>
-	
+	<string name="nmod_delete_title">Delete NMod</string>
+	<string name="nmod_delete_message">Do you really want to delete it?It may be lost for a long time.(REALLY LONG!)</string>
 	<string name="nmod_description_description_title">Description</string>
 	<string name="nmod_description_about_title">About</string>
 	<string name="nmod_description_about_author">Author:</string>

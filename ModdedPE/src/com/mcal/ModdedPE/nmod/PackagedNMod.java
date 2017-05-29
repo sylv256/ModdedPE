@@ -8,6 +8,7 @@ import com.mcal.ModdedPE.nmod.NMod.*;
 import com.mcal.ModdedPE.*;
 import com.google.gson.*;
 import android.content.pm.*;
+import java.util.zip.*;
 
 public class PackagedNMod extends NMod
 {

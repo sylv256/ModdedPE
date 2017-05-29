@@ -61,37 +61,6 @@
 				android:layout_height="wrap_content"
 				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="wrap_content"
-				android:text="@string/load_fail_deal"
-				android:id="@+id/moddedpeLFTextViewTitleDeal"
-				android:layout_marginLeft="10dp"/>
-
-			<View
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:background="#6E6E6E"
-				android:layout_centerVertical="true"
-				android:layout_marginLeft="5dp"
-				android:layout_toRightOf="@id/moddedpeLFTextViewTitleDeal"/>
-
-		</RelativeLayout>
-
-		<android.support.v7.widget.AppCompatTextView
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:layout_width="match_parent"
-			android:textIsSelectable="true"
-			android:id="@+id/moddedpeLFDealTextView"/>
-
-		<RelativeLayout
-			android:layout_width="match_parent"
-			android:orientation="horizontal"
-			android:layout_height="wrap_content">
-
-			<android.support.v7.widget.AppCompatTextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="wrap_content"
 				android:text="@string/load_fail_all"
 				android:id="@+id/moddedpeLFTextViewTitleAll"
 				android:layout_marginLeft="10dp"/>

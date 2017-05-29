@@ -37,7 +37,7 @@ public class ModdedPENModLoadFailActivity extends ModdedPEActivity
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		Bundle bundle=new Bundle();
 		bundle.putString(KEY_INTENT_EXTRAS_NMOD_NAME, nmod.getName());
-		bundle.putString(KEY_INTENT_EXTRAS_NMOD_LOAD_FAIL_BUG_MESSAGE, nmod.getLoadException().getMessage());
+		bundle.putString(KEY_INTENT_EXTRAS_NMOD_LOAD_FAIL_BUG_MESSAGE, nmod.getLoadException().getNModBugMessage());
 		bundle.putString(KEY_INTENT_EXTRAS_NMOD_LOAD_FAIL_FULL_MESSAGE, nmod.getLoadException().toString());
 		intent.putExtras(bundle);
 		context.startActivity(intent);

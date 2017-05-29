@@ -35,6 +35,8 @@
 	<string name="nmod_description_about_author">作者：</string>
 	<string name="nmod_description_about_version_name">版本名：</string>
 	<string name="nmod_description_unknow">未填写</string>
+	<string name="nmod_delete_title">删除NMod</string>
+	<string name="nmod_delete_message">您确定要删除这个NMod么？它将会消失很长时间。（真的很长！）</string>
 	<!--About-->
 	<string name="about_copyright">版权</string>
 	<string name="about_license">开放源代码许可</string>
