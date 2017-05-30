@@ -23,7 +23,12 @@ public final class NModAPI
 	public static final int MSG_MERGING_ASSETS = 5626;
 	public static final int MSG_LOADING_DEX = 5627;
 
-
+	public static final int ADD_RETURN_CODE_SUCCEED = 0;
+	public static final int ADD_RETURN_CODE_REPLACED = 1;
+	public static final int ENABLE_RETURN_CODE_VERSION_NOT_TARGET = 2;
+	public static final int ENABLE_RETURN_CODE_API_NEEDED = 3;
+	public static final int ENABLE_RETURN_CODE_ABI_NOT_TARGET = 3;
+	
 	private NModAPI(Context context)
 	{
 		this.context = context;
@@ -97,27 +102,27 @@ public final class NModAPI
 		return true;
 	}
 
-	public Vector<NMod> getLoadedNMods()
+	public ArrayList<NMod> getLoadedNMods()
 	{
 		return NModManager.getNModManager(context).getAllNMods();
 	}
 
-	public Vector<NMod> getLoadedEnabledNMods()
+	public ArrayList<NMod> getLoadedEnabledNMods()
 	{
 		return NModManager.getNModManager(context).getActiveNMods();
 	}
 
-	public Vector<NMod> getLoadedDisabledNMods()
+	public ArrayList<NMod> getLoadedDisabledNMods()
 	{
 		return NModManager.getNModManager(context).getDisabledNMods();
 	}
 
-	public Vector<NMod> getLoadedEnabledNModsHaveBanners()
+	public ArrayList<NMod> getLoadedEnabledNModsHaveBanners()
 	{
 		return NModManager.getNModManager(context).getActiveNModsIsValidBanner();
 	}
 
-	public Vector<NMod> findInstalledNMods()
+	public ArrayList<NMod> findInstalledNMods()
 	{
 		return NModManager.getNModManager(context).findInstalledNMods();
 	}
@@ -166,7 +171,7 @@ public final class NModAPI
 
 	public PackagedNMod archivePackagedNMod(String packageName)
 	{
-		return PackagedNMod.archiveNMod(context, packageName);
+		return NModUtils.archivePackagedNMod(context, packageName);
 	}
 
 	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity activity, Bundle savedInstanceState, Bundle data)
@@ -213,11 +218,11 @@ public final class NModAPI
 				handler = new Handler();
 			Gson gson = new Gson();
 			NModPerloadData perloadData = new NModPerloadData();
-			Vector<String> assetsVector = new Vector<String>();
-			Vector<String> dexPathVector = new Vector<String>();
-			Vector<String> loadedNativeLibs = new Vector<String>();
+			ArrayList<String> assetsArrayList = new ArrayList<String>();
+			ArrayList<String> dexPathArrayList = new ArrayList<String>();
+			ArrayList<String> loadedNativeLibs = new ArrayList<String>();
 
-			Vector<NMod> loadedEnabledNMods = getLoadedEnabledNMods();
+			ArrayList<NMod> loadedEnabledNMods = getLoadedEnabledNMods();
 			for (NMod nmod:loadedEnabledNMods)
 			{
 				Message message = new Message();
@@ -235,9 +240,9 @@ public final class NModAPI
 				if (loadNModElfFiles(nmod, perloadDataItem, handler))
 				{
 					if (perloadDataItem.assets_path != null)
-						assetsVector.add(perloadDataItem.assets_path);
+						assetsArrayList.add(perloadDataItem.assets_path);
 					if (perloadDataItem.dex_path != null)
-						dexPathVector.add(perloadDataItem.dex_path);
+						dexPathArrayList.add(perloadDataItem.dex_path);
 
 					if (perloadDataItem.native_libs != null && perloadDataItem.native_libs.length > 0)
 					{
@@ -248,8 +253,8 @@ public final class NModAPI
 					}
 				}
 			}
-			perloadData.assets_packs_path = (String[])assetsVector.toArray();
-			perloadData.dex_path = (String[])dexPathVector.toArray();
+			perloadData.assets_packs_path = (String[])assetsArrayList.toArray();
+			perloadData.dex_path = (String[])dexPathArrayList.toArray();
 			perloadData.loaded_libs = (String[])loadedNativeLibs.toArray();
 			bundle.putString(NMOD_DATA_TAG, gson.toJson(perloadData));
 		}

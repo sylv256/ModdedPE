@@ -18,7 +18,7 @@ public class NModBanner extends RelativeLayout
 	private ViewPager mPager;
 	private BannerHandler mHandler;
 	private BannerThread mBannerThread = new BannerThread();
-	private Vector<NMod> mNModVector = new Vector<NMod>();
+	private ArrayList<NMod> mNModArrayList = new ArrayList<NMod>();
 	
 	private static final int SLEEP_TIME = 3500;
 	private static final int MSG_UPDATE_NMODS = 1;
@@ -44,11 +44,11 @@ public class NModBanner extends RelativeLayout
 
 	private void updateNModList()
 	{
-		Vector<NMod> newNModList = NModAPI.getInstance(this.getContext()).getLoadedEnabledNModsHaveBanners();
-		if (mNModVector.equals(newNModList))
+		ArrayList<NMod> newNModList = NModAPI.getInstance(this.getContext()).getLoadedEnabledNModsHaveBanners();
+		if (mNModArrayList.equals(newNModList))
 		{
-			mNModVector.clear();
-			mNModVector.addAll(newNModList);
+			mNModArrayList.clear();
+			mNModArrayList.addAll(newNModList);
 		}
 		mPager.setAdapter(new BannerItemAdapater());
 	}
@@ -81,7 +81,7 @@ public class NModBanner extends RelativeLayout
 	public void scrollToNext()
 	{
 		int index = mPager.getCurrentItem() + 1;
-		mPager.setCurrentItem(index % (Math.max(mNModVector.size(), 1)));
+		mPager.setCurrentItem(index % (Math.max(mNModArrayList.size(), 1)));
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class NModBanner extends RelativeLayout
 		@Override
 		public int getCount()
 		{
-			return Math.max(mNModVector.size(), 1);
+			return Math.max(mNModArrayList.size(), 1);
 		}
 
 		@Override
@@ -149,13 +149,13 @@ public class NModBanner extends RelativeLayout
 		@Override
 		public Object instantiateItem(ViewGroup container, int position)
 		{
-			if (mNModVector.size() <= 0)
+			if (mNModArrayList.size() <= 0)
 			{
 				View view = createEmptyBannerItem();
 				container.addView(view);
 				return view;
 			}
-			View view = createBannerItemFor(mNModVector.get(position));
+			View view = createBannerItemFor(mNModArrayList.get(position));
 			container.addView(view);
 			return view;
 		}

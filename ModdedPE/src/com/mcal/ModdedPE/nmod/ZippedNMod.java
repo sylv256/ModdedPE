@@ -23,11 +23,12 @@ public class ZippedNMod extends NMod
 		NModPerloadBean ret = new NModPerloadBean();
 		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) zipFile.entries();
 
+		ArrayList<String> nativeLibs = new ArrayList<String>();
 		while (zipfile_ents.hasMoreElements())
 		{
 			ZipEntry entry=zipfile_ents.nextElement();
 
-			if (!entry.isDirectory() && entry.getName().startsWith("lib/" + Build.CPU_ABI2 + File.separator))
+			if (!entry.isDirectory() && entry.getName().startsWith("lib" + File.separator + Build.CPU_ABI + File.separator))
 			{
 				try
 				{
@@ -45,34 +46,15 @@ public class ZippedNMod extends NMod
 					}
 					libInputStream.close();
 					writerStream.close();
-				}
-				catch (IOException e)
-				{}
-			}
-			if (!entry.isDirectory() && entry.getName().startsWith("lib/" + Build.CPU_ABI + File.separator))
-			{
-				try
-				{
-					InputStream libInputStream = zipFile.getInputStream(entry);
-					int byteReaded = -1;
-					byte[] buffer = new byte[1024];
-					File dirFile = new File(getNativeLibsPath());
-					dirFile.mkdirs();
-					File outFile = new File(getNativeLibsPath() + File.separator + entry.getName().substring(entry.getName().lastIndexOf(File.separator) + 1));
-					outFile.createNewFile();
-					FileOutputStream writerStream = new FileOutputStream(outFile);
-					while ((byteReaded = libInputStream.read(buffer)) != -1)
-					{
-						writerStream.write(buffer, 0, byteReaded);
-					}
-					libInputStream.close();
-					writerStream.close();
+					nativeLibs.add(outFile.getPath());
 				}
 				catch (IOException e)
 				{}
 			}
 
 		}
+		ret.native_libs = (String[])nativeLibs.toArray();
+		ret.assets_path = getPackageResourcePath();
 
 		return ret;
 	}
@@ -81,6 +63,13 @@ public class ZippedNMod extends NMod
 	public int getNModType()
 	{
 		return NMOD_TYPE_ZIPPED;
+	}
+
+	@Override
+	public boolean isSupportedABI()
+	{
+		
+		return false;
 	}
 
 	@Override

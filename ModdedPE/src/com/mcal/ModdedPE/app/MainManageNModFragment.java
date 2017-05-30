@@ -16,8 +16,8 @@ import android.support.v7.app.AlertDialog;
 public class MainManageNModFragment extends ModdedPEFragment
 {
 	private ListView managenmod_listView;
-	private Vector<NMod> managenmod_activeList;
-	private Vector<NMod> managenmod_disabledList;
+	private ArrayList<NMod> managenmod_activeList;
+	private ArrayList<NMod> managenmod_disabledList;
 	private View manage_nmod_view;
 
 	@Override
@@ -120,6 +120,11 @@ public class MainManageNModFragment extends ModdedPEFragment
 
 		}
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
+	public void onRestart()
+	{
+		
 	}
 
 	private void refreshNModDatas()

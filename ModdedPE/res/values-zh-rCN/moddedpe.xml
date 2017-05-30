@@ -9,6 +9,7 @@
 	<string name="main_title">主页</string>
 	<string name="nmod_picker_file_title">选择NMod（存储）</string>
 	<string name="nmod_picker_package_title">选择NMod (应用)</string>
+	<string name="prestart_title">预加载</string>
 	
 	<!--NMod-->
 	<string name="nmod_loadFailed">%1$s 加载失败！</string>

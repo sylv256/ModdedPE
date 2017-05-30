@@ -13,7 +13,7 @@ import android.support.v7.widget.*;
 public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 {
 	private UIHandler mUIHandler = new UIHandler();
-	private Vector<NMod> nmods = new Vector<NMod>();
+	private ArrayList<NMod> nmods = new ArrayList<NMod>();
 
 	public static final String TAG_PACKAGE_NAME = "package_name";
 	public static final int REQUEST_PICK_PACKAGE = 1;

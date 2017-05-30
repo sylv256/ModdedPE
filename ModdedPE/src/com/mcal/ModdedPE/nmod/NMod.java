@@ -27,13 +27,9 @@ public abstract class NMod
 	public abstract String getPackageResourcePath();
 	public abstract String getNativeLibsPath();
 	public abstract int getNModType();
+	public abstract boolean isSupportedABI();
 	protected abstract Bitmap createIcon();
 	protected abstract InputStream createDataBeanInputStream();
-
-	public boolean isAddedToList()
-	{
-		return false;
-	}
 
 	public String[] getNativeLibs()
 	{
@@ -52,7 +48,7 @@ public abstract class NMod
 	@Override
 	public boolean equals(Object obj)
 	{
-		if (getClass() == obj.getClass())
+		if (getClass().equals(obj.getClass()))
 			return getPackageName().equals(((NMod)obj).getPackageName());
 		return false;
 	}
@@ -245,7 +241,6 @@ public abstract class NMod
 		String[] native_libs;
 		String dex_path;
 		String assets_path;
-		NModLanguageBean[] lang_data;
 	}
 
 	public static class NModLanguageBean

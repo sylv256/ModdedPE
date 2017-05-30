@@ -12,9 +12,9 @@ import com.mcal.ModdedPE.app.*;
 
 class NModManager
 {
-	private Vector<NMod> activeNMods=new Vector<NMod>();
-	private Vector<NMod> allNMods=new Vector<NMod>();
-	private Vector<NMod> disabledNMods=new Vector<NMod>();
+	private ArrayList<NMod> activeNMods=new ArrayList<NMod>();
+	private ArrayList<NMod> allNMods=new ArrayList<NMod>();
+	private ArrayList<NMod> disabledNMods=new ArrayList<NMod>();
 	private Context contextThis;
 	private static NModManager instance=null;
 
@@ -36,14 +36,14 @@ class NModManager
 		this.contextThis = contextThis;
 	}
 
-	public Vector<NMod> getActiveNMods()
+	public ArrayList<NMod> getActiveNMods()
 	{
 		return activeNMods;
 	}
 
-	public Vector<NMod> getActiveNModsIsValidBanner()
+	public ArrayList<NMod> getActiveNModsIsValidBanner()
 	{
-		Vector<NMod> ret=new Vector<NMod>();
+		ArrayList<NMod> ret=new ArrayList<NMod>();
 		for (NMod nmod:getActiveNMods())
 		{
 			if (nmod.isValidBanner())
@@ -52,16 +52,16 @@ class NModManager
 		return ret;
 	}
 
-	public Vector<NMod> getAllNMods()
+	public ArrayList<NMod> getAllNMods()
 	{
 		return allNMods;
 	}
 
 	private void preAddNMod()
 	{
-		allNMods = new Vector<NMod>();
-		activeNMods = new Vector<NMod>();
-		disabledNMods = new Vector<NMod>();
+		allNMods = new ArrayList<NMod>();
+		activeNMods = new ArrayList<NMod>();
+		disabledNMods = new ArrayList<NMod>();
 
 		NModOptions options = new NModOptions(contextThis);
 
@@ -83,17 +83,20 @@ class NModManager
 		activeNMods.remove(nmod);
 		disabledNMods.remove(nmod);
 		allNMods.remove(nmod);
-		String zippedNModPath = new FilePathManager(contextThis).getNModsDir() + File.separator + nmod.getPackageName();
-		File file = new File(zippedNModPath);
-		if (file.exists())
-		{
-			file.delete();
-		}
 		NModOptions options=new NModOptions(contextThis);
 		options.removeByName(nmod.getPackageName());
+		if (nmod.getNModType() == NMod.NMOD_TYPE_ZIPPED)
+		{
+			String zippedNModPath = new FilePathManager(contextThis).getNModsDir() + File.separator + nmod.getPackageName();
+			File file = new File(zippedNModPath);
+			if (file.exists())
+			{
+				file.delete();
+			}
+		}
 	}
 
-	private void forEachItemToAddNMod(Vector<String> list, boolean enabled)
+	private void forEachItemToAddNMod(ArrayList<String> list, boolean enabled)
 	{
 		for (String packageName:list)
 		{
@@ -112,7 +115,7 @@ class NModManager
 			catch (IOException e)
 			{}
 
-			PackagedNMod packagedNMod = PackagedNMod.archiveNMod(contextThis, packageName);
+			PackagedNMod packagedNMod = NModUtils.archivePackagedNMod(contextThis, packageName);
 			if (packagedNMod != null)
 			{
 				addNewNMod(packagedNMod, false, enabled);
@@ -120,14 +123,14 @@ class NModManager
 		}
 	}
 
-	public Vector<NMod> findInstalledNMods()
+	public ArrayList<NMod> findInstalledNMods()
 	{
 		PackageManager packageManager = contextThis.getPackageManager();
 		List<PackageInfo> infos = packageManager.getInstalledPackages(0);
-		Vector<NMod> ret = new Vector<NMod>();
+		ArrayList<NMod> ret = new ArrayList<NMod>();
 		for (PackageInfo info:infos)
 		{
-			PackagedNMod packagedNMod = PackagedNMod.archiveNMod(contextThis, info.packageName);
+			PackagedNMod packagedNMod = NModUtils.archivePackagedNMod(contextThis, info.packageName);
 			if (packagedNMod != null)
 			{
 				ret.add(packagedNMod);
@@ -207,7 +210,7 @@ class NModManager
 	private void refreshEnabledOrderList()
 	{
 		NModOptions options=new NModOptions(contextThis);
-		Vector<String> enabledList = options.getActiveList();
+		ArrayList<String> enabledList = options.getActiveList();
 		activeNMods.clear();
 		for (String pkgName : enabledList)
 		{
@@ -237,7 +240,7 @@ class NModManager
 		activeNMods.remove(nmod);
 	}
 
-	public Vector<NMod> getDisabledNMods()
+	public ArrayList<NMod> getDisabledNMods()
 	{
 		return disabledNMods;
 	}

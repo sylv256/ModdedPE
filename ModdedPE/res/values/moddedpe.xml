@@ -9,7 +9,7 @@
 	<string name="nmod_picker_file_title">Pick NMod (Storage)</string>
 	<string name="nmod_picker_package_title">Pick NMod (Apps)</string>
 	<string name="main_title">Home Page</string>
-	
+	<string name="prestart_title">Preload</string>
 	<!--NMod-->
 	<string name="nmod_loadFailed">Load %1$s Failed!</string>
 	<string name="load_fail_msg">Load Error:</string>

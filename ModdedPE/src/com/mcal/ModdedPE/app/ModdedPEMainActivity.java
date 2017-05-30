@@ -23,8 +23,8 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_main_pager);
 
-		List<Fragment> fragment_list=new Vector<Fragment>();
-		List<CharSequence> titles_list=new Vector<CharSequence>();
+		ArrayList<Fragment> fragment_list=new ArrayList<Fragment>();
+		ArrayList<CharSequence> titles_list=new ArrayList<CharSequence>();
 
 		MainStartFragment startFragment = new MainStartFragment();
 		fragment_list.add(startFragment);
@@ -253,5 +253,12 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 		{
 			return titles.get(position);
 		}
+	}
+
+	@Override
+	protected void onRestart()
+	{
+		mManageNModFragment.onRestart();
+		super.onRestart();
 	}
 }

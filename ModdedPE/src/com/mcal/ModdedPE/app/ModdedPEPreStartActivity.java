@@ -4,16 +4,14 @@ import android.os.*;
 
 public class ModdedPEPreStartActivity extends ModdedPEActivity
 {
-	private static final int MSG_START_MINECRAFT = 1;
-	private static final int MSG_MERGING_ASSETS = 2;
-	private static final int MSG_COPYING_LIBS = 3;
-	
-	
+	private PreStartUIHandler mPreStartUIHandler = new PreStartUIHandler();
+	private static final int MSG_FINISH = 1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		
+		new PreStartThread().start();
 	}
 	
 	private class PreStartThread extends Thread
@@ -21,7 +19,9 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 		@Override
 		public void run()
 		{
-			
+			Bundle bundle = new Bundle();
+			getNModAPI().perlaunchNMods(bundle,mPreStartUIHandler);
+			mPreStartUIHandler.sendEmptyMessage(MSG_FINISH);
 		}
 	}
 	

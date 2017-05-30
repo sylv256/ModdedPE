@@ -14,7 +14,7 @@ import java.util.*;
 public class ModdedPENModFilePickerActivity extends ModdedPEActivity
 {
 	private File currentPath;
-	private Vector<File> filesInCurrentPath;
+	private ArrayList<File> filesInCurrentPath;
 	private SelectHandler mSelectHandler = new SelectHandler();
 
 	private static final int MSG_SELECT = 1;
@@ -77,7 +77,7 @@ public class ModdedPENModFilePickerActivity extends ModdedPEActivity
 	private void openDirectory(File directory)
 	{
 		currentPath = directory;
-		filesInCurrentPath = new Vector<File>();
+		filesInCurrentPath = new ArrayList<File>();
 
 		File[] unmanagedFilesInCurrentDirectory = currentPath.listFiles();
 		if (unmanagedFilesInCurrentDirectory != null)

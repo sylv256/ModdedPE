@@ -56,7 +56,7 @@ public class NModLoader
 		return null;
 	}
 
-	public static void writeLanguageData(FilePathManager mgr, Vector<NMod> nmods)
+	public static void writeLanguageData(FilePathManager mgr, ArrayList<NMod> nmods)
 	{
 
 	}
