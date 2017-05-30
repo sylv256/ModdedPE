@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<com.mcal.ModdedPE.widget.NModBanner
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginBottom="105dp"
+		android:layout_marginLeft="15dp"
+		android:layout_marginTop="15dp"
+		android:layout_marginRight="15dp"/>
+	
+	<com.mcal.ModdedPE.widget.ConsoleTableView
+		android:layout_width="match_parent"
+		android:layout_height="90dp"
+		android:id="@+id/moddedpe_main_console_table_view"
+		android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
+

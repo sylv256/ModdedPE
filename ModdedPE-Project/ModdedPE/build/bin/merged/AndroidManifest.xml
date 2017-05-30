@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mcal.ModdedPE"
+    android:installLocation="preferExternal"
+    android:versionCode="34"
+    android:versionName="@string/app_version" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="21" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <meta-data
+        android:name="android.support.VERSION"
+        android:value="25.3.1" />
+
+    <application
+        android:name="com.mcal.ModdedPE.ModdedPEApplication"
+        android:debuggable="false"
+        android:hasCode="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true" >
+        <meta-data
+            android:name="xperiaplayoptimized_content"
+            android:resource="@string/xperiaplayoptimized_content" />
+        <meta-data
+            android:name="game_display_name"
+            android:resource="@string/app_name" />
+        <meta-data
+            android:name="game_icon"
+            android:resource="@drawable/ic_launcher" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="net.hockeyapp.android.appIdentifier"
+            android:value="@string/hockeyapp_android_id" />
+
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPEMainActivity"
+            android:label="@string/main_title"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPEStartActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPEMinecraftActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
+            android:debuggable="false"
+            android:excludeFromRecents="false"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreenTheme" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="moddedpe_launcher" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="minecraft" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPESafeModeMinecraftActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
+            android:debuggable="false"
+            android:excludeFromRecents="false"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/FullScreenTheme" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="moddedpe_launcher" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="minecraft" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPEErrorActivity"
+            android:label="@string/error_title"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPEAboutActivity"
+            android:label="@string/about_title"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPENModDescriptionActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPENModFilePickerActivity"
+            android:label="@string/nmod_picker_file_title"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPENModPackagePickerActivity"
+            android:label="@string/nmod_picker_package_title"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPENModLoadFailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.mcal.ModdedPE.app.ModdedPEPreStartActivity"
+            android:label="@string/prestart_title"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/AppTheme" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--Titles-->
+	<string name="menu_title">菜单</string>
+	<string name="manage_nmod_title">管理NMod</string>
+	<string name="error_title">有一些东西坏了(・_・;)</string>
+	<string name="settings_title">设置</string>
+	<string name="about_title">关于</string>
+	<string name="main_title">主页</string>
+	<string name="nmod_picker_file_title">选择NMod（存储）</string>
+	<string name="nmod_picker_package_title">选择NMod (应用)</string>
+	<string name="prestart_title">预加载</string>
+	
+	<!--NMod-->
+	<string name="nmod_loadFailed">%1$s 加载失败！</string>
+	<string name="load_fail_msg">错误报告：</string>
+	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>
+	<string name="nmod_load_failed">加载NMod失败</string>
+	<string name="nmod_add_new">添加新的</string>
+	<string name="nmod_export">导出</string>
+	<string name="nmod_add_new_title">添加新的...</string>
+	<string name="nmod_add_new_message">您想从哪里选取？</string>
+	<string name="nmod_add_new_pick_installed">已安装中</string>
+	<string name="nmod_add_new_pick_storage">外部存储</string>
+	<string name="load_fail_main">错误介绍</string>
+	<string name="load_fail_deal">解决方案</string>
+	<string name="load_fail_all">全部错误内容</string>
+	<string name="load_fail_warning">NMod %1$s 造成了一个错误。这个NMod已经被禁用，您可以继续使用游戏。</string>
+	<string name="nmod_enabled_title">有效NMod</string>
+	<string name="nmod_disabled_title">可用NMod</string>
+	<string name="nmod_existed_nmod_msg">一个有相同包名的NMod已经被添加。请选择另一个。</string>
+	<string name="nmod_existed_nmod_msg_replace">一个有相同包名的NMod已经被添加。是否覆盖它？</string>
+	<string name="nmod_existed_nmod_title">添加失败</string>
+	<string name="nmod_description_description_title">介绍</string>
+	<string name="nmod_description_about_title">关于</string>
+	<string name="nmod_description_about_author">作者：</string>
+	<string name="nmod_description_about_version_name">版本名：</string>
+	<string name="nmod_description_unknow">未填写</string>
+	<string name="nmod_delete_title">删除NMod</string>
+	<string name="nmod_delete_message">您确定要删除这个NMod么？它将会消失很长时间。（真的很长！）</string>
+	<!--About-->
+	<string name="about_copyright">版权</string>
+	<string name="about_license">开放源代码许可</string>
+	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
+	<string name="about_author">ModelPart制作[微博：@ModelPart]</string>
+	<string name="about_translators">翻译人员</string>
+	<string name="about_translators_zh_rcn">zh-rCN，ModelPart翻译。</string>
+	<string name="about_translators_zh_rtw">zh-rTW，ModelPart翻译。</string>
+	<string name="about_translators_default">默认（en），ModelPart翻译,KenMizz校对。</string>
+	<string name="about_copyright_info_title">ModdedPE在Apache License 2.0许可下。</string>
+	<string name="about_copyright_info_message">Apache License 2.0是一个许可证，其主要条件要求保留版权和许可证通知。贡献者提供专利权的明确授予。在此基础上许可的作品、修改过的作品可以不同的条款分发，同时可以不开放源代码。</string>
+	<string name="about_view_github">查看Github</string>
+	<string name="about_view_apache_license_2_0">查看Apache License 2.0</string>
+	<string name="about_view_gnu_lesser_license">查看GNU Lesser General Public License.</string>
+	<string name="about_cr_title">ModdedPE包含了下面的库：</string>
+	<string name="about_cr_substrate">Saurik的Cydia Substrate框架，在GNU Lesser General Public License许可下。</string>
+	<string name="about_cr_cardview">Card View库，在Apache License 2.0许可下。</string>
+	<string name="about_cr_android_support">Android Support库,在Apache License 2.0许可下。</string>
+	<string name="about_cr_support_design">Support Design库,在Apache License 2.0许可下。</string>
+
+	<!--Settings-->
+	<string name="settings_autoSaveLevel">自动保存世界</string>
+	<string name="settings_leftHandEverything">左手持任何物品</string>
+	<string name="settings_safetyMode">安全模式</string>
+	<string name="settings_eduUI">教育版视图</string>
+	<string name="settings_hideDebugText">隐藏测试版水印</string>
+	<string name="settings_redstoneDot">点状红石</string>
+	<string name="settings_customFlatWorldLayers">自定义平坦世界</string>
+	<string name="settings_disableTextureIsotropic">禁止材质随机旋转</string>
+
+	<!--Open Game Dialog-->
+	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
+	<string name="opengame_loading">加载中...</string>
+
+	<!--Pick NMod from installed-->
+	<string name="pick_nmod_loading">加载中...</string>
+	
+	<!--Main Activity-->
+	<string name="main_play">开始游戏</string>
+	<string name="main_default_minecraft_title">我的世界携带版：原版</string>
+	<string name="no_available_mcpe_version_found">ModdedPE不支持您安装的 我的世界携带版 %1$s！（只支持%2$s）如果您继续打开游戏，ModdedPE可能会崩溃或者造成错误。</string>
+	<string name="no_available_mcpe_version_found_title">不支持的 我的世界携带版</string>
+	<string name="no_available_mcpe_version_continue">继续</string>
+	<string name="safe_mode_on_title">安全模式已开启</string>
+	<string name="safe_mode_on_message">开启安全模式时，ModdedPE不会加载任何NMod，并且设置中的功能也不会工作。</string>
+	<string name="no_mcpe_found">ModdedPE是 我的世界携带版 的一个启动器，但是我们没有在这台设备上发现Mojang做的 我的世界携带版。</string>
+	<string name="no_mcpe_found_title">未发现 我的世界携带版</string>
+
+	<!--Error Activity-->
+	<string name="error_restart_app">重启</string>
+	<string name="error_text">这可能是因为一个不支持的MCPE版本或者代码错误引起的。请把错误报告发送给开发者来修复它。</string> 
+
+	<!--Manage NMods-->
+	<string name="manage_nmod_no_nmod_found">没有在这台设备上发现任何NMod。</string>
+
+	<!--Start Activity-->
+	<string name="start_warning_xposed_title">警告</string>
+	<string name="start_warning_xposed_message">我们在您的设备上发现了Xposed框架。ModdedPE在Xposed框架开启的情况下可能不会工作。请确保您禁用了Xposed框架。</string>
+	<string name="start_warning_xposed_continue">继续</string>
+	<string name="start_warning_xposed_do_not_show_again">不再显示</string>
+</resources>
