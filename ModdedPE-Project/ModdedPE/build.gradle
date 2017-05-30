@@ -9,7 +9,7 @@ android
 	{
 		applicationId "com.mcal.ModdedPE"
 		minSdkVersion 14
-		targetSdkVersion 21
+		targetSdkVersion 22
     }
 	buildTypes
 	{

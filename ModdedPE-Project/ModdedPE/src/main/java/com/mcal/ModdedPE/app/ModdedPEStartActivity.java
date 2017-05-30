@@ -5,6 +5,7 @@ import android.support.v7.app.*;
 import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.utils.*;
+import com.mcal.ModdedPE.nativeapi.*;
 
 public class ModdedPEStartActivity extends ModdedPEActivity 
 {
@@ -27,6 +28,7 @@ public class ModdedPEStartActivity extends ModdedPEActivity
 		{
 			public void run()
 			{
+				LibraryLoader.loadLocalLibs();
 				getNModAPI().perloadNModDatas();
 				mHandler.sendEmptyMessage(MSG_NEXT);
 			}
