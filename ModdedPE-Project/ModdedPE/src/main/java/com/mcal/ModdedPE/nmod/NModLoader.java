@@ -7,7 +7,7 @@ import dalvik.system.*;
 
 public class NModLoader
 {
-	private static NModLoadException loadLanguages(NMod nmod)
+	private static LoadFailedException loadLanguages(NMod nmod)
 	{
 
 		if (nmod.getLanguageBeans() == null)

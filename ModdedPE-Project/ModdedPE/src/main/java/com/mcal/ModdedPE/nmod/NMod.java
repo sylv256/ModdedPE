@@ -11,7 +11,7 @@ import java.util.*;
 public abstract class NMod
 {
 	protected Context thisContext;
-	protected NModLoadException bugExpection = null ;
+	protected LoadFailedException bugExpection = null ;
 	protected NModDataBean dataBean;
 	protected boolean mEnabled;
 	protected Bitmap icon;
@@ -53,7 +53,7 @@ public abstract class NMod
 		return false;
 	}
 
-	public Bitmap createBannerImage() throws NModLoadException
+	public Bitmap createBannerImage() throws LoadFailedException
 	{
 		Bitmap ret = null;
 		try
@@ -65,13 +65,13 @@ public abstract class NMod
 		}
 		catch (IOException e)
 		{
-			throw new NModLoadException("Cannot create nmod banner image.", e);
+			throw new LoadFailedException("Cannot create nmod banner image.", e);
 		}
 		if (ret == null)
-			throw new NModLoadException("Cannot decode banner image:" + dataBean.banner_image_path + ".Please make sure it is a valid png or jpg format image file.");
+			throw new LoadFailedException("Cannot decode banner image:" + dataBean.banner_image_path + ".Please make sure it is a valid png or jpg format image file.");
 
 		if (ret.getWidth() != 1024 || ret.getHeight() != 500)
-			throw new NModLoadException("Bad nmod banner image size.Banner image must be 1024(width)*500(height).");
+			throw new LoadFailedException("Bad nmod banner image size.Banner image must be 1024(width)*500(height).");
 		return ret;
 	}
 
@@ -97,16 +97,16 @@ public abstract class NMod
 		return dataBean.languages;
 	}
 
-	private NModLoadException findLoadException()
+	private LoadFailedException findLoadException()
 	{
 		if (dataBean.languages != null)
 		{
 			for (NModLanguageBean lang:dataBean.languages)
 			{
 				if (lang.name == null || lang.name.isEmpty())
-					return new NModLoadException("Element \"name\" of one of the language data items is invalid.");
+					return new LoadFailedException("Element \"name\" of one of the language data items is invalid.");
 				if (lang.path == null || lang.path.isEmpty())
-					return new NModLoadException("Element \"path\" of language data item:\"" + lang.name + "\" is invalid.");
+					return new LoadFailedException("Element \"path\" of language data item:\"" + lang.name + "\" is invalid.");
 
 				try
 				{
@@ -114,7 +114,7 @@ public abstract class NMod
 				}
 				catch (IOException e)
 				{
-					return new NModLoadException("Cannot find language file:" + lang.path, e);
+					return new LoadFailedException("Cannot find language file:" + lang.path, e);
 				}
 			}
 		}
@@ -157,7 +157,7 @@ public abstract class NMod
 		return bugExpection != null;
 	}
 
-	public void setBugPack(NModLoadException e)
+	public void setBugPack(LoadFailedException e)
 	{
 		bugExpection = e;
 	}
@@ -172,7 +172,7 @@ public abstract class NMod
 		this.mEnabled = enabled;
 	}
 
-	public NModLoadException getLoadException()
+	public LoadFailedException getLoadException()
 	{
 		return bugExpection;
 	}
@@ -198,17 +198,17 @@ public abstract class NMod
 		catch (JsonSyntaxException e)
 		{
 			dataBean = null;
-			setBugPack(new NModLoadException("Read json " + MANIFEST_NAME + " failed.", e));
+			setBugPack(new LoadFailedException("Read json " + MANIFEST_NAME + " failed.", e));
 			return;
 		}
 		catch (IOException ioe)
 		{
 			dataBean = null;
-			setBugPack(new NModLoadException("IO failed: Cannot read " + MANIFEST_NAME, ioe));
+			setBugPack(new LoadFailedException("IO failed: Cannot read " + MANIFEST_NAME, ioe));
 			return;
 		}
 
-		NModLoadException loadE = findLoadException();
+		LoadFailedException loadE = findLoadException();
 		if (loadE != null)
 		{
 			dataBean = null;
@@ -220,7 +220,7 @@ public abstract class NMod
 		{
 			this.banner_image = createBannerImage();
 		}
-		catch (NModLoadException nmodle)
+		catch (LoadFailedException nmodle)
 		{
 			dataBean = null;
 			setBugPack(nmodle);

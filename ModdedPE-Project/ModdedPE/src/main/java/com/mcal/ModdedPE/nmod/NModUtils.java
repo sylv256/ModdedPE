@@ -70,22 +70,7 @@ public class NModUtils
 		return flag;
 	}
 	
-	public static PackagedNMod archivePackagedNMod(Context contextThis,String packageName)
-	{
-		try
-		{
-			Context contextPackage = contextThis.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
-			contextPackage.getAssets().open(NMod.MANIFEST_NAME).close();
-			return new PackagedNMod(contextThis,contextPackage);
-		}
-		catch (IOException e)
-		{}
-		catch(PackageManager.NameNotFoundException notFoundE)
-		{}
-		return null;
-	}
-	
-	public static ZippedNMod apkToNModPack(Context context,File apkFile,File toFile)throws IOException,NModLoadException
+	public static ZippedNMod apkToNModPack(Context context,File apkFile,File toFile)throws IOException,LoadFailedException
 	{
 		PackageManager mgr = context.getPackageManager();
 		try
@@ -136,7 +121,7 @@ public class NModUtils
 					NMod.NModDataBean dataBean = new Gson().fromJson(jsonTmp,NMod.NModDataBean.class);
 					if(dataBean.package_name != null)
 						if(!dataBean.package_name.equals(packageName))
-							throw new NModLoadException("Error checking package name: packageName in AndroidManifest.xml didn't equal package_name in " + NMod.MANIFEST_NAME +"!");
+							throw new LoadFailedException("Error checking package name: packageName in AndroidManifest.xml didn't equal package_name in " + NMod.MANIFEST_NAME +"!");
 					dataBean.package_name = packageName;
 					dataBean.version_code = versionCode;
 					dataBean.version_name = versionName;
@@ -171,7 +156,7 @@ public class NModUtils
 		}
 	}
 	
-	public static ZippedNMod archiveZippedNMod(Context context,String filePath) throws NModLoadException
+	public static ZippedNMod archiveZippedNMod(Context context,String filePath) throws LoadFailedException
 	{
 		try
 		{
@@ -188,7 +173,7 @@ public class NModUtils
 		return null;
 	}
 
-	private static ZippedNMod createNMod_zipped_apkMode(Context context,String filePath) throws IOException,NModLoadException
+	private static ZippedNMod createNMod_zipped_apkMode(Context context,String filePath) throws IOException,LoadFailedException
 	{
 		File dir = new File(new FilePathManager(context).getNModsDir());
 		dir.mkdirs();
@@ -218,7 +203,7 @@ public class NModUtils
 		return new ZippedNMod(context, finalFile);
 	}
 
-	private static ZippedNMod createNMod_zipped_zipMode(Context context,String filePath) throws IOException,NModLoadException
+	private static ZippedNMod createNMod_zipped_zipMode(Context context,String filePath) throws IOException,LoadFailedException
 	{
 		ZipFile zipFile = new ZipFile(filePath);
 		File dir = new File(new FilePathManager(context).getNModsDir());

@@ -183,11 +183,11 @@ public class ZippedNMod extends NMod
 
 		if (dataBean != null && dataBean.package_name == null)
 		{
-			setBugPack(new NModLoadException("Unknown package name!Please define a \"package_name\" element in " + NMod.MANIFEST_NAME + "."));
+			setBugPack(new LoadFailedException("Unknown package name!Please define a \"package_name\" element in " + NMod.MANIFEST_NAME + "."));
 		}
 		else if (dataBean != null && !NModUtils.isValidPackageName(dataBean.package_name))
 		{
-			setBugPack(new NModLoadException("Invalid package name!Package name should be a java-style package name."));
+			setBugPack(new LoadFailedException("Invalid package name!Package name should be a java-style package name."));
 		}
 	}
 }

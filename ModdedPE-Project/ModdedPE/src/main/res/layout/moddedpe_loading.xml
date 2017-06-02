@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	
+
 	<com.mcal.MCDesign.widget.RepeatableImageView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -13,13 +13,13 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerInParent="true"
-		android:id="@+id/moddedpeloadingMCDProgressBar"/>
+		android:id="@+id/moddedpe_loading_progress_bar"/>
 
 	<android.support.v7.widget.AppCompatTextView
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="@string/opengame_loading_blocks_message"
-		android:layout_below="@id/moddedpeloadingMCDProgressBar"
+		android:layout_below="@id/moddedpe_loading_progress_bar"
 		android:layout_centerHorizontal="true"
 		android:layout_marginTop="10dp"/>
 
@@ -29,7 +29,7 @@
 		android:layout_centerHorizontal="true"
 		android:layout_alignParentBottom="true"
 		android:layout_marginBottom="10dp"
-		android:id="@+id/moddedpeloadingMessageTextView"/>
+		android:id="@+id/moddedpe_loading_message"/>
 
 </RelativeLayout>
 

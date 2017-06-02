@@ -4,14 +4,14 @@ import java.util.*;
 
 class NModOptions
 {
-	private Context contextThis;
+	private Context context;
 	public static final String TAG_SHARED_PREFERENCE = "nmod_data_list";
 	public static final String TAG_ACTIVE_LIST = "enabled_nmods_list";
 	public static final String TAG_DISABLE_LIST = "disabled_nmods_list";
 
 	public NModOptions(Context thisContext)
 	{
-		contextThis = thisContext;
+		context = thisContext;
 	}
 
 	public ArrayList<String> getAllList()
@@ -56,7 +56,7 @@ class NModOptions
 
 	private SharedPreferences getSharedPreferences()
 	{
-		return contextThis.getSharedPreferences(TAG_SHARED_PREFERENCE, Context.MODE_MULTI_PROCESS);
+		return context.getSharedPreferences(TAG_SHARED_PREFERENCE, Context.MODE_MULTI_PROCESS);
 	}
 
 	private void addNewActive(NMod nmod)

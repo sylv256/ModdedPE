@@ -107,7 +107,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 						}
 						refreshNModDatas();
 					}
-					catch (NModLoadException nmodLoadE)
+					catch (LoadFailedException nmodLoadE)
 					{
 						//load error
 					}

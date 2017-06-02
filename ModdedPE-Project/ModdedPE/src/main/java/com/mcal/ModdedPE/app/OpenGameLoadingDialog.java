@@ -18,11 +18,6 @@ public class OpenGameLoadingDialog extends Dialog
 		setCancelable(false);
 	}
 
-	public void setLoadingMessageColor(int color)
-	{
-		((TextView)findViewById(R.id.moddedpeloadingMessageTextView)).setTextColor(color);
-	}
-
 	@Override
 	public void setCancelable(boolean flag)
 	{
@@ -55,6 +50,6 @@ public class OpenGameLoadingDialog extends Dialog
 
 	public void setLoadingMessage(String msg)
 	{
-		((TextView)findViewById(R.id.moddedpeloadingMessageTextView)).setText(msg);
+		((TextView)findViewById(R.id.moddedpe_loading_message)).setText(msg);
 	}
 }

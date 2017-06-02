@@ -34,7 +34,7 @@ public final class NModAPI
 		this.context = context;
 	}
 
-	public ZippedNMod archiveZippedNMod(String filePath) throws NModLoadException
+	public ZippedNMod archiveZippedNMod(String filePath) throws LoadFailedException
 	{
 		return NModUtils.archiveZippedNMod(context,filePath);
 	}
@@ -85,7 +85,7 @@ public final class NModAPI
 				}
 				catch (Throwable t)
 				{
-					nmod.setBugPack(new NModLoadException("Loading native lib [" + nameItem + "] of nmod [" + nmod.getPackageName() + "(" + nmod.getName() + ")" + "] failed.", t));
+					nmod.setBugPack(new LoadFailedException("Loading native lib [" + nameItem + "] of nmod [" + nmod.getPackageName() + "(" + nmod.getName() + ")" + "] failed.", t));
 					Message message3 = new Message();
 					message3.what = MSG_PERLOADING_NATIVE_LIBS_FAILED;
 					message3.obj = nmod;
@@ -124,7 +124,8 @@ public final class NModAPI
 
 	public ArrayList<NMod> findInstalledNMods()
 	{
-		return NModManager.getNModManager(context).findInstalledNMods();
+		NModArchiver arvhiver = new NModArchiver(context);
+		return arvhiver.archiveAllFromInstalled();
 	}
 
 	public boolean addNewNMod(NMod nmod, boolean replace)
@@ -169,9 +170,10 @@ public final class NModAPI
 		NModManager.getNModManager(context).makeDown(nmod);
 	}
 
-	public PackagedNMod archivePackagedNMod(String packageName)
+	public PackagedNMod archivePackagedNMod(String packageName) throws ArchiveFailedException
 	{
-		return NModUtils.archivePackagedNMod(context, packageName);
+		NModArchiver arvhiver = new NModArchiver(context);
+		return arvhiver.archiveFromInstalledPackage(packageName);
 	}
 
 	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity activity, Bundle savedInstanceState, Bundle data)
