@@ -1,13 +1,4 @@
 package com.mcal.ModdedPE.nmod;
-import android.content.*;
-import android.content.pm.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import com.google.gson.*;
-import com.mcal.ModdedPE.utils.*;
-import java.io.*;
-import java.util.*;
-import java.util.zip.*;
 
 class NModUtils
 {

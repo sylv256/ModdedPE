@@ -1,14 +1,9 @@
 package com.mcal.ModdedPE.nmod;
 import android.content.*;
-import android.content.res.*;
-import java.util.*;
-import java.io.*;
-import android.graphics.*;
-import com.mcal.ModdedPE.nmod.NMod.*;
-import com.mcal.ModdedPE.*;
-import com.google.gson.*;
 import android.content.pm.*;
-import java.util.zip.*;
+import android.content.res.*;
+import android.graphics.*;
+import java.io.*;
 
 public class PackagedNMod extends NMod
 {
@@ -47,9 +42,9 @@ public class PackagedNMod extends NMod
 		return getPackageContext().getApplicationInfo().nativeLibraryDir;
 	}
 
-	public PackagedNMod(Context contextThiz, Context packageContext)
+	public PackagedNMod(String packageName,Context contextThiz, Context packageContext)
 	{
-		super(contextThiz);
+		super(packageName,contextThiz);
 		this.packageContext = packageContext;
 		preload();
 	}

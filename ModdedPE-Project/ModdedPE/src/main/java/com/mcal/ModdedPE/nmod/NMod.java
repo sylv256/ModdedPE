@@ -11,15 +11,15 @@ public abstract class NMod
 	protected Context mContext;
 	protected LoadFailedException mBugExpection = null ;
 	protected NModInfo mInfo;
-	protected Bitmap mIcon;
-	protected Bitmap mBanner_image;
+	private Bitmap mIcon;
+	private Bitmap mBanner_image;
+	private String mPackageName;
 	
 	public static final String MANIFEST_NAME = "nmod_manifest.json";
 	public static final int NMOD_TYPE_ZIPPED = 1;
 	public static final int NMOD_TYPE_PACKAGED = 2;
 
 	public abstract NModPerloadBean copyNModFiles();
-	public abstract String getPackageName();
 	public abstract AssetManager getAssets();
 	public abstract String getPackageResourcePath();
 	public abstract String getNativeLibsPath();
@@ -28,6 +28,11 @@ public abstract class NMod
 	protected abstract Bitmap createIcon();
 	protected abstract InputStream createInfoInputStream();
 
+	public String getPackageName()
+	{
+		return mPackageName;
+	}
+	
 	public String[] getNativeLibs()
 	{
 		return mInfo.native_libs;
@@ -215,9 +220,10 @@ public abstract class NMod
 		}
 	}
 
-	protected NMod(Context thisCon)
+	protected NMod(String packageName,Context thisCon)
 	{
 		mContext = thisCon;
+		mPackageName = packageName;
 	}
 
 	public static class NModPerloadBean

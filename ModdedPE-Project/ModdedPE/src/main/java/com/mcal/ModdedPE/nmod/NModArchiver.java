@@ -4,7 +4,6 @@ import android.content.pm.*;
 import android.graphics.*;
 import android.graphics.drawable.*;
 import com.google.gson.*;
-import com.mcal.ModdedPE.utils.*;
 import java.io.*;
 import java.util.*;
 import java.util.zip.*;
@@ -24,7 +23,7 @@ public class NModArchiver
 		{
 			Context contextPackage = mContext.createPackageContext(packageName, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
 			contextPackage.getAssets().open(NMod.MANIFEST_NAME).close();
-			return new PackagedNMod(mContext, contextPackage);
+			return new PackagedNMod(packageName, mContext, contextPackage);
 		}
 		catch (IOException e)
 		{
@@ -56,9 +55,9 @@ public class NModArchiver
 
 		if (packageInfo != null)
 		{
-			if(nmodInfo.package_name != null && !nmodInfo.package_name.equals(packageInfo.packageName))
+			if (nmodInfo.package_name != null && !nmodInfo.package_name.equals(packageInfo.packageName))
 				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INEQUAL_PACKAGE_NAME);
-			
+
 			nmodInfo.package_name = packageInfo.packageName;
 
 			try
@@ -116,8 +115,8 @@ public class NModArchiver
 				zipOutputStream.closeEntry();
 
 				zipOutputStream.close();
-				
-				return new ZippedNMod(mContext, copyCachedNModToData(toFile,packageName));
+
+				return new ZippedNMod(packageName, mContext, copyCachedNModToData(toFile, packageName));
 			}
 			catch (IOException ioe)
 			{
@@ -126,11 +125,11 @@ public class NModArchiver
 		}
 		else
 		{
-			if(nmodInfo.package_name == null)
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME,new IllegalArgumentException("Undefined package name in manifest."));
-			if(!NModUtils.isValidPackageName(nmodInfo.package_name))
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INVAILD_PACKAGE_NAME,new IllegalArgumentException("The provided package name is not a valid java-styled package name."));
-			
+			if (nmodInfo.package_name == null)
+				throw new ArchiveFailedException(ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME, new IllegalArgumentException("Undefined package name in manifest."));
+			if (!NModUtils.isValidPackageName(nmodInfo.package_name))
+				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INVAILD_PACKAGE_NAME, new IllegalArgumentException("The provided package name is not a valid java-styled package name."));
+
 			try
 			{
 				ZipFile zipFile = new ZipFile(path);
@@ -162,23 +161,7 @@ public class NModArchiver
 				zipOutputStream.putNextEntry(entry);
 				zipOutputStream.closeEntry();
 				zipOutputStream.close();
-				ZippedNMod zippedNMod_cached = new ZippedNMod(mContext, nmodFile);
-				String pkgName = zippedNMod_cached.getPackageName();
-				File finalFileDir = new File(new NModFilePathManager(mContext).getNModsDir());
-				finalFileDir.mkdirs();
-				File finalFile = new File(new NModFilePathManager(mContext).getNModsDir() + File.separator + pkgName);
-				finalFile.createNewFile();
-				FileOutputStream finalFileOutput = new FileOutputStream(finalFile);
-				FileInputStream fileInput = new FileInputStream(nmodFile);
-				int byteReaded = -1;
-				byte[] buffer = new byte[1024];
-				while ((byteReaded = fileInput.read(buffer)) != -1)
-				{
-					finalFileOutput.write(buffer, 0, byteReaded);
-				}
-				finalFileOutput.close();
-				fileInput.close();
-				return new ZippedNMod(mContext, copyCachedNModToData(finalFile,nmodInfo.package_name));
+				return new ZippedNMod(nmodInfo.package_name, mContext, copyCachedNModToData(nmodFile, nmodInfo.package_name));
 			}
 			catch (IOException ioe)
 			{
@@ -186,8 +169,8 @@ public class NModArchiver
 			}
 		}
 	}
-	
-	private File copyCachedNModToData(File cachedNModFile,String packageName)throws ArchiveFailedException
+
+	private File copyCachedNModToData(File cachedNModFile, String packageName)throws ArchiveFailedException
 	{
 		try
 		{
@@ -208,7 +191,7 @@ public class NModArchiver
 			cachedNModFile.delete();
 			return finalFile;
 		}
-		catch(IOException ioe)
+		catch (IOException ioe)
 		{
 			throw new ArchiveFailedException(ArchiveFailedException.TYPE_IO_EXCEPTION);
 		}

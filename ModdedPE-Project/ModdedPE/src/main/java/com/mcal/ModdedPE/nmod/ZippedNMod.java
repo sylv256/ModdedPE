@@ -1,27 +1,24 @@
 package com.mcal.ModdedPE.nmod;
 import android.content.*;
-import android.graphics.*;
-import com.mcal.ModdedPE.nmod.NMod.*;
-import java.io.*;
 import android.content.res.*;
-import java.util.zip.*;
-import java.lang.reflect.*;
+import android.graphics.*;
 import android.os.*;
+import java.io.*;
+import java.lang.reflect.*;
 import java.util.*;
-import com.mcal.ModdedPE.utils.*;
+import java.util.zip.*;
 
 public class ZippedNMod extends NMod
 {
-	private ZipFile zipFile = null;
-	private File filePath = null;
-	private AssetManager assets = null;
-	private String package_name = null;
-
+	private ZipFile mZipFile = null;
+	private File mFilePath = null;
+	private AssetManager mAssets = null;
+	
 	@Override
 	public NModPerloadBean copyNModFiles()
 	{
 		NModPerloadBean ret = new NModPerloadBean();
-		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) zipFile.entries();
+		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) mZipFile.entries();
 
 		ArrayList<String> nativeLibs = new ArrayList<String>();
 		while (zipfile_ents.hasMoreElements())
@@ -32,7 +29,7 @@ public class ZippedNMod extends NMod
 			{
 				try
 				{
-					InputStream libInputStream = zipFile.getInputStream(entry);
+					InputStream libInputStream = mZipFile.getInputStream(entry);
 					int byteReaded = -1;
 					byte[] buffer = new byte[1024];
 					File dirFile = new File(getNativeLibsPath());
@@ -71,40 +68,17 @@ public class ZippedNMod extends NMod
 		
 		return false;
 	}
-
-	@Override
-	public String getPackageName()
-	{
-		if (package_name != null)
-			return package_name;
-		if (mInfo != null && mInfo.package_name != null)
-			return mInfo.package_name;
-		String autoPkgName = filePath.toString().replaceAll("/", ".");
-		if (autoPkgName.startsWith("."))
-		{
-			autoPkgName = autoPkgName.replaceFirst(".", "");
-		}
-		if (autoPkgName.endsWith("."))
-		{
-			autoPkgName = autoPkgName + "nmod";
-		}
-		if (autoPkgName.indexOf(".") == -1)
-		{
-			autoPkgName = autoPkgName + ".nmod";
-		}
-		return autoPkgName;
-	}
-
+	
 	@Override
 	public AssetManager getAssets()
 	{
-		return assets;
+		return mAssets;
 	}
 
 	@Override
 	public String getPackageResourcePath()
 	{
-		return filePath.getPath();
+		return mFilePath.getPath();
 	}
 
 	@Override
@@ -119,7 +93,7 @@ public class ZippedNMod extends NMod
 		InputStream imageStream = null;
 		try
 		{
-			imageStream = zipFile.getInputStream(zipFile.getEntry("icon.png"));
+			imageStream = mZipFile.getInputStream(mZipFile.getEntry("icon.png"));
 			Bitmap ret = BitmapFactory.decodeStream(imageStream);
 			return ret;
 		}
@@ -134,7 +108,7 @@ public class ZippedNMod extends NMod
 	{
 		try
 		{
-			return zipFile.getInputStream(zipFile.getEntry(MANIFEST_NAME));
+			return mZipFile.getInputStream(mZipFile.getEntry(MANIFEST_NAME));
 		}
 		catch (IOException e)
 		{
@@ -142,17 +116,17 @@ public class ZippedNMod extends NMod
 		}
 	}
 
-	public ZippedNMod(Context thisContext, File file) throws IOException
+	public ZippedNMod(String packageName,Context thisContext, File file) throws IOException
 	{
-		super(thisContext);
-		this.zipFile = new ZipFile(file);
-		this.filePath = file;
+		super(packageName,thisContext);
+		this.mZipFile = new ZipFile(file);
+		this.mFilePath = file;
 
-		zipFile.getInputStream(zipFile.getEntry(MANIFEST_NAME)).close();
+		mZipFile.getInputStream(mZipFile.getEntry(MANIFEST_NAME)).close();
 
 		try
 		{
-			assets = AssetManager.class.newInstance();
+			mAssets = AssetManager.class.newInstance();
 		}
 		catch (InstantiationException e)
 		{}
@@ -162,7 +136,7 @@ public class ZippedNMod extends NMod
 		try
 		{
 			Method method=AssetManager.class.getMethod("addAssetPath", String.class);
-			method.invoke(assets, file.getPath());
+			method.invoke(mAssets, file.getPath());
 		}
 		catch (NoSuchMethodException e)
 		{}
@@ -175,10 +149,5 @@ public class ZippedNMod extends NMod
 		catch (IllegalArgumentException e)
 		{}
 		preload();
-
-		if (mInfo != null && !NModUtils.isValidPackageName(mInfo.package_name))
-		{
-			setBugPack(new LoadFailedException("Invalid package name!Package name should be a java-style package name."));
-		}
 	}
 }

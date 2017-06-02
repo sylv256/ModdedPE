@@ -1,9 +1,8 @@
 package com.mcal.ModdedPE.nmod;
 import android.os.*;
+import dalvik.system.*;
 import java.io.*;
 import java.util.*;
-import com.mcal.ModdedPE.utils.*;
-import dalvik.system.*;
 
 class NModLoader
 {

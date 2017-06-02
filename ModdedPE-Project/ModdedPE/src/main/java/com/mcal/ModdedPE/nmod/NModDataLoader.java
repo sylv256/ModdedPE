@@ -2,14 +2,14 @@ package com.mcal.ModdedPE.nmod;
 import android.content.*;
 import java.util.*;
 
-class NModsDataLoader
+class NModDataLoader
 {
 	private Context mContext;
 	static final String TAG_SHARED_PREFERENCE = "nmod_data_list";
 	static final String TAG_ENABLED_LIST = "enabled_nmods_list";
 	static final String TAG_DISABLE_LIST = "disabled_nmods_list";
 
-	NModsDataLoader(Context context)
+	NModDataLoader(Context context)
 	{
 		mContext = context;
 	}

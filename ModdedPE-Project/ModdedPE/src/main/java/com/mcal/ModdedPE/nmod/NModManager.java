@@ -1,6 +1,5 @@
 package com.mcal.ModdedPE.nmod;
 import android.content.*;
-import com.mcal.ModdedPE.utils.*;
 import java.io.*;
 import java.util.*;
 
@@ -43,7 +42,7 @@ class NModManager
 		mEnabledNMods = new ArrayList<NMod>();
 		mDisabledNMods = new ArrayList<NMod>();
 
-		NModsDataLoader dataloader = new NModsDataLoader(mContext);
+		NModDataLoader dataloader = new NModDataLoader(mContext);
 
 		for (String item:dataloader.getAllList())
 		{
@@ -63,7 +62,7 @@ class NModManager
 		mEnabledNMods.remove(nmod);
 		mDisabledNMods.remove(nmod);
 		mAllNMods.remove(nmod);
-		NModsDataLoader dataloader=new NModsDataLoader(mContext);
+		NModDataLoader dataloader=new NModDataLoader(mContext);
 		dataloader.removeByName(nmod.getPackageName());
 		if (nmod.getNModType() == NMod.NMOD_TYPE_ZIPPED)
 		{
@@ -83,10 +82,9 @@ class NModManager
 			try
 			{
 				String zippedNModPath = new NModFilePathManager(mContext).getNModsDir() + File.separator + packageName;
-				ZippedNMod zippedNMod = new ZippedNMod(mContext, new File(zippedNModPath));
+				ZippedNMod zippedNMod = new ZippedNMod(packageName, mContext, new File(zippedNModPath));
 				if (zippedNMod != null)
 				{
-					//zippedNMod.setPackageName(packageName);
 					importNMod(zippedNMod, enabled);
 					continue;
 				}
@@ -94,7 +92,7 @@ class NModManager
 			}
 			catch (IOException e)
 			{}
-			
+
 			try
 			{
 				NModArchiver archiver = new NModArchiver(mContext);
@@ -134,7 +132,7 @@ class NModManager
 				replaced = true;
 			}
 		}
-		
+
 		mAllNMods.add(newNMod);
 		if (enabled)
 			setEnabled(newNMod);
@@ -147,7 +145,7 @@ class NModManager
 
 	void refreshDatas()
 	{
-		NModsDataLoader dataloader=new NModsDataLoader(mContext);
+		NModDataLoader dataloader=new NModDataLoader(mContext);
 
 		for (String item:dataloader.getAllList())
 		{
@@ -168,21 +166,21 @@ class NModManager
 
 	void makeUp(NMod nmod)
 	{
-		NModsDataLoader dataloader=new NModsDataLoader(mContext);
+		NModDataLoader dataloader=new NModDataLoader(mContext);
 		dataloader.upNMod(nmod);
 		refreshEnabledOrderList();
 	}
 
 	void makeDown(NMod nmod)
 	{
-		NModsDataLoader dataloader=new NModsDataLoader(mContext);
+		NModDataLoader dataloader=new NModDataLoader(mContext);
 		dataloader.downNMod(nmod);
 		refreshEnabledOrderList();
 	}
 
 	private void refreshEnabledOrderList()
 	{
-		NModsDataLoader dataloader=new NModsDataLoader(mContext);
+		NModDataLoader dataloader=new NModDataLoader(mContext);
 		ArrayList<String> enabledList = dataloader.getEnabledList();
 		mEnabledNMods.clear();
 		for (String pkgName : enabledList)
@@ -199,7 +197,7 @@ class NModManager
 	{
 		if (nmod.isBugPack())
 			return;
-		NModsDataLoader dataloader=new NModsDataLoader(mContext);
+		NModDataLoader dataloader=new NModDataLoader(mContext);
 		dataloader.setIsEnabled(nmod, true);
 		mEnabledNMods.add(nmod);
 		mDisabledNMods.remove(nmod);
@@ -207,7 +205,7 @@ class NModManager
 
 	void setDisable(NMod nmod)
 	{
-		NModsDataLoader dataloader=new NModsDataLoader(mContext);
+		NModDataLoader dataloader=new NModDataLoader(mContext);
 		dataloader.setIsEnabled(nmod, false);
 		mDisabledNMods.add(nmod);
 		mEnabledNMods.remove(nmod);

@@ -1,7 +1,4 @@
 package com.mcal.ModdedPE.nmod;
-import android.content.res.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.nativeapi.*;
 
 public class LoadFailedException extends Exception
 {

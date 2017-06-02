@@ -1,15 +1,10 @@
 package com.mcal.ModdedPE.nmod;
 import android.content.*;
-import java.util.*;
-import android.os.*;
 import android.content.res.*;
-import com.mojang.minecraftpe.*;
+import android.os.*;
 import com.google.gson.*;
 import com.mcal.ModdedPE.utils.*;
-import android.support.annotation.*;
-import java.io.*;
-import android.content.pm.*;
-import java.util.zip.*;
+import java.util.*;
 
 public final class NModAPI
 {
