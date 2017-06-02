@@ -9,8 +9,8 @@ import java.io.*;
 public abstract class NMod
 {
 	protected Context mContext;
-	protected LoadFailedException mBugExpection = null ;
 	protected NModInfo mInfo;
+	private LoadFailedException mBugExpection = null ;
 	private Bitmap mIcon;
 	private Bitmap mBanner_image;
 	private String mPackageName;

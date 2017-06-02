@@ -1,22 +1,20 @@
 package com.mcal.ModdedPE;
 
 import android.app.*;
-import android.content.*;
 import android.content.res.*;
 import com.mcal.ModdedPE.app.*;
-import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.nmod.*;
 import com.mcal.ModdedPE.utils.*;
 import java.io.*;
 
 public class ModdedPEApplication extends Application
 {
-	public static ModdedPEApplication instance;
+	public static ModdedPEApplication mInstance;
 
 	public void onCreate()
 	{
 		super.onCreate();
-		instance = this;
+		mInstance = this;
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 		
 		MinecraftInfo.initInstance(this);

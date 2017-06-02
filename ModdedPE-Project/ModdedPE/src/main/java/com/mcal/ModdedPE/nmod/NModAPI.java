@@ -20,12 +20,6 @@ public final class NModAPI
 	public static final int MSG_MERGING_ASSETS = 5626;
 	public static final int MSG_LOADING_DEX = 5627;
 
-	public static final String FILEPATH_DIR_NAME_NMOD_PACKS = "nmod_packs";
-	public static final String FILEPATH_DIR_NAME_NMOD_LIBS = "nmod_libs";
-	public static final String FILEPATH_DIR_NAME_NMOD_LANG_DATA = "nmod_lang";
-	public static final String FILEPATH_FILE_NAME_NMOD_CAHCHE = "nmod_cached";
-	
-	
 	private NModAPI(Context context)
 	{
 		this.mContext = context;

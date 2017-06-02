@@ -5,15 +5,15 @@ import java.lang.reflect.*;
 
 public class AssetOverrideManager
 {
-	private static AssetOverrideManager instance;
-	private AssetManager localManager;
+	private static AssetOverrideManager mInstance;
+	private AssetManager mLocalAssetManager;
 
 	public void addAssetOverride(String packageResourcePath)
 	{
 		try
 		{
 			Method method = AssetManager.class.getMethod("addAssetPath", String.class);
-			method.invoke(localManager, packageResourcePath);
+			method.invoke(mLocalAssetManager, packageResourcePath);
 		}
 		catch (Throwable t)
 		{}
@@ -32,26 +32,26 @@ public class AssetOverrideManager
 
 	public AssetManager getAssetManager()
 	{
-		return localManager;
+		return mLocalAssetManager;
 	}
 
 	public static AssetOverrideManager getInstance()
 	{
-		if (instance == null)
-			return instance = new AssetOverrideManager();
-		return instance;
+		if (mInstance == null)
+			return mInstance = new AssetOverrideManager();
+		return mInstance;
 	}
 	
 	public static void newInstance()
 	{
-		instance = new AssetOverrideManager();
+		mInstance = new AssetOverrideManager();
 	}
 	
 	private AssetOverrideManager()
 	{
 		try
 		{
-			localManager = AssetManager.class.newInstance();
+			mLocalAssetManager = AssetManager.class.newInstance();
 		}
 		catch (InstantiationException e)
 		{}
