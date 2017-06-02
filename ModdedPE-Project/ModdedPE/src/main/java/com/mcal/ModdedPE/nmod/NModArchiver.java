@@ -37,6 +37,14 @@ public class NModArchiver
 
 	ZippedNMod archiveFromStorage(String path)throws ArchiveFailedException
 	{
+		try
+		{
+			new ZipFile(path);
+		}
+		catch(IOException ioe)
+		{
+			throw new ArchiveFailedException(ArchiveFailedException.TYPE_DECODE_FAILED,ioe);
+		}
 		PackageManager packageManager = mContext.getPackageManager();
 		PackageInfo packageInfo = packageManager.getPackageArchiveInfo(path, PackageManager.GET_CONFIGURATIONS);
 		NMod.NModInfo nmodInfo = null;

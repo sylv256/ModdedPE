@@ -59,15 +59,7 @@
 	<string name="about_cr_support_design">Support Design库,在Apache License 2.0许可下。</string>
 
 	<!--Settings-->
-	<string name="settings_autoSaveLevel">自动保存世界</string>
-	<string name="settings_leftHandEverything">左手持任何物品</string>
-	<string name="settings_safetyMode">安全模式</string>
-	<string name="settings_eduUI">教育版视图</string>
-	<string name="settings_hideDebugText">隐藏测试版水印</string>
-	<string name="settings_redstoneDot">点状红石</string>
-	<string name="settings_customFlatWorldLayers">自定义平坦世界</string>
-	<string name="settings_disableTextureIsotropic">禁止材质随机旋转</string>
-
+	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">加载中...</string>
