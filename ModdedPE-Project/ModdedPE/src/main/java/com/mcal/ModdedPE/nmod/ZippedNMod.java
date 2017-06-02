@@ -77,8 +77,8 @@ public class ZippedNMod extends NMod
 	{
 		if (package_name != null)
 			return package_name;
-		if (dataBean != null && dataBean.package_name != null)
-			return dataBean.package_name;
+		if (mInfo != null && mInfo.package_name != null)
+			return mInfo.package_name;
 		String autoPkgName = filePath.toString().replaceAll("/", ".");
 		if (autoPkgName.startsWith("."))
 		{
@@ -110,7 +110,7 @@ public class ZippedNMod extends NMod
 	@Override
 	public String getNativeLibsPath()
 	{
-		return new FilePathManager(thisContext).getNModLibsDir() + File.separator + getPackageName();
+		return new NModFilePathManager(mContext).getNModLibsDir() + File.separator + getPackageName();
 	}
 
 	@Override
@@ -130,7 +130,7 @@ public class ZippedNMod extends NMod
 	}
 
 	@Override
-	protected InputStream createDataBeanInputStream()
+	protected InputStream createInfoInputStream()
 	{
 		try
 		{
@@ -140,11 +140,6 @@ public class ZippedNMod extends NMod
 		{
 			return null;
 		}
-	}
-
-	void setPackageName(String pkgName)
-	{
-		package_name = pkgName;
 	}
 
 	public ZippedNMod(Context thisContext, File file) throws IOException
@@ -181,11 +176,7 @@ public class ZippedNMod extends NMod
 		{}
 		preload();
 
-		if (dataBean != null && dataBean.package_name == null)
-		{
-			setBugPack(new LoadFailedException("Unknown package name!Please define a \"package_name\" element in " + NMod.MANIFEST_NAME + "."));
-		}
-		else if (dataBean != null && !NModUtils.isValidPackageName(dataBean.package_name))
+		if (mInfo != null && !NModUtils.isValidPackageName(mInfo.package_name))
 		{
 			setBugPack(new LoadFailedException("Invalid package name!Package name should be a java-style package name."));
 		}

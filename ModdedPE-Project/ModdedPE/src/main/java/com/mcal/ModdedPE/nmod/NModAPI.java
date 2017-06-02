@@ -13,8 +13,10 @@ import java.util.zip.*;
 
 public final class NModAPI
 {
-	private Context context;
-	private static NModAPI instance;
+	private Context mContext;
+	private NModManager mNModManager;
+	private NModArchiver mArchiver;
+	private static NModAPI mInstance;
 
 	public static final String NMOD_DATA_TAG = "nmod_data";
 	public static final int MSG_COPYING_NMOD_FILES = 5623;
@@ -23,57 +25,59 @@ public final class NModAPI
 	public static final int MSG_MERGING_ASSETS = 5626;
 	public static final int MSG_LOADING_DEX = 5627;
 
-	public static final int ADD_RETURN_CODE_SUCCEED = 0;
-	public static final int ADD_RETURN_CODE_REPLACED = 1;
-	public static final int ENABLE_RETURN_CODE_VERSION_NOT_TARGET = 2;
-	public static final int ENABLE_RETURN_CODE_API_NEEDED = 3;
-	public static final int ENABLE_RETURN_CODE_ABI_NOT_TARGET = 3;
+	public static final String FILEPATH_DIR_NAME_NMOD_PACKS = "nmod_packs";
+	public static final String FILEPATH_DIR_NAME_NMOD_LIBS = "nmod_libs";
+	public static final String FILEPATH_DIR_NAME_NMOD_LANG_DATA = "nmod_lang";
+	public static final String FILEPATH_FILE_NAME_NMOD_CAHCHE = "nmod_cached";
+	
 	
 	private NModAPI(Context context)
 	{
-		this.context = context;
+		this.mContext = context;
+		this.mNModManager = new NModManager(context);
+		this.mArchiver = new NModArchiver(context);
 	}
 
-	public ZippedNMod archiveZippedNMod(String filePath) throws LoadFailedException
+	public ZippedNMod archiveZippedNMod(String filePath) throws ArchiveFailedException
 	{
-		return NModUtils.archiveZippedNMod(context,filePath);
+		return mArchiver.archiveFromStorage(filePath);
 	}
 
 	public static NModAPI getInstance(Context context)
 	{
 		createInstance(context);
-		return instance;
+		return mInstance;
 	}
 
 	@Deprecated
 	public static NModAPI getInstance()
 	{
-		return instance;
+		return mInstance;
 	}
 
 	public static void createInstance(Context context)
 	{
-		if (instance == null)
+		if (mInstance == null)
 		{
-			instance = new NModAPI(context);
+			mInstance = new NModAPI(context);
 		}
 	}
 
-	public void perloadNModDatas()
+	public void initNModDatas()
 	{
-		NModManager.getNModManager(context).reCalculate(context);
+		mNModManager.init();
 	}
 
-	public void perlaunchNMods(Bundle bundle, Handler handler)
+	public void perloadNMods(Bundle bundle, Handler handler)
 	{
-		new PerlaunchNModsThread(bundle, handler).start();
+		new PerloadNModsThread(bundle, handler).start();
 	}
 
 	private boolean loadNModElfFiles(NMod nmod, NMod.NModPerloadBean perloadDataItem, Handler handler)
 	{
 		if (handler == null)
 			handler = new Handler();
-		MinecraftInfo minecraftInfo = MinecraftInfo.getInstance(context);
+		MinecraftInfo minecraftInfo = MinecraftInfo.getInstance(mContext);
 
 		if (perloadDataItem.native_libs != null && perloadDataItem.native_libs.length > 0)
 		{
@@ -96,7 +100,7 @@ public final class NModAPI
 
 			for (String nameItem:perloadDataItem.native_libs)
 			{
-				NModLoader.callOnLoad(nameItem, minecraftInfo.getMinecraftVersionName(), context.getString(com.mcal.ModdedPE.R.string.app_name));
+				NModLoader.callOnLoad(nameItem, minecraftInfo.getMinecraftVersionName(), mContext.getString(com.mcal.ModdedPE.R.string.app_name));
 			}
 		}
 		return true;
@@ -104,36 +108,44 @@ public final class NModAPI
 
 	public ArrayList<NMod> getLoadedNMods()
 	{
-		return NModManager.getNModManager(context).getAllNMods();
+		return mNModManager.getAllNMods();
 	}
 
-	public ArrayList<NMod> getLoadedEnabledNMods()
+	public ArrayList<NMod> getImportedEnabledNMods()
 	{
-		return NModManager.getNModManager(context).getActiveNMods();
+		return mNModManager.getEnabledNMods();
 	}
 
-	public ArrayList<NMod> getLoadedDisabledNMods()
+	public ArrayList<NMod> getImportedDisabledNMods()
 	{
-		return NModManager.getNModManager(context).getDisabledNMods();
+		return mNModManager.getDisabledNMods();
 	}
 
-	public ArrayList<NMod> getLoadedEnabledNModsHaveBanners()
+	public ArrayList<NMod> getImportedEnabledNModsHaveBanners()
 	{
-		return NModManager.getNModManager(context).getActiveNModsIsValidBanner();
+		return mNModManager.getEnabledNModsIsValidBanner();
 	}
 
 	public ArrayList<NMod> findInstalledNMods()
 	{
-		NModArchiver arvhiver = new NModArchiver(context);
+		NModArchiver arvhiver = new NModArchiver(mContext);
 		return arvhiver.archiveAllFromInstalled();
 	}
 
-	public boolean addNewNMod(NMod nmod, boolean replace)
+	public boolean importNMod(NMod nmod)
 	{
-		return NModManager.getNModManager(context).addNewNMod(nmod, replace, false);
+		return mNModManager.importNMod(nmod, false);
 	}
 
-	public void loadToGame(Bundle bundle, AssetManager mgr, Handler handler)
+	
+	/*
+	  Called in onCreate of com.mojang.minecraftpe.MainActicity or it's child classes.
+	  @prama Bundle : Extras in Intent.
+	  @prama AssetManager : Assets of com.mojang.minecraftpe.MainActicity or it's child classes.
+	  @prama handler : UI handler.It can be null.
+	*/
+	
+	public void loadToGame(Bundle bundle, AssetManager assetManager, Handler handler)
 	{
 		Gson gson = new Gson();
 		NModPerloadData perloadData = gson.fromJson(bundle.getString(NMOD_DATA_TAG), NModPerloadData.class);
@@ -142,37 +154,37 @@ public final class NModAPI
 		for (int i=perloadData.assets_packs_path.length - 1;i >= 0;--i)
 		{
 			String assetsPath = perloadData.assets_packs_path[i];
-			AssetOverrideManager.addAssetOverride(mgr, assetsPath);
+			AssetOverrideManager.addAssetOverride(assetManager, assetsPath);
 		}
 
 	}
 
-	public void removeNMod(NMod nmod)
+	public void removeImportedNMod(NMod nmod)
 	{
-		NModManager.getNModManager(context).deleteNMod(nmod);
+		mNModManager.removeImportedNMod(nmod);
 	}
 
 	public void setEnabled(NMod nmod, boolean enabled)
 	{
 		if (enabled)
-			NModManager.getNModManager(context).setActive(nmod);
+			mNModManager.setEnabled(nmod);
 		else
-			NModManager.getNModManager(context).setDisable(nmod);
+			mNModManager.setDisable(nmod);
 	}
 
 	public void upPosNMod(NMod nmod)
 	{
-		NModManager.getNModManager(context).makeUp(nmod);
+		mNModManager.makeUp(nmod);
 	}
 
 	public void downPosNMod(NMod nmod)
 	{
-		NModManager.getNModManager(context).makeDown(nmod);
+		mNModManager.makeDown(nmod);
 	}
 
 	public PackagedNMod archivePackagedNMod(String packageName) throws ArchiveFailedException
 	{
-		NModArchiver arvhiver = new NModArchiver(context);
+		NModArchiver arvhiver = new NModArchiver(mContext);
 		return arvhiver.archiveFromInstalledPackage(packageName);
 	}
 
@@ -202,44 +214,44 @@ public final class NModAPI
 		}
 	}
 
-	private class PerlaunchNModsThread extends Thread
+	private class PerloadNModsThread extends Thread
 	{
-		private Bundle bundle;
-		private Handler handler;
-
-		public PerlaunchNModsThread(Bundle bundle, Handler handler)
+		private Bundle mBundle;
+		private Handler mHandler;
+		
+		public PerloadNModsThread(Bundle bundle, Handler handler)
 		{
-			this.bundle = bundle;
-			this.handler = handler;
+			this.mBundle = bundle;
+			this.mHandler = handler;
 		}
 
 		@Override
 		public void run()
 		{
-			if (handler == null)
-				handler = new Handler();
+			if (mHandler == null)
+				mHandler = new Handler();
 			Gson gson = new Gson();
 			NModPerloadData perloadData = new NModPerloadData();
 			ArrayList<String> assetsArrayList = new ArrayList<String>();
 			ArrayList<String> dexPathArrayList = new ArrayList<String>();
 			ArrayList<String> loadedNativeLibs = new ArrayList<String>();
 
-			ArrayList<NMod> loadedEnabledNMods = getLoadedEnabledNMods();
+			ArrayList<NMod> loadedEnabledNMods = getImportedEnabledNMods();
 			for (NMod nmod:loadedEnabledNMods)
 			{
 				Message message = new Message();
 				message.what = MSG_COPYING_NMOD_FILES;
 				message.obj = nmod;
-				handler.sendMessage(message);
+				mHandler.sendMessage(message);
 
 				NMod.NModPerloadBean perloadDataItem = nmod.copyNModFiles();
 
 				Message message2 = new Message();
 				message2.what = MSG_PERLOADING_NATIVE_LIBS;
 				message2.obj = nmod;
-				handler.sendMessage(message2);
+				mHandler.sendMessage(message2);
 
-				if (loadNModElfFiles(nmod, perloadDataItem, handler))
+				if (loadNModElfFiles(nmod, perloadDataItem, mHandler))
 				{
 					if (perloadDataItem.assets_path != null)
 						assetsArrayList.add(perloadDataItem.assets_path);
@@ -258,7 +270,7 @@ public final class NModAPI
 			perloadData.assets_packs_path = (String[])assetsArrayList.toArray();
 			perloadData.dex_path = (String[])dexPathArrayList.toArray();
 			perloadData.loaded_libs = (String[])loadedNativeLibs.toArray();
-			bundle.putString(NMOD_DATA_TAG, gson.toJson(perloadData));
+			mBundle.putString(NMOD_DATA_TAG, gson.toJson(perloadData));
 		}
 	}
 

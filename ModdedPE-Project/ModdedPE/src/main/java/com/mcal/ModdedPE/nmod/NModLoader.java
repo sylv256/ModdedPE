@@ -5,7 +5,7 @@ import java.util.*;
 import com.mcal.ModdedPE.utils.*;
 import dalvik.system.*;
 
-public class NModLoader
+class NModLoader
 {
 	private static LoadFailedException loadLanguages(NMod nmod)
 	{
@@ -56,7 +56,7 @@ public class NModLoader
 		return null;
 	}
 
-	public static void writeLanguageData(FilePathManager mgr, ArrayList<NMod> nmods)
+	public static void writeLanguageData(NModFilePathManager mgr, ArrayList<NMod> nmods)
 	{
 
 	}

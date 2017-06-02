@@ -29,7 +29,7 @@ public class ModdedPEStartActivity extends ModdedPEActivity
 			public void run()
 			{
 				LibraryLoader.loadLocalLibs();
-				getNModAPI().perloadNModDatas();
+				getNModAPI().initNModDatas();
 				mHandler.sendEmptyMessage(MSG_NEXT);
 			}
 		}.start();

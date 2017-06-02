@@ -1,22 +1,19 @@
 package com.mcal.ModdedPE.nmod;
 import android.content.*;
-import android.content.pm.*;
 import android.content.res.*;
 import android.graphics.*;
 import com.google.gson.*;
 import com.mcal.ModdedPE.*;
 import java.io.*;
-import java.util.*;
 
 public abstract class NMod
 {
-	protected Context thisContext;
-	protected LoadFailedException bugExpection = null ;
-	protected NModDataBean dataBean;
-	protected boolean mEnabled;
-	protected Bitmap icon;
-	protected Bitmap banner_image;
-
+	protected Context mContext;
+	protected LoadFailedException mBugExpection = null ;
+	protected NModInfo mInfo;
+	protected Bitmap mIcon;
+	protected Bitmap mBanner_image;
+	
 	public static final String MANIFEST_NAME = "nmod_manifest.json";
 	public static final int NMOD_TYPE_ZIPPED = 1;
 	public static final int NMOD_TYPE_PACKAGED = 2;
@@ -29,20 +26,20 @@ public abstract class NMod
 	public abstract int getNModType();
 	public abstract boolean isSupportedABI();
 	protected abstract Bitmap createIcon();
-	protected abstract InputStream createDataBeanInputStream();
+	protected abstract InputStream createInfoInputStream();
 
 	public String[] getNativeLibs()
 	{
-		return dataBean.native_libs;
+		return mInfo.native_libs;
 	}
 
 	public String getName()
 	{
 		if (isBugPack())
 			return getPackageName();
-		if (dataBean == null || dataBean.name == null)
+		if (mInfo == null || mInfo.name == null)
 			return getPackageName();
-		return dataBean.name;
+		return mInfo.name;
 	}
 
 	@Override
@@ -58,9 +55,9 @@ public abstract class NMod
 		Bitmap ret = null;
 		try
 		{
-			if (dataBean == null || dataBean.banner_image_path == null)
+			if (mInfo == null || mInfo.banner_image_path == null)
 				return null;
-			InputStream is = getAssets().open(dataBean.banner_image_path);
+			InputStream is = getAssets().open(mInfo.banner_image_path);
 			ret = BitmapFactory.decodeStream(is);
 		}
 		catch (IOException e)
@@ -68,7 +65,7 @@ public abstract class NMod
 			throw new LoadFailedException("Cannot create nmod banner image.", e);
 		}
 		if (ret == null)
-			throw new LoadFailedException("Cannot decode banner image:" + dataBean.banner_image_path + ".Please make sure it is a valid png or jpg format image file.");
+			throw new LoadFailedException("Cannot decode banner image:" + mInfo.banner_image_path + ".Please make sure it is a valid png or jpg format image file.");
 
 		if (ret.getWidth() != 1024 || ret.getHeight() != 500)
 			throw new LoadFailedException("Bad nmod banner image size.Banner image must be 1024(width)*500(height).");
@@ -77,13 +74,13 @@ public abstract class NMod
 
 	public Bitmap getBannerImage()
 	{
-		return banner_image;
+		return mBanner_image;
 	}
 
 	public String getBannerTitle()
 	{
-		if (dataBean != null && dataBean.banner_title != null)
-			return getName() + " : " + dataBean.banner_title;
+		if (mInfo != null && mInfo.banner_title != null)
+			return getName() + " : " + mInfo.banner_title;
 		return getName();
 	}
 
@@ -94,14 +91,14 @@ public abstract class NMod
 
 	public NModLanguageBean[] getLanguageBeans()
 	{
-		return dataBean.languages;
+		return mInfo.languages;
 	}
 
 	private LoadFailedException findLoadException()
 	{
-		if (dataBean.languages != null)
+		if (mInfo.languages != null)
 		{
-			for (NModLanguageBean lang:dataBean.languages)
+			for (NModLanguageBean lang:mInfo.languages)
 			{
 				if (lang.name == null || lang.name.isEmpty())
 					return new LoadFailedException("Element \"name\" of one of the language data items is invalid.");
@@ -124,86 +121,76 @@ public abstract class NMod
 
 	public Bitmap getIcon()
 	{
-		if (icon == null)
+		if (mIcon == null)
 		{
-			return BitmapFactory.decodeResource(thisContext.getResources(), R.drawable.mcd_null_pack);
+			return BitmapFactory.decodeResource(mContext.getResources(), R.drawable.mcd_null_pack);
 		}
-		return icon;
+		return mIcon;
 	}
 
 	public String getDescription()
 	{
-		if (dataBean != null && dataBean.description != null)
-			return dataBean.description;
-		return thisContext.getResources().getString(R.string.nmod_description_unknow);
+		if (mInfo != null && mInfo.description != null)
+			return mInfo.description;
+		return mContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 
 	public String getAuthor()
 	{
-		if (dataBean != null && dataBean.author != null)
-			return dataBean.author;
-		return thisContext.getResources().getString(R.string.nmod_description_unknow);
+		if (mInfo != null && mInfo.author != null)
+			return mInfo.author;
+		return mContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 
 	public String getVersionName()
 	{
-		if (dataBean != null && dataBean.version_name != null)
-			return dataBean.version_name;
-		return thisContext.getResources().getString(R.string.nmod_description_unknow);
+		if (mInfo != null && mInfo.version_name != null)
+			return mInfo.version_name;
+		return mContext.getResources().getString(R.string.nmod_description_unknow);
 	}
 
 	public boolean isBugPack()
 	{
-		return bugExpection != null;
+		return mBugExpection != null;
 	}
 
 	public void setBugPack(LoadFailedException e)
 	{
-		bugExpection = e;
-	}
-
-	public boolean isEnabled()
-	{
-		return mEnabled;
-	}
-
-	public void setEnabled(boolean enabled)
-	{
-		this.mEnabled = enabled;
+		mBugExpection = e;
 	}
 
 	public LoadFailedException getLoadException()
 	{
-		return bugExpection;
+		return mBugExpection;
 	}
 
 	protected void preload()
 	{
-		this.bugExpection = null;
+		this.mBugExpection = null;
 
-		this.icon = createIcon();
-		if (icon == null)
-			icon = BitmapFactory.decodeResource(thisContext.getResources(), R.drawable.mcd_null_pack);
+		this.mIcon = createIcon();
+		if (mIcon == null)
+			mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.mcd_null_pack);
 
 		try
 		{
-			InputStream is = createDataBeanInputStream();
+			InputStream is = createInfoInputStream();
 			byte[] buffer = new byte[is.available()];
 			is.read(buffer);
 			String jsonStr = new String(buffer);
 			Gson gson = new Gson();
-			NModDataBean theDataBean = gson.fromJson(jsonStr, NModDataBean.class);
-			dataBean = theDataBean;
+			NModInfo theInfo = gson.fromJson(jsonStr, NModInfo.class);
+			mInfo = theInfo;
 		}
 		catch (JsonSyntaxException e)
 		{
-			dataBean = null;
+			mInfo = null;
 			setBugPack(new LoadFailedException("Read json " + MANIFEST_NAME + " failed.", e));
 			return;
 		}
 		catch (IOException ioe)
 		{
-			dataBean = null;
+			mInfo = null;
 			setBugPack(new LoadFailedException("IO failed: Cannot read " + MANIFEST_NAME, ioe));
 			return;
 		}
@@ -211,29 +198,26 @@ public abstract class NMod
 		LoadFailedException loadE = findLoadException();
 		if (loadE != null)
 		{
-			dataBean = null;
+			mInfo = null;
 			setBugPack(loadE);
 			return;
 		}
 
 		try
 		{
-			this.banner_image = createBannerImage();
+			this.mBanner_image = createBannerImage();
 		}
 		catch (LoadFailedException nmodle)
 		{
-			dataBean = null;
+			mInfo = null;
 			setBugPack(nmodle);
 			return;
 		}
-
-		NModOptions options = new NModOptions(thisContext);
-		mEnabled = options.isActive(this);
 	}
 
 	protected NMod(Context thisCon)
 	{
-		thisContext = thisCon;
+		mContext = thisCon;
 	}
 
 	public static class NModPerloadBean
@@ -257,7 +241,7 @@ public abstract class NMod
 		//mode = replace / merge
 	}
 
-	public static class NModDataBean
+	public static class NModInfo
 	{
 		public String[] native_libs = null;
 		public String name = null;

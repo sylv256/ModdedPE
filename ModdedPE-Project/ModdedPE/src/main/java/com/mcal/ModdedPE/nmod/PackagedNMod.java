@@ -66,8 +66,8 @@ public class PackagedNMod extends NMod
 
 	public String getPackageName()
 	{
-		if (dataBean != null && dataBean.package_name != null)
-			return dataBean.package_name;
+		if (mInfo != null && mInfo.package_name != null)
+			return mInfo.package_name;
 		if (getPackageContext() == null)
 			return toString();
 		return getPackageContext().getPackageName();
@@ -89,7 +89,7 @@ public class PackagedNMod extends NMod
 	}
 
 	@Override
-	protected InputStream createDataBeanInputStream()
+	protected InputStream createInfoInputStream()
 	{
 		try
 		{

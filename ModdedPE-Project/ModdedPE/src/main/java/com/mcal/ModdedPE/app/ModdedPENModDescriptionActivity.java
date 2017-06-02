@@ -69,7 +69,7 @@ public class ModdedPENModDescriptionActivity extends ModdedPEActivity
 		bundle.putString(TAG_DESCRIPTION, nmod.getDescription());
 		bundle.putString(TAG_AUTHOR, nmod.getAuthor());
 		bundle.putString(TAG_VERSION_NAME, nmod.getVersionName());
-		File file = new File(new FilePathManager(context).getNModIconFilePath());
+		File file = new File(context.getFilesDir() + File.separator + "nmod_icons" + File.separator + nmod.getPackageName());
 		try
 		{
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();  

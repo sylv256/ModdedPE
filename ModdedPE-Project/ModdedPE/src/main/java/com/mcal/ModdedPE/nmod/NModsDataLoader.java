@@ -2,136 +2,136 @@ package com.mcal.ModdedPE.nmod;
 import android.content.*;
 import java.util.*;
 
-class NModOptions
+class NModsDataLoader
 {
-	private Context context;
-	public static final String TAG_SHARED_PREFERENCE = "nmod_data_list";
-	public static final String TAG_ACTIVE_LIST = "enabled_nmods_list";
-	public static final String TAG_DISABLE_LIST = "disabled_nmods_list";
+	private Context mContext;
+	static final String TAG_SHARED_PREFERENCE = "nmod_data_list";
+	static final String TAG_ENABLED_LIST = "enabled_nmods_list";
+	static final String TAG_DISABLE_LIST = "disabled_nmods_list";
 
-	public NModOptions(Context thisContext)
+	NModsDataLoader(Context context)
 	{
-		context = thisContext;
+		mContext = context;
 	}
 
-	public ArrayList<String> getAllList()
+	ArrayList<String> getAllList()
 	{
 		ArrayList<String> ret = new ArrayList<String>();
 		ret.addAll(getDisabledList());
-		ret.addAll(getActiveList());
+		ret.addAll(getEnabledList());
 		return ret;
 	}
 
-	public void removeByName(String name)
+	void removeByName(String name)
 	{
 		SharedPreferences preferences=getSharedPreferences();
-		ArrayList<String> activeList=getActiveList();
+		ArrayList<String> enabledList=getEnabledList();
 		ArrayList<String> disableList=getDisabledList();
-		activeList.remove(name);
+		enabledList.remove(name);
 		disableList.remove(name);
 		SharedPreferences.Editor editor=preferences.edit();
-		editor.putString(TAG_ACTIVE_LIST, fromArrayList(activeList));
+		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.putString(TAG_DISABLE_LIST, fromArrayList(disableList));
 		editor.commit();
 	}
 
-	public void remove(NMod nmod)
+	void remove(NMod nmod)
 	{
 		removeByName(nmod.getPackageName());
 	}
 
-	public void setIsActive(NMod nmod, boolean isActive)
+	void setIsEnabled(NMod nmod, boolean isEnabled)
 	{
-		if (isActive)
-			addNewActive(nmod);
+		if (isEnabled)
+			addNewEnabled(nmod);
 		else
-			removeActive(nmod);
+			removeEnabled(nmod);
 	}
 
-	public boolean isActive(NMod nmod)
+	boolean isEnabled(NMod nmod)
 	{
-		ArrayList<String> activeList=getActiveList();
-		return activeList.indexOf(nmod.getPackageName()) != -1;
+		ArrayList<String> enabledList=getEnabledList();
+		return enabledList.indexOf(nmod.getPackageName()) != -1;
 	}
 
 	private SharedPreferences getSharedPreferences()
 	{
-		return context.getSharedPreferences(TAG_SHARED_PREFERENCE, Context.MODE_MULTI_PROCESS);
+		return mContext.getSharedPreferences(TAG_SHARED_PREFERENCE, Context.MODE_MULTI_PROCESS);
 	}
 
-	private void addNewActive(NMod nmod)
+	private void addNewEnabled(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
-		ArrayList<String> activeList=getActiveList();
+		ArrayList<String> enabledList=getEnabledList();
 		ArrayList<String> disableList=getDisabledList();
-		if (activeList.indexOf(nmod.getPackageName()) == -1)
-			activeList.add(nmod.getPackageName());
+		if (enabledList.indexOf(nmod.getPackageName()) == -1)
+			enabledList.add(nmod.getPackageName());
 		disableList.remove(nmod.getPackageName());
 		SharedPreferences.Editor editor=preferences.edit();
-		editor.putString(TAG_ACTIVE_LIST, fromArrayList(activeList));
+		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.putString(TAG_DISABLE_LIST, fromArrayList(disableList));
 		editor.commit();
 	}
 
-	public void removeActive(NMod nmod)
+	void removeEnabled(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
-		ArrayList<String> activeList=getActiveList();
+		ArrayList<String> enabledList=getEnabledList();
 		ArrayList<String> disableList=getDisabledList();
-		activeList.remove(nmod.getPackageName());
+		enabledList.remove(nmod.getPackageName());
 		if (disableList.indexOf(nmod.getPackageName()) == -1)
 			disableList.add(nmod.getPackageName());
 		SharedPreferences.Editor editor=preferences.edit();
-		editor.putString(TAG_ACTIVE_LIST, fromArrayList(activeList));
+		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.putString(TAG_DISABLE_LIST, fromArrayList(disableList));
 		editor.commit();
 	}
 
-	public void upNMod(NMod nmod)
+	void upNMod(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
-		ArrayList<String> activeList=getActiveList();
-		int index=activeList.indexOf(nmod.getPackageName());
+		ArrayList<String> enabledList=getEnabledList();
+		int index=enabledList.indexOf(nmod.getPackageName());
 		if (index == -1 || index == 0)
 			return;
 		int indexFront=index - 1;
-		String nameFront=activeList.get(indexFront);
+		String nameFront=enabledList.get(indexFront);
 		if (nameFront == null || nameFront.isEmpty())
 			return;
 		String nameSelf=nmod.getPackageName();
-		activeList.set(indexFront, nameSelf);
-		activeList.set(index, nameFront);
+		enabledList.set(indexFront, nameSelf);
+		enabledList.set(index, nameFront);
 		SharedPreferences.Editor editor=preferences.edit();
-		editor.putString(TAG_ACTIVE_LIST, fromArrayList(activeList));
+		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.commit();
 	}
 
-	public void downNMod(NMod nmod)
+	void downNMod(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
-		ArrayList<String> activeList=getActiveList();
-		int index=activeList.indexOf(nmod.getPackageName());
-		if (index == -1 || index == (activeList.size() - 1))
+		ArrayList<String> enabledList=getEnabledList();
+		int index=enabledList.indexOf(nmod.getPackageName());
+		if (index == -1 || index == (enabledList.size() - 1))
 			return;
 		int indexBack=index + 1;
-		String nameBack=activeList.get(indexBack);
+		String nameBack=enabledList.get(indexBack);
 		if (nameBack == null || nameBack.isEmpty())
 			return;
 		String nameSelf=nmod.getPackageName();
-		activeList.set(indexBack, nameSelf);
-		activeList.set(index, nameBack);
+		enabledList.set(indexBack, nameSelf);
+		enabledList.set(index, nameBack);
 		SharedPreferences.Editor editor=preferences.edit();
-		editor.putString(TAG_ACTIVE_LIST, fromArrayList(activeList));
+		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.commit();
 	}
 
-	public ArrayList<String> getActiveList()
+	ArrayList<String> getEnabledList()
 	{
 		SharedPreferences preferences=getSharedPreferences();
-		return toArrayList(preferences.getString(TAG_ACTIVE_LIST, ""));
+		return toArrayList(preferences.getString(TAG_ENABLED_LIST, ""));
 	}
 
-	public ArrayList<String> getDisabledList()
+	ArrayList<String> getDisabledList()
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		return toArrayList(preferences.getString(TAG_DISABLE_LIST, ""));

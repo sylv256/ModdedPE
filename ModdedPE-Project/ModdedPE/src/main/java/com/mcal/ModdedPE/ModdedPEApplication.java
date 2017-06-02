@@ -17,10 +17,10 @@ public class ModdedPEApplication extends Application
 	{
 		super.onCreate();
 		instance = this;
+		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 		
 		MinecraftInfo.initInstance(this);
 		NModAPI.createInstance(this);
-		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 	}
 
 	private Thread.UncaughtExceptionHandler restartHandler = new Thread.UncaughtExceptionHandler()
