@@ -28,6 +28,7 @@
 	<string name="nmod_import_failed_message_invalid_package_name">Invalid package name defined in manifest.Element "package_name" must be a java-styled package name.</string>
 	<string name="nmod_import_failed_message_no_package_name">No package name found in nmod_manifest.json.Please add element "package_name"(String).</string>
 	<string name="nmod_import_failed_message_inequal_package_name">Inequal package name defined in AndroidManifest.xml and nmod_manifest.json.ModdedPE couldn\'t decide which package name to use.</string>
+	<string name="nmod_import_failed_message_redundant_manifest">ModdedPE found two nmod_manifest.json in this file but didn\'t know which one to read.Please delete one.(/nmod_manifest.json or /assets/nmod_manifest.json)</string>
 	<string name="nmod_import_failed_button_full_info">Error Info</string>
 	<string name="nmod_import_replaced_title">Replaced</string>
 	<string name="nmod_import_replaced_message">ModdedPE found an imported nmod with same package name.The new one has successfully imported and replaced the old one.</string>

@@ -13,7 +13,7 @@ import java.util.*;
 
 public class ModdedPEMainActivity extends ModdedPEActivity 
 {
-	private ViewPager mainViewPager;
+	private ViewPager mMainViewPager;
 	private MainManageNModFragment mManageNModFragment;
 
 	@Override
@@ -39,14 +39,14 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 
 		MainFragmentPagerAdapter pagerAdapter = new MainFragmentPagerAdapter(fragment_list, titles_list);
 
-		mainViewPager = (ViewPager) findViewById(R.id.moddedpe_main_view_pager);
-		mainViewPager.setAdapter(pagerAdapter);
-		mainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
+		mMainViewPager = (ViewPager) findViewById(R.id.moddedpe_main_view_pager);
+		mMainViewPager.setAdapter(pagerAdapter);
+		mMainViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener()
 			{
 				@Override
 				public void onPageScrolled(int p1, float p2, int p3)
 				{
-					setTitle(mainViewPager.getAdapter().getPageTitle(p1));
+					setTitle(mMainViewPager.getAdapter().getPageTitle(p1));
 				}
 
 				@Override
@@ -110,13 +110,13 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 		switch (item.getItemId())
 		{
 			case R.id.item_main_page:
-				mainViewPager.setCurrentItem(0, true);
+				mMainViewPager.setCurrentItem(0, true);
 				break;
 			case R.id.item_manage_nmods:
-				mainViewPager.setCurrentItem(1, true);
+				mMainViewPager.setCurrentItem(1, true);
 				break;
 			case R.id.item_launcher_settings:
-				mainViewPager.setCurrentItem(2, true);
+				mMainViewPager.setCurrentItem(2, true);
 				break;
 		}
 	}
@@ -220,25 +220,25 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 
 	private class MainFragmentPagerAdapter extends FragmentPagerAdapter
 	{
-		private List<Fragment> fragments;
-		private List<CharSequence> titles;
+		private List<Fragment> mFragments;
+		private List<CharSequence> mTitles;
 		public MainFragmentPagerAdapter(List<Fragment>fragments, List<CharSequence>titles)
 		{
 			super(getSupportFragmentManager());
-			this.fragments = fragments;
-			this.titles = titles;
+			this.mFragments = fragments;
+			this.mTitles = titles;
 		}
 
 		@Override
 		public int getCount()
 		{
-			return fragments.size();
+			return mFragments.size();
 		}
 
 		@Override
 		public Fragment getItem(int p1)
 		{
-			return fragments.get(p1);
+			return mFragments.get(p1);
 		}
 
 		@Override
@@ -250,7 +250,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 		@Override
 		public CharSequence getPageTitle(int position)
 		{
-			return titles.get(position);
+			return mTitles.get(position);
 		}
 	}
 }

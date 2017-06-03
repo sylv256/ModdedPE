@@ -10,14 +10,14 @@ import com.mcal.ModdedPE.*;
 
 public class MainSettingsFragment extends ModdedPEFragment
 {
-	private ListView optionsListView;
+	private ListView mOptionsListView;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
 		View options_view=inflater.inflate(R.layout.moddedpe_options, null);
 
-		optionsListView =(ListView) options_view.findViewById(R.id.moddedpe_options_list_view);
+		mOptionsListView =(ListView) options_view.findViewById(R.id.moddedpe_options_list_view);
 		loadOptions(getContext());
 
 		/*options_switchSafetyMode.setOnCheckedChangeListener(options_switchUpdateListener);

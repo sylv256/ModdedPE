@@ -25,8 +25,8 @@ public class MCDProgressBar extends ProgressBar
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	private int mWidth=0;
-	private int mHeight=0;
+	private int mWidth = 0;
+	private int mHeight = 0;
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh)
@@ -36,8 +36,8 @@ public class MCDProgressBar extends ProgressBar
 		mHeight = h;
 	}
 
-	private static final float mDefaultSpeed=0.05F;
-	private float mSpeed=mDefaultSpeed;
+	private static final float mDefaultSpeed = 0.05F;
+	private float mSpeed = mDefaultSpeed;
 
 	public void setSpeed(float s)
 	{
@@ -51,9 +51,9 @@ public class MCDProgressBar extends ProgressBar
 		return mSpeed;
 	}
 
-	private float blockDrawingProgress =  0;
-	private int showedBlocks = 1;
-	private boolean isScaling = true;
+	private float mBlockDrawingProgress =  0;
+	private int mShowedBlocks = 1;
+	private boolean mIsScaling = true;
 
 	@Override
 	protected void onDraw(Canvas canvas)
@@ -62,47 +62,43 @@ public class MCDProgressBar extends ProgressBar
 		mPaint.setStyle(Paint.Style.FILL);
 		mPaint.setColor(Color.parseColor("#66BA44"));
 
-		if (isScaling)
-			blockDrawingProgress += mSpeed / 3 ;
-		else
-			blockDrawingProgress += mSpeed;
-		if (blockDrawingProgress >= 1 && !isScaling)
+		if (mBlockDrawingProgress >= 1 && !mIsScaling)
 		{
-			blockDrawingProgress = 0;
-			++showedBlocks;
-			if (showedBlocks > 4)
+			mBlockDrawingProgress = 0;
+			++mShowedBlocks;
+			if (mShowedBlocks > 4)
 			{
-				showedBlocks = 1;
-				isScaling = true;
+				mShowedBlocks = 1;
+				mIsScaling = true;
 			}
 		}
-		else if (blockDrawingProgress >= 0.5 && isScaling)
+		else if (mBlockDrawingProgress >= 0.5 && mIsScaling)
 		{
-			isScaling = false;
-			blockDrawingProgress = 0;
-			showedBlocks = 2;
+			mIsScaling = false;
+			mBlockDrawingProgress = 0;
+			mShowedBlocks = 2;
 		}
 
-		switch (showedBlocks)
+		switch (mShowedBlocks)
 		{
 			case 1:
 				{
-					int drawWidth = (int) (((float)mWidth) * blockDrawingProgress);
-					int drawHeight = (int) (((float)mHeight) * blockDrawingProgress);
+					int drawWidth = (int) (((float)mWidth) * mBlockDrawingProgress);
+					int drawHeight = (int) (((float)mHeight) * mBlockDrawingProgress);
 					canvas.drawRect(0, drawHeight, mWidth - drawWidth, mHeight, mPaint);
 					break;
 				}
 			case 2:
 				{
 					canvas.drawRect(0, mHeight / 2, mWidth / 2, mHeight , mPaint);
-					int blockDrawHeight=(int) (((float)mHeight / 2) * blockDrawingProgress);
+					int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
 					canvas.drawRect(mWidth / 2 , blockDrawHeight, mWidth, blockDrawHeight + mHeight / 2, mPaint);
 					break;
 				}
 			case 3:
 				{
 					canvas.drawRect(0, mHeight / 2, mWidth , mHeight , mPaint);
-					int blockDrawHeight=(int) (((float)mHeight / 2) * blockDrawingProgress);
+					int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
 					canvas.drawRect(0, 0 , mWidth / 2, blockDrawHeight + 1 , mPaint);
 					break;
 				}
@@ -110,7 +106,7 @@ public class MCDProgressBar extends ProgressBar
 				{
 					canvas.drawRect(0, mHeight / 2, mWidth , mHeight , mPaint);
 					canvas.drawRect(0, 0, mWidth / 2 , mHeight / 2, mPaint);
-					int blockDrawHeight=(int) (((float)mHeight / 2) * blockDrawingProgress);
+					int blockDrawHeight=(int) (((float)mHeight / 2) * mBlockDrawingProgress);
 					canvas.drawRect(mWidth / 2, 0 , mWidth , blockDrawHeight + 1 , mPaint);
 					break;
 				}

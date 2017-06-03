@@ -2,8 +2,7 @@
 <resources>
 	<string name="app_version">1.1</string>
 	<string-array name="target_mcpe_versions">
-		<item>1.1.0.8</item>
-		<item>1.1.0.9</item>
+		<item>1.1.0.55</item>
 	</string-array>
 	<string name="target_mcpe_version_info">1.1.0.[8/9]</string>
 </resources>

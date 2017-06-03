@@ -9,7 +9,7 @@ import android.net.*;
 
 public class ModdedPEAboutActivity extends ModdedPEActivity
 {
-	private static final String URI_GITHUB = "https://github.com/MCAL-Team/ModdedPE.git";
+	private static final String URI_GITHUB = "https://github.com/ModelPart/ModdedPE.git";
 	private static final String URI_APACHE_LICENSE_2_0 = "http://www.apache.org/licenses/LICENSE-2.0.html";;
 	private static final String URI_GNU_LESSER_GENERAL_PUBLIC_LICENSE = "http://www.gnu.org/licenses/lgpl.html";
 	

@@ -22,6 +22,7 @@
 	<string name="nmod_import_failed_message_invalid_package_name">定义在nmod_manifest.json的包名不是一个合理的java格式包名。</string>
 	<string name="nmod_import_failed_message_no_package_name">ModdedPE在nmod_manifest.json中没有发现任何包名元素("package_name")。请添加它。</string>
 	<string name="nmod_import_failed_message_inequal_package_name">在AndroidManifest.xml和nmod_manifest.json中定义的包名元素不相同。ModdedPE不能决定使用哪一个。</string>
+	<string name="nmod_import_failed_message_redundant_manifest">ModdedPE在这个文件里面发现了两个nmod_manifest.json文件，然而却并不知道使用哪一个。请删除一个。(/nmod_manifest.json或者/assets/nmod_manifest.json)</string>
 	<string name="nmod_import_failed_button_full_info">错误信息</string>
 	<string name="nmod_import_failed_full_info_title">错误信息</string>
 	<string name="nmod_import_failed_full_info_message">错误类型：\n%1$s\n错误信息：\n%2$s</string>

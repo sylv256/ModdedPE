@@ -6,6 +6,7 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 {
 	private PreStartUIHandler mPreStartUIHandler = new PreStartUIHandler();
 	private static final int MSG_FINISH = 1;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

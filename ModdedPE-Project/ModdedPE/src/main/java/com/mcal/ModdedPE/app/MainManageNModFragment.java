@@ -187,6 +187,9 @@ public class MainManageNModFragment extends ModdedPEFragment
 			case ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_no_package_name);
 				break;
+			case ArchiveFailedException.TYPE_REDUNDANT_MANIFEST:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_no_package_name);
+				break;
 			default:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_unexpected);
 				break;
@@ -391,7 +394,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
 			textPkgTitle.setText(nmod.getPackageName());
 			AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
-			Bitmap nmodIcon = null;
+			Bitmap nmodIcon = nmod.getIcon();
 			if (nmodIcon == null)
 				nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 			imageIcon.setImageBitmap(nmodIcon);
@@ -430,7 +433,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_package_name);
 		textPkgTitle.setText(nmod.getPackageName());
 		AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_disabled_item_card_view_image_view);
-		Bitmap nmodIcon = null;
+		Bitmap nmodIcon = nmod.getIcon();
 		if (nmodIcon == null)
 			nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 		imageIcon.setImageBitmap(nmodIcon);
@@ -507,7 +510,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
 			textPkgTitle.setText(nmod.getPackageName());
 			AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
-			Bitmap nmodIcon = null;
+			Bitmap nmodIcon = nmod.getIcon();
 			if (nmodIcon == null)
 				nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 			imageIcon.setImageBitmap(nmodIcon);
@@ -546,7 +549,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_package_name);
 		textPkgTitle.setText(nmod.getPackageName());
 		AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_enabled_item_card_view_image_view);
-		Bitmap nmodIcon = null;
+		Bitmap nmodIcon = nmod.getIcon();
 		if (nmodIcon == null)
 			nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 		imageIcon.setImageBitmap(nmodIcon);

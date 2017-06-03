@@ -11,6 +11,7 @@ public class ArchiveFailedException extends Exception
 	public static final int TYPE_INEQUAL_PACKAGE_NAME = 7;
 	public static final int TYPE_DECODE_FAILED = 8;
 	public static final int TYPE_UNEXPECTED = 9;
+	public static final int TYPE_REDUNDANT_MANIFEST = 10;
 	
 	private int mType;
 	private Throwable mCause;
@@ -58,6 +59,8 @@ public class ArchiveFailedException extends Exception
 				return "UNDEFINED_PACKAGE_NAME";
 			case TYPE_UNEXPECTED:
 				return "UNEXPECTED";
+			case TYPE_REDUNDANT_MANIFEST:
+				return "REDUNDANT_MANIFEST";
 			default:
 				return "null";
 		}
