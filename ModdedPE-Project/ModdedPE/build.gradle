@@ -33,6 +33,5 @@ dependencies
 	compile 'com.android.support:appcompat-v7:+'
 	compile 'com.android.support:design:+'
 	compile 'com.android.support:cardView-v7:+'
-	compile 'com.android.support:recyclerview-v7:+'
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 }

@@ -44,7 +44,7 @@ public class NModBanner extends RelativeLayout
 
 	private void updateNModList()
 	{
-		ArrayList<NMod> newNModList = NModAPI.getInstance(this.getContext()).getImportedEnabledNModsHaveBanners();
+		ArrayList<NMod> newNModList = ModdedPEApplication.mNModAPI.getImportedEnabledNModsHaveBanners();
 		if (mNModArrayList.equals(newNModList))
 		{
 			mNModArrayList.clear();

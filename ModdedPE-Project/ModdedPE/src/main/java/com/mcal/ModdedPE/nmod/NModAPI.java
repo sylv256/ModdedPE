@@ -11,8 +11,7 @@ public final class NModAPI
 	private Context mContext;
 	private NModManager mNModManager;
 	private NModArchiver mArchiver;
-	private static NModAPI mInstance;
-
+	
 	public static final String NMOD_DATA_TAG = "nmod_data";
 	public static final int MSG_COPYING_NMOD_FILES = 5623;
 	public static final int MSG_PERLOADING_NATIVE_LIBS = 5624;
@@ -20,7 +19,7 @@ public final class NModAPI
 	public static final int MSG_MERGING_ASSETS = 5626;
 	public static final int MSG_LOADING_DEX = 5627;
 
-	private NModAPI(Context context)
+	public NModAPI(Context context)
 	{
 		this.mContext = context;
 		this.mNModManager = new NModManager(context);
@@ -29,27 +28,7 @@ public final class NModAPI
 
 	public ZippedNMod archiveZippedNMod(String filePath) throws ArchiveFailedException
 	{
-		return mArchiver.archiveFromStorage(filePath);
-	}
-
-	public static NModAPI getInstance(Context context)
-	{
-		createInstance(context);
-		return mInstance;
-	}
-
-	@Deprecated
-	public static NModAPI getInstance()
-	{
-		return mInstance;
-	}
-
-	public static void createInstance(Context context)
-	{
-		if (mInstance == null)
-		{
-			mInstance = new NModAPI(context);
-		}
+		return mArchiver.archiveFromZipped(filePath);
 	}
 
 	public void initNModDatas()

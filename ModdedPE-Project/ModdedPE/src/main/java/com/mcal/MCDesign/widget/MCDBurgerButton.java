@@ -1,11 +1,9 @@
 package com.mcal.MCDesign.widget;
 
 import android.content.*;
+import android.support.v7.widget.*;
 import android.view.*;
 import com.mcal.ModdedPE.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.support.v7.widget.*;
 
 public class MCDBurgerButton extends AppCompatButton
 {

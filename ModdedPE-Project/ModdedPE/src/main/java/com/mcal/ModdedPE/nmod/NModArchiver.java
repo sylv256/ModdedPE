@@ -35,7 +35,7 @@ public class NModArchiver
 		}
 	}
 
-	ZippedNMod archiveFromStorage(String path)throws ArchiveFailedException
+	ZippedNMod archiveFromZipped(String path)throws ArchiveFailedException
 	{
 		try
 		{
@@ -64,7 +64,7 @@ public class NModArchiver
 		if (packageInfo != null)
 		{
 			if (nmodInfo.package_name != null && !nmodInfo.package_name.equals(packageInfo.packageName))
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INEQUAL_PACKAGE_NAME);
+				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INEQUAL_PACKAGE_NAME,new IllegalArgumentException("Package name defined in AndroidManifest.xml and nmod_manifest.json must equal!"));
 
 			nmodInfo.package_name = packageInfo.packageName;
 

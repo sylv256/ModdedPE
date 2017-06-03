@@ -10,7 +10,8 @@ import java.io.*;
 public class ModdedPEApplication extends Application
 {
 	public static ModdedPEApplication mInstance;
-
+	public static NModAPI mNModAPI;
+	
 	public void onCreate()
 	{
 		super.onCreate();
@@ -18,7 +19,7 @@ public class ModdedPEApplication extends Application
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 		
 		MinecraftInfo.initInstance(this);
-		NModAPI.createInstance(this);
+		mNModAPI = new NModAPI(this);
 	}
 
 	private Thread.UncaughtExceptionHandler restartHandler = new Thread.UncaughtExceptionHandler()

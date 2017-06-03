@@ -19,16 +19,19 @@
 	<string name="nmod_disabled_title">Disabled NMods</string>
 	
 	<string name="nmod_importing_title">Importing NMod...</string>
-	<string name="nmod_import_failed">Failed to import NMod.</string>
+	<string name="nmod_import_failed">Failed to import NMod</string>
 	<string name="nmod_import_failed_message_unexpected">An unexpected error caused while importing NMod.</string>
-	<string name="nmod_import_failed_message_decode">Importing this nmod failed because it is not a valid nmod file type.</string>
+	<string name="nmod_import_failed_message_decode">Importing this nmod failed because this is not a valid nmod file.Please make sure it\'s zip formatted.</string>
+	<string name="nmod_import_failed_message_no_manifest">ModdedPE decoded this NMod successfully but there is no nmod_manifest.json found.Please make sure it\'s a valid NMod.</string>
+	<string name="nmod_import_failed_message_io_exception">An io exception caused while importing NMod.</string>
+	<string name="nmod_import_failed_message_manifest_json_syntax_error">A json syntax error caused while reading nmod_manifest.json.Please check it out.</string>
+	<string name="nmod_import_failed_message_invalid_package_name">Invalid package name defined in manifest.Element "package_name" must be a java-styled package name.</string>
+	<string name="nmod_import_failed_message_no_package_name">No package name found in nmod_manifest.json.Please add element "package_name"(String).</string>
+	<string name="nmod_import_failed_message_inequal_package_name">Inequal package name defined in AndroidManifest.xml and nmod_manifest.json.ModdedPE couldn\'t decide which package name to use.</string>
 	<string name="nmod_import_failed_button_full_info">Error Info</string>
 	<string name="nmod_import_replaced_title">Replaced</string>
-	<string name="nmod_import_replaced_message">We found a imported nmod with same package name.The new one has successfully imported and replaced the old one.</string>
+	<string name="nmod_import_replaced_message">ModdedPE found an imported nmod with same package name.The new one has successfully imported and replaced the old one.</string>
 	<string name="nmod_import_succeed_title">Successfully Imported</string>
-	<string name="nmod_existed_nmod_msg_replace">A nmod with same package name has been added.Do you want to replace it?</string>
-	<string name="nmod_existed_nmod_title">Failed to pick NMod</string>
-	
 	<string name="nmod_add_new">Add New</string>
 	<string name="nmod_add_new_title">Add New...</string>
 	<string name="nmod_export">Export</string>

@@ -1,18 +1,12 @@
 package com.mcal.ModdedPE.app;
 import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.nmod.*;
+import com.mcal.ModdedPE.*;
 
 public class ModdedPEActivity extends MCDActivity
 {
-	private NModAPI mNModAPI = null;
-	
-	public ModdedPEActivity()
-	{
-		mNModAPI = NModAPI.getInstance(this);
-	}
-	
 	protected NModAPI getNModAPI()
 	{
-		return mNModAPI;
+		return ModdedPEApplication.mNModAPI;
 	}
 }

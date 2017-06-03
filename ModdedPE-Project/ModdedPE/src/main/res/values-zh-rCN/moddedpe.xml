@@ -12,6 +12,20 @@
 	<string name="prestart_title">预加载</string>
 	
 	<!--NMod-->
+	<string name="nmod_importing_title">NMod导入中...</string>
+	<string name="nmod_import_failed">导入NMod失败</string>
+	<string name="nmod_import_failed_message_unexpected">导入NMod时造成了一项未知错误。</string>
+	<string name="nmod_import_failed_message_decode">因为这不是一个合理的NMod文件类型，导入NMod失败。请确保它是一个ZIP文件。</string>
+	<string name="nmod_import_failed_message_no_manifest">ModdedPE成功解码这个文件，但是其中没有nmod_manifest.json。这不是一个NMod文件。</string>
+	<string name="nmod_import_failed_message_io_exception">导入过程中发生了一项IO错误。</string>
+	<string name="nmod_import_failed_message_manifest_json_syntax_error">读取nmod_manifest.json时发生了json语法错误。请仔细检查您的nmod_manifest.json是否有误。</string>
+	<string name="nmod_import_failed_message_invalid_package_name">定义在nmod_manifest.json的包名不是一个合理的java格式包名。</string>
+	<string name="nmod_import_failed_message_no_package_name">ModdedPE在nmod_manifest.json中没有发现任何包名元素("package_name")。请添加它。</string>
+	<string name="nmod_import_failed_message_inequal_package_name">在AndroidManifest.xml和nmod_manifest.json中定义的包名元素不相同。ModdedPE不能决定使用哪一个。</string>
+	<string name="nmod_import_failed_button_full_info">错误信息</string>
+	<string name="nmod_import_replaced_title">已覆盖</string>
+	<string name="nmod_import_replaced_message">ModdedPE发现一个有种同样包名的NMod已经被导入。新的NMod已成功导入并覆盖了旧的。</string>
+	<string name="nmod_import_succeed_title">成功导入</string>
 	<string name="nmod_loadFailed">%1$s 加载失败！</string>
 	<string name="load_fail_msg">错误报告：</string>
 	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>

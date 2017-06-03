@@ -6,10 +6,10 @@ import com.mcal.ModdedPE.*;
 
 public class MCDSwitch extends Switch
 {
-	Bitmap bitmap;
-	Bitmap bitmapClicked;
-	Bitmap bitmapNI;
-	
+	private Bitmap bitmap;
+	private Bitmap bitmapClicked;
+	private Bitmap bitmapNI;
+
 	public MCDSwitch(android.content.Context context) 
 	{
 		super(context);
@@ -17,30 +17,30 @@ public class MCDSwitch extends Switch
 
     public MCDSwitch(android.content.Context context, android.util.AttributeSet attrs) 
 	{
-		super(context,attrs);
+		super(context, attrs);
 	}
 
     public MCDSwitch(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr) 
 	{
-		super(context,attrs,defStyleAttr);
+		super(context, attrs, defStyleAttr);
 	}
 
     public MCDSwitch(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr, int defStyleRes)
 	{
-		super(context,attrs,defStyleAttr,defStyleRes);
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		if(bitmap==null||bitmapClicked==null)
+		if (bitmap == null || bitmapClicked == null)
 		{
-			bitmap=BitmapFactory.decodeResource(getContext().getResources(),R.drawable.mcd_checkbox_default);
-			bitmapClicked=BitmapFactory.decodeResource(getContext().getResources(),R.drawable.mcd_checkbox_checked);
-			bitmapNI=BitmapFactory.decodeResource(getContext().getResources(),R.drawable.mcd_checkbox_not_important);
-			
+			bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_checkbox_default);
+			bitmapClicked = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_checkbox_checked);
+			bitmapNI = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.mcd_checkbox_not_important);
+
 		}
-		if(!super.isClickable())
+		if (!super.isClickable())
 			canvas.drawBitmap(bitmapNI, 0, 0, null);
 		else if (super.isChecked())
 			canvas.drawBitmap(bitmapClicked, 0, 0, null);
@@ -48,6 +48,6 @@ public class MCDSwitch extends Switch
 			canvas.drawBitmap(bitmap, 0, 0, null);
 		invalidate();
 	}
-	
-	
+
+
 }

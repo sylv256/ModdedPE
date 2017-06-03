@@ -1,15 +1,14 @@
 package com.mcal.MCDesign.app;
-import android.support.v7.app.*;
-import android.os.*;
-import com.mcal.ModdedPE.*;
-import android.view.*;
-import android.support.v7.widget.*;
 import android.graphics.*;
-import android.widget.*;
-import java.io.*;
 import android.graphics.drawable.*;
-import com.mcal.MCDesign.widget.*;
+import android.os.*;
+import android.support.v7.app.*;
+import android.support.v7.widget.*;
+import android.view.*;
+import android.widget.*;
 import com.mcal.MCDesign.utils.*;
+import com.mcal.MCDesign.widget.*;
+import com.mcal.ModdedPE.*;
 
 public class MCDActivity extends AppCompatActivity
 {
