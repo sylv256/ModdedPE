@@ -72,8 +72,11 @@ public class ModdedPENModDescriptionActivity extends ModdedPEActivity
 		File file = new File(context.getFilesDir() + File.separator + "nmod_icons" + File.separator + nmod.getPackageName());
 		try
 		{
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();  
-			nmod.getIcon().compress(Bitmap.CompressFormat.PNG, 100, baos);  
+			Bitmap nmodIcon = nmod.getIcon();
+			if(nmodIcon == null)
+				nmodIcon=BitmapFactory.decodeResource(context.getResources(),R.drawable.mcd_null_pack);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			nmod.getIcon().compress(Bitmap.CompressFormat.PNG, 100, baos);
 			file.createNewFile();
 			FileOutputStream outfile = new FileOutputStream(file);
 			outfile.write(baos.toByteArray());

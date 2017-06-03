@@ -6,7 +6,6 @@ import android.support.v4.view.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
-import com.mcal.MCDesign.app.*;
 import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.utils.*;
@@ -253,12 +252,5 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 		{
 			return titles.get(position);
 		}
-	}
-
-	@Override
-	protected void onRestart()
-	{
-		mManageNModFragment.onRestart();
-		super.onRestart();
 	}
 }

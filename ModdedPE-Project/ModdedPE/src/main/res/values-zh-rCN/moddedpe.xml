@@ -23,9 +23,12 @@
 	<string name="nmod_import_failed_message_no_package_name">ModdedPE在nmod_manifest.json中没有发现任何包名元素("package_name")。请添加它。</string>
 	<string name="nmod_import_failed_message_inequal_package_name">在AndroidManifest.xml和nmod_manifest.json中定义的包名元素不相同。ModdedPE不能决定使用哪一个。</string>
 	<string name="nmod_import_failed_button_full_info">错误信息</string>
+	<string name="nmod_import_failed_full_info_title">错误信息</string>
+	<string name="nmod_import_failed_full_info_message">错误类型：\n%1$s\n错误信息：\n%2$s</string>
 	<string name="nmod_import_replaced_title">已覆盖</string>
 	<string name="nmod_import_replaced_message">ModdedPE发现一个有种同样包名的NMod已经被导入。新的NMod已成功导入并覆盖了旧的。</string>
 	<string name="nmod_import_succeed_title">成功导入</string>
+	<string name="nmod_import_succeed_message">这项NMod已经被成功导入！</string>
 	<string name="nmod_loadFailed">%1$s 加载失败！</string>
 	<string name="load_fail_msg">错误报告：</string>
 	<string name="load_fail_description">NMod加载失败，但是游戏仍然可以正常运行。</string>

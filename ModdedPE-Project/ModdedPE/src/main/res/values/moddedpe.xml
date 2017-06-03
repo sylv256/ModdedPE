@@ -32,6 +32,9 @@
 	<string name="nmod_import_replaced_title">Replaced</string>
 	<string name="nmod_import_replaced_message">ModdedPE found an imported nmod with same package name.The new one has successfully imported and replaced the old one.</string>
 	<string name="nmod_import_succeed_title">Successfully Imported</string>
+	<string name="nmod_import_succeed_message">The NMod has successfully been imported!</string>
+	<string name="nmod_import_failed_full_info_title">Error Info</string>
+	<string name="nmod_import_failed_full_info_message">Error Type:\n%1$s\nError Message:\n%2$s</string>
 	<string name="nmod_add_new">Add New</string>
 	<string name="nmod_add_new_title">Add New...</string>
 	<string name="nmod_export">Export</string>

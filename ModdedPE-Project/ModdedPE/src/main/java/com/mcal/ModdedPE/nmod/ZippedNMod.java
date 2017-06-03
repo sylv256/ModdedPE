@@ -13,7 +13,7 @@ public class ZippedNMod extends NMod
 	private ZipFile mZipFile = null;
 	private File mFilePath = null;
 	private AssetManager mAssets = null;
-	
+
 	@Override
 	public NModPerloadBean copyNModFiles()
 	{
@@ -24,6 +24,9 @@ public class ZippedNMod extends NMod
 		while (zipfile_ents.hasMoreElements())
 		{
 			ZipEntry entry=zipfile_ents.nextElement();
+
+			if (entry == null)
+				continue;
 
 			if (!entry.isDirectory() && entry.getName().startsWith("lib" + File.separator + Build.CPU_ABI + File.separator))
 			{
@@ -65,10 +68,10 @@ public class ZippedNMod extends NMod
 	@Override
 	public boolean isSupportedABI()
 	{
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public AssetManager getAssets()
 	{
@@ -116,9 +119,9 @@ public class ZippedNMod extends NMod
 		}
 	}
 
-	public ZippedNMod(String packageName,Context thisContext, File file) throws IOException
+	public ZippedNMod(String packageName, Context thisContext, File file) throws IOException
 	{
-		super(packageName,thisContext);
+		super(packageName, thisContext);
 		this.mZipFile = new ZipFile(file);
 		this.mFilePath = file;
 

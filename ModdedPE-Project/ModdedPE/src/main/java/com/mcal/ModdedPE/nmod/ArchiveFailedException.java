@@ -10,6 +10,7 @@ public class ArchiveFailedException extends Exception
 	public static final int TYPE_INVAILD_PACKAGE_NAME = 6;
 	public static final int TYPE_INEQUAL_PACKAGE_NAME = 7;
 	public static final int TYPE_DECODE_FAILED = 8;
+	public static final int TYPE_UNEXPECTED = 9;
 	
 	private int mType;
 	private Throwable mCause;
@@ -28,5 +29,37 @@ public class ArchiveFailedException extends Exception
 	public Throwable getImportFailedCause()
 	{
 		return mCause;
+	}
+	
+	public int getType()
+	{
+		return mType;
+	}
+	
+	public String toTypeString()
+	{
+		switch(mType)
+		{
+			case TYPE_JSON_SYNTAX_EXCEPTION:
+				return "JSON_SYNTAX_EXCEPTION";
+			case TYPE_INEQUAL_PACKAGE_NAME:
+				return "INEQUAL_PACKAGE_NAME";
+			case TYPE_DECODE_FAILED:
+				return "DECODE_FAILED";
+			case TYPE_IO_EXCEPTION:
+				return "IO_EXCEPTION";
+			case TYPE_INVAILD_PACKAGE_NAME:
+				return "INVAILD_PACKAGE_NAME";
+			case TYPE_PACKAGE_NOT_FOUND:
+				return "PACKAGE_NOT_FOUND";
+			case TYPE_NO_MANIFEST:
+				return "NO_MANIFEST";
+			case TYPE_UNDEFINED_PACKAGE_NAME:
+				return "UNDEFINED_PACKAGE_NAME";
+			case TYPE_UNEXPECTED:
+				return "UNEXPECTED";
+			default:
+				return "null";
+		}
 	}
 }

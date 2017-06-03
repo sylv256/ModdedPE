@@ -1,6 +1,7 @@
 package com.mcal.ModdedPE.app;
 import android.app.*;
 import android.content.*;
+import android.graphics.*;
 import android.os.*;
 import android.support.design.widget.*;
 import android.support.v7.app.*;
@@ -15,21 +16,28 @@ import android.support.v7.app.AlertDialog;
 
 public class MainManageNModFragment extends ModdedPEFragment
 {
-	private ListView managenmod_listView;
-	private ArrayList<NMod> managenmod_activeList;
-	private ArrayList<NMod> managenmod_disabledList;
-	private View manage_nmod_view;
+	private ListView mListView;
+	private View mRootView;
+	private NModProcesserHandler mNModProcesserHandler = new NModProcesserHandler();
+	private AlertDialog mProcessingDialog;
+
+	private static final int MSG_SHOW_PROGRESS_DIALOG = 1;
+	private static final int MSG_HIDE_PROGRESS_DIALOG = 2;
+	private static final int MSG_SHOW_SUCCEED_DIALOG = 3;
+	private static final int MSG_SHOW_REPLACED_DIALOG = 4;
+	private static final int MSG_SHOW_FAILED_DIALOG = 5;
+	private static final int MSG_REFRESH_NMOD_DATA = 6;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 	{
-		manage_nmod_view = inflater.inflate(R.layout.moddedpe_manage_nmod, null);
+		mRootView = inflater.inflate(R.layout.moddedpe_manage_nmod, null);
 
-		managenmod_listView = (ListView)manage_nmod_view.findViewById(R.id.moddedpe_manage_nmod_list_view);
+		mListView = (ListView)mRootView.findViewById(R.id.moddedpe_manage_nmod_list_view);
 
 		refreshNModDatas();
 
-		FloatingActionButton addBtn = (FloatingActionButton)manage_nmod_view.findViewById(R.id.moddedpe_manage_nmod_add_new);
+		FloatingActionButton addBtn = (FloatingActionButton)mRootView.findViewById(R.id.moddedpe_manage_nmod_add_new);
 		addBtn.setOnClickListener(new View.OnClickListener()
 			{
 
@@ -41,7 +49,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 
 
 			});
-		return manage_nmod_view;
+		return mRootView;
 	}
 
 	@Override
@@ -52,69 +60,13 @@ public class MainManageNModFragment extends ModdedPEFragment
 		{
 			if (requestCode == ModdedPENModPackagePickerActivity.REQUEST_PICK_PACKAGE)
 			{
-				try
-				{
-					PackagedNMod packagedNMod = getNModAPI().archivePackagedNMod(data.getExtras().getString(ModdedPENModPackagePickerActivity.TAG_PACKAGE_NAME));
-					if (!getNModAPI().importNMod(packagedNMod))
-					{
-						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_existed_nmod_title).setMessage(R.string.nmod_existed_nmod_msg).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-							{
-
-								@Override
-								public void onClick(DialogInterface p1, int p2)
-								{
-									p1.dismiss();
-								}
-
-
-							}).show();
-					}
-					refreshNModDatas();
-				}
-				catch (ArchiveFailedException e)
-				{}
+				//picked from package
+				onPickedNModFromPackage(data.getExtras().getString(ModdedPENModPackagePickerActivity.TAG_PACKAGE_NAME));
 			}
 			else if (requestCode == ModdedPENModFilePickerActivity.REQUEST_PICK_FILE)
 			{
-				try
-				{
-					final ZippedNMod zippednmod = getNModAPI().archiveZippedNMod(data.getExtras().getString(ModdedPENModFilePickerActivity.TAG_FILE_PATH));
-					if (zippednmod != null)
-					{
-						if (!getNModAPI().importNMod(zippednmod))
-						{
-							new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_existed_nmod_title).setMessage(R.string.nmod_existed_nmod_msg_replace).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-								{
-
-									@Override
-									public void onClick(DialogInterface p1, int p2)
-									{
-										getNModAPI().importNMod(zippednmod);
-										p1.dismiss();
-									}
-								}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
-								{
-
-									@Override
-									public void onClick(DialogInterface p1, int p2)
-									{
-										p1.dismiss();
-									}
-
-
-								}).show();
-						}
-					}
-					else
-					{
-						//decode error
-					}
-					refreshNModDatas();
-				}
-				catch (ArchiveFailedException nmodLoadE)
-				{
-					//load error
-				}
+				//picked from storage
+				onPickedNModFromStorage(data.getExtras().getString(ModdedPENModFilePickerActivity.TAG_FILE_PATH));
 			}
 
 		}
@@ -122,38 +74,239 @@ public class MainManageNModFragment extends ModdedPEFragment
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	public void onRestart()
+	public void onPickedNModFromStorage(String path)
+	{
+		final String finalPath = path;
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_PROGRESS_DIALOG);
+				try
+				{
+					ZippedNMod zippedNMod = getNModAPI().archiveZippedNMod(finalPath);
+					if (getNModAPI().importNMod(zippedNMod))
+					{
+						//replaced
+						mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
+						mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_REPLACED_DIALOG);
+					}
+					else
+					{
+						mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
+						mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_SUCCEED_DIALOG);
+					}
+					mNModProcesserHandler.sendEmptyMessage(MSG_REFRESH_NMOD_DATA);
+
+				}
+				catch (ArchiveFailedException archiveFailedException)
+				{
+					mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
+					Message message = new Message();
+					message.what = MSG_SHOW_FAILED_DIALOG;
+					message.obj = archiveFailedException;
+					mNModProcesserHandler.sendMessage(message);
+				}
+
+			}
+		}.start();
+	}
+
+	public void onPickedNModFromPackage(String packageName)
+	{
+		final String finalPkgName = packageName;
+		new Thread()
+		{
+			@Override
+			public void run()
+			{
+				mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_PROGRESS_DIALOG);
+				try
+				{
+					PackagedNMod packagedNMod = getNModAPI().archivePackagedNMod(finalPkgName);
+					if (getNModAPI().importNMod(packagedNMod))
+					{
+						//replaced
+						mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
+						mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_REPLACED_DIALOG);
+					}
+					else
+					{
+						mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
+						mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_SUCCEED_DIALOG);
+					}
+					mNModProcesserHandler.sendEmptyMessage(MSG_REFRESH_NMOD_DATA);
+
+				}
+				catch (ArchiveFailedException archiveFailedException)
+				{
+					mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
+					Message message = new Message();
+					message.what = MSG_SHOW_FAILED_DIALOG;
+					message.obj = archiveFailedException;
+					mNModProcesserHandler.sendMessage(message);
+				}
+			}
+		}.start();
+	}
+
+	public void showPickNModFailedDialog(ArchiveFailedException archiveFailedException)
+	{
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface p1, int p2)
+				{
+					p1.dismiss();
+				}
+
+
+			});
+		switch (archiveFailedException.getType())
+		{
+			case ArchiveFailedException.TYPE_DECODE_FAILED:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_decode);
+				break;
+			case ArchiveFailedException.TYPE_INEQUAL_PACKAGE_NAME:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_inequal_package_name);
+				break;
+			case ArchiveFailedException.TYPE_INVAILD_PACKAGE_NAME:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_invalid_package_name);
+				break;
+			case ArchiveFailedException.TYPE_IO_EXCEPTION:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_io_exception);
+				break;
+			case ArchiveFailedException.TYPE_JSON_SYNTAX_EXCEPTION:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_manifest_json_syntax_error);
+				break;
+			case ArchiveFailedException.TYPE_NO_MANIFEST:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_no_manifest);
+				break;
+			case ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_no_package_name);
+				break;
+			default:
+				alertBuilder.setMessage(R.string.nmod_import_failed_message_unexpected);
+				break;
+		}
+		if (archiveFailedException.getImportFailedCause() != null)
+		{
+			final ArchiveFailedException fArvhiveFailedException = archiveFailedException;
+			alertBuilder.setNegativeButton(R.string.nmod_import_failed_button_full_info, new DialogInterface.OnClickListener()
+				{
+
+					@Override
+					public void onClick(DialogInterface p1, int p2)
+					{
+						p1.dismiss();
+						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new String[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getImportFailedCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+							{
+
+								@Override
+								public void onClick(DialogInterface p1_, int p2)
+								{
+									p1_.dismiss();
+								}
+
+
+							}).show();
+					}
+
+
+				});
+		}
+		alertBuilder.show();
+	}
+
+	private class NModProcesserHandler extends Handler
 	{
 
+		@Override
+		public void handleMessage(Message msg)
+		{
+			super.handleMessage(msg);
+			switch (msg.what)
+			{
+				case MSG_SHOW_PROGRESS_DIALOG:
+					mProcessingDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_importing_title).setView(R.layout.moddedpe_manage_nmod_progress_dialog_view).setCancelable(false).show();
+					break;
+				case MSG_HIDE_PROGRESS_DIALOG:
+					if (mProcessingDialog != null)
+						mProcessingDialog.hide();
+					mProcessingDialog = null;
+					break;
+				case MSG_SHOW_SUCCEED_DIALOG:
+
+					new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_succeed_title).setMessage(R.string.nmod_import_succeed_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						{
+
+							@Override
+							public void onClick(DialogInterface p1, int p2)
+							{
+								p1.dismiss();
+							}
+
+
+						}).show();
+					break;
+				case MSG_SHOW_REPLACED_DIALOG:
+					new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_replaced_title).setMessage(R.string.nmod_import_replaced_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						{
+
+							@Override
+							public void onClick(DialogInterface p1, int p2)
+							{
+								p1.dismiss();
+							}
+
+
+						}).show();
+					break;
+				case MSG_SHOW_FAILED_DIALOG:
+					showPickNModFailedDialog((ArchiveFailedException)msg.obj);
+					break;
+				case MSG_REFRESH_NMOD_DATA:
+					refreshNModDatas();
+					break;
+			}
+		}
 	}
 
 	private void refreshNModDatas()
 	{
-		managenmod_activeList = getNModAPI().getImportedEnabledNMods();
-		managenmod_disabledList = getNModAPI().getImportedDisabledNMods();
-
 		NModListAdapter adapterList = new NModListAdapter();
-		managenmod_listView.setAdapter(adapterList);
+		mListView.setAdapter(adapterList);
 
-		if (managenmod_activeList.isEmpty() && managenmod_disabledList.isEmpty())
+		if (getNModAPI().getImportedEnabledNMods().isEmpty() && getNModAPI().getImportedDisabledNMods().isEmpty())
 		{
-			manage_nmod_view.findViewById(R.id.moddedpe_manage_nmod_layout_nmods).setVisibility(View.GONE);
-			manage_nmod_view.findViewById(R.id.moddedpe_manage_nmod_layout_no_found).setVisibility(View.VISIBLE);
+			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_nmods).setVisibility(View.GONE);
+			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_no_found).setVisibility(View.VISIBLE);
 		}
 		else
 		{
-			manage_nmod_view.findViewById(R.id.moddedpe_manage_nmod_layout_nmods).setVisibility(View.VISIBLE);
-			manage_nmod_view.findViewById(R.id.moddedpe_manage_nmod_layout_no_found).setVisibility(View.GONE);
+			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_nmods).setVisibility(View.VISIBLE);
+			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_no_found).setVisibility(View.GONE);
 		}
 	}
 
 	public class NModListAdapter extends BaseAdapter 
     {
+		private ArrayList<NMod> mImportedEnabledNMods = new ArrayList<NMod>();
+		private ArrayList<NMod> mImportedDisabledNMods = new ArrayList<NMod>();
+
+		public NModListAdapter()
+		{
+			mImportedEnabledNMods.addAll(getNModAPI().getImportedEnabledNMods());
+			mImportedDisabledNMods.addAll(getNModAPI().getImportedDisabledNMods());
+		}
+
 		@Override 
 		public int getCount()
 		{
-			int count = managenmod_activeList.size() + managenmod_disabledList.size() + 2;
-			if (managenmod_activeList.size() > 0)
+			int count = mImportedEnabledNMods.size() + mImportedDisabledNMods.size() + 2;
+			if (mImportedEnabledNMods.size() > 0)
 				++count;
 			return count;
 		}
@@ -173,7 +326,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 		@Override 
 		public View getView(int position, View convertView, ViewGroup parent)
 		{
-			boolean shouldShowEnabledList = managenmod_activeList.size() > 0 && (position  < managenmod_activeList.size() + 1);
+			boolean shouldShowEnabledList = mImportedEnabledNMods.size() > 0 && (position  < mImportedEnabledNMods.size() + 1);
 			if (shouldShowEnabledList)
 			{
 				if (position == 0)
@@ -183,18 +336,18 @@ public class MainManageNModFragment extends ModdedPEFragment
 				else
 				{
 					int nmodIndex = position - 1;
-					return createEnabledNModView(managenmod_activeList.get(nmodIndex));
+					return createEnabledNModView(mImportedEnabledNMods.get(nmodIndex));
 				}
 			}
-			int disableStartPosition = managenmod_activeList.size() > 0 ? managenmod_activeList.size() + 1: 0;
+			int disableStartPosition = mImportedEnabledNMods.size() > 0 ? mImportedEnabledNMods.size() + 1: 0;
 			if (position == disableStartPosition)
 			{
 				return createCutlineView(R.string.nmod_disabled_title);
 			}
 			int itemInListPosition = position - 1 - disableStartPosition;
-			if (itemInListPosition >= 0 && itemInListPosition < managenmod_disabledList.size())
+			if (itemInListPosition >= 0 && itemInListPosition < mImportedDisabledNMods.size())
 			{
-				return createDisabledNModView(managenmod_disabledList.get(itemInListPosition));
+				return createDisabledNModView(mImportedDisabledNMods.get(itemInListPosition));
 			}
 			return createAddNewView();
 		}
@@ -238,7 +391,10 @@ public class MainManageNModFragment extends ModdedPEFragment
 			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
 			textPkgTitle.setText(nmod.getPackageName());
 			AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
-			imageIcon.setImageBitmap(nmod.getIcon());
+			Bitmap nmodIcon = null;
+			if (nmodIcon == null)
+				nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
+			imageIcon.setImageBitmap(nmodIcon);
 			FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
 			View.OnClickListener onInfoClickedListener = new View.OnClickListener()
 			{
@@ -274,7 +430,10 @@ public class MainManageNModFragment extends ModdedPEFragment
 		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_package_name);
 		textPkgTitle.setText(nmod.getPackageName());
 		AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_disabled_item_card_view_image_view);
-		imageIcon.setImageBitmap(nmod.getIcon());
+		Bitmap nmodIcon = null;
+		if (nmodIcon == null)
+			nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
+		imageIcon.setImageBitmap(nmodIcon);
 		FloatingActionButton addButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_disabled_add);
 		addButton.setOnClickListener(new View.OnClickListener()
 			{
@@ -348,7 +507,10 @@ public class MainManageNModFragment extends ModdedPEFragment
 			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
 			textPkgTitle.setText(nmod.getPackageName());
 			AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_bugged_item_card_view_image_view);
-			imageIcon.setImageBitmap(nmod.getIcon());
+			Bitmap nmodIcon = null;
+			if (nmodIcon == null)
+				nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
+			imageIcon.setImageBitmap(nmodIcon);
 			FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
 			View.OnClickListener onInfoClickedListener = new View.OnClickListener()
 			{
@@ -384,7 +546,10 @@ public class MainManageNModFragment extends ModdedPEFragment
 		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_package_name);
 		textPkgTitle.setText(nmod.getPackageName());
 		AppCompatImageView imageIcon = (AppCompatImageView)convertView.findViewById(R.id.nmod_enabled_item_card_view_image_view);
-		imageIcon.setImageBitmap(nmod.getIcon());
+		Bitmap nmodIcon = null;
+		if (nmodIcon == null)
+			nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
+		imageIcon.setImageBitmap(nmodIcon);
 		FloatingActionButton minusButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_minus);
 		minusButton.setOnClickListener(new View.OnClickListener()
 			{

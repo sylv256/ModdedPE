@@ -1,14 +1,14 @@
 package com.mcal.ModdedPE.app;
 import android.app.*;
 import android.content.*;
+import android.graphics.*;
 import android.os.*;
+import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
-import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nmod.*;
 import java.util.*;
-import android.support.v7.widget.*;
 
 public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 {
@@ -113,7 +113,10 @@ public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 			final NMod nmod = nmods.get(p1);
 			View baseCardView = getLayoutInflater().inflate(R.layout.nmod_picker_package_item, null);
 			AppCompatImageView imageView = (AppCompatImageView)baseCardView.findViewById(R.id.nmod_picker_package_item_card_view_image_view);
-			imageView.setImageBitmap(nmod.getIcon());
+			Bitmap nmodIcon = nmod.getIcon();
+			if (nmodIcon == null)
+				nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
+			imageView.setImageBitmap(nmodIcon);
 			AppCompatTextView name = (AppCompatTextView)baseCardView.findViewById(R.id.nmod_picker_package_item_card_view_text_name);
 			name.setText(nmod.getName());
 			AppCompatTextView pkgname = (AppCompatTextView)baseCardView.findViewById(R.id.nmod_picker_package_item_card_view_text_package_name);

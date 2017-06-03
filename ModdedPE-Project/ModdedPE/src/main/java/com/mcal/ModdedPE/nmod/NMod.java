@@ -3,7 +3,6 @@ import android.content.*;
 import android.content.res.*;
 import android.graphics.*;
 import com.google.gson.*;
-import com.mcal.ModdedPE.*;
 import java.io.*;
 
 public abstract class NMod
@@ -126,10 +125,6 @@ public abstract class NMod
 
 	public Bitmap getIcon()
 	{
-		if (mIcon == null)
-		{
-			return BitmapFactory.decodeResource(mContext.getResources(), R.drawable.mcd_null_pack);
-		}
 		return mIcon;
 	}
 
@@ -137,21 +132,21 @@ public abstract class NMod
 	{
 		if (mInfo != null && mInfo.description != null)
 			return mInfo.description;
-		return mContext.getResources().getString(R.string.nmod_description_unknow);
+		return mContext.getResources().getString(android.R.string.unknownName);
 	}
 
 	public String getAuthor()
 	{
 		if (mInfo != null && mInfo.author != null)
 			return mInfo.author;
-		return mContext.getResources().getString(R.string.nmod_description_unknow);
+		return mContext.getResources().getString(android.R.string.unknownName);
 	}
 
 	public String getVersionName()
 	{
 		if (mInfo != null && mInfo.version_name != null)
 			return mInfo.version_name;
-		return mContext.getResources().getString(R.string.nmod_description_unknow);
+		return mContext.getResources().getString(android.R.string.unknownName);
 	}
 
 	public boolean isBugPack()
@@ -174,9 +169,7 @@ public abstract class NMod
 		this.mBugExpection = null;
 
 		this.mIcon = createIcon();
-		if (mIcon == null)
-			mIcon = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.mcd_null_pack);
-
+		
 		try
 		{
 			InputStream is = createInfoInputStream();

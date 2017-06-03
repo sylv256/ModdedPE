@@ -1,15 +1,13 @@
 package com.mcal.ModdedPE.app;
-import android.app.*;
 import android.content.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
 import android.os.*;
+import android.support.v7.app.*;
 import android.view.*;
 import android.widget.*;
-import com.mcal.MCDesign.utils.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
-public class OpenGameLoadingDialog extends Dialog
+
+public class OpenGameLoadingDialog extends AppCompatDialog
 {
 	public OpenGameLoadingDialog(Context context)
 	{
