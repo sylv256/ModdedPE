@@ -6,9 +6,9 @@ import android.support.v4.view.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
-import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.utils.*;
+import com.mcal.pesdk.utils.*;
 import java.util.*;
 
 public class ModdedPEMainActivity extends ModdedPEActivity 
@@ -68,8 +68,8 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 	{
 		super.setDefaultActionBar();
 
-		final MCDBurgerButton burgerButton=new MCDBurgerButton(this);
-		burgerButton.setOnClickListener(new View.OnClickListener()
+		final View burgerButton=getLayoutInflater().inflate(R.layout.moddedpe_ui_button_menu, null);
+		burgerButton.findViewById(R.id.moddedpe_ui_button_item_image_button).setOnClickListener(new View.OnClickListener()
 			{
 
 				@Override
@@ -90,9 +90,8 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 			});
 		setActionBarViewRight(burgerButton);
 
-		AppCompatImageButton imageButton=new AppCompatImageButton(this);
-		imageButton.setBackgroundResource(R.drawable.mcd_creeperface);
-		imageButton.setOnClickListener(new View.OnClickListener()
+		View imageButtonCreeper=getLayoutInflater().inflate(R.layout.moddedpe_ui_button_creeper, null);
+		imageButtonCreeper.findViewById(R.id.moddedpe_ui_button_item_image_button).setOnClickListener(new View.OnClickListener()
 			{
 
 				@Override
@@ -102,7 +101,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 				}
 
 			});
-		setActionBarViewLeft(imageButton);
+		setActionBarViewLeft(imageButtonCreeper);
 	}
 
 	private void switchViewPager(MenuItem item)

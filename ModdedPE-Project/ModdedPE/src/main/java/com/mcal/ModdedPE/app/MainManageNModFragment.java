@@ -9,7 +9,7 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.nmod.*;
+import com.mcal.pesdk.nmod.*;
 import java.util.*;
 
 import android.support.v7.app.AlertDialog;

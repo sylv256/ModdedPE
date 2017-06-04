@@ -1,4 +1,4 @@
-package com.mcal.ModdedPE.nmod;
+package com.mcal.pesdk.nmod;
 import org.json.*;
 import java.util.*;
 

@@ -1,14 +1,11 @@
 package com.mcal.ModdedPE.app;
-import com.mcal.MCDesign.app.*;
-import android.os.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.nmod.*;
-import android.support.v7.widget.*;
-import android.widget.*;
 import android.content.*;
 import android.graphics.*;
+import android.os.*;
+import android.support.v7.widget.*;
+import com.mcal.ModdedPE.*;
+import com.mcal.pesdk.nmod.*;
 import java.io.*;
-import com.mcal.ModdedPE.utils.*;
 
 public class ModdedPENModDescriptionActivity extends ModdedPEActivity
 {

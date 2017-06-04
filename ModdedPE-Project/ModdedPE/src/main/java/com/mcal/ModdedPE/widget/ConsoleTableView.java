@@ -1,13 +1,13 @@
 package com.mcal.ModdedPE.widget;
-import android.widget.*;
+import android.annotation.*;
 import android.content.*;
+import android.graphics.*;
+import android.support.v7.widget.*;
 import android.util.*;
 import android.view.*;
+import android.widget.*;
 import com.mcal.ModdedPE.*;
-import android.support.v7.widget.*;
-import com.mcal.ModdedPE.utils.*;
-import android.graphics.*;
-import android.annotation.*;
+import com.mcal.pesdk.utils.*;
 
 @SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 public class ConsoleTableView extends RelativeLayout

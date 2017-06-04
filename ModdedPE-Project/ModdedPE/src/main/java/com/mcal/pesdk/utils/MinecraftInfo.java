@@ -1,11 +1,9 @@
-package com.mcal.ModdedPE.utils;
+package com.mcal.pesdk.utils;
 import android.content.*;
-import com.mcal.ModdedPE.nmod.*;
-import android.content.pm.PackageManager.*;
 import android.content.pm.*;
-import java.io.*;
-import android.os.*;
 import android.content.res.*;
+import android.os.*;
+import java.io.*;
 
 public class MinecraftInfo
 {

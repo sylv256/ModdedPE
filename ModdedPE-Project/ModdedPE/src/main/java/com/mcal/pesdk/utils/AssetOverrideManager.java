@@ -1,4 +1,4 @@
-package com.mcal.ModdedPE.utils;
+package com.mcal.pesdk.utils;
 
 import android.content.res.*;
 import java.lang.reflect.*;

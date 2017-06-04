@@ -148,12 +148,12 @@ std::string getI18nl(std::string const&key,std::vector<std::string> const&list)
 
 extern "C"
 {
-	JNIEXPORT jboolean Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeIsGameStarted(JNIEnv*env,jobject thiz)
+	JNIEXPORT jboolean Java_com_mcal_pesdk_nativeapi_NativeUtils_nativeIsGameStarted(JNIEnv*env,jobject thiz)
 	{
 		return mGameStarted;
 	}
 	
-	JNIEXPORT void Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
+	JNIEXPORT void Java_com_mcal_pesdk_nativeapi_NativeUtils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
 		void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
 	
@@ -162,7 +162,7 @@ extern "C"
 		
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeAppendTranslation(JNIEnv*env,jobject thiz,jstring name,jstring translation)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeAppendTranslation(JNIEnv*env,jobject thiz,jstring name,jstring translation)
 	{
 		std::string nameN=toString(env,name);
 		std::string translationN=toString(env,translation);
@@ -170,7 +170,7 @@ extern "C"
 		LanguageBean bean(nameN,translationN);
 		mLanguageBeans.emplace_back(bean);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityFinish)(JNIEnv*env,jobject thiz)=
@@ -181,7 +181,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring moddedpeVer)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring moddedpeVer)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onLoad)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)=
@@ -192,7 +192,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityCreate)(JNIEnv*env,jobject thiz,jobject savedInstanceState)=
@@ -203,7 +203,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT jstring Java_com_mcal_ModdedPE_nativeapi_NativeUtils_nativeDemangle(JNIEnv*env,jobject thiz,jstring str)
+	JNIEXPORT jstring Java_com_mcal_pesdk_nativeapi_NativeUtils_nativeDemangle(JNIEnv*env,jobject thiz,jstring str)
 	{
 		char const* symbol_name = toString(env,str).c_str();
 		if(symbol_name)
@@ -213,7 +213,7 @@ extern "C"
 		}
 		return env->NewStringUTF("");
 	}
-	JNIEXPORT void Java_com_mcal_ModdedPE_nmod_NModLoader_nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onDexLoaded)(JNIEnv*env,jobject dexClassLoader)=

@@ -1,9 +1,9 @@
 package com.mcal.ModdedPE.app;
-import com.mcal.ModdedPE.nmod.*;
 import android.content.res.*;
-import com.mcal.ModdedPE.utils.*;
-import com.mcal.ModdedPE.nativeapi.*;
 import com.mcal.ModdedPE.*;
+import com.mcal.ModdedPE.nativeapi.*;
+import com.mcal.pesdk.nmod.*;
+import com.mcal.pesdk.utils.*;
 
 public class ModdedPEBaseMCActivity extends com.mojang.minecraftpe.MainActivity
 {

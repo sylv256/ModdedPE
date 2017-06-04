@@ -1,4 +1,4 @@
-package com.mcal.ModdedPE.nmod;
+package com.mcal.pesdk.nmod;
 
 public class ArchiveFailedException extends Exception
 {

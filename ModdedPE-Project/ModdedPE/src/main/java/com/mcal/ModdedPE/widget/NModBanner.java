@@ -1,16 +1,16 @@
 package com.mcal.ModdedPE.widget;
-import android.widget.*;
 import android.annotation.*;
-import android.view.*;
-import android.support.v4.view.*;
-import java.util.*;
 import android.content.*;
-import android.util.*;
 import android.os.*;
-import com.mcal.ModdedPE.nmod.*;
-import com.mcal.ModdedPE.*;
+import android.support.v4.view.*;
 import android.support.v7.widget.*;
+import android.util.*;
+import android.view.*;
+import android.widget.*;
+import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.app.*;
+import com.mcal.pesdk.nmod.*;
+import java.util.*;
 
 @SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 public class NModBanner extends RelativeLayout

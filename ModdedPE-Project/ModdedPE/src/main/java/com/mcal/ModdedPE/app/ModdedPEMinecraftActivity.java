@@ -1,14 +1,7 @@
 package com.mcal.ModdedPE.app;
-import android.content.*;
-import android.content.pm.*;
-import android.content.res.*;
 import android.os.*;
-import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
-import com.mcal.ModdedPE.nmod.*;
-import com.mcal.ModdedPE.utils.*;
-import java.util.*;
-import java.io.*;
+import com.mcal.pesdk.utils.*;
 
 public class ModdedPEMinecraftActivity extends ModdedPEBaseMCActivity
 {
@@ -21,7 +14,6 @@ public class ModdedPEMinecraftActivity extends ModdedPEBaseMCActivity
 		NativeUtils.setValues(this);
 		getNModAPI().loadToGame(getIntent().getExtras(), getAssets(), null);
 		super.onCreate(p1);
-		GameLauncher.launch();
 	}
 
 	private void mergeGameAssets()

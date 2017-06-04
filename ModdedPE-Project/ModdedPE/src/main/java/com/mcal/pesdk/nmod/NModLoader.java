@@ -1,4 +1,4 @@
-package com.mcal.ModdedPE.nmod;
+package com.mcal.pesdk.nmod;
 import android.os.*;
 import dalvik.system.*;
 import java.io.*;

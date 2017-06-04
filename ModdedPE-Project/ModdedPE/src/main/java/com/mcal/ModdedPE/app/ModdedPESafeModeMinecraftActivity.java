@@ -1,10 +1,7 @@
 package com.mcal.ModdedPE.app;
-import android.content.*;
-import android.content.res.*;
 import android.os.*;
-import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.nativeapi.*;
-import com.mcal.ModdedPE.utils.*;
+import com.mcal.pesdk.utils.*;
 
 public class ModdedPESafeModeMinecraftActivity extends ModdedPEBaseMCActivity
 {
@@ -19,7 +16,6 @@ public class ModdedPESafeModeMinecraftActivity extends ModdedPEBaseMCActivity
 		loadNativeLibraries(true);
 		initAssetOverrides();
 		super.onCreate(p1);
-		GameLauncher.launch();
 	}
 
 	

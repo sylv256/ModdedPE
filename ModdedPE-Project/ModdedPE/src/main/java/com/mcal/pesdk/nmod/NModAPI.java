@@ -1,9 +1,9 @@
-package com.mcal.ModdedPE.nmod;
+package com.mcal.pesdk.nmod;
 import android.content.*;
 import android.content.res.*;
 import android.os.*;
 import com.google.gson.*;
-import com.mcal.ModdedPE.utils.*;
+import com.mcal.pesdk.utils.*;
 import java.util.*;
 
 public final class NModAPI
@@ -11,6 +11,7 @@ public final class NModAPI
 	private Context mContext;
 	private NModManager mNModManager;
 	private NModArchiver mArchiver;
+	private LauncherOptions mLauncherOptions;
 	
 	public static final String NMOD_DATA_TAG = "nmod_data";
 	public static final int MSG_COPYING_NMOD_FILES = 5623;
@@ -19,11 +20,12 @@ public final class NModAPI
 	public static final int MSG_MERGING_ASSETS = 5626;
 	public static final int MSG_LOADING_DEX = 5627;
 
-	public NModAPI(Context context)
+	public NModAPI(Context context,LauncherOptions launcherOptions)
 	{
 		this.mContext = context;
 		this.mNModManager = new NModManager(context);
 		this.mArchiver = new NModArchiver(context);
+		this.mLauncherOptions = launcherOptions;
 	}
 
 	public ZippedNMod archiveZippedNMod(String filePath) throws ArchiveFailedException

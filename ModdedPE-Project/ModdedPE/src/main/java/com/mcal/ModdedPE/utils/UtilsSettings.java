@@ -1,7 +1,8 @@
 package com.mcal.ModdedPE.utils;
 import android.content.*;
+import com.mcal.pesdk.utils.*;
 
-public class UtilsSettings
+public class UtilsSettings implements LauncherOptions
 {
 	private Context context;
 	private final static String TAG_SETTINGS="moddedpe_settings";
@@ -29,8 +30,15 @@ public class UtilsSettings
 		editor.commit();
 	}
 
-	public boolean getAutoSaveLevel()
+	public boolean getFirstLoaded()
 	{
-		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("autoSaveLevel",false);
+		return context.getSharedPreferences(TAG_SETTINGS,Context.MODE_MULTI_PROCESS).getBoolean("firstLoaded",false);
+	}
+	
+	//Interface
+	@Override
+	public boolean isSafeMode()
+	{
+		return getSafeMode();
 	}
 }

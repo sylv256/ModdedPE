@@ -61,6 +61,8 @@ public class MCDProgressBar extends ProgressBar
 		Paint mPaint=new Paint();
 		mPaint.setStyle(Paint.Style.FILL);
 		mPaint.setColor(Color.parseColor("#66BA44"));
+		
+		mBlockDrawingProgress += mSpeed;
 
 		if (mBlockDrawingProgress >= 1 && !mIsScaling)
 		{

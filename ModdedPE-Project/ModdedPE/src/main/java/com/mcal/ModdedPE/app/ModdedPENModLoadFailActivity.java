@@ -3,9 +3,8 @@ package com.mcal.ModdedPE.app;
 import android.content.*;
 import android.os.*;
 import android.support.v7.widget.*;
-import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.nmod.*;
+import com.mcal.pesdk.nmod.*;
 
 public class ModdedPENModLoadFailActivity extends ModdedPEActivity
 {

@@ -106,8 +106,8 @@ public class MCDActivity extends AppCompatActivity
 
 	protected void setActionBarButtonCloseRight()
 	{
-		MCDBurgerButtonClose buttonClose=new MCDBurgerButtonClose(this);
-		buttonClose.setOnClickListener(new View.OnClickListener()
+		View buttonClose=getLayoutInflater().inflate(R.layout.moddedpe_ui_button_close,null);
+		buttonClose.findViewById(R.id.moddedpe_ui_button_item_image_button).setOnClickListener(new View.OnClickListener()
 			{
 
 				@Override
