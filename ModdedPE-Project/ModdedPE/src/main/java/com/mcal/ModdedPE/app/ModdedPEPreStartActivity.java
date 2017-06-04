@@ -3,6 +3,10 @@ import android.content.*;
 import android.os.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.pesdk.nmod.*;
+import android.support.v7.widget.*;
+import java.util.*;
+import android.text.format.*;
+
 
 public class ModdedPEPreStartActivity extends ModdedPEActivity
 {
@@ -14,6 +18,13 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_perloading);
+		
+		AppCompatTextView tipsText = (AppCompatTextView)findViewById(R.id.moddedpe_perloading_text);
+		String[] tipsArray = getResources().getStringArray(R.array.perloading_tips_text);
+		Time currentTime = new Time();
+		currentTime.setToNow();
+		tipsText.setText(tipsArray[new Random(currentTime.toMillis(false)).nextInt(tipsArray.length)]);
+		
 		new PreStartThread().start();
 	}
 	
@@ -34,7 +45,7 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 			Message msg = new Message();
 			msg.obj = bundle;
 			mPreStartUIHandler.sendMessage(msg);*/
-			while(true);
+			//while(true);
 		}
 	}
 	

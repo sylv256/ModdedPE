@@ -4,25 +4,30 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<LinearLayout
-		android:layout_width="wrap_content"
+	<com.mcal.MCDesign.widget.MCDProgressBar
 		android:layout_height="wrap_content"
-		android:layout_centerInParent="true">
+		android:layout_width="wrap_content"
+		android:layout_centerInParent="true"/>
 
-		<ImageView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:src="@drawable/title_modded"
-			android:scaleX="1.0"
-			android:layout_marginRight="5dp"/>
+	<android.support.v7.widget.AppCompatTextView
+		android:id="@+id/moddedpe_perloading_text"
+		android:layout_height="20dp"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:layout_width="match_parent"
+		android:layout_alignParentBottom="true"/>
 
-		<ImageView
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:src="@drawable/title_pe"
-			android:layout_marginLeft="5dp"/>
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="20dp"
+		android:layout_width="match_parent"
+		android:layout_alignParentBottom="true"/>
 
-	</LinearLayout>
+	<ListView
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:dividerHeight="0dip"
+		android:divider="@null"
+		android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>
 
