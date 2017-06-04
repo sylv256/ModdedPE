@@ -2,11 +2,12 @@ package com.mcal.ModdedPE.app;
 import android.support.v4.app.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.pesdk.nmod.*;
+import com.mcal.pesdk.*;
 
 public class ModdedPEFragment extends Fragment
 {
-	protected NModAPI getNModAPI()
+	protected PESdk getPESdk()
 	{
-		return ModdedPEApplication.mNModAPI;
+		return ModdedPEApplication.mPESdk;
 	}
 }

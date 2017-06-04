@@ -85,8 +85,8 @@ public class MainManageNModFragment extends ModdedPEFragment
 				mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_PROGRESS_DIALOG);
 				try
 				{
-					ZippedNMod zippedNMod = getNModAPI().archiveZippedNMod(finalPath);
-					if (getNModAPI().importNMod(zippedNMod))
+					ZippedNMod zippedNMod = getPESdk().getNModAPI().archiveZippedNMod(finalPath);
+					if (getPESdk().getNModAPI().importNMod(zippedNMod))
 					{
 						//replaced
 						mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
@@ -124,8 +124,8 @@ public class MainManageNModFragment extends ModdedPEFragment
 				mNModProcesserHandler.sendEmptyMessage(MSG_SHOW_PROGRESS_DIALOG);
 				try
 				{
-					PackagedNMod packagedNMod = getNModAPI().archivePackagedNMod(finalPkgName);
-					if (getNModAPI().importNMod(packagedNMod))
+					PackagedNMod packagedNMod = getPESdk().getNModAPI().archivePackagedNMod(finalPkgName);
+					if (getPESdk().getNModAPI().importNMod(packagedNMod))
 					{
 						//replaced
 						mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
@@ -282,7 +282,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 		NModListAdapter adapterList = new NModListAdapter();
 		mListView.setAdapter(adapterList);
 
-		if (getNModAPI().getImportedEnabledNMods().isEmpty() && getNModAPI().getImportedDisabledNMods().isEmpty())
+		if (getPESdk().getNModAPI().getImportedEnabledNMods().isEmpty() && getPESdk().getNModAPI().getImportedDisabledNMods().isEmpty())
 		{
 			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_nmods).setVisibility(View.GONE);
 			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_no_found).setVisibility(View.VISIBLE);
@@ -301,8 +301,8 @@ public class MainManageNModFragment extends ModdedPEFragment
 
 		public NModListAdapter()
 		{
-			mImportedEnabledNMods.addAll(getNModAPI().getImportedEnabledNMods());
-			mImportedDisabledNMods.addAll(getNModAPI().getImportedDisabledNMods());
+			mImportedEnabledNMods.addAll(getPESdk().getNModAPI().getImportedEnabledNMods());
+			mImportedDisabledNMods.addAll(getPESdk().getNModAPI().getImportedDisabledNMods());
 		}
 
 		@Override 
@@ -417,7 +417,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 					@Override
 					public void onClick(View p1)
 					{
-						getNModAPI().removeImportedNMod(nmod);
+						getPESdk().getNModAPI().removeImportedNMod(nmod);
 						refreshNModDatas();
 					}
 
@@ -444,7 +444,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					getNModAPI().setEnabled(nmod, true);
+					getPESdk().getNModAPI().setEnabled(nmod, true);
 					refreshNModDatas();
 				}
 
@@ -463,7 +463,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 							@Override
 							public void onClick(DialogInterface p1, int p2)
 							{
-								getNModAPI().removeImportedNMod(nmod);
+								getPESdk().getNModAPI().removeImportedNMod(nmod);
 								refreshNModDatas();
 								p1.dismiss();
 							}
@@ -533,7 +533,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 					@Override
 					public void onClick(View p1)
 					{
-						getNModAPI().removeImportedNMod(nmod);
+						getPESdk().getNModAPI().removeImportedNMod(nmod);
 						refreshNModDatas();
 					}
 
@@ -560,7 +560,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					getNModAPI().setEnabled(nmod, false);
+					getPESdk().getNModAPI().setEnabled(nmod, false);
 					refreshNModDatas();
 				}
 
@@ -573,7 +573,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					getNModAPI().downPosNMod(nmod);
+					getPESdk().getNModAPI().downPosNMod(nmod);
 					refreshNModDatas();
 				}
 
@@ -586,7 +586,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					getNModAPI().upPosNMod(nmod);
+					getPESdk().getNModAPI().upPosNMod(nmod);
 					refreshNModDatas();
 				}
 

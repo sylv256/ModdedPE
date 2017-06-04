@@ -1,11 +1,8 @@
 package com.mcal.ModdedPE.app;
 import android.content.*;
 import android.os.*;
-import android.support.v7.app.*;
-import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.utils.*;
-import com.mcal.ModdedPE.nativeapi.*;
+import com.mcal.pesdk.nativeapi.*;
 
 public class ModdedPEStartActivity extends ModdedPEActivity 
 {
@@ -28,8 +25,7 @@ public class ModdedPEStartActivity extends ModdedPEActivity
 		{
 			public void run()
 			{
-				LibraryLoader.loadLocalLibs();
-				getNModAPI().initNModDatas();
+				getPESdk().init();
 				mHandler.sendEmptyMessage(MSG_NEXT);
 			}
 		}.start();

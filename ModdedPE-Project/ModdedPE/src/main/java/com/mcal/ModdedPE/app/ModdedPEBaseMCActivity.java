@@ -1,25 +1,21 @@
 package com.mcal.ModdedPE.app;
 import android.content.res.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.nativeapi.*;
+import com.mcal.pesdk.nativeapi.*;
 import com.mcal.pesdk.nmod.*;
 import com.mcal.pesdk.utils.*;
+import com.mcal.pesdk.*;
 
 public class ModdedPEBaseMCActivity extends com.mojang.minecraftpe.MainActivity
 {
-	protected NModAPI getNModAPI()
+	protected PESdk getPESdk()
 	{
-		return ModdedPEApplication.mNModAPI;
+		return ModdedPEApplication.mPESdk;
 	}
 	
 	@Override
 	public AssetManager getAssets()
 	{
-		return MinecraftInfo.getInstance(this).getAssets();
-	}
-	
-	protected void loadNativeLibraries(boolean safeMode)
-	{
-		LibraryLoader.loadGameLibs(this, MinecraftInfo.getInstance(this).getMinecraftNativeLibraryDir(), safeMode);
+		return getPESdk().getGameManager().getAssets();
 	}
 }

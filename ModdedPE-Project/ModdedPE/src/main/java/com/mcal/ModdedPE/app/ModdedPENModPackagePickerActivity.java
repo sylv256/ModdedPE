@@ -78,7 +78,7 @@ public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 		@Override
 		public void run()
 		{
-			nmods = getNModAPI().findInstalledNMods();
+			nmods = getPESdk().getNModAPI().findInstalledNMods();
 			if (nmods.size() > 0)
 				mUIHandler.sendEmptyMessage(MSG_SHOW_LIST_VIEW);
 			else

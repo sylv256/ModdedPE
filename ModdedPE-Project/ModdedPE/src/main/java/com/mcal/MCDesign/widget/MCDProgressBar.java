@@ -36,7 +36,7 @@ public class MCDProgressBar extends ProgressBar
 		mHeight = h;
 	}
 
-	private static final float mDefaultSpeed = 0.05F;
+	private static final float mDefaultSpeed = 0.075F;
 	private float mSpeed = mDefaultSpeed;
 
 	public void setSpeed(float s)
@@ -61,9 +61,11 @@ public class MCDProgressBar extends ProgressBar
 		Paint mPaint=new Paint();
 		mPaint.setStyle(Paint.Style.FILL);
 		mPaint.setColor(Color.parseColor("#66BA44"));
-		
-		mBlockDrawingProgress += mSpeed;
 
+		if (mIsScaling)
+			mBlockDrawingProgress += (mSpeed / 2);
+		else
+			mBlockDrawingProgress += mSpeed;
 		if (mBlockDrawingProgress >= 1 && !mIsScaling)
 		{
 			mBlockDrawingProgress = 0;

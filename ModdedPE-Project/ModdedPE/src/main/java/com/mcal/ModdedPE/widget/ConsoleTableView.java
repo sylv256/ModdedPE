@@ -41,7 +41,7 @@ public class ConsoleTableView extends RelativeLayout
 		View rootView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_main_console_table,null);
 		
 		((AppCompatTextView)rootView.findViewById(R.id.moddedpe_main_text_view_app_version)).setText(getContext().getResources().getString(R.string.app_version));
-		((AppCompatTextView)rootView.findViewById(R.id.moddedpe_main_text_view_target_mc_version)).setTextColor(MinecraftInfo.getInstance(getContext()).isSupportedMinecraftVersion(getContext().getResources().getStringArray(R.array.target_mcpe_versions)) ?Color.GREEN: Color.RED);
+		((AppCompatTextView)rootView.findViewById(R.id.moddedpe_main_text_view_target_mc_version)).setTextColor(ModdedPEApplication.mPESdk.getMinecraftInfo().isSupportedMinecraftVersion(getContext().getResources().getStringArray(R.array.target_mcpe_versions)) ?Color.GREEN: Color.RED);
 		((AppCompatTextView)rootView.findViewById(R.id.moddedpe_main_text_view_target_mc_version)).setText(R.string.target_mcpe_version_info);
 		addView(rootView);
 	}

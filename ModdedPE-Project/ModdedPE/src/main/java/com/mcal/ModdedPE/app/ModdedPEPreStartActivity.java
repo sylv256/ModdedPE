@@ -21,7 +21,7 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 		public void run()
 		{
 			Bundle bundle = new Bundle();
-			getNModAPI().perloadNMods(bundle,mPreStartUIHandler);
+			getPESdk().getNModAPI().perloadNMods(bundle,mPreStartUIHandler);
 			mPreStartUIHandler.sendEmptyMessage(MSG_FINISH);
 		}
 	}

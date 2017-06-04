@@ -47,7 +47,7 @@ public final class NModAPI
 	{
 		if (handler == null)
 			handler = new Handler();
-		MinecraftInfo minecraftInfo = MinecraftInfo.getInstance(mContext);
+		MinecraftInfo minecraftInfo = new MinecraftInfo(mContext);
 
 		if (perloadDataItem.native_libs != null && perloadDataItem.native_libs.length > 0)
 		{

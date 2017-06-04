@@ -7,11 +7,12 @@ import com.mcal.pesdk.nmod.*;
 import com.mcal.pesdk.utils.*;
 import java.io.*;
 import com.mcal.ModdedPE.utils.*;
+import com.mcal.pesdk.*;
 
 public class ModdedPEApplication extends Application
 {
 	public static ModdedPEApplication mInstance;
-	public static NModAPI mNModAPI;
+	public static PESdk mPESdk;
 	
 	public void onCreate()
 	{
@@ -19,8 +20,7 @@ public class ModdedPEApplication extends Application
 		mInstance = this;
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 		
-		MinecraftInfo.initInstance(this);
-		mNModAPI = new NModAPI(this,new UtilsSettings(this));
+		mPESdk = new PESdk(this,new UtilsSettings(this));
 	}
 
 	private Thread.UncaughtExceptionHandler restartHandler = new Thread.UncaughtExceptionHandler()
@@ -56,6 +56,6 @@ public class ModdedPEApplication extends Application
 	@Override
 	public AssetManager getAssets()
 	{
-		return MinecraftInfo.getInstance(this).getAssets();
+		return mPESdk.getMinecraftInfo().getAssets();
 	}
 }

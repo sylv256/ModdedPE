@@ -10,11 +10,9 @@ public class MinecraftInfo
 	public static String MC_PACKAGE_NAME = "com.mojang.minecraftpe";
 	public static String MC_NATIVE_DIR = "/data/data/com.mojang.minecraftpe/lib";
 	
-	private Context thisContext;
-	private Context mcPkgContext;
+	private Context mContext;
+	private Context mMCContext;
 	
-	private static MinecraftInfo instance;
-
 	public boolean isSupportedMinecraftVersion(String[] versions)
 	{
 		String mcpeVersionName = getMinecraftVersionName();
@@ -34,7 +32,7 @@ public class MinecraftInfo
 			return null;
 		try
 		{
-			return thisContext.getPackageManager().getPackageInfo(getMinecraftPackageContext().getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName;
+			return mContext.getPackageManager().getPackageInfo(getMinecraftPackageContext().getPackageName(), PackageManager.GET_CONFIGURATIONS).versionName;
 		}
 		catch (PackageManager.NameNotFoundException e)
 		{}
@@ -43,7 +41,7 @@ public class MinecraftInfo
 
 	public String getMinecraftNativeLibraryDir()
 	{
-		return mcPkgContext.getApplicationInfo().nativeLibraryDir;
+		return mMCContext.getApplicationInfo().nativeLibraryDir;
 	}
 
 	public String getMinecraftPackageNativeLibraryDir()
@@ -53,7 +51,7 @@ public class MinecraftInfo
 
 	public Context getMinecraftPackageContext()
 	{
-		return mcPkgContext;
+		return mMCContext;
 	}
 	
 	public boolean isMinecraftInstalled()
@@ -61,33 +59,21 @@ public class MinecraftInfo
 		return getMinecraftPackageContext() != null;
 	}
 
-	private MinecraftInfo(Context context)
+	public MinecraftInfo(Context context)
 	{
-		this.thisContext = context;
+		this.mContext = context;
 
 		try
 		{
-			mcPkgContext = context.createPackageContext(MC_PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
+			mMCContext = context.createPackageContext(MC_PACKAGE_NAME, Context.CONTEXT_IGNORE_SECURITY | Context.CONTEXT_INCLUDE_CODE);
 		}
 		catch (PackageManager.NameNotFoundException e)
 		{}
 		
 		AssetOverrideManager.newInstance();
-		if (mcPkgContext != null)
-			AssetOverrideManager.getInstance().addAssetOverride(mcPkgContext.getPackageResourcePath());
-		AssetOverrideManager.getInstance().addAssetOverride(thisContext.getPackageResourcePath());
-	}
-
-	public static MinecraftInfo getInstance(Context context)
-	{
-		if (instance == null)
-			instance = new MinecraftInfo(context);
-		return instance;
-	}
-
-	public static void initInstance(Context context)
-	{
-		instance = new MinecraftInfo(context);
+		if (mMCContext != null)
+			AssetOverrideManager.getInstance().addAssetOverride(mMCContext.getPackageResourcePath());
+		AssetOverrideManager.getInstance().addAssetOverride(mContext.getPackageResourcePath());
 	}
 	
 	public AssetOverrideManager getAssetOverrideManager()

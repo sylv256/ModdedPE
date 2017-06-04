@@ -5,7 +5,7 @@ import android.support.v7.app.*;
 import android.view.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.nativeapi.*;
+import com.mcal.pesdk.nativeapi.*;
 
 public class OpenGameLoadingDialog extends AppCompatDialog
 {
