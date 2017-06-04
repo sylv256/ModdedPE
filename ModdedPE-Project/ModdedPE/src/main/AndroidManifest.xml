@@ -5,7 +5,7 @@
 	android:installLocation="preferExternal"
     android:versionCode="34"
 	android:versionName="@string/app_version">
-	
+
     <uses-sdk android:minSdkVersion="14"
 		android:targetSdkVersion="22" />
     <uses-feature android:name="android.hardware.touchscreen"
@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-	
+
 	<application 
 		android:hasCode="true"
 		android:debuggable="false"
@@ -26,7 +26,7 @@
 		android:name="com.mcal.ModdedPE.ModdedPEApplication"
 		android:label="@string/app_name"
 		android:largeHeap="true" >
-		
+
 		<meta-data
 			android:name="xperiaplayoptimized_content"
 			android:resource="@string/xperiaplayoptimized_content" />
@@ -42,14 +42,14 @@
         <meta-data
 			android:name="net.hockeyapp.android.appIdentifier"
 			android:value="@string/hockeyapp_android_id" />
-			
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEMainActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/main_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEStartActivity"
 			android:theme="@style/FullScreenTheme"
@@ -62,7 +62,7 @@
 					android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-		
+
 		<activity
 			android:theme="@style/FullScreenTheme"
 			android:label="@string/app_name"
@@ -73,30 +73,6 @@
             android:screenOrientation="sensorLandscape"
             android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
             android:alwaysRetainTaskState="true">
-			
-			<meta-data
-				android:name="android.app.lib_name"
-				android:value="moddedpe_launcher" />
-
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-				<category android:name="android.intent.category.BROWSABLE" />
-				<data android:scheme="minecraft" />
-			</intent-filter>
-			
-        </activity>
-		
-		<activity
-			android:theme="@style/FullScreenTheme"
-			android:label="@string/app_name"
-			android:name="com.mcal.ModdedPE.app.ModdedPESafeModeMinecraftActivity"
-			android:debuggable="false"
-            android:excludeFromRecents="false"
-            android:launchMode="singleTask"
-            android:screenOrientation="sensorLandscape"
-            android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
-            android:alwaysRetainTaskState="true">
 
 			<meta-data
 				android:name="android.app.lib_name"
@@ -110,7 +86,7 @@
 			</intent-filter>
 
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEErrorActivity"
 			android:theme="@style/AppTheme"
@@ -118,48 +94,92 @@
 			android:label="@string/error_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEAboutActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/about_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModDescriptionActivity"
 			android:theme="@style/AppTheme"
 			android:screenOrientation="sensorLandscape">
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModFilePickerActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/nmod_picker_file_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModPackagePickerActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/nmod_picker_package_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPENModLoadFailActivity"
 			android:theme="@style/AppTheme"
 			android:launchMode="singleTask"
 			android:screenOrientation="sensorLandscape">
         </activity>
-		
+
 		<activity
 			android:name="com.mcal.ModdedPE.app.ModdedPEPreStartActivity"
-			android:theme="@style/AppTheme"
+			android:theme="@style/FullScreenTheme"
 			android:label="@string/prestart_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
+
+		<activity
+			android:theme="@style/AppTheme"
+			android:icon="@drawable/mcd_add_pack"
+			android:name="com.mcal.ModdedPE.app.ModdedPEImportNModActivity"
+			android:label="@string/import_nmod_title" >
+			
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file"
+					android:host="*"
+					android:mimeType="*/*"
+					android:pathPattern=".*\\.mcnmod"/>
+			</intent-filter>
+			
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file"
+					android:host="*"
+					android:mimeType="*/*"
+					android:pathPattern=".*\\.zip"/>
+			</intent-filter>
+			
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file"
+					android:host="*"
+					android:mimeType="*/*"
+					android:pathPattern=".*\\.apk"/>
+			</intent-filter>
+			
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="file"
+					android:host="*"
+					android:mimeType="*/*"
+					android:pathPattern=".*\\.nmod"/>
+			</intent-filter>
+			
+		</activity>
 		
     </application>
-	
+
 </manifest> 

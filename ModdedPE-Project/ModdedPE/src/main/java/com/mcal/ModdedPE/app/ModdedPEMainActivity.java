@@ -182,7 +182,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 					public void onClick(DialogInterface p1, int p2)
 					{
 						Intent intent = null;
-						intent = new Intent(ModdedPEMainActivity.this, ModdedPESafeModeMinecraftActivity.class);
+						intent = new Intent(ModdedPEMainActivity.this, ModdedPEPreStartActivity.class);
 						startActivity(intent);
 						finish();
 						p1.dismiss();
@@ -204,7 +204,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 		else
 		{
 			Intent intent = null;
-			intent = new Intent(ModdedPEMainActivity.this, ModdedPEMinecraftActivity.class);
+			intent = new Intent(ModdedPEMainActivity.this, ModdedPEPreStartActivity.class);
 			startActivity(intent);
 			finish();
 		}

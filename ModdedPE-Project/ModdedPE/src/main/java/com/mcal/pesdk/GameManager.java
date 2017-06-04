@@ -13,6 +13,11 @@ public class GameManager
 	{
 		mPESdk = pesdk;
 	}
+	
+	public boolean isSafeMode()
+	{
+		return mPESdk.getLauncherOptions().isSafeMode();
+	}
 
 	public AssetManager getAssets()
 	{
@@ -21,8 +26,9 @@ public class GameManager
 
 	public void perloadForLaunch(Bundle extras, Handler handler)
 	{
+		if(mPESdk.getLauncherOptions().isSafeMode())
+			return;
 		mPESdk.getNModAPI().perloadNMods(extras, handler);
-		
 	}
 
 	public void onMinecraftActivityCreate(MainActivity activity)
@@ -38,6 +44,8 @@ public class GameManager
 
 	public void onMinecraftActivityFinish(MainActivity activity)
 	{
+		if(mPESdk.getLauncherOptions().isSafeMode())
+			return;
 		mPESdk.getNModAPI().callOnActivityDestroy(activity, activity.getIntent().getExtras());
 	}
 }

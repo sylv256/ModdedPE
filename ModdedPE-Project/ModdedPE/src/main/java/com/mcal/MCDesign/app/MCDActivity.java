@@ -53,14 +53,12 @@ public class MCDActivity extends AppCompatActivity
 	{
 		super.setTitle(titleId);
 
-		try
+		if(getSupportActionBar() != null)
 		{
 			View actionBarCustomView=getSupportActionBar().getCustomView();
 			AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
 			titleTV.setText(titleId);
 		}
-		catch (Throwable t)
-		{}
 	}
 
 	@Override
@@ -68,40 +66,34 @@ public class MCDActivity extends AppCompatActivity
 	{
 		super.setTitle(title);
 
-		try
+		if(getSupportActionBar() != null)
 		{
 			View actionBarCustomView=getSupportActionBar().getCustomView();
 			AppCompatTextView titleTV=(AppCompatTextView)actionBarCustomView.findViewById(R.id.mcd_actionbar_title);
 			titleTV.setText(title);
 		}
-		catch (Throwable t)
-		{}
 	}
 
 	protected void setActionBarViewRight(View view)
 	{
-		try
+		if(getSupportActionBar() != null)
 		{
 			View actionBarCustomView=getSupportActionBar().getCustomView();
 			RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewRight);
 			layout.removeAllViews();
 			layout.addView(view);
 		}
-		catch (Throwable t)
-		{}
 	}
 
 	protected void setActionBarViewLeft(View view)
 	{
-		try
+		if(getSupportActionBar() != null)
 		{
 			View actionBarCustomView=getSupportActionBar().getCustomView();
 			RelativeLayout layout=(RelativeLayout)actionBarCustomView.findViewById(R.id.mcd_actionbar_ViewLeft);
 			layout.removeAllViews();
 			layout.addView(view);
 		}
-		catch (Throwable t)
-		{}
 	}
 
 	protected void setActionBarButtonCloseRight()

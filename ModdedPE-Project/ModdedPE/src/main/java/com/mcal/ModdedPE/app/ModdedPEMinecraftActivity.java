@@ -1,15 +1,18 @@
 package com.mcal.ModdedPE.app;
+import android.content.res.*;
 import android.os.*;
-import com.mcal.pesdk.nativeapi.*;
-import com.mcal.pesdk.utils.*;
+import com.mcal.ModdedPE.*;
+import com.mcal.pesdk.*;
+import com.mojang.minecraftpe.*;
 
-public class ModdedPEMinecraftActivity extends ModdedPEBaseMCActivity
+public class ModdedPEMinecraftActivity extends MainActivity
 {
 	@Override
 	public void onCreate(Bundle p1)
 	{
 		getPESdk().getGameManager().onMinecraftActivityCreate(this);
-		new OpenGameLoadingDialog(this).show();
+		if(!getPESdk().getGameManager().isSafeMode())
+			new OpenGameLoadingDialog(this).show();
 		super.onCreate(p1);
 	}
 
@@ -18,5 +21,16 @@ public class ModdedPEMinecraftActivity extends ModdedPEBaseMCActivity
 	{
 		getPESdk().getGameManager().onMinecraftActivityFinish(this);
 		super.onDestroy();
+	}
+	
+	protected PESdk getPESdk()
+	{
+		return ModdedPEApplication.mPESdk;
+	}
+
+	@Override
+	public AssetManager getAssets()
+	{
+		return getPESdk().getGameManager().getAssets();
 	}
 }

@@ -10,7 +10,7 @@
 	<string name="nmod_picker_file_title">选择NMod（存储）</string>
 	<string name="nmod_picker_package_title">选择NMod (应用)</string>
 	<string name="prestart_title">预加载</string>
-	
+	<string name="import_nmod_title">导入NMod</string>
 	<!--NMod-->
 	<string name="nmod_importing_title">NMod导入中...</string>
 	<string name="nmod_import_failed">导入NMod失败</string>
@@ -81,9 +81,45 @@
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">加载中...</string>
-
+	<string-array name="perloading_tips_text">
+		<item>你造么，APK类型的NMod不安装也可以导入的呢( ･_･)。</item>
+		<item>据说主页左上角的苦力怕里面有新世界的呢w</item>
+		<item>ModdedPE其实是作者一边女装一边写的（误）</item>
+		<item>1，2，3，throw new ArchiveFailedException!</item>
+		<item>据说Github是个神奇的地方，那里还有ModdedPE的源码呢（划去</item>
+		<item>ModdedPE始终无广告，如果您发现被恶意植入，欢迎向我们联系~</item>
+		<item>其实NMod全称是NativeMod啦~（才不是NaiveMod什么的！</item>
+		<item>至于MODPE什么的呐...ModdedPE是不会支持的(:з」∠)_</item>
+		<item>偷偷告诉你：ModdedPE设计仿照了minecraft.net</item>
+		<item>什么？你说ModdedPE是国外dalao写的？才不是呢o(´^｀)o</item>
+		<item>你说ModdedPE会加广告？不，可，能！</item>
+		<item>如果您可以登陆GooglePlay，欢迎给我们贡献小小的一个下载量(๑•̀ω•́๑)</item>
+		<item>NMod其实是一种神奇的生物）</item>
+		<item>骚年，快遵循中二的召唤，一起来开发NMod吧！（关于->NModAPI</item>
+		<item>是ModdedPE不是Modded！重要的说一遍就够了！</item>
+		<item>operator new(233)</item>
+		<item>MCAL是个什么地方？也就是个原生插件开发所罢了|ω•`)</item>
+		<item>其实Nextdev还有个神奇的东西叫做MCPE+哦~</item>
+		<item>说多少次了不要靠屏幕太近，亻尔看这彳亍字者阝是分开白勺2333</item>
+		<item>如果玩的高兴，何妨不把ModdedPE分享给好基/姬友呢~</item>
+		<item>++++++++++++++++index;</item>
+		<item>NMod是C++和JSON做的哦(๑•̀ㅁ•́ฅ)</item>
+		<item>欢迎微博关注@ModelPart(๑•̀ω•́๑)</item>
+		<item>ModdedPE能导入JS?tan90°</item>
+		<item>文件管理器点击*.zip,*.mcnmod,*.apk可以快速导入NMod~</item>
+		<item>其实NMod与BlockLauncher插件可以共存的~（关于->NModAPI</item>
+		<item>总有渔夫说ModdedPE抄袭BlockLauncher，为何不先浏览一下源码呢(,,•́ . •̀,,)</item>
+		<item>再这样玩游戏下去你吃枣药丸（划去（涂黑</item>
+		<item>如果ModdedPE就这样一直~~~直~~~~直~~~~~</item>
+		<item>空（对你没有看错w</item>
+		<item>system("su")</item>
+		<item>这里有一位....DDDDALAO!</item>
+		<item>据说指令/clear可以给你一组钻石（才不是呢！</item>
+	</string-array>
+	<string name="perloading_tips_title"></string>
+	
 	<!--Pick NMod from installed-->
-	<string name="pick_nmod_loading">加载中...</string>
+	<string name="pick_nmod_loading">加载NMod中...</string>
 	
 	<!--Main Activity-->
 	<string name="main_play">开始游戏</string>

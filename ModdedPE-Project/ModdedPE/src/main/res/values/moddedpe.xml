@@ -10,6 +10,8 @@
 	<string name="nmod_picker_package_title">Pick NMod (Apps)</string>
 	<string name="main_title">Home Page</string>
 	<string name="prestart_title">Preloading</string>
+	<string name="import_nmod_title">Import NMod</string>
+	
 	<!--NMod-->
 	<string name="nmod_loadFailed">Load %1$s Failed!</string>
 	<string name="load_fail_msg">Load Error:</string>
@@ -78,9 +80,14 @@
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
 	<string name="opengame_loading">Loading...</string>
+	<string-array name="perloading_tips_text">
+		<item>APK formatted nmod can also be imported~</item>
+		<item></item>
+	</string-array>
+	<string name="perloading_tips_title">Tips:</string>
 	
 	<!--Pick NMod from installed-->
-	<string name="pick_nmod_loading">Loading...</string>
+	<string name="pick_nmod_loading">Loading NMods...</string>
 	
 	<!--Main Activity-->
 	<string name="main_play">Play</string>

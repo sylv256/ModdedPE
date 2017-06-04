@@ -1,6 +1,8 @@
 package com.mcal.ModdedPE.app;
-import com.mcal.MCDesign.app.*;
+import android.content.*;
 import android.os.*;
+import com.mcal.ModdedPE.*;
+import com.mcal.pesdk.nmod.*;
 
 public class ModdedPEPreStartActivity extends ModdedPEActivity
 {
@@ -11,7 +13,7 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+		setContentView(R.layout.moddedpe_perloading);
 		new PreStartThread().start();
 	}
 	
@@ -20,9 +22,19 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 		@Override
 		public void run()
 		{
-			Bundle bundle = new Bundle();
-			getPESdk().getNModAPI().perloadNMods(bundle,mPreStartUIHandler);
-			mPreStartUIHandler.sendEmptyMessage(MSG_FINISH);
+			super.run();
+			/*Bundle bundle = new Bundle();
+			getPESdk().getGameManager().perloadForLaunch(bundle,mPreStartUIHandler);
+			try
+			{
+				Thread.sleep(3500);
+			}
+			catch (InterruptedException e)
+			{}
+			Message msg = new Message();
+			msg.obj = bundle;
+			mPreStartUIHandler.sendMessage(msg);*/
+			while(true);
 		}
 	}
 	
@@ -33,6 +45,22 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 		public void handleMessage(Message msg)
 		{
 			super.handleMessage(msg);
+			switch(msg.what)
+			{
+				case MSG_FINISH:
+					Bundle extras = (Bundle)msg.obj;
+					Intent intent = new Intent(ModdedPEPreStartActivity.this,ModdedPEMinecraftActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					intent.putExtras(extras);
+					startActivity(intent);
+					finish();
+					break;
+				case NModAPI.MSG_COPYING_NMOD_FILES:
+					break;
+				case NModAPI.MSG_PERLOADING_NATIVE_LIBS:
+					break;
+				
+			}
 		}
 	}
 }
