@@ -139,6 +139,7 @@
 		<activity
 			android:theme="@style/AppTheme"
 			android:icon="@drawable/mcd_add_pack"
+			android:screenOrientation="sensorLandscape"
 			android:name="com.mcal.ModdedPE.app.ModdedPEImportNModActivity"
 			android:label="@string/import_nmod_title" >
 			
