@@ -181,14 +181,14 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring moddedpeVer)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
-		void (*NMod_onLoad)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)=
-		(void (*)(JavaVM*jvm,JNIEnv* env,std::string const& mcVersionName,std::string const& moddedpeVersionName)) dlsym(image,"NMod_onLoad");
+		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&)=
+		(void (*)(JavaVM*,JNIEnv*,std::string const&,std::string const&)) dlsym(image,"NMod_onLoad");
 		if(NMod_onLoad)
 		{
-			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,moddedpeVer));
+			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,apiVersion));
 		}
 		dlclose(image);
 	}

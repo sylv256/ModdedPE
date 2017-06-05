@@ -194,7 +194,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_unexpected);
 				break;
 		}
-		if (archiveFailedException.getImportFailedCause() != null)
+		if (archiveFailedException.getCause() != null)
 		{
 			final ArchiveFailedException fArvhiveFailedException = archiveFailedException;
 			alertBuilder.setNegativeButton(R.string.nmod_import_failed_button_full_info, new DialogInterface.OnClickListener()
@@ -204,7 +204,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 					public void onClick(DialogInterface p1, int p2)
 					{
 						p1.dismiss();
-						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new String[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getImportFailedCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new String[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 							{
 
 								@Override
@@ -417,8 +417,29 @@ public class MainManageNModFragment extends ModdedPEFragment
 					@Override
 					public void onClick(View p1)
 					{
-						getPESdk().getNModAPI().removeImportedNMod(nmod);
-						refreshNModDatas();
+						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+							{
+
+								@Override
+								public void onClick(DialogInterface p1, int p2)
+								{
+									getPESdk().getNModAPI().removeImportedNMod(nmod);
+									refreshNModDatas();
+									p1.dismiss();
+								}
+
+
+							}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+							{
+
+								@Override
+								public void onClick(DialogInterface p1, int p2)
+								{
+									p1.dismiss();
+								}
+
+
+							}).show();
 					}
 
 
@@ -533,8 +554,29 @@ public class MainManageNModFragment extends ModdedPEFragment
 					@Override
 					public void onClick(View p1)
 					{
-						getPESdk().getNModAPI().removeImportedNMod(nmod);
-						refreshNModDatas();
+						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+							{
+
+								@Override
+								public void onClick(DialogInterface p1, int p2)
+								{
+									getPESdk().getNModAPI().removeImportedNMod(nmod);
+									refreshNModDatas();
+									p1.dismiss();
+								}
+
+
+							}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
+							{
+
+								@Override
+								public void onClick(DialogInterface p1, int p2)
+								{
+									p1.dismiss();
+								}
+
+
+							}).show();
 					}
 
 

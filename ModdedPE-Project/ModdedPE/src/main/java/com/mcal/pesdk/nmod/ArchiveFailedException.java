@@ -14,7 +14,6 @@ public class ArchiveFailedException extends Exception
 	public static final int TYPE_REDUNDANT_MANIFEST = 10;
 	
 	private int mType;
-	private Throwable mCause;
 	
 	public ArchiveFailedException(int type)
 	{
@@ -23,13 +22,8 @@ public class ArchiveFailedException extends Exception
 	
 	public ArchiveFailedException(int type,Throwable cause)
 	{
+		super(cause);
 		mType = type;
-		mCause = cause;
-	}
-	
-	public Throwable getImportFailedCause()
-	{
-		return mCause;
 	}
 	
 	public int getType()

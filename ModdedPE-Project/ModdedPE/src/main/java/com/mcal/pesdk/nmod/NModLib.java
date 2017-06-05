@@ -4,7 +4,7 @@ import dalvik.system.*;
 import java.io.*;
 import java.util.*;
 
-class NModLoader
+class NModLib
 {
 	private static LoadFailedException loadLanguages(NMod nmod)
 	{
@@ -49,7 +49,7 @@ class NModLoader
 					}
 				}
 			}
-			catch (Exception e)
+			catch (IOException e)
 			{}
 		}
 		return null;

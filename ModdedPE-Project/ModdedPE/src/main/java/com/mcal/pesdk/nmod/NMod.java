@@ -31,11 +31,6 @@ public abstract class NMod
 	{
 		return mPackageName;
 	}
-	
-	public String[] getNativeLibs()
-	{
-		return mInfo.native_libs;
-	}
 
 	public String getName()
 	{
@@ -213,17 +208,17 @@ public abstract class NMod
 		}
 	}
 
-	protected NMod(String packageName,Context thisCon)
+	protected NMod(String packageName,Context context)
 	{
-		mContext = thisCon;
+		mContext = context;
 		mPackageName = packageName;
 	}
 
 	public static class NModPerloadBean
 	{
-		String[] native_libs;
-		String dex_path;
-		String assets_path;
+		public String[] native_libs;
+		public String dex_path;
+		public String assets_path;
 	}
 
 	public static class NModLanguageBean
@@ -236,28 +231,43 @@ public abstract class NMod
 	public static class NModJsonEditBean
 	{
 		public String path = null;
-		public String mode = "replace";
-		//mode = replace / merge
+		public String mode = MODE_REPLACE;
+		
+		public static final String MODE_REPLACE = "replace";
+		public static final String MODE_MERGE = "merge";
+	}
+	
+	public static class NModLibInfo
+	{
+		public boolean use_api = false;
+		public String name = null;
+		public String mode = MODE_ALWAYS;
+		
+		public static final String MODE_ALWAYS = "always";
+		public static final String MODE_IF_NEESED = "if_needed";
 	}
 
 	public static class NModInfo
 	{
-		public String[] native_libs = null;
+		public NModLibInfo[] native_libs_info = null;
+		public NModLanguageBean[] languages = null;
+		public NModJsonEditBean[] json_edit = null;
+		public String[] parents_package_names = null;
+		public String[] target_mcpe_versions = null;
+		public int version_code = -1;
 		public String name = null;
 		public String package_name = null;
 		public String icon_path = null;
 		public String description = null;
 		public String author = null;
-		public NModLanguageBean[] languages = null;
 		public String version_name = null;
-		public int version_code = -1;
 		public String banner_title = null;
 		public String banner_image_path = null;
-		public String version_info = null;
-		public NModJsonEditBean[] json_edit = null;
-		public String[] parents_package_names = null;
-		public String[] target_mcpe_versions = null;
+		public String change_log = null;
 		public String check_target_version_mode = "no_check";
-		//check_target_version_mode = no_check / must_target / show_warning_if_not_target
+		
+		public static final String CHECK_MODE_NEVER = "never";
+		public static final String CHECK_MODE_ALWAYS = "always";
+		public static final String CHECK_MODE_SHOW_WARNING = "show_warning";
 	}
 }

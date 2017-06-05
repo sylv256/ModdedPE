@@ -11,6 +11,7 @@ public class PESdk
 	private Context mContext;
 	private LauncherOptions mLauncherOptions;
 	private GameManager mGameManager;
+	private boolean mIsInited;
 	
 	public PESdk(Context context,LauncherOptions options)
 	{
@@ -20,12 +21,19 @@ public class PESdk
 		mNModAPI = new NModAPI(mContext,options);
 		mLauncherOptions = options;
 		mGameManager = new GameManager(this);
+		mIsInited = false;
 	}
 	
 	public void init()
 	{
 		LibraryLoader.loadLocalLibs();
 		mNModAPI.initNModDatas();
+		mIsInited = true;
+	}
+	
+	public boolean isInited()
+	{
+		return mIsInited;
 	}
 	
 	public NModAPI getNModAPI()

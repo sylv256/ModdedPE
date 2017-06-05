@@ -106,10 +106,6 @@
 	<string name="start_warning_xposed_continue">Continue</string>
 	<string name="start_warning_xposed_do_not_show_again">Don\'t show this again!</string>
 	
-	<!--Error Activity-->
-	<string name="error_restart_app">Restart</string>
-	<string name="error_text">This may caused by an unsupported version or a mistake of codes.Send the report to the developer to fix it.</string> 
-	
 	<!--Application config-->
 	<string name="app_name">ModdedPE</string>
     <string name="app_name_demo">ModdedPE Demo</string>

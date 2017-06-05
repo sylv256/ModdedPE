@@ -70,7 +70,7 @@ public final class NModAPI
 
 			for (String nameItem:perloadDataItem.native_libs)
 			{
-				NModLoader.callOnLoad(nameItem, minecraftInfo.getMinecraftVersionName(), mContext.getString(com.mcal.ModdedPE.R.string.app_name));
+				NModLib.callOnLoad(nameItem, minecraftInfo.getMinecraftVersionName(), mContext.getString(com.mcal.ModdedPE.R.string.app_name));
 			}
 		}
 		return true;
@@ -167,7 +167,7 @@ public final class NModAPI
 		for (int i=loadedNModLibs.length - 1;i >= 0;--i)
 		{
 			String nativeLibName = loadedNModLibs[i];
-			NModLoader.callOnActivityCreate(nativeLibName, activity, savedInstanceState);
+			NModLib.callOnActivityCreate(nativeLibName, activity, savedInstanceState);
 		}
 	}
 
@@ -180,7 +180,7 @@ public final class NModAPI
 		for (int i=loadedNModLibs.length - 1;i >= 0;--i)
 		{
 			String nativeLibName = loadedNModLibs[i];
-			NModLoader.callOnActivityFinish(nativeLibName, activity);
+			NModLib.callOnActivityFinish(nativeLibName, activity);
 		}
 	}
 
@@ -242,6 +242,11 @@ public final class NModAPI
 			perloadData.loaded_libs = (String[])loadedNativeLibs.toArray();
 			mBundle.putString(NMOD_DATA_TAG, gson.toJson(perloadData));
 		}
+	}
+	
+	public String getVersionName()
+	{
+		return "NMODAPI_VERSION_1_0";
 	}
 
 	private class NModPerloadData
