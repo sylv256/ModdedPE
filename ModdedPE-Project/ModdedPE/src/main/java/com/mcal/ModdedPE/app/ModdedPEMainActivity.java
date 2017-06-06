@@ -172,7 +172,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 
 	private void startMinecraft()
 	{
-		if (new UtilsSettings(ModdedPEMainActivity.this).getSafeMode())
+		if (new UtilsSettings(ModdedPEMainActivity.this).isSafeMode())
 		{
 			new AlertDialog.Builder(this).setTitle(R.string.safe_mode_on_title).setMessage(R.string.safe_mode_on_message).
 				setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()

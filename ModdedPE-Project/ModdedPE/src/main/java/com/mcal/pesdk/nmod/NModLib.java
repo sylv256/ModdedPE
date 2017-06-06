@@ -6,6 +6,12 @@ import java.util.*;
 
 class NModLib
 {
+	private String mName;
+	public NModLib(String name)
+	{
+		mName = name;
+	}
+	
 	private static LoadFailedException loadLanguages(NMod nmod)
 	{
 

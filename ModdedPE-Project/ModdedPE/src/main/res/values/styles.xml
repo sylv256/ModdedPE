@@ -3,7 +3,7 @@
 	<style name="AppTheme" parent="Theme.AppCompat.Light">
 		<item name="android:statusBarColor">#444444</item>
 		<item name="colorPrimary">#444444</item>  
-       	<item name="colorPrimaryDark">#292929</item>  
+       	<item name="colorPrimaryDark">#212121</item>  
      	<item name="colorAccent">#444444</item>
 	</style>
 	<style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">

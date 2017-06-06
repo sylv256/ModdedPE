@@ -7,9 +7,9 @@ public class LibraryLoader
 	public static final String FMOD_LIB_NAME = "libfmod.so";
 	public static final String MINECRAFTPE_LIB_NAME = "libminecraftpe.so";
 
-	public static final String UTILS_NAME = "moddedpe_utils";
+	public static final String UTILS_NAME = "nmodapi-utils";
 	public static final String SUBSTRATE_NAME = "substrate";
-	public static final String LAUNCHER_NAME = "moddedpe_launcher";
+	public static final String LAUNCHER_NAME = "nmodapi-launcher";
 	
 	static public void loadGameLibs(Context context, String mcLibDir, boolean isSafeMode)
 	{

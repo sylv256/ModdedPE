@@ -43,8 +43,7 @@ public class ModdedPENModDescriptionActivity extends ModdedPEActivity
 
 		AppCompatImageView iconImage=(AppCompatImageView)findViewById(R.id.moddedpenmoddescriptionImageViewIcon);
 		iconImage.setImageBitmap(icon);
-		iconImage.getLayoutParams().width = iconImage.getLayoutParams().height = getWindowManager().getDefaultDisplay().getWidth() / 5;
-
+		
 		AppCompatTextView textViewName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewNModName);
 		textViewName.setText(name);
 		AppCompatTextView textViewPackageName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewNModPackageName);
@@ -66,22 +65,23 @@ public class ModdedPENModDescriptionActivity extends ModdedPEActivity
 		bundle.putString(TAG_DESCRIPTION, nmod.getDescription());
 		bundle.putString(TAG_AUTHOR, nmod.getAuthor());
 		bundle.putString(TAG_VERSION_NAME, nmod.getVersionName());
+		new File(context.getFilesDir() + File.separator + "nmod_icons").mkdirs();
 		File file = new File(context.getFilesDir() + File.separator + "nmod_icons" + File.separator + nmod.getPackageName());
 		try
 		{
 			Bitmap nmodIcon = nmod.getIcon();
 			if(nmodIcon == null)
-				nmodIcon=BitmapFactory.decodeResource(context.getResources(),R.drawable.mcd_null_pack);
+				nmodIcon = BitmapFactory.decodeResource(context.getResources(),R.drawable.mcd_null_pack);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			nmod.getIcon().compress(Bitmap.CompressFormat.PNG, 100, baos);
 			file.createNewFile();
 			FileOutputStream outfile = new FileOutputStream(file);
 			outfile.write(baos.toByteArray());
 			outfile.close();
+			bundle.putString(TAG_ICON_PATH, file.getAbsolutePath());
 		}
 		catch (IOException ioe)
 		{}
-		bundle.putString(TAG_ICON_PATH, file.getPath());
 		intent.putExtras(bundle);
 		context.startActivity(intent);
 	}

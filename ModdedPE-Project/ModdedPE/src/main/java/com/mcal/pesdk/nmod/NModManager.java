@@ -108,26 +108,14 @@ class NModManager
 	boolean importNMod(NMod newNMod, boolean enabled)
 	{
 		boolean replaced = false;
-		for (NMod nmod : mAllNMods)
+		Iterator<NMod> iterator = mAllNMods.iterator();
+		while (iterator.hasNext())
 		{
-			if (nmod.getPackageName().equals(newNMod.getPackageName()))
+			NMod nmod = iterator.next();
+			if (nmod.equals(newNMod))
 			{
-				mAllNMods.remove(nmod);
-				replaced = true;
-			}
-		}
-		for (NMod nmod : mEnabledNMods)
-		{
-			if (nmod.getPackageName().equals(newNMod.getPackageName()))
-			{
+				iterator.remove();
 				mEnabledNMods.remove(nmod);
-				replaced = true;
-			}
-		}
-		for (NMod nmod : mDisabledNMods)
-		{
-			if (nmod.getPackageName().equals(newNMod.getPackageName()))
-			{
 				mDisabledNMods.remove(nmod);
 				replaced = true;
 			}

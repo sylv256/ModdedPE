@@ -162,7 +162,7 @@ extern "C"
 		
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeAppendTranslation(JNIEnv*env,jobject thiz,jstring name,jstring translation)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeAppendTranslation(JNIEnv*env,jobject thiz,jstring name,jstring translation)
 	{
 		std::string nameN=toString(env,name);
 		std::string translationN=toString(env,translation);
@@ -170,7 +170,7 @@ extern "C"
 		LanguageBean bean(nameN,translationN);
 		mLanguageBeans.emplace_back(bean);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityFinish)(JNIEnv*env,jobject thiz)=
@@ -181,7 +181,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&)=
@@ -192,7 +192,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityCreate)(JNIEnv*env,jobject thiz,jobject savedInstanceState)=
@@ -213,7 +213,7 @@ extern "C"
 		}
 		return env->NewStringUTF("");
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLoader_nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
+	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onDexLoaded)(JNIEnv*env,jobject dexClassLoader)=
