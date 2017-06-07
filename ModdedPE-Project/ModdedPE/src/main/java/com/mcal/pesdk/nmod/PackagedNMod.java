@@ -7,7 +7,7 @@ import java.io.*;
 
 public class PackagedNMod extends NMod
 {
-	private Context packageContext;
+	private Context mPackageContext;
 
 	@Override
 	public String getPackageResourcePath()
@@ -45,27 +45,18 @@ public class PackagedNMod extends NMod
 	public PackagedNMod(String packageName,Context contextThiz, Context packageContext)
 	{
 		super(packageName,contextThiz);
-		this.packageContext = packageContext;
+		this.mPackageContext = packageContext;
 		preload();
 	}
 
 	public Context getPackageContext()
 	{
-		return packageContext;
+		return mPackageContext;
 	}
 
 	public AssetManager getAssets()
 	{
-		return packageContext.getAssets();
-	}
-
-	public String getPackageName()
-	{
-		if (mInfo != null && mInfo.package_name != null)
-			return mInfo.package_name;
-		if (getPackageContext() == null)
-			return toString();
-		return getPackageContext().getPackageName();
+		return mPackageContext.getAssets();
 	}
 
 	public Bitmap createIcon()

@@ -4,24 +4,24 @@ import java.util.*;
 
 class JSONMerger
 {
-	private String json1;
-	private String json2;
+	private String mSrc;
+	private String mDist;
 
-	public JSONMerger(String json1, String json2)
+	public JSONMerger(String src, String dist)
 	{
-		this.json1 = json1;
-		this.json2 = json2;
+		this.mSrc = src;
+		this.mDist = dist;
 	}
 
 	public String merge() throws JSONException
 	{
-		if (isJSONObject(json1) && isJSONObject(json2))
+		if (isJSONObject(mSrc) && isJSONObject(mDist))
 		{
-			return mergeObject(new JSONObject(json1), new JSONObject(json2)).toString();
+			return mergeObject(new JSONObject(mSrc), new JSONObject(mDist)).toString();
 		}
-		else if (isJSONArray(json1) && isJSONArray(json2))
+		else if (isJSONArray(mSrc) && isJSONArray(mDist))
 		{
-			return mergeArray(new JSONArray(json1), new JSONArray(json2)).toString();
+			return mergeArray(new JSONArray(mSrc), new JSONArray(mDist)).toString();
 		}
 		else
 			throw new JSONException("Merging FAILED: CAMNOT JUDGE STRING TYPE");

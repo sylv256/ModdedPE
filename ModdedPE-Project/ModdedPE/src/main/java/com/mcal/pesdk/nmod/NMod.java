@@ -4,14 +4,16 @@ import android.content.res.*;
 import android.graphics.*;
 import com.google.gson.*;
 import java.io.*;
+import java.util.*;
 
 public abstract class NMod
 {
 	protected Context mContext;
 	protected NModInfo mInfo;
 	private LoadFailedException mBugExpection = null ;
+	private ArrayList<NModWarning> mWarnings = new ArrayList<NModWarning>();
 	private Bitmap mIcon;
-	private Bitmap mBanner_image;
+	private Bitmap mBannerImage;
 	private String mPackageName;
 	
 	public static final String MANIFEST_NAME = "nmod_manifest.json";
@@ -27,12 +29,12 @@ public abstract class NMod
 	protected abstract Bitmap createIcon();
 	protected abstract InputStream createInfoInputStream();
 
-	public String getPackageName()
+	public final String getPackageName()
 	{
 		return mPackageName;
 	}
 
-	public String getName()
+	public final String getName()
 	{
 		if (isBugPack())
 			return getPackageName();
@@ -42,14 +44,14 @@ public abstract class NMod
 	}
 
 	@Override
-	public boolean equals(Object obj)
+	public final boolean equals(Object obj)
 	{
 		if (getClass().equals(obj.getClass()))
 			return getPackageName().equals(((NMod)obj).getPackageName());
 		return false;
 	}
 
-	public Bitmap createBannerImage() throws LoadFailedException
+	public final Bitmap createBannerImage() throws LoadFailedException
 	{
 		Bitmap ret = null;
 		try
@@ -71,24 +73,24 @@ public abstract class NMod
 		return ret;
 	}
 
-	public Bitmap getBannerImage()
+	public final Bitmap getBannerImage()
 	{
-		return mBanner_image;
+		return mBannerImage;
 	}
 
-	public String getBannerTitle()
+	public final String getBannerTitle()
 	{
 		if (mInfo != null && mInfo.banner_title != null)
 			return getName() + " : " + mInfo.banner_title;
 		return getName();
 	}
 
-	public boolean isValidBanner()
+	public final boolean isValidBanner()
 	{
 		return getBannerImage() != null;
 	}
 
-	public NModLanguageBean[] getLanguageBeans()
+	public final NModLanguageBean[] getLanguageBeans()
 	{
 		return mInfo.languages;
 	}
@@ -118,48 +120,65 @@ public abstract class NMod
 		return null;
 	}
 
-	public Bitmap getIcon()
+	public final Bitmap getIcon()
 	{
 		return mIcon;
 	}
 
-	public String getDescription()
+	public final String getDescription()
 	{
 		if (mInfo != null && mInfo.description != null)
 			return mInfo.description;
 		return mContext.getResources().getString(android.R.string.unknownName);
 	}
 
-	public String getAuthor()
+	public final String getAuthor()
 	{
 		if (mInfo != null && mInfo.author != null)
 			return mInfo.author;
 		return mContext.getResources().getString(android.R.string.unknownName);
 	}
 
-	public String getVersionName()
+	public final String getVersionName()
 	{
 		if (mInfo != null && mInfo.version_name != null)
 			return mInfo.version_name;
 		return mContext.getResources().getString(android.R.string.unknownName);
 	}
 
-	public boolean isBugPack()
+	public final boolean isBugPack()
 	{
 		return mBugExpection != null;
 	}
 
-	public void setBugPack(LoadFailedException e)
+	public final void setBugPack(LoadFailedException e)
 	{
 		mBugExpection = e;
 	}
 
-	public LoadFailedException getLoadException()
+	public final LoadFailedException getLoadException()
 	{
 		return mBugExpection;
 	}
+	
+	public final void addWarning(NModWarning warning)
+	{
+		mWarnings.add(warning);
+	}
+	
+	public final ArrayList<NModWarning> getWarnings()
+	{
+		ArrayList<NModWarning> newArray = new ArrayList<NModWarning>();
+		newArray.addAll(mWarnings);
+		return newArray;
+	}
+	
+	protected void checkWarnings()
+	{
+		
+	}
 
-	protected void preload()
+	protected final void preload()
 	{
 		this.mBugExpection = null;
 
@@ -198,7 +217,7 @@ public abstract class NMod
 
 		try
 		{
-			this.mBanner_image = createBannerImage();
+			this.mBannerImage = createBannerImage();
 		}
 		catch (LoadFailedException nmodle)
 		{
