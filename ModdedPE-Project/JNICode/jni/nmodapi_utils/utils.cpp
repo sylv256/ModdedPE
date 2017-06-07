@@ -59,17 +59,17 @@ void setStartMenuScreen(void*self)
 }
 
 //-------------------------------------------------------------
-// Native Interface
+// Native Methods
 //-------------------------------------------------------------
 
-extern "C"
+namespace NModAPI
 {
-	JNIEXPORT jboolean Java_com_mcal_pesdk_nativeapi_NativeUtils_nativeIsGameStarted(JNIEnv*env,jobject thiz)
+	jboolean nativeIsGameStarted(JNIEnv*env,jobject thiz)
 	{
 		return mGameStarted;
 	}
 	
-	JNIEXPORT void Java_com_mcal_pesdk_nativeapi_NativeUtils_nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
+	void nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
 		void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
 	
@@ -78,7 +78,7 @@ extern "C"
 		
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
+	jboolean nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityFinish)(JNIEnv*env,jobject thiz)=
@@ -89,7 +89,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
+	jboolean nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&)=
@@ -100,7 +100,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
+	jboolean nativeCallOnActivityCreate(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity,jobject bundle)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityCreate)(JNIEnv*env,jobject thiz,jobject savedInstanceState)=
@@ -111,7 +111,7 @@ extern "C"
 		}
 		dlclose(image);
 	}
-	JNIEXPORT jstring Java_com_mcal_pesdk_nativeapi_NativeUtils_nativeDemangle(JNIEnv*env,jobject thiz,jstring str)
+	jstring nativeDemangle(JNIEnv*env,jobject thiz,jstring str)
 	{
 		char const* symbol_name = toString(env,str).c_str();
 		if(symbol_name)
@@ -121,7 +121,7 @@ extern "C"
 		}
 		return env->NewStringUTF("");
 	}
-	JNIEXPORT void Java_com_mcal_pesdk_nmod_NModLib_nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
+	jboolean nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onDexLoaded)(JNIEnv*env,jobject dexClassLoader)=
@@ -137,6 +137,26 @@ extern "C"
 JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 {
 	mJvm=vm;
+	//Register Hooks
 	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
+	//Register Natives
+	JNINativeMethod methods[] =
+	{
+		{"nativeIsGameStarted", "()Z", (void *)&NModAPI::nativeIsGameStarted},
+		{"nativeSetDataDirectory", "(Ljava/lang/String;)V", (void *)&NModAPI::nativeSetDataDirectory},
+		{"nativeCallOnActivityFinish", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;)Z", (void *)&NModAPI::nativeCallOnActivityFinish},
+		{"nativeCallOnLoad", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z", (void *)&NModAPI::nativeCallOnLoad},
+		{"nativeCallOnActivityCreate", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;Landroid/os/Bundle;)Z", (void *)&NModAPI::nativeCallOnActivityCreate},
+		{"nativeDemangle", "(Ljava/lang/String;)Ljava/lang/String;", (void *)&NModAPI::nativeDemangle},
+		{"nativeCallOnDexLoaded", "(Ljava/lang/String;Ldalvik/system/DexClassLoader;)Z", (void *)&NModAPI::nativeCallOnDexLoaded},
+	};
+	JNIEnv* env = NULL;
+	if (vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK)
+		return JNI_ERR;
+	jclass cls = env->FindClass("Lcom/mcal/pesdk/nmod/NModLib;");
+	if (cls == NULL)
+		return JNI_ERR;
+	if (env->RegisterNatives(cls,methods,sizeof(methods)/sizeof(methods[0])) < 0)
+		return JNI_ERR;
 	return JNI_VERSION_1_6;
 }

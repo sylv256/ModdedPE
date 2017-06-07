@@ -10,6 +10,6 @@ public class NativeUtils
 	
 	public static void setValues(Context context)
 	{
-		NativeUtils.nativeSetDataDirectory("/data/data/" + context.getPackageName() + File.separator);
+		NativeUtils.nativeSetDataDirectory(context.getDataDir().getAbsolutePath() + File.separator);
 	}
 }

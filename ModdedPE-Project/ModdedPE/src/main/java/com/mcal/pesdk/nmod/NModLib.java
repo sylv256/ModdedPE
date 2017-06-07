@@ -13,28 +13,28 @@ class NModLib
 		mName = name;
 	}
 
-	public void callOnActivityCreate(com.mojang.minecraftpe.MainActivity mainActivity, Bundle bundle)
+	public boolean callOnActivityCreate(com.mojang.minecraftpe.MainActivity mainActivity, Bundle bundle)
 	{
-		nativeCallOnActivityCreate(mName, mainActivity, bundle);
+		return nativeCallOnActivityCreate(mName, mainActivity, bundle);
 	}
 
-	public void callOnActivityFinish(com.mojang.minecraftpe.MainActivity mainActivity)
+	public boolean callOnActivityFinish(com.mojang.minecraftpe.MainActivity mainActivity)
 	{
-		nativeCallOnActivityFinish(mName, mainActivity);
+		return nativeCallOnActivityFinish(mName, mainActivity);
 	}
 
-	public void callOnLoad(String mcver, String apiVer)
+	public boolean callOnLoad(String mcver, String apiVer)
 	{
-		nativeCallOnLoad(mName, mcver, apiVer);
+		return nativeCallOnLoad(mName, mcver, apiVer);
 	}
 
-	public void callOnDexLoaded(DexClassLoader dexClassLoader)
+	public boolean callOnDexLoaded(DexClassLoader dexClassLoader)
 	{
-		nativeCallOnDexLoaded(mName, dexClassLoader);
+		return nativeCallOnDexLoaded(mName, dexClassLoader);
 	}
 
-	private static native void nativeCallOnDexLoaded(String name, DexClassLoader classLoader);
-	private static native void nativeCallOnActivityFinish(String name, MainActivity mainActivity);
-	private static native void nativeCallOnLoad(String name, String mcVersion, String apiVersion);
-	private static native void nativeCallOnActivityCreate(String mame, MainActivity mainActivity, Bundle savedInstanceState);
+	private static native boolean nativeCallOnDexLoaded(String name, DexClassLoader classLoader);
+	private static native boolean nativeCallOnActivityFinish(String name, MainActivity mainActivity);
+	private static native boolean nativeCallOnLoad(String name, String mcVersion, String apiVersion);
+	private static native boolean nativeCallOnActivityCreate(String mame, MainActivity mainActivity, Bundle savedInstanceState);
 }

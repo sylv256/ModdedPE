@@ -18,21 +18,21 @@ public class NModFilePathManager
 
 	public String getNModsDir()
 	{
-		return context.getFilesDir().toString() + File.separator + FILEPATH_DIR_NAME_NMOD_PACKS;
+		return context.getFilesDir().getAbsolutePath() + File.separator + FILEPATH_DIR_NAME_NMOD_PACKS;
 	}
 
 	public String getNModLibsDir()
 	{
-		return context.getFilesDir().toString() + File.separator + FILEPATH_DIR_NAME_NMOD_LIBS;
+		return context.getFilesDir().getAbsolutePath() + File.separator + FILEPATH_DIR_NAME_NMOD_LIBS;
 	}
 
 	public String getNModCacheDir()
 	{
-		return context.getCacheDir().getPath();
+		return context.getCacheDir().getAbsolutePath();
 	}
 
 	public String getNModCachePath()
 	{
-		return context.getCacheDir().getPath() + File.separator + FILEPATH_FILE_NAME_NMOD_CAHCHE;
+		return context.getCacheDir().getAbsolutePath() + File.separator + FILEPATH_FILE_NAME_NMOD_CAHCHE;
 	}
 }
