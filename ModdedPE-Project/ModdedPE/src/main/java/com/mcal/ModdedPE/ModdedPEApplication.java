@@ -11,15 +11,12 @@ import com.mcal.pesdk.*;
 
 public class ModdedPEApplication extends Application
 {
-	public static ModdedPEApplication mInstance;
 	public static PESdk mPESdk;
 	
 	public void onCreate()
 	{
 		super.onCreate();
-		mInstance = this;
 		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
-		
 		mPESdk = new PESdk(this,new UtilsSettings(this));
 	}
 
@@ -35,22 +32,7 @@ public class ModdedPEApplication extends Application
 	{
 		ByteArrayOutputStream ous = new ByteArrayOutputStream();
 		ex.printStackTrace(new PrintStream(ous));
-		String msg = new String(ous.toByteArray());
-		try
-		{
-			ous.close();
-		}
-		catch (IOException e)
-		{}
-		ModdedPEErrorActivity.startThisActivity(this, msg);
-		android.os.Process.killProcess(android.os.Process.myPid());
-		System.exit(0);
-		try
-		{
-			finalize();
-		}
-		catch (Throwable e)
-		{}
+		ModdedPEErrorActivity.startThisActivity(this, new String(ous.toByteArray()));
 	}
 
 	@Override

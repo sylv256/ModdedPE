@@ -13,15 +13,11 @@ public class LibraryLoader
 	
 	static public void loadGameLibs(Context context, String mcLibDir, boolean isSafeMode)
 	{
+		System.loadLibrary(SUBSTRATE_NAME);
+		System.loadLibrary(LAUNCHER_NAME);
 		System.load(mcLibDir + File.separator + FMOD_LIB_NAME);
 		System.load(mcLibDir + File.separator + MINECRAFTPE_LIB_NAME);
 		if (!isSafeMode)
 			System.loadLibrary(UTILS_NAME);
-	}
-
-	static public void loadLocalLibs()
-	{
-		System.loadLibrary(SUBSTRATE_NAME);
-		System.loadLibrary(LAUNCHER_NAME);
 	}
 }

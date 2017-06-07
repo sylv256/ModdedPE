@@ -26,7 +26,6 @@ public class PESdk
 	
 	public void init()
 	{
-		LibraryLoader.loadLocalLibs();
 		mNModAPI.initNModDatas();
 		mIsInited = true;
 	}

@@ -12,7 +12,7 @@ public final class NModAPI
 	private NModManager mNModManager;
 	private NModArchiver mArchiver;
 	private LauncherOptions mLauncherOptions;
-	
+
 	public static final String NMOD_DATA_TAG = "nmod_data";
 	public static final int MSG_COPYING_NMOD_FILES = 5623;
 	public static final int MSG_PERLOADING_NATIVE_LIBS = 5624;
@@ -20,7 +20,7 @@ public final class NModAPI
 	public static final int MSG_MERGING_ASSETS = 5626;
 	public static final int MSG_LOADING_DEX = 5627;
 
-	public NModAPI(Context context,LauncherOptions launcherOptions)
+	public NModAPI(Context context, LauncherOptions launcherOptions)
 	{
 		this.mContext = context;
 		this.mNModManager = new NModManager(context);
@@ -70,7 +70,8 @@ public final class NModAPI
 
 			for (String nameItem:perloadDataItem.native_libs)
 			{
-				NModLib.callOnLoad(nameItem, minecraftInfo.getMinecraftVersionName(), mContext.getString(com.mcal.ModdedPE.R.string.app_name));
+				NModLib lib = new NModLib(nameItem);
+				lib.callOnLoad(minecraftInfo.getMinecraftVersionName(), mContext.getString(com.mcal.ModdedPE.R.string.app_name));
 			}
 		}
 		return true;
@@ -107,14 +108,14 @@ public final class NModAPI
 		return mNModManager.importNMod(nmod, false);
 	}
 
-	
+
 	/*
-	  Called in onCreate of com.mojang.minecraftpe.MainActicity or it's child classes.
-	  @prama Bundle : Extras in Intent.
-	  @prama AssetManager : Assets of com.mojang.minecraftpe.MainActicity or it's child classes.
-	  @prama handler : UI handler.It can be null.
-	*/
-	
+	 Called in onCreate of com.mojang.minecraftpe.MainActicity or it's child classes.
+	 @prama Bundle : Extras in Intent.
+	 @prama AssetManager : Assets of com.mojang.minecraftpe.MainActicity or it's child classes.
+	 @prama handler : UI handler.It can be null.
+	 */
+
 	public void loadToGame(Bundle bundle, AssetManager assetManager, Handler handler)
 	{
 		Gson gson = new Gson();
@@ -167,7 +168,8 @@ public final class NModAPI
 		for (int i=loadedNModLibs.length - 1;i >= 0;--i)
 		{
 			String nativeLibName = loadedNModLibs[i];
-			NModLib.callOnActivityCreate(nativeLibName, activity, savedInstanceState);
+			NModLib lib = new NModLib(nativeLibName);
+			lib.callOnActivityCreate(activity, savedInstanceState);
 		}
 	}
 
@@ -180,7 +182,8 @@ public final class NModAPI
 		for (int i=loadedNModLibs.length - 1;i >= 0;--i)
 		{
 			String nativeLibName = loadedNModLibs[i];
-			NModLib.callOnActivityFinish(nativeLibName, activity);
+			NModLib lib = new NModLib(nativeLibName);
+			lib.callOnActivityFinish(activity);
 		}
 	}
 
@@ -188,7 +191,7 @@ public final class NModAPI
 	{
 		private Bundle mBundle;
 		private Handler mHandler;
-		
+
 		public PerloadNModsThread(Bundle bundle, Handler handler)
 		{
 			this.mBundle = bundle;
@@ -237,13 +240,13 @@ public final class NModAPI
 					}
 				}
 			}
-			perloadData.assets_packs_path = (String[])assetsArrayList.toArray();
-			perloadData.dex_path = (String[])dexPathArrayList.toArray();
-			perloadData.loaded_libs = (String[])loadedNativeLibs.toArray();
+			perloadData.assets_packs_path = assetsArrayList.toArray(new String[0]);
+			perloadData.dex_path = dexPathArrayList.toArray(new String[0]);
+			perloadData.loaded_libs = loadedNativeLibs.toArray(new String[0]);
 			mBundle.putString(NMOD_DATA_TAG, gson.toJson(perloadData));
 		}
 	}
-	
+
 	public String getVersionName()
 	{
 		return "NMODAPI_VERSION_1_0";

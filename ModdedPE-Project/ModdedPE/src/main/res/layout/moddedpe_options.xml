@@ -5,12 +5,11 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
 
-	<ListView
-		android:divider="@null"
-		android:dividerHeight="0dip"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:id="@+id/moddedpe_options_list_view"/>
+	<LinearLayout
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_margin="25dp"/>
 
 </LinearLayout>
 
