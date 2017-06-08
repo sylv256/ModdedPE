@@ -138,7 +138,7 @@ namespace NModAPI
 // Register Natives
 //-------------------------------------------------------------
 
-extern "C" JNIEXPORT jboolean Java_com_mcal_pesdk_nmod_NModLib_nativeRegisterNatives(JNIEnv*env,jclass cls)
+extern "C" JNIEXPORT jboolean Java_com_mcal_pesdk_nmod_NModLib_nativeRegisterNatives(JNIEnv*env,jobject thiz,jclass cls)
 {
 	JNINativeMethod methods[] =
 	{

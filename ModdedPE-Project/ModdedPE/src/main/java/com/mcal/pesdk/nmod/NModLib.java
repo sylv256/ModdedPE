@@ -32,7 +32,13 @@ class NModLib
 	{
 		return nativeCallOnDexLoaded(mName, dexClassLoader);
 	}
-
+	
+	static
+	{
+		nativeRegisterNatives(NModLib.class);
+	}
+	
+	private static native boolean nativeRegisterNatives(Class cls);
 	private static native boolean nativeCallOnDexLoaded(String name, DexClassLoader classLoader);
 	private static native boolean nativeCallOnActivityFinish(String name, MainActivity mainActivity);
 	private static native boolean nativeCallOnLoad(String name, String mcVersion, String apiVersion);
