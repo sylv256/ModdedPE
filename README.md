@@ -13,7 +13,7 @@ Here are some samples can help you develop NMods:<br>
 ### NMod API
 Would like to develop another mcpe launcher which can load NMods?<br>
 The Open Source NModAPI will help you a lot:)<br>
-<https://github.com/ModelPart/NModAPU>
+<https://github.com/ModelPart/NModAPI>
 
 ### Licenses
 Cydia Substrate framework by Saurik, licensed under the GNU Lesser General Public License.<br>
