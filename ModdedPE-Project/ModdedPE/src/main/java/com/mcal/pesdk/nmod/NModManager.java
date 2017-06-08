@@ -46,7 +46,7 @@ class NModManager
 
 		for (String item:dataloader.getAllList())
 		{
-			if (!NModUtils.isValidPackageName(item))
+			if (!PackageNameChecker.isValidPackageName(item))
 			{
 				dataloader.removeByName(item);
 			}

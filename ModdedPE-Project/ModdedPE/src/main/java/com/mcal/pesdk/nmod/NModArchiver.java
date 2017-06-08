@@ -126,7 +126,7 @@ class NModArchiver
 		{
 			if (nmodInfo.package_name == null)
 				throw new ArchiveFailedException(ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME, new RuntimeException("Undefined package name in manifest."));
-			if (!NModUtils.isValidPackageName(nmodInfo.package_name))
+			if (!PackageNameChecker.isValidPackageName(nmodInfo.package_name))
 				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INVAILD_PACKAGE_NAME, new RuntimeException("The provided package name is not a valid java-styled package name."));
 
 			try

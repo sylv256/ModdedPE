@@ -1,6 +1,6 @@
 package com.mcal.pesdk.nmod;
 
-class NModUtils
+class PackageNameChecker
 {
 	static private boolean isValidJavaIdentifier(String className)
 	{
