@@ -129,7 +129,7 @@
 	<string name="no_available_mcpe_version_continue">开始冒险</string>
 	<string name="safe_mode_on_title">看样子安全模式已开启0.0</string>
 	<string name="safe_mode_on_message">小提示：开启安全模式时，ModdedPE不会加载任何NMod~所以不要奇怪NMod为何不加载了啦(๑•̀ㅁ•́ฅ)</string>
-	<string name="no_mcpe_found">看起来ModdedPE没有在您的设备上找到MinecraftPE_(:з」∠)_。ModdedPE是MinecraftPE的第三方启动器，您必须安装MinecraftPE才可以继续哦~\n小提示：如果您确信已经安装了MinecraftPE，请到设置里面手动选择启动包w</string>
+	<string name="no_mcpe_found">看起来ModdedPE没有在您的设备上找到MinecraftPE_(:з」∠)_。ModdedPE是MinecraftPE的第三方启动器，您必须安装MinecraftPE才可以继续哦~\n小提示：如果您确信已经安装了MinecraftPE，请到设置里面手动选择启动包。</string>
 	<string name="no_mcpe_found_title">找不到MinecraftPE(,,•́ . •̀,,)</string>
 	
 	<!--Manage NMods-->
