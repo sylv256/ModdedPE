@@ -82,9 +82,22 @@
 	<string name="opengame_loading">Loading...</string>
 	<string-array name="perloading_tips_text">
 		<item>APK formatted nmod can also be imported~</item>
-		<item></item>
+		<item>Do you know?You can scroll left or right to chage page in the Main Page.</item>
+		<item>You\'d better import NMods by picking files rather than picking applications.</item>
+		<item>SSSSSSSSSSSSSSSSSSSSSS~~~.Oh,That\'s Creeeeeper!</item>
+		<item>Would like to develop NMods?(About->NModAPI</item>
+		<item>There is somethings strange in the creeper face of main page:)</item>
+		<item>Github contains the source code of ModdedPE~</item>
+		<item>I have an apple~I have a pen~</item>
+		<item>Please send a message to @model_part on twitter if you want to translate ModdedPE~</item>
+		<item>It\'s impossible that ModdedPE will support ModPE scripts.</item>
+		<item>NMod is made of C++/JSON.</item>
+		<item>Do you want to load NMods in your own launcher?(About->NModAPI</item>
+		<item>ModdedPE will never show any Ads.</item>
+		<item>Native-Mod is the full-write of NMod.</item>
+		<item>Why don\'t you follow @model_part on twitter?</item>
+		<item>Random splashes!</item>
 	</string-array>
-	<string name="perloading_tips_title">Tips:</string>
 	
 	<!--Pick NMod from installed-->
 	<string name="pick_nmod_loading">Loading NMods...</string>
@@ -99,12 +112,6 @@
 	<string name="safe_mode_on_message">With same mode on,ModdedPE won\'t load any NMod and all functions in ModdedPE\'s settings won\'t work.</string>
 	<string name="no_mcpe_found">ModdedPE is a launcher of Minecraft:PE,but we haven\'t find Minecraft:PE(Made by Mojang) on this device.</string>
 	<string name="no_mcpe_found_title">Minecraft:PE not found.</string>
-	
-	<!--Start Activity-->
-	<string name="start_warning_xposed_title">Warning</string>
-	<string name="start_warning_xposed_message">We have found Xposed on this device.ModdedPE may not work with Xposed Framework on.Please make sure you have disabled Xposed Framework.</string>
-	<string name="start_warning_xposed_continue">Continue</string>
-	<string name="start_warning_xposed_do_not_show_again">Don\'t show this again!</string>
 	
 	<!--Application config-->
 	<string name="app_name">ModdedPE</string>

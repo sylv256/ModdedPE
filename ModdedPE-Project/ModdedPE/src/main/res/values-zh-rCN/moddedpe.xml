@@ -88,7 +88,7 @@
 		<item>1，2，3，throw new ArchiveFailedException!</item>
 		<item>据说Github是个神奇的地方，那里还有ModdedPE的源码呢（划去</item>
 		<item>ModdedPE始终无广告，如果您发现被恶意植入，欢迎向我们联系~</item>
-		<item>其实NMod全称是NativeMod啦~（才不是NaiveMod什么的！</item>
+		<item>其实NMod全称是Native-Mod啦~（才不是Naive-Mod什么的！</item>
 		<item>至于MODPE什么的呐...ModdedPE是不会支持的(:з」∠)_</item>
 		<item>偷偷告诉你：ModdedPE主页设计仿照了PC/MAC版启动器~</item>
 		<item>什么？你说ModdedPE是国外dalao写的？才不是呢o(´^｀)o</item>
@@ -97,12 +97,9 @@
 		<item>NMod其实是一种神奇的生物）</item>
 		<item>快遵循ModelPart的召唤，一起来开发NMod吧！（关于->NModAPI</item>
 		<item>是ModdedPE不是Modded！重要的说一遍就够了！</item>
-		<item>operator new(233)</item>
 		<item>MCAL是个什么地方？也就是个原生插件开发所罢了|ω•`)</item>
-		<item>其实Nextdev还有个神奇的东西叫做MCPE+哦~</item>
 		<item>亻呆扌户目艮目青，因为你现在看这行字都已经是分来的了23333</item>
 		<item>如果玩的高兴，何妨不把ModdedPE分享给好基/姬友呢~</item>
-		<item>++++++++++++++++index;</item>
 		<item>NMod是C++和JSON做的哦(๑•̀ㅁ•́ฅ)</item>
 		<item>欢迎微博关注@ModelPart(๑•̀ω•́๑)</item>
 		<item>ModdedPE能导入JS?tan90°</item>
@@ -116,7 +113,6 @@
 		<item>SSSSSSSSSSSSSSSSS~~~</item>
 		<item>你造吗，主页左右滑动可以空降到另一个页面( • ̀ω•́ )✧</item>
 	</string-array>
-	<string name="perloading_tips_title"></string>
 	
 	<!--Pick NMod from installed-->
 	<string name="pick_nmod_loading">加载NMod中...</string>
@@ -134,10 +130,4 @@
 	
 	<!--Manage NMods-->
 	<string name="manage_nmod_no_nmod_found">没有在这台设备上发现任何NMod。</string>
-
-	<!--Start Activity-->
-	<string name="start_warning_xposed_title">警告</string>
-	<string name="start_warning_xposed_message">我们在您的设备上发现了Xposed框架。ModdedPE在Xposed框架开启的情况下可能不会工作。请确保您禁用了Xposed框架。</string>
-	<string name="start_warning_xposed_continue">继续</string>
-	<string name="start_warning_xposed_do_not_show_again">不再显示</string>
 </resources>
