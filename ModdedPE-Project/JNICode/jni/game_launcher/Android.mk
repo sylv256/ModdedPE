@@ -3,7 +3,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_CPP_EXTENSION := .cpp .cc
-LOCAL_MODULE    := nmodapi-launcher
+LOCAL_MODULE    := pesdk-game-launcher
 LOCAL_SRC_FILES := launcher.cpp
 
 ifeq ($(TARGET_ARCH_ABI),x86)

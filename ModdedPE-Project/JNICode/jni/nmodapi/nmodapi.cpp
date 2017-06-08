@@ -11,8 +11,8 @@
 // Variants
 //-------------------------------------------------------------
 
-bool mGameStarted=false;
-JavaVM* mJvm;
+bool mGameStarted = false;
+JavaVM* mJvm = NULL;
 
 //-------------------------------------------------------------
 // Strcutures
@@ -134,12 +134,12 @@ namespace NModAPI
 	}
 }
 
-JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
+//-------------------------------------------------------------
+// Register Natives
+//-------------------------------------------------------------
+
+extern "C" JNIEXPORT jboolean Java_com_mcal_pesdk_nmod_NModLib_nativeRegisterNatives(JNIEnv*env,jclass cls)
 {
-	mJvm=vm;
-	//Register Hooks
-	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
-	//Register Natives
 	JNINativeMethod methods[] =
 	{
 		{"nativeIsGameStarted", "()Z", (void *)&NModAPI::nativeIsGameStarted},
@@ -150,13 +150,20 @@ JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 		{"nativeDemangle", "(Ljava/lang/String;)Ljava/lang/String;", (void *)&NModAPI::nativeDemangle},
 		{"nativeCallOnDexLoaded", "(Ljava/lang/String;Ldalvik/system/DexClassLoader;)Z", (void *)&NModAPI::nativeCallOnDexLoaded},
 	};
-	JNIEnv* env = NULL;
-	if (vm->GetEnv((void**) &env, JNI_VERSION_1_6) != JNI_OK)
-		return JNI_ERR;
-	jclass cls = env->FindClass("Lcom/mcal/pesdk/nmod/NModLib;");
-	if (cls == NULL)
-		return JNI_ERR;
-	if (env->RegisterNatives(cls,methods,sizeof(methods)/sizeof(methods[0])) < 0)
-		return JNI_ERR;
+	
+	if (env->RegisterNatives(cls,methods,sizeof(methods)/sizeof(JNINativeMethod)) < 0)
+		return JNI_FALSE;
+	return JNI_TRUE;
+}
+
+//-------------------------------------------------------------
+// On Load
+//-------------------------------------------------------------
+
+JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
+{
+	mJvm=vm;
+	//Register Hooks
+	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
 	return JNI_VERSION_1_6;
 }
