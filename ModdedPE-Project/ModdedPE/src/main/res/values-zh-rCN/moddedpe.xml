@@ -81,31 +81,35 @@
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">加载中...</string>
+	<string name="perloading_initing">初始化启动器</string>
+	<string name="perloading_initing_info">NModAPI版本：%1$s\n    MinecraftPE版本：%2$s\n    CPU架构：%3$s</string>
+	<string name="perloading_initing_info_safe_mode">安全模式开启\n    MinecraftPE版本：%1$s\n    CPU架构：%2$s</string>
+	<string name="perloading_initing_copying_libs">复制动态链接库</string>
+	<string name="perloading_initing_loading_libs">加载动态链接库</string>
+	<string name="perloading_failed_io">复制失败：%1$s</string>
+	
 	<string-array name="perloading_tips_text">
-		<item>你造么，APK类型的NMod不安装也可以导入的呢( ･_･)。</item>
-		<item>据说主页左上角的苦力怕里面有新世界的呢w</item>
-		<item>其实ModdedPE是作者一边女装一边写的（误）</item>
+		<item>你造么，APK类型的NMod不安装也可以导入的呢( ･_･)</item>
+		<item>据说主页左上角的苦力怕里面有新世界哦w</item>
+		<item>其实ModdedPE是作者一边女装一边写的呢（???</item>
 		<item>1，2，3，throw new ArchiveFailedException!</item>
 		<item>据说Github是个神奇的地方，那里还有ModdedPE的源码呢（划去</item>
 		<item>ModdedPE始终无广告，如果您发现被恶意植入，欢迎向我们联系~</item>
 		<item>其实NMod全称是Native-Mod啦~（才不是Naive-Mod什么的！</item>
 		<item>至于MODPE什么的呐...ModdedPE是不会支持的(:з」∠)_</item>
-		<item>偷偷告诉你：ModdedPE主页设计仿照了PC/MAC版启动器~</item>
-		<item>什么？你说ModdedPE是国外dalao写的？才不是呢o(´^｀)o</item>
+		<item>什么？你说ModdedPE是国外dalao写的？才不是呢！</item>
 		<item>你说ModdedPE会加广告？不，可，能！</item>
 		<item>如果您可以登陆GooglePlay，欢迎给我们贡献小小的一个下载量(๑•̀ω•́๑)</item>
 		<item>NMod其实是一种神奇的生物）</item>
-		<item>快遵循ModelPart的召唤，一起来开发NMod吧！（关于->NModAPI</item>
-		<item>是ModdedPE不是Modded！重要的说一遍就够了！</item>
-		<item>MCAL是个什么地方？也就是个原生插件开发所罢了|ω•`)</item>
-		<item>亻呆扌户目艮目青，因为你现在看这行字都已经是分来的了23333</item>
+		<item>一起来开发NMod吧！（关于->NModAPI</item>
+		<item>MCAL是个什么地方？也就是个原生插件研究所罢了|ω•`)</item>
+		<item>亻呆扌户目艮目青，不要等看字都是分开了再开始哦w</item>
 		<item>如果玩的高兴，何妨不把ModdedPE分享给好基/姬友呢~</item>
 		<item>NMod是C++和JSON做的哦(๑•̀ㅁ•́ฅ)</item>
 		<item>欢迎微博关注@ModelPart(๑•̀ω•́๑)</item>
 		<item>ModdedPE能导入JS?tan90°</item>
 		<item>文件管理器点击*.zip,*.mcnmod,*.apk,*.nmod可以快速导入NMod~</item>
 		<item>再这样玩游戏下去你吃枣药丸（划去（涂黑</item>
-		<item>如果ModdedPE就这样一直~~~直~~~~直~~~~~</item>
 		<item>据说指令/clear可以给你一组钻石（才不是呢！</item>
 		<item>ModdedPE不限转载_(:з」∠)_，不要再问作者了~</item>
 		<item>其实你可以把NModAPI用到自己的程序里面~（关于->NModAPI</item>
@@ -120,13 +124,13 @@
 	<!--Main Activity-->
 	<string name="main_play">开始游戏</string>
 	<string name="main_default_minecraft_title">我的世界携带版：原版</string>
-	<string name="no_available_mcpe_version_found">ModdedPE不支持您安装的 我的世界携带版 %1$s！（只支持%2$s）如果您继续打开游戏，ModdedPE可能会崩溃或者造成错误。</string>
-	<string name="no_available_mcpe_version_found_title">不支持的 我的世界携带版</string>
-	<string name="no_available_mcpe_version_continue">继续</string>
-	<string name="safe_mode_on_title">安全模式已开启</string>
-	<string name="safe_mode_on_message">开启安全模式时，ModdedPE不会加载任何NMod，并且设置中的功能也不会工作。</string>
-	<string name="no_mcpe_found">ModdedPE是 我的世界携带版 的一个启动器，但是我们没有在这台设备上发现Mojang做的 我的世界携带版。</string>
-	<string name="no_mcpe_found_title">未发现 我的世界携带版</string>
+	<string name="no_available_mcpe_version_found">抱歉，这个版本的ModdedPE暂时不支持您所安装的MinecraftPE(๑′°︿°๑)\n点击“开始冒险”按钮可以冒险打开游戏，不过后果可能就是崩溃或者报错哦~</string>
+	<string name="no_available_mcpe_version_found_title">版本不支持</string>
+	<string name="no_available_mcpe_version_continue">开始冒险</string>
+	<string name="safe_mode_on_title">看样子安全模式已开启0.0</string>
+	<string name="safe_mode_on_message">小提示：开启安全模式时，ModdedPE不会加载任何NMod~所以不要奇怪NMod为何不加载了啦(๑•̀ㅁ•́ฅ)</string>
+	<string name="no_mcpe_found">看起来ModdedPE没有在您的设备上找到MinecraftPE_(:з」∠)_。ModdedPE是MinecraftPE的第三方启动器，您必须安装MinecraftPE才可以继续哦~\n小提示：如果您确信已经安装了MinecraftPE，请到设置里面手动选择启动包w</string>
+	<string name="no_mcpe_found_title">找不到MinecraftPE(,,•́ . •̀,,)</string>
 	
 	<!--Manage NMods-->
 	<string name="manage_nmod_no_nmod_found">没有在这台设备上发现任何NMod。</string>
