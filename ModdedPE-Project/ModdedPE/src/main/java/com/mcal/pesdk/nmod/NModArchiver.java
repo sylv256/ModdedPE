@@ -41,9 +41,13 @@ class NModArchiver
 		{
 			new ZipFile(new File(path));
 		}
-		catch (Throwable ioe)
+		catch (ZipException zipe)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_DECODE_FAILED, ioe);
+			throw new ArchiveFailedException(ArchiveFailedException.TYPE_DECODE_FAILED, zipe);
+		}
+		catch(IOException ioe)
+		{
+			throw new ArchiveFailedException(ArchiveFailedException.TYPE_IO_EXCEPTION, ioe);
 		}
 		
 		PackageManager packageManager = mContext.getPackageManager();

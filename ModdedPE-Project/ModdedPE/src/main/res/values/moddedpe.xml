@@ -18,7 +18,6 @@
 	<string name="nmod_load_failed">Failed to load NMod.</string>
 	<string name="nmod_enabled_title">Enabled NMods</string>
 	<string name="nmod_disabled_title">Disabled NMods</string>
-	
 	<string name="nmod_importing_title">Importing NMod...</string>
 	<string name="nmod_import_failed">Failed to import NMod</string>
 	<string name="nmod_import_failed_message_unexpected">An unexpected error caused while importing NMod.</string>
