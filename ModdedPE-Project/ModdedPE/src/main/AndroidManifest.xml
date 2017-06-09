@@ -121,7 +121,7 @@
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.PreStartActivity"
+			android:name="com.mcal.ModdedPE.app.PreloadActivity"
 			android:theme="@style/FullScreenTheme"
 			android:label="@string/prestart_title"
 			android:screenOrientation="sensorLandscape">

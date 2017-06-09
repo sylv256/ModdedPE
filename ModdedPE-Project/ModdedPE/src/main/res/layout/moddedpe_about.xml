@@ -15,20 +15,6 @@
 			android:orientation="vertical">
 
 			<android.support.v7.widget.AppCompatImageView
-				android:layout_height="wrap_content"
-				android:layout_width="match_parent"
-				android:src="@drawable/title_logo"
-				android:layout_margin="10dp"
-				android:scaleType="fitXY"
-				android:adjustViewBounds="true"/>
-
-			<View
-				android:layout_width="match_parent"
-				android:layout_height="1dp"
-				android:background="#6E6E6E"
-				android:layout_margin="5dp"/>
-
-			<android.support.v7.widget.AppCompatImageView
 				android:layout_height="100dp"
 				android:layout_width="match_parent"
 				android:src="@drawable/icon_hdpi"

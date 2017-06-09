@@ -2,7 +2,6 @@
 <resources>
 	<!--Titles-->
 	<string name="menu_title">Menu</string>
-	<string name="error_title">:( Something was broken...</string>
 	<string name="manage_nmod_title">Manage NMods</string>
 	<string name="settings_title">Settings</string>
 	<string name="about_title">About</string>
