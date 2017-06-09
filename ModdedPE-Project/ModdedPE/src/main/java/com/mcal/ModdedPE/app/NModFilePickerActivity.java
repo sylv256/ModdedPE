@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class ModdedPENModFilePickerActivity extends ModdedPEActivity
+public class NModFilePickerActivity extends BaseActivity
 {
 	private File currentPath;
 	private ArrayList<File> filesInCurrentPath;
@@ -271,7 +271,7 @@ public class ModdedPENModFilePickerActivity extends ModdedPEActivity
 
 	public static void startThisActivity(Activity context, String path)
 	{
-		Intent intent = new Intent(context, ModdedPENModFilePickerActivity.class);
+		Intent intent = new Intent(context, NModFilePickerActivity.class);
 		Bundle extras = new Bundle();
 		extras.putString(TAG_FILE_PATH, path);
 		intent.putExtras(extras);

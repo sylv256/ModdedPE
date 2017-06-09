@@ -55,7 +55,7 @@
 	<string name="nmod_description_about_version_name">版本名：</string>
 	<string name="nmod_description_unknow">未填写</string>
 	<string name="nmod_delete_title">删除NMod</string>
-	<string name="nmod_delete_message">您确定要删除这个NMod么？它将会消失很长时间。（真的很长！）</string>
+	<string name="nmod_delete_message">您确定要删除这个NMod么？它将会消失很长时间。（真的很长！！）</string>
 	<!--About-->
 	<string name="about_copyright">版权</string>
 	<string name="about_license">开放源代码许可</string>
@@ -64,7 +64,7 @@
 	<string name="about_translators">翻译人员</string>
 	<string name="about_translators_zh_rcn">zh-rCN，ModelPart翻译。</string>
 	<string name="about_translators_zh_rtw">zh-rTW，ModelPart翻译。</string>
-	<string name="about_translators_default">默认（en），ModelPart翻译,KenMizz校对。</string>
+	<string name="about_translators_default">默认（en），ModelPart翻译。</string>
 	<string name="about_copyright_info_title">ModdedPE在Apache License 2.0许可下。</string>
 	<string name="about_copyright_info_message">Apache License 2.0是一个许可证，其主要条件要求保留版权和许可证通知。贡献者提供专利权的明确授予。在此基础上许可的作品、修改过的作品可以不同的条款分发，同时可以不开放源代码。</string>
 	<string name="about_view_github">查看Github</string>
@@ -87,12 +87,11 @@
 	<string name="perloading_initing_copying_libs">复制动态链接库</string>
 	<string name="perloading_initing_loading_libs">加载动态链接库</string>
 	<string name="perloading_failed_io">复制失败：%1$s</string>
-	
+	<string name="perloading_failed_lib_load_failed">无法装载动态链接库：</string>
 	<string-array name="perloading_tips_text">
 		<item>你造么，APK类型的NMod不安装也可以导入的呢( ･_･)</item>
 		<item>据说主页左上角的苦力怕里面有新世界哦w</item>
 		<item>其实ModdedPE是作者一边女装一边写的呢（???</item>
-		<item>1，2，3，throw new ArchiveFailedException!</item>
 		<item>据说Github是个神奇的地方，那里还有ModdedPE的源码呢（划去</item>
 		<item>ModdedPE始终无广告，如果您发现被恶意植入，欢迎向我们联系~</item>
 		<item>其实NMod全称是Native-Mod啦~（才不是Naive-Mod什么的！</item>
@@ -123,15 +122,16 @@
 	
 	<!--Main Activity-->
 	<string name="main_play">开始游戏</string>
+	<string name="main_reloading_title">正在刷新……</string>
 	<string name="main_default_minecraft_title">我的世界携带版：原版</string>
 	<string name="no_available_mcpe_version_found">抱歉，这个版本的ModdedPE暂时不支持您所安装的MinecraftPE(๑′°︿°๑)\n点击“开始冒险”按钮可以冒险打开游戏，不过后果可能就是崩溃或者报错哦~</string>
 	<string name="no_available_mcpe_version_found_title">版本不支持</string>
 	<string name="no_available_mcpe_version_continue">开始冒险</string>
 	<string name="safe_mode_on_title">看样子安全模式已开启0.0</string>
 	<string name="safe_mode_on_message">小提示：开启安全模式时，ModdedPE不会加载任何NMod~所以不要奇怪NMod为何不加载了啦(๑•̀ㅁ•́ฅ)</string>
-	<string name="no_mcpe_found">看起来ModdedPE没有在您的设备上找到MinecraftPE_(:з」∠)_。ModdedPE是MinecraftPE的第三方启动器，您必须安装MinecraftPE才可以继续哦~\n小提示：如果您确信已经安装了MinecraftPE，请到设置里面手动选择启动包。</string>
+	<string name="no_mcpe_found">看起来ModdedPE没有在您的设备上找到MinecraftPE_(:з」∠)_。ModdedPE是MinecraftPE的第三方启动器，您必须安装MinecraftPE才可以继续哦~\n小提示：如果您确认已经安装了MinecraftPE，请到设置里面手动选择启动包w</string>
 	<string name="no_mcpe_found_title">找不到MinecraftPE(,,•́ . •̀,,)</string>
 	
 	<!--Manage NMods-->
-	<string name="manage_nmod_no_nmod_found">没有在这台设备上发现任何NMod。</string>
+	<string name="manage_nmod_no_nmod_found">看样子这台设备上还没有安装NMod呢|ω•`)</string>
 </resources>

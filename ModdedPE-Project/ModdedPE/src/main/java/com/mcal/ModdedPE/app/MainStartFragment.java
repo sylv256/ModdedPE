@@ -3,7 +3,7 @@ import android.os.*;
 import android.view.*;
 import com.mcal.ModdedPE.*;
 
-public class MainStartFragment extends ModdedPEFragment
+public class MainStartFragment extends BaseFragment
 {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

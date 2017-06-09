@@ -5,7 +5,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.pesdk.*;
 import com.mojang.minecraftpe.*;
 
-public class ModdedPEMinecraftActivity extends MainActivity
+public class MinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
 	@Override
 	public void onCreate(Bundle p1)

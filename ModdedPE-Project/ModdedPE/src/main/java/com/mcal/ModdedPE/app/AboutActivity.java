@@ -7,7 +7,7 @@ import android.view.*;
 import android.content.*;
 import android.net.*;
 
-public class ModdedPEAboutActivity extends ModdedPEActivity
+public class AboutActivity extends BaseActivity
 {
 	private static final String URI_GITHUB = "https://github.com/ModelPart/ModdedPE.git";
 	private static final String URI_APACHE_LICENSE_2_0 = "http://www.apache.org/licenses/LICENSE-2.0.html";;

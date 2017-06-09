@@ -1,10 +1,10 @@
 package com.mcal.ModdedPE.app;
-import com.mcal.MCDesign.app.*;
+import android.support.v4.app.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.pesdk.nmod.*;
 import com.mcal.pesdk.*;
 
-public class ModdedPEActivity extends MCDActivity
+public class BaseFragment extends Fragment
 {
 	protected PESdk getPESdk()
 	{

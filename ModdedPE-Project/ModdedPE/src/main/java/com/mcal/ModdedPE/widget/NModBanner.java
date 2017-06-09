@@ -19,7 +19,7 @@ public class NModBanner extends RelativeLayout
 	private BannerHandler mHandler;
 	private BannerThread mBannerThread = new BannerThread();
 	private ArrayList<NMod> mNModArrayList = new ArrayList<NMod>();
-	
+
 	private static final int SLEEP_TIME = 3500;
 	private static final int MSG_UPDATE_NMODS = 1;
 	private static final int MSG_DO_SCROLL = 2;
@@ -45,12 +45,12 @@ public class NModBanner extends RelativeLayout
 	private void updateNModList()
 	{
 		ArrayList<NMod> newNModList = ModdedPEApplication.mPESdk.getNModAPI().getImportedEnabledNModsHaveBanners();
-		if (mNModArrayList.equals(newNModList))
+		if (mNModArrayList.isEmpty() || !mNModArrayList.equals(newNModList))
 		{
 			mNModArrayList.clear();
 			mNModArrayList.addAll(newNModList);
+			mPager.setAdapter(new BannerItemAdapater());
 		}
-		mPager.setAdapter(new BannerItemAdapater());
 	}
 
 	private void init()
@@ -117,11 +117,11 @@ public class NModBanner extends RelativeLayout
 				@Override
 				public void onClick(View p1)
 				{
-					ModdedPENModDescriptionActivity.startThisActivity(getContext(),nmod);
+					NModDescriptionActivity.startThisActivity(getContext(), nmod);
 				}
-				
-			
-		});
+
+
+			});
 		return view;
 	}
 

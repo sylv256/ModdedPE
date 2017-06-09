@@ -7,7 +7,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.pesdk.nmod.*;
 import java.io.*;
 
-public class ModdedPENModDescriptionActivity extends ModdedPEActivity
+public class NModDescriptionActivity extends BaseActivity
 {
 	public final static String TAG_PACKAGE_NAME="nmod_package_name";
 	public final static String TAG_NAME="nmod_name";
@@ -58,7 +58,7 @@ public class ModdedPENModDescriptionActivity extends ModdedPEActivity
 
 	public static void startThisActivity(Context context, NMod nmod)
 	{
-		Intent intent=new Intent(context, ModdedPENModDescriptionActivity.class);
+		Intent intent=new Intent(context, NModDescriptionActivity.class);
 		Bundle bundle=new Bundle();
 		bundle.putString(TAG_PACKAGE_NAME, nmod.getPackageName());
 		bundle.putString(TAG_NAME, nmod.getName());

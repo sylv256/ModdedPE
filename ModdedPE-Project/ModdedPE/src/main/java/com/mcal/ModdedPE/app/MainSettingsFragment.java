@@ -8,7 +8,7 @@ import android.widget.*;
 import com.mcal.MCDesign.widget.*;
 import com.mcal.ModdedPE.*;
 
-public class MainSettingsFragment extends ModdedPEFragment
+public class MainSettingsFragment extends BaseFragment
 {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)

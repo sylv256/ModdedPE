@@ -10,7 +10,7 @@ import com.mcal.ModdedPE.*;
 import com.mcal.pesdk.nmod.*;
 import java.util.*;
 
-public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
+public class NModPackagePickerActivity extends BaseActivity
 {
 	private UIHandler mUIHandler = new UIHandler();
 	private ArrayList<NMod> nmods = new ArrayList<NMod>();
@@ -129,7 +129,7 @@ public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 					{
 						if (nmod.isBugPack())
 						{
-							ModdedPENModLoadFailActivity.startThisActivity(ModdedPENModPackagePickerActivity.this, nmod);
+							NModLoadFailActivity.startThisActivity(NModPackagePickerActivity.this, nmod);
 						}
 						else
 						{
@@ -150,7 +150,7 @@ public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 					@Override
 					public boolean onLongClick(View p1)
 					{
-						ModdedPENModDescriptionActivity.startThisActivity(ModdedPENModPackagePickerActivity.this, nmod);
+						NModDescriptionActivity.startThisActivity(NModPackagePickerActivity.this, nmod);
 						return false;
 					}
 
@@ -164,7 +164,7 @@ public class ModdedPENModPackagePickerActivity extends ModdedPEActivity
 
 	public static void startThisActivity(Activity context)
 	{
-		Intent intent = new Intent(context, ModdedPENModPackagePickerActivity.class);
+		Intent intent = new Intent(context, NModPackagePickerActivity.class);
 		context.startActivityForResult(intent, REQUEST_PICK_PACKAGE);
 	}
 }

@@ -4,23 +4,28 @@ import android.content.*;
 import android.graphics.*;
 import android.os.*;
 import android.support.design.widget.*;
+import android.support.v4.app.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
 import com.mcal.ModdedPE.*;
+import com.mcal.ModdedPE.utils.*;
 import com.mcal.pesdk.nmod.*;
 import java.util.*;
 
 import android.support.v7.app.AlertDialog;
 
-public class MainManageNModFragment extends ModdedPEFragment
+public class MainManageNModFragment extends BaseFragment implements DataPreloader.PreloadingFinishedListener
 {
 	private ListView mListView;
 	private View mRootView;
 	private NModProcesserHandler mNModProcesserHandler = new NModProcesserHandler();
-	private AlertDialog mProcessingDialog;
-
+	private AlertDialog mProcessingDialog = null;
+	private ReloadHandler mReloadHandler = new ReloadHandler();
+	private AlertDialog mReloadDialog = null;
+	private DataPreloader mDataPreloader = null;
+	
 	private static final int MSG_SHOW_PROGRESS_DIALOG = 1;
 	private static final int MSG_HIDE_PROGRESS_DIALOG = 2;
 	private static final int MSG_SHOW_SUCCEED_DIALOG = 3;
@@ -52,21 +57,55 @@ public class MainManageNModFragment extends ModdedPEFragment
 		return mRootView;
 	}
 
+	private class ReloadHandler extends Handler
+	{
+		@Override
+		public void handleMessage(Message msg)
+		{
+			super.handleMessage(msg);
+			if (mReloadDialog != null)
+			{
+				refreshNModDatas();
+				mReloadDialog.dismiss();
+				mReloadDialog = null;
+			}
+		}
+	}
+
+	@Override
+	public void onStart()
+	{
+		super.onStart();
+		if (mDataPreloader == null && !getPESdk().isInited())
+		{
+			mReloadDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.main_reloading_title).setView(R.layout.moddedpe_main_reload_dialog).setCancelable(false).create();
+			mReloadDialog.show();
+			mDataPreloader = new DataPreloader(this);
+			mDataPreloader.preload(getPESdk());
+		}
+	}
+
+	@Override
+	public void onPreloadingFinished()
+	{
+		mReloadHandler.sendEmptyMessage(0);
+	}
+	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 
 		if (resultCode == Activity.RESULT_OK)
 		{
-			if (requestCode == ModdedPENModPackagePickerActivity.REQUEST_PICK_PACKAGE)
+			if (requestCode == NModPackagePickerActivity.REQUEST_PICK_PACKAGE)
 			{
 				//picked from package
-				onPickedNModFromPackage(data.getExtras().getString(ModdedPENModPackagePickerActivity.TAG_PACKAGE_NAME));
+				onPickedNModFromPackage(data.getExtras().getString(NModPackagePickerActivity.TAG_PACKAGE_NAME));
 			}
-			else if (requestCode == ModdedPENModFilePickerActivity.REQUEST_PICK_FILE)
+			else if (requestCode == NModFilePickerActivity.REQUEST_PICK_FILE)
 			{
 				//picked from storage
-				onPickedNModFromStorage(data.getExtras().getString(ModdedPENModFilePickerActivity.TAG_FILE_PATH));
+				onPickedNModFromStorage(data.getExtras().getString(NModFilePickerActivity.TAG_FILE_PATH));
 			}
 
 		}
@@ -277,11 +316,8 @@ public class MainManageNModFragment extends ModdedPEFragment
 		}
 	}
 
-	private void refreshNModDatas()
+	public void refreshNModDatas()
 	{
-		NModListAdapter adapterList = new NModListAdapter();
-		mListView.setAdapter(adapterList);
-
 		if (getPESdk().getNModAPI().getImportedEnabledNMods().isEmpty() && getPESdk().getNModAPI().getImportedDisabledNMods().isEmpty())
 		{
 			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_nmods).setVisibility(View.GONE);
@@ -292,6 +328,9 @@ public class MainManageNModFragment extends ModdedPEFragment
 			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_nmods).setVisibility(View.VISIBLE);
 			mRootView.findViewById(R.id.moddedpe_manage_nmod_layout_no_found).setVisibility(View.GONE);
 		}
+		
+		NModListAdapter adapterList = new NModListAdapter();
+		mListView.setAdapter(adapterList);
 	}
 
 	public class NModListAdapter extends BaseAdapter 
@@ -405,7 +444,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					ModdedPENModLoadFailActivity.startThisActivity(getContext(), nmod);
+					NModLoadFailActivity.startThisActivity(getContext(), nmod);
 				}
 
 
@@ -511,7 +550,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					ModdedPENModDescriptionActivity.startThisActivity(getContext(), nmod);
+					NModDescriptionActivity.startThisActivity(getContext(), nmod);
 				}
 
 
@@ -542,7 +581,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					ModdedPENModLoadFailActivity.startThisActivity(getContext(), nmod);
+					NModLoadFailActivity.startThisActivity(getContext(), nmod);
 				}
 
 
@@ -640,7 +679,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(View p1)
 				{
-					ModdedPENModDescriptionActivity.startThisActivity(getContext(), nmod);
+					NModDescriptionActivity.startThisActivity(getContext(), nmod);
 				}
 
 
@@ -656,7 +695,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					ModdedPENModPackagePickerActivity.startThisActivity(getActivity());
+					NModPackagePickerActivity.startThisActivity(getActivity());
 					p1.dismiss();
 				}
 
@@ -667,7 +706,7 @@ public class MainManageNModFragment extends ModdedPEFragment
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					ModdedPENModFilePickerActivity.startThisActivity(getActivity());
+					NModFilePickerActivity.startThisActivity(getActivity());
 					p1.dismiss();
 				}
 

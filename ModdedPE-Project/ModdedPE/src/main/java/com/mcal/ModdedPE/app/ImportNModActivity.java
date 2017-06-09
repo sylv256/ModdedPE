@@ -6,7 +6,7 @@ import android.util.*;
 import java.io.*;
 import java.net.*;
 
-public class ModdedPEImportNModActivity extends ModdedPEActivity
+public class ImportNModActivity extends BaseActivity
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState)

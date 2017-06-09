@@ -8,7 +8,7 @@ import java.util.*;
 import android.text.format.*;
 
 
-public class ModdedPEPreStartActivity extends ModdedPEActivity
+public class PreloadActivity extends BaseActivity
 {
 	private PreStartUIHandler mPreStartUIHandler = new PreStartUIHandler();
 	private static final int MSG_FINISH = 1;
@@ -60,7 +60,7 @@ public class ModdedPEPreStartActivity extends ModdedPEActivity
 			{
 				case MSG_FINISH:
 					Bundle extras = (Bundle)msg.obj;
-					Intent intent = new Intent(ModdedPEPreStartActivity.this,ModdedPEMinecraftActivity.class);
+					Intent intent = new Intent(PreloadActivity.this,MinecraftActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					intent.putExtras(extras);
 					startActivity(intent);

@@ -6,7 +6,7 @@ import android.support.v7.widget.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.pesdk.nmod.*;
 
-public class ModdedPENModLoadFailActivity extends ModdedPEActivity
+public class NModLoadFailActivity extends BaseActivity
 {
 	public final static String KEY_INTENT_EXTRAS_NMOD_NAME="nmod_name";
 	public final static String KEY_INTENT_EXTRAS_NMOD_LOAD_FAIL_BUG_MESSAGE="nmod_bug_message";
@@ -32,7 +32,7 @@ public class ModdedPENModLoadFailActivity extends ModdedPEActivity
 
 	public static void startThisActivity(Context context, NMod nmod)
 	{
-		Intent intent=new Intent(context, ModdedPENModLoadFailActivity.class);
+		Intent intent=new Intent(context, NModLoadFailActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		Bundle bundle=new Bundle();
 		bundle.putString(KEY_INTENT_EXTRAS_NMOD_NAME, nmod.getName());

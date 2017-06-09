@@ -8,14 +8,13 @@ import android.support.v7.widget.*;
 import android.view.*;
 import com.mcal.ModdedPE.*;
 import com.mcal.ModdedPE.utils.*;
-import com.mcal.pesdk.utils.*;
 import java.util.*;
 
-public class ModdedPEMainActivity extends ModdedPEActivity 
+public class MainActivity extends BaseActivity
 {
 	private ViewPager mMainViewPager;
 	private MainManageNModFragment mManageNModFragment;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -75,7 +74,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 				@Override
 				public void onClick(View p1)
 				{
-					PopupMenu popup =new PopupMenu(ModdedPEMainActivity.this, burgerButton);
+					PopupMenu popup =new PopupMenu(MainActivity.this, burgerButton);
                     popup.getMenuInflater().inflate(R.menu.moddedpe_main_menu, popup.getMenu());
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener()
 						{
@@ -97,7 +96,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 				@Override
 				public void onClick(View p1)
 				{
-					startActivity(new Intent(ModdedPEMainActivity.this, ModdedPEAboutActivity.class));
+					startActivity(new Intent(MainActivity.this, AboutActivity.class));
 				}
 
 			});
@@ -172,7 +171,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 
 	private void startMinecraft()
 	{
-		if (new UtilsSettings(ModdedPEMainActivity.this).isSafeMode())
+		if (new UtilsSettings(MainActivity.this).isSafeMode())
 		{
 			new AlertDialog.Builder(this).setTitle(R.string.safe_mode_on_title).setMessage(R.string.safe_mode_on_message).
 				setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
@@ -182,7 +181,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 					public void onClick(DialogInterface p1, int p2)
 					{
 						Intent intent = null;
-						intent = new Intent(ModdedPEMainActivity.this, ModdedPEPreStartActivity.class);
+						intent = new Intent(MainActivity.this, PreloadActivity.class);
 						startActivity(intent);
 						finish();
 						p1.dismiss();
@@ -204,7 +203,7 @@ public class ModdedPEMainActivity extends ModdedPEActivity
 		else
 		{
 			Intent intent = null;
-			intent = new Intent(ModdedPEMainActivity.this, ModdedPEPreStartActivity.class);
+			intent = new Intent(MainActivity.this, PreloadActivity.class);
 			startActivity(intent);
 			finish();
 		}

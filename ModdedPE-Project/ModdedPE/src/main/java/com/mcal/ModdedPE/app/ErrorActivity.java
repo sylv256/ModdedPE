@@ -6,7 +6,7 @@ import android.support.v7.widget.*;
 import com.mcal.MCDesign.app.*;
 import com.mcal.ModdedPE.*;
 
-public class ModdedPEErrorActivity extends MCDActivity
+public class ErrorActivity extends MCDActivity
 {
 	public static final String KEY_INTENT_EXTRAS_ERROR_TEXT="error_msg";
 
@@ -16,7 +16,7 @@ public class ModdedPEErrorActivity extends MCDActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_error_activity);
 
-		final String msg = getIntent().getExtras().getString(KEY_INTENT_EXTRAS_ERROR_TEXT);
+		String msg = getIntent().getExtras().getString(KEY_INTENT_EXTRAS_ERROR_TEXT);
 
 		if (msg != null)
 		{
@@ -27,11 +27,11 @@ public class ModdedPEErrorActivity extends MCDActivity
 
 	public static void startThisActivity(Context context, String errorText)
 	{
-		Intent intent=new Intent(context, ModdedPEErrorActivity.class);
+		Intent intent=new Intent(context, ErrorActivity.class);
 		Bundle bundle=new Bundle();
 		bundle.putString(KEY_INTENT_EXTRAS_ERROR_TEXT, errorText);
 		intent.putExtras(bundle);
-		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		context.startActivity(intent);
 	}
 }

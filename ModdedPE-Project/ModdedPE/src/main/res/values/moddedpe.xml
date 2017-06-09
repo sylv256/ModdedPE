@@ -63,7 +63,7 @@
 	<string name="about_translators">Translators</string>
 	<string name="about_translators_zh_rcn">zh-rCN translated by ModelPart</string>
 	<string name="about_translators_zh_rtw">zh-rTW translated by ModelPart</string>
-	<string name="about_translators_default">Default(en) translated by ModelPart,proofreaded by KenMizz.</string>
+	<string name="about_translators_default">Default(en) translated by ModelPart.</string>
 	<string name="about_copyright_info_title">ModdedPE is licensed under the Apache License 2.0.</string>
 	<string name="about_copyright_info_message">Apache License 2.0 is a permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code.</string>
 	<string name="about_view_github">View Github</string>
@@ -104,6 +104,7 @@
 	
 	<!--Main Activity-->
 	<string name="main_play">Play</string>
+	<string name="main_reloading_title">Reloading...</string>
 	<string name="main_default_minecraft_title">MinecraftPE : Default</string>
 	<string name="no_available_mcpe_version_found">ModdedPE has found an unsupported version of Minecraft:PE (%1$s) on this device.(ModdedPE only supports %2$s!)\nIf you continue opening the game,ModdedPE may crash or cause issues.</string>
 	<string name="no_available_mcpe_version_found_title">Unsupported Version of Minecraft:PE</string>
