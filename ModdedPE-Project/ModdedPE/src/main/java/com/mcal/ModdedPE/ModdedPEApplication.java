@@ -16,35 +16,7 @@ public class ModdedPEApplication extends Application
 	public void onCreate()
 	{
 		super.onCreate();
-		Thread.setDefaultUncaughtExceptionHandler(restartHandler);
 		mPESdk = new PESdk(this,new UtilsSettings(this));
-	}
-
-	private Thread.UncaughtExceptionHandler restartHandler = new Thread.UncaughtExceptionHandler()
-	{
-		public void uncaughtException(Thread thread, Throwable ex)
-		{
-			restartAppAndReport(ex);
-		}
-	};
-
-	public void restartAppAndReport(Throwable ex)
-	{
-		//ByteArrayOutputStream ous = new ByteArrayOutputStream();
-		File file = new File("/sdcard/anr.txt");
-		try
-		{
-			file.createNewFile();
-		}
-		catch (IOException e)
-		{}
-		try
-		{
-			ex.printStackTrace(new PrintStream(new FileOutputStream(file)));
-		}
-		catch (FileNotFoundException e)
-		{}
-		//ErrorActivity.startThisActivity(this, new String(ous.toByteArray()));
 	}
 
 	@Override
