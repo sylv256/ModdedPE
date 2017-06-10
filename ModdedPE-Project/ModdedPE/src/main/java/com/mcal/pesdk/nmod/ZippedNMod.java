@@ -7,6 +7,7 @@ import java.io.*;
 import java.lang.reflect.*;
 import java.util.*;
 import java.util.zip.*;
+import com.mcal.pesdk.*;
 
 public class ZippedNMod extends NMod
 {
@@ -20,23 +21,21 @@ public class ZippedNMod extends NMod
 		NModPerloadBean ret = new NModPerloadBean();
 		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) mZipFile.entries();
 
-		ArrayList<String> nativeLibs = new ArrayList<String>();
+		new File(getNativeLibsPath()).mkdirs();
 		while (zipfile_ents.hasMoreElements())
 		{
 			ZipEntry entry=zipfile_ents.nextElement();
 
 			if (entry == null)
 				continue;
-
-			if (!entry.isDirectory() && entry.getName().startsWith("lib" + File.separator + Build.CPU_ABI + File.separator))
+			
+			if (!entry.isDirectory() && entry.getName().startsWith("lib" + File.separator + ABIInfo.getTargetABIType() + File.separator))
 			{
 				try
 				{
 					InputStream libInputStream = mZipFile.getInputStream(entry);
 					int byteReaded = -1;
 					byte[] buffer = new byte[1024];
-					File dirFile = new File(getNativeLibsPath());
-					dirFile.mkdirs();
 					File outFile = new File(getNativeLibsPath() + File.separator + entry.getName().substring(entry.getName().lastIndexOf(File.separator) + 1));
 					outFile.createNewFile();
 					FileOutputStream writerStream = new FileOutputStream(outFile);
@@ -46,16 +45,30 @@ public class ZippedNMod extends NMod
 					}
 					libInputStream.close();
 					writerStream.close();
-					nativeLibs.add(outFile.getPath());
 				}
 				catch (IOException e)
 				{}
 			}
 
 		}
-		ret.native_libs = (String[])nativeLibs.toArray();
+		
+		ArrayList<String> nativeLibs = new ArrayList<String>();
+		ArrayList<String> nativeLibsNeeded = new ArrayList<String>();
+		for(NModLibInfo lib_item:mInfo.native_libs_info)
+		{
+			if(lib_item.mode == NModLibInfo.MODE_ALWAYS)
+			{
+				nativeLibs.add(lib_item.name);
+			}
+			else if(lib_item.mode == NModLibInfo.MODE_IF_NEEDED)
+			{
+				nativeLibsNeeded.add(lib_item.name);
+			}
+		}
+		
+		ret.native_libs = nativeLibs.toArray(new String[0]);
+		ret.needed_libs = nativeLibsNeeded.toArray(new String[0]);
 		ret.assets_path = getPackageResourcePath();
-
 		return ret;
 	}
 
@@ -84,7 +97,6 @@ public class ZippedNMod extends NMod
 		return mFilePath.getPath();
 	}
 
-	@Override
 	public String getNativeLibsPath()
 	{
 		return new NModFilePathManager(mContext).getNModLibsDir() + File.separator + getPackageName();

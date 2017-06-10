@@ -23,7 +23,6 @@ public abstract class NMod
 	public abstract NModPerloadBean copyNModFiles();
 	public abstract AssetManager getAssets();
 	public abstract String getPackageResourcePath();
-	public abstract String getNativeLibsPath();
 	public abstract int getNModType();
 	public abstract boolean isSupportedABI();
 	protected abstract Bitmap createIcon();
@@ -236,6 +235,7 @@ public abstract class NMod
 	public static class NModPerloadBean
 	{
 		public String[] native_libs;
+		public String[] needed_libs;
 		public String dex_path;
 		public String assets_path;
 	}
@@ -263,7 +263,7 @@ public abstract class NMod
 		public String mode = MODE_ALWAYS;
 		
 		public static final String MODE_ALWAYS = "always";
-		public static final String MODE_IF_NEESED = "if_needed";
+		public static final String MODE_IF_NEEDED = "if_needed";
 	}
 
 	public static class NModInfo

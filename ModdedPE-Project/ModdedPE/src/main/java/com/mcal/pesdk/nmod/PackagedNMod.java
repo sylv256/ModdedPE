@@ -4,6 +4,7 @@ import android.content.pm.*;
 import android.content.res.*;
 import android.graphics.*;
 import java.io.*;
+import java.util.*;
 
 public class PackagedNMod extends NMod
 {
@@ -20,6 +21,22 @@ public class PackagedNMod extends NMod
 	{
 		NModPerloadBean ret = new NModPerloadBean();
 		ret.assets_path = getPackageResourcePath();
+		ArrayList<String> nativeLibs = new ArrayList<String>();
+		ArrayList<String> nativeLibsNeeded = new ArrayList<String>();
+		for(NModLibInfo lib_item:mInfo.native_libs_info)
+		{
+			if(lib_item.mode == NModLibInfo.MODE_ALWAYS)
+			{
+				nativeLibs.add(lib_item.name);
+			}
+			else if(lib_item.mode == NModLibInfo.MODE_IF_NEEDED)
+			{
+				nativeLibsNeeded.add(lib_item.name);
+			}
+		}
+
+		ret.native_libs = nativeLibs.toArray(new String[0]);
+		ret.needed_libs = nativeLibsNeeded.toArray(new String[0]);
 		return ret;
 	}
 
@@ -36,10 +53,9 @@ public class PackagedNMod extends NMod
 		return NMOD_TYPE_PACKAGED;
 	}
 	
-	@Override
 	public String getNativeLibsPath()
 	{
-		return getPackageContext().getApplicationInfo().nativeLibraryDir;
+		return getPackageContext().getDataDir().getAbsolutePath() + File.separator + "lib";
 	}
 
 	public PackagedNMod(String packageName,Context contextThiz, Context packageContext)

@@ -64,7 +64,7 @@ public class PreloadActivity extends BaseActivity
 			super.handleMessage(msg);
 			switch(msg.what)
 			{
-				case MSG_FINISH:
+				case PreloadingInfo.MSG_FINISH:
 					Bundle extras = (Bundle)msg.obj;
 					Intent intent = new Intent(PreloadActivity.this,MinecraftActivity.class);
 					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -74,7 +74,7 @@ public class PreloadActivity extends BaseActivity
 					break;
 				case PreloadingInfo.MSG_COPYING_NMOD_FILES:
 					break;
-				case PreloadingInfo.MSG_PERLOADING_NATIVE_LIBS:
+				case PreloadingInfo.MSG_PRELOADING_NATIVE_LIBS:
 					break;
 				
 			}

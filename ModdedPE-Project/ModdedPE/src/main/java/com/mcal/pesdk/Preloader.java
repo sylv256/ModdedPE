@@ -30,6 +30,13 @@ public class Preloader
 		Gson gson = new Gson();
 		boolean safeMode = mPESdk.getLauncherOptions().isSafeMode();
 
+		String abiInfo = ABIInfo.getTargetABIType();
+		if (abiInfo == null)
+		{
+			mHandler.sendEmptyMessage(PreloadingInfo.MSG_UNSUPPORTED_ABI);
+			return;
+		}
+
 		try
 		{
 			mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_SUBSTRATE_FRAMEWORK);
@@ -47,11 +54,11 @@ public class Preloader
 				mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_LIBS_SUCCEEDED);
 			}
 		}
-		catch (Throwable t)
+		catch (Throwable throwable)
 		{
 			Message failMessage = new Message();
 			failMessage.what = PreloadingInfo.MSG_LOADING_LIBS_FAILED;
-			failMessage.obj = t;
+			failMessage.obj = throwable;
 			mHandler.sendMessage(failMessage);
 			return;
 		}
@@ -75,7 +82,7 @@ public class Preloader
 				NMod.NModPerloadBean perloadDataItem = nmod.copyNModFiles();
 
 				Message message2 = new Message();
-				message2.what = PreloadingInfo.MSG_PERLOADING_NATIVE_LIBS;
+				message2.what = PreloadingInfo.MSG_PRELOADING_NATIVE_LIBS;
 				message2.obj = nmod;
 				mHandler.sendMessage(message2);
 
@@ -102,6 +109,7 @@ public class Preloader
 		}
 		else
 			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(new Preloader.NModPreloadData()));
+		mHandler.sendEmptyMessage(PreloadingInfo.MSG_FINISH);
 	}
 
 	private boolean loadNModElfFiles(NMod nmod, NMod.NModPerloadBean perloadDataItem, Handler handler)
@@ -122,7 +130,7 @@ public class Preloader
 				{
 					nmod.setBugPack(new LoadFailedException("Loading native lib [" + nameItem + "] of nmod [" + nmod.getPackageName() + "(" + nmod.getName() + ")" + "] failed.", t));
 					Message message3 = new Message();
-					message3.what = PreloadingInfo.MSG_PERLOADING_NATIVE_LIBS_FAILED;
+					message3.what = PreloadingInfo.MSG_PRELOADING_NATIVE_LIBS_FAILED;
 					message3.obj = nmod;
 					handler.sendMessage(message3);
 					return false;
