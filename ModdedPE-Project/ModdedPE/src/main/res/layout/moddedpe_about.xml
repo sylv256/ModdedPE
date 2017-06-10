@@ -62,267 +62,45 @@
 				android:gravity="center"
 				android:layout_marginBottom="35dp"/>
 
-			<RelativeLayout
+			<View
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
+				android:layout_height="1dp"
+				android:background="#6E6E6E"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"/>
 
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceSmall"
-					android:layout_width="wrap_content"
-					android:text="@string/about_copyright"
-					android:id="@+id/moddedpe_cutline_textview"
-					android:layout_marginLeft="10dp"/>
-
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#6E6E6E"
-					android:layout_centerVertical="true"
-					android:layout_marginLeft="5dp"
-					android:layout_marginRight="5dp"
-					android:layout_toRightOf="@id/moddedpe_cutline_textview"/>
-
-			</RelativeLayout>
-
-			<android.support.v7.widget.AppCompatTextView
+			<android.support.v7.widget.AppCompatButton
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="match_parent"
-				android:text="@string/about_copyright_info_title"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"
-				android:singleLine="true"/>
-
-			<android.support.v7.widget.AppCompatTextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="match_parent"
-				android:text="@string/about_copyright_info_message"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"/>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.design.widget.FloatingActionButton
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:src="@drawable/ic_github"
-					android:id="@+id/moddedpe_floating_action_button"
-					android:layout_centerInParent="false"
-					android:layout_margin="10dp"
-					android:layout_centerVertical="true"
-					android:onClick="onViewGithubClicked"/>
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text="@string/about_view_github"
-					android:layout_toRightOf="@id/moddedpe_floating_action_button"
-					android:layout_centerVertical="true"/>
-
-			</RelativeLayout>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.design.widget.FloatingActionButton
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:src="@drawable/ic_document"
-					android:id="@+id/moddedpe_floating_action_button"
-					android:layout_centerInParent="false"
-					android:layout_margin="10dp"
-					android:layout_centerVertical="true"
-					android:onClick="onViewApacheLicenseClicked"/>
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text="@string/about_view_apache_license_2_0"
-					android:layout_toRightOf="@id/moddedpe_floating_action_button"
-					android:layout_centerVertical="true"/>
-
-			</RelativeLayout>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceSmall"
-					android:layout_width="wrap_content"
-					android:text="@string/about_license"
-					android:id="@+id/moddedpe_cutline_textview"
-					android:layout_marginLeft="10dp"/>
-
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#6E6E6E"
-					android:layout_centerVertical="true"
-					android:layout_marginLeft="5dp"
-					android:layout_marginRight="5dp"
-					android:layout_toRightOf="@id/moddedpe_cutline_textview"/>
-
-			</RelativeLayout>
+				android:text="@string/about_view_github"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:onClick="onViewGithubClicked"/>
 			
-			<android.support.v7.widget.AppCompatTextView
+			<android.support.v7.widget.AppCompatButton
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="match_parent"
-				android:text="@string/about_cr_title"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"/>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.design.widget.FloatingActionButton
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:src="@drawable/ic_document"
-					android:id="@+id/moddedpe_floating_action_button"
-					android:layout_centerInParent="false"
-					android:layout_margin="10dp"
-					android:layout_centerVertical="true"
-					android:onClick="onGNULesserGeneralPublicLicenseClicked"/>
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text="@string/about_cr_substrate"
-					android:layout_toRightOf="@id/moddedpe_floating_action_button"
-					android:layout_centerVertical="true"/>
-
-			</RelativeLayout>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.design.widget.FloatingActionButton
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:src="@drawable/ic_document"
-					android:id="@+id/moddedpe_floating_action_button"
-					android:layout_centerInParent="false"
-					android:layout_margin="10dp"
-					android:layout_centerVertical="true"
-					android:onClick="onViewApacheLicenseClicked"/>
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text="@string/about_cr_cardview"
-					android:layout_toRightOf="@id/moddedpe_floating_action_button"
-					android:layout_centerVertical="true"/>
-
-			</RelativeLayout>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.design.widget.FloatingActionButton
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:src="@drawable/ic_document"
-					android:id="@+id/moddedpe_floating_action_button"
-					android:layout_centerInParent="false"
-					android:layout_margin="10dp"
-					android:layout_centerVertical="true"
-					android:onClick="onViewApacheLicenseClicked"/>
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text="@string/about_cr_android_support"
-					android:layout_toRightOf="@id/moddedpe_floating_action_button"
-					android:layout_centerVertical="true"/>
-
-			</RelativeLayout>
-
-			<RelativeLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.design.widget.FloatingActionButton
-					android:layout_height="50dp"
-					android:layout_width="50dp"
-					android:src="@drawable/ic_document"
-					android:id="@+id/moddedpe_floating_action_button"
-					android:layout_centerInParent="false"
-					android:layout_margin="10dp"
-					android:layout_centerVertical="true"
-					android:onClick="onViewApacheLicenseClicked"/>
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_width="wrap_content"
-					android:text="@string/about_cr_support_design"
-					android:layout_toRightOf="@id/moddedpe_floating_action_button"
-					android:layout_centerVertical="true"/>
-
-			</RelativeLayout>
+				android:text="@string/about_view_privacy_policy"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:onClick="onViewPrivacyPolicyClicked"/>
 			
-			<RelativeLayout
+			<android.support.v7.widget.AppCompatButton
+				android:layout_height="wrap_content"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content">
-
-				<android.support.v7.widget.AppCompatTextView
-					android:layout_height="wrap_content"
-					android:textAppearance="?android:attr/textAppearanceSmall"
-					android:layout_width="wrap_content"
-					android:text="@string/about_translators"
-					android:id="@+id/moddedpe_cutline_textview"
-					android:layout_marginLeft="10dp"/>
-
-				<View
-					android:layout_width="match_parent"
-					android:layout_height="1dp"
-					android:background="#6E6E6E"
-					android:layout_centerVertical="true"
-					android:layout_marginLeft="5dp"
-					android:layout_marginRight="5dp"
-					android:layout_toRightOf="@id/moddedpe_cutline_textview"/>
-
-			</RelativeLayout>
+				android:text="@string/about_view_nmod_api"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:onClick="onViewNModAPIClicked"/>
 			
-			<android.support.v7.widget.AppCompatTextView
+			<android.support.v7.widget.AppCompatButton
 				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
 				android:layout_width="match_parent"
-				android:text="@string/about_translators_default"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"/>
-
-			<android.support.v7.widget.AppCompatTextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="match_parent"
-				android:text="@string/about_translators_zh_rcn"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"/>
-			
-			<android.support.v7.widget.AppCompatTextView
-				android:layout_height="wrap_content"
-				android:textAppearance="?android:attr/textAppearanceSmall"
-				android:layout_width="match_parent"
-				android:text="@string/about_translators_zh_rtw"
-				android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"/>
+				android:text="@string/about_translators"
+				android:layout_marginLeft="5dp"
+				android:layout_marginRight="5dp"
+				android:onClick="onViewTranslatorsClicked"/>
 
 		</LinearLayout>
 

@@ -6,12 +6,13 @@ import com.mcal.ModdedPE.*;
 import android.view.*;
 import android.content.*;
 import android.net.*;
+import android.support.v7.app.*;
 
 public class AboutActivity extends BaseActivity
 {
 	private static final String URI_GITHUB = "https://github.com/ModelPart/ModdedPE.git";
-	private static final String URI_APACHE_LICENSE_2_0 = "http://www.apache.org/licenses/LICENSE-2.0.html";;
-	private static final String URI_GNU_LESSER_GENERAL_PUBLIC_LICENSE = "http://www.gnu.org/licenses/lgpl.html";
+	private static final String URI_PRIVACY_POLICY = "https://github.com/ModelPart/ModdedPE/blob/master/PrivacyPolicy/README.md";
+	private static final String URI_NMOD_API = "http://github.com/ModelPart/NModAPI.git";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState)
@@ -27,14 +28,29 @@ public class AboutActivity extends BaseActivity
 		openUri(URI_GITHUB);
 	}
 	
-	public void onViewApacheLicenseClicked(View view)
+	public void onViewPrivacyPolicyClicked(View view)
 	{
-		openUri(URI_APACHE_LICENSE_2_0);
+		openUri(URI_PRIVACY_POLICY);
 	}
 	
-	public void onGNULesserGeneralPublicLicenseClicked(View view)
+	public void onViewNModAPIClicked(View view)
 	{
-		openUri(URI_GNU_LESSER_GENERAL_PUBLIC_LICENSE);
+		openUri(URI_NMOD_API);
+	}
+	
+	public void onViewTranslatorsClicked(View view)
+	{
+		new AlertDialog.Builder(this).setTitle(R.string.about_translators).setMessage(R.string.about_translators_message).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface p1, int p2)
+				{
+					p1.dismiss();
+				}
+				
+			
+		}).show();
 	}
 	
 	private void openUri(String uri)

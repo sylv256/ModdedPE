@@ -52,38 +52,25 @@
 	<string name="nmod_description_unknow">未填写</string>
 	<string name="nmod_delete_title">删除NMod</string>
 	<string name="nmod_delete_message">如果您删除了这个NMod，它可能会消失很长很长的一段时间呢(,,•́ . •̀,,)</string>
+	
 	<!--About-->
-	<string name="about_copyright">版权</string>
 	<string name="about_license">开放源代码许可</string>
+	<string name="about_view_privacy_policy">隐私权政策</string>
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 	<string name="about_author">ModelPart制作[微博：@ModelPart]</string>
 	<string name="about_translators">翻译人员</string>
-	<string name="about_translators_zh_rcn">zh-rCN，ModelPart翻译。</string>
-	<string name="about_translators_zh_rtw">zh-rTW，ModelPart翻译。</string>
-	<string name="about_translators_default">默认（en），ModelPart翻译。</string>
-	<string name="about_copyright_info_title">ModdedPE在Apache License 2.0许可下。</string>
-	<string name="about_copyright_info_message">Apache License 2.0是一个许可证，其主要条件要求保留版权和许可证通知。贡献者提供专利权的明确授予。在此基础上许可的作品、修改过的作品可以不同的条款分发，同时可以不开放源代码。</string>
-	<string name="about_view_github">查看Github</string>
-	<string name="about_view_apache_license_2_0">查看Apache License 2.0</string>
-	<string name="about_view_gnu_lesser_license">查看GNU Lesser General Public License.</string>
-	<string name="about_cr_title">ModdedPE包含了下面的库：</string>
-	<string name="about_cr_substrate">Saurik的Cydia Substrate框架，在GNU Lesser General Public License许可下。</string>
-	<string name="about_cr_cardview">Card View库，在Apache License 2.0许可下。</string>
-	<string name="about_cr_android_support">Android Support库,在Apache License 2.0许可下。</string>
-	<string name="about_cr_support_design">Support Design库,在Apache License 2.0许可下。</string>
-
+	<string name="about_view_github">Github页</string>
+	<string name="about_view_nmod_api">查看NModAPI</string>
 	<!--Settings-->
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
-	<string name="opengame_loading">加载中...</string>
-	<string name="perloading_initing">初始化启动器</string>
-	<string name="perloading_initing_info">NModAPI版本：%1$s\n    MinecraftPE版本：%2$s\n    CPU架构：%3$s</string>
-	<string name="perloading_initing_info_safe_mode">安全模式开启\n    MinecraftPE版本：%1$s\n    CPU架构：%2$s</string>
-	<string name="perloading_initing_copying_libs">复制动态链接库</string>
-	<string name="perloading_initing_loading_libs">加载动态链接库</string>
-	<string name="perloading_failed_io">复制失败：%1$s</string>
-	<string name="perloading_failed_lib_load_failed">无法装载动态链接库：</string>
+	<string name="opengame_loading">等待游戏开启...</string>
+	<string name="preloading_initing">初始化启动器</string>
+	<string name="preloading_initing_info">    NModAPI版本：%1$s\n    MinecraftPE版本：%2$s\n</string>
+	<string name="preloading_initing_info_safe_mode">    安全模式开启\n    MinecraftPE版本：%1$s\n</string>
+	<string name="preloading_initing_loading_libs">加载动态链接库</string>
+	<string name="preloading_failed_lib_load_failed">无法装载动态链接库：%1$s</string>
 	<string-array name="perloading_tips_text">
 		<item>你造么，APK类型的NMod不安装也可以导入的呢( ･_･)</item>
 		<item>据说主页左上角的苦力怕里面有新世界哦w</item>
@@ -111,6 +98,7 @@
 		<item>想把ModdedPE在某个论坛里面分享？那当然是可以的啦~</item>
 		<item>SSSSSSSSSSSSSSSSS~~~</item>
 		<item>你造吗，主页左右滑动可以空降到另一个页面( • ̀ω•́ )✧</item>
+		<item>多人游戏使用NMod时每一位玩家都需要安装哦~</item>
 	</string-array>
 	
 	<!--Pick NMod from installed-->
@@ -120,7 +108,7 @@
 	<string name="main_play">开始游戏</string>
 	<string name="main_reloading_title">正在刷新……</string>
 	<string name="main_default_minecraft_title">我的世界携带版：原版</string>
-	<string name="no_available_mcpe_version_found">抱歉，这个版本的ModdedPE暂时不支持您所安装的MinecraftPE(๑′°︿°๑)\n点击“开始冒险”按钮可以冒险打开游戏，不过后果可能就是崩溃或者报错哦~</string>
+	<string name="no_available_mcpe_version_found">抱歉，这个版本的ModdedPE暂时不支持您所安装的MinecraftPE %1$s，它所支持的是 %2$s(๑′°︿°๑)\n点击“开始冒险”按钮可以冒险打开游戏，不过后果可能就是崩溃或者报错哦~</string>
 	<string name="no_available_mcpe_version_found_title">版本不支持</string>
 	<string name="no_available_mcpe_version_continue">开始冒险</string>
 	<string name="safe_mode_on_title">看样子安全模式已开启0.0</string>
