@@ -41,7 +41,7 @@ public class MinecraftInfo
 
 	public String getMinecraftNativeLibraryDir()
 	{
-		return mMCContext.getApplicationInfo().nativeLibraryDir;
+		return mMCContext.getDataDir().getAbsolutePath() + File.separator + "lib";
 	}
 
 	public String getMinecraftPackageNativeLibraryDir()

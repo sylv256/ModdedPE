@@ -6,6 +6,7 @@ import com.mcal.pesdk.nmod.*;
 import android.support.v7.widget.*;
 import java.util.*;
 import android.text.format.*;
+import com.mcal.pesdk.*;
 
 
 public class PreloadActivity extends BaseActivity
@@ -34,7 +35,7 @@ public class PreloadActivity extends BaseActivity
 		public void run()
 		{
 			super.run();
-			/*Bundle bundle = new Bundle();
+			Bundle bundle = new Bundle();
 			getPESdk().getGameManager().perloadForLaunch(bundle,mPreStartUIHandler);
 			try
 			{
@@ -44,9 +45,14 @@ public class PreloadActivity extends BaseActivity
 			{}
 			Message msg = new Message();
 			msg.obj = bundle;
-			mPreStartUIHandler.sendMessage(msg);*/
-			//while(true);
+			mPreStartUIHandler.sendMessage(msg);
 		}
+	}
+
+	@Override
+	public void onBackPressed()
+	{
+		
 	}
 	
 	private class PreStartUIHandler extends Handler
@@ -66,9 +72,9 @@ public class PreloadActivity extends BaseActivity
 					startActivity(intent);
 					finish();
 					break;
-				case NModAPI.MSG_COPYING_NMOD_FILES:
+				case PreloadingInfo.MSG_COPYING_NMOD_FILES:
 					break;
-				case NModAPI.MSG_PERLOADING_NATIVE_LIBS:
+				case PreloadingInfo.MSG_PERLOADING_NATIVE_LIBS:
 					break;
 				
 			}

@@ -10,7 +10,7 @@ public class MinecraftActivity extends com.mojang.minecraftpe.MainActivity
 	@Override
 	public void onCreate(Bundle p1)
 	{
-		getPESdk().getGameManager().onMinecraftActivityCreate(this);
+		getPESdk().getGameManager().onMinecraftActivityCreate(this,p1);
 		if(!getPESdk().getGameManager().isSafeMode())
 			new OpenGameLoadingDialog(this).show();
 		super.onCreate(p1);

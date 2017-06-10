@@ -1,9 +1,13 @@
 package com.mcal.pesdk;
 import android.content.res.*;
 import android.os.*;
-import com.mojang.minecraftpe.*;
+import com.google.gson.*;
+import com.mcal.pesdk.*;
 import com.mcal.pesdk.nativeapi.*;
-import net.hockeyapp.android.tasks.*;
+import com.mcal.pesdk.nmod.*;
+import com.mojang.minecraftpe.*;
+import com.mcal.pesdk.utils.*;
+import android.content.*;
 
 public class GameManager
 {
@@ -26,19 +30,35 @@ public class GameManager
 
 	public void perloadForLaunch(Bundle extras, Handler handler)
 	{
-		if(mPESdk.getLauncherOptions().isSafeMode())
-			return;
-		mPESdk.getNModAPI().perloadNMods(extras, handler);
+		new Preloader(extras,handler,mPESdk).start();
 	}
 
-	public void onMinecraftActivityCreate(MainActivity activity)
+	public void onMinecraftActivityCreate(MainActivity activity,Bundle savedInstanceState)
 	{
 		boolean safeMode = mPESdk.getLauncherOptions().isSafeMode();
-		LibraryLoader.loadGameLibs(activity, mPESdk.getMinecraftInfo().getMinecraftNativeLibraryDir(), safeMode);
+		AssetOverrideManager.addAssetOverride(activity.getAssets(), mPESdk.getMinecraftInfo().getMinecraftPackageContext().getPackageResourcePath());
+		
 		if (!safeMode)
 		{
 			NativeUtils.setValues(activity);
-			mPESdk.getNModAPI().loadToGame(activity.getIntent().getExtras(), getAssets(), null);
+			Gson gson = new Gson();
+			Bundle data = activity.getIntent().getExtras();
+			
+			Preloader.NModPreloadData preloadData = gson.fromJson(data.getString(PreloadingInfo.NMOD_DATA_TAG), Preloader.NModPreloadData.class);
+
+			for (int i=preloadData.assets_packs_path.length - 1;i >= 0;--i)
+			{
+				String assetsPath = preloadData.assets_packs_path[i];
+				AssetOverrideManager.addAssetOverride(activity.getAssets(), assetsPath);
+			}
+			
+			String[] loadedNModLibs = preloadData.loaded_libs;
+			for (int i=loadedNModLibs.length - 1;i >= 0;--i)
+			{
+				String nativeLibName = loadedNModLibs[i];
+				NModLib lib = new NModLib(nativeLibName);
+				lib.callOnActivityCreate(activity, savedInstanceState);
+			}
 		}
 	}
 
@@ -46,6 +66,15 @@ public class GameManager
 	{
 		if(mPESdk.getLauncherOptions().isSafeMode())
 			return;
-		mPESdk.getNModAPI().callOnActivityDestroy(activity, activity.getIntent().getExtras());
+		Gson gson = new Gson();
+		Preloader.NModPreloadData preloadData = gson.fromJson(activity.getIntent().getExtras().getString(PreloadingInfo.NMOD_DATA_TAG), Preloader.NModPreloadData.class);
+
+		String[] loadedNModLibs = preloadData.loaded_libs;
+		for (int i=loadedNModLibs.length - 1;i >= 0;--i)
+		{
+			String nativeLibName = loadedNModLibs[i];
+			NModLib lib = new NModLib(nativeLibName);
+			lib.callOnActivityFinish(activity);
+		}
 	}
 }

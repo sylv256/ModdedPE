@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 import com.mojang.minecraftpe.*;
 
-class NModLib
+public class NModLib
 {
 	private String mName;
 	public NModLib(String name)
