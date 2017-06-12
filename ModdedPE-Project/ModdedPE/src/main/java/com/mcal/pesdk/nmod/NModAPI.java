@@ -94,7 +94,7 @@ public final class NModAPI
 
 	public String getVersionName()
 	{
-		return "NMODAPI_VERSION_1_0";
+		return "1.0";
 	}
 
 	

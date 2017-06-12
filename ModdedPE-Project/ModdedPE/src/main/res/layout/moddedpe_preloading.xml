@@ -10,7 +10,7 @@
 		android:layout_centerInParent="true"/>
 
 	<android.support.v7.widget.AppCompatTextView
-		android:id="@+id/moddedpe_perloading_text"
+		android:id="@+id/moddedpe_preloading_text"
 		android:layout_height="20dp"
 		android:textAppearance="?android:attr/textAppearanceSmall"
 		android:layout_width="match_parent"
@@ -22,12 +22,13 @@
 		android:layout_width="match_parent"
 		android:layout_alignParentBottom="true"/>
 
-	<ListView
-		android:layout_height="match_parent"
+	<LinearLayout
+		android:id="@+id/moddedpe_preloading_texts_adapted_layput"
+		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
-		android:dividerHeight="0dip"
-		android:divider="@null"
-		android:layout_marginBottom="20dp"/>
+		android:layout_marginBottom="20dp"
+		android:orientation="vertical"
+		android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
 

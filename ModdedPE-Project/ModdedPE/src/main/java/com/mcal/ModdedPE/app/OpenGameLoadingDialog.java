@@ -37,11 +37,14 @@ public class OpenGameLoadingDialog extends AppCompatDialog
 			@Override
 			public void run()
 			{
-				while (true)
+				try
 				{
-					if (NativeUtils.nativeIsGameStarted())
-						dismiss();
+					while (!NativeUtils.nativeIsGameStarted())
+						Thread.sleep(100);
 				}
+				catch (InterruptedException e)
+				{}
+				dismiss();
 			}
 		}.start();
 	}

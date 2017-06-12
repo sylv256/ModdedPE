@@ -11,61 +11,63 @@ import android.content.*;
 public class Preloader
 {
 	private Bundle mBundle;
-	private Handler mHandler;
 	private PESdk mPESdk;
+	private PreloadListener mPreloadListener;
 
-	public Preloader(Bundle bundle, Handler handler, PESdk pesdk)
+	public Preloader(PESdk pesdk, Bundle bundle, PreloadListener listener)
 	{
 		mBundle = bundle;
-		mHandler = handler;
+		mPreloadListener = listener;
 		mPESdk = pesdk;
+		if (mPreloadListener == null)
+			mPreloadListener = new PreloadListener();
 	}
 
-	public void start()
+	public Preloader(PESdk pesdk, Bundle bundle)
 	{
-		if (mHandler == null)
-			mHandler = new Handler();
+		this(pesdk, bundle, null);
+	}
+
+	public void preload()throws PreloadException
+	{
+		mPreloadListener.onStart();
+
 		if (mBundle == null)
 			mBundle = new Bundle();
 		Gson gson = new Gson();
 		boolean safeMode = mPESdk.getLauncherOptions().isSafeMode();
-
 		String abiInfo = ABIInfo.getTargetABIType();
+
 		if (abiInfo == null)
-		{
-			mHandler.sendEmptyMessage(PreloadingInfo.MSG_UNSUPPORTED_ABI);
-			return;
-		}
+			throw new PreloadException(PreloadException.TYPE_UNSUPPORTED_ABI);
 
 		try
 		{
-			mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_SUBSTRATE_FRAMEWORK);
+			mPreloadListener.onLoadNativeLibs();
+			mPreloadListener.onLoadSubstrateLib();
 			LibraryLoader.loadSubstrate();
-			mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_GAME_LAUNCHER);
+			mPreloadListener.onLoadGameLauncherLib();
 			LibraryLoader.loadLauncher();
-			mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_FMOD);
-			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftNativeLibraryDir());
-			mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_MINECRAFT_PE);
-			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftNativeLibraryDir());
+			mPreloadListener.onLoadFModLib();
+			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			mPreloadListener.onLoadMinecraftPELib();
+			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			if (!safeMode)
 			{
-				mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_NMOD_API);
+				mPreloadListener.onLoadNModAPILib();
 				LibraryLoader.loadNModAPI();
-				mHandler.sendEmptyMessage(PreloadingInfo.MSG_LOADING_LIBS_SUCCEEDED);
 			}
+			mPreloadListener.onFinishedLoadingNativeLibs();
 		}
 		catch (Throwable throwable)
 		{
-			Message failMessage = new Message();
-			failMessage.what = PreloadingInfo.MSG_LOADING_LIBS_FAILED;
-			failMessage.obj = throwable;
-			mHandler.sendMessage(failMessage);
-			return;
+			throw new PreloadException(PreloadException.TYPE_LOAD_LIBS_FAILED, throwable);
 		}
-
 
 		if (!safeMode)
 		{
+			mPreloadListener.onStartLoadingAllNMods();
+
 			NModPreloadData perloadData = new NModPreloadData();
 			ArrayList<String> assetsArrayList = new ArrayList<String>();
 			ArrayList<String> dexPathArrayList = new ArrayList<String>();
@@ -74,19 +76,11 @@ public class Preloader
 			ArrayList<NMod> loadedEnabledNMods = mPESdk.getNModAPI().getImportedEnabledNMods();
 			for (NMod nmod:loadedEnabledNMods)
 			{
-				Message message = new Message();
-				message.what = PreloadingInfo.MSG_COPYING_NMOD_FILES;
-				message.obj = nmod;
-				mHandler.sendMessage(message);
-
+				mPreloadListener.onCopyNModFiles(nmod);
 				NMod.NModPerloadBean perloadDataItem = nmod.copyNModFiles();
 
-				Message message2 = new Message();
-				message2.what = PreloadingInfo.MSG_PRELOADING_NATIVE_LIBS;
-				message2.obj = nmod;
-				mHandler.sendMessage(message2);
-
-				if (loadNModElfFiles(nmod, perloadDataItem, mHandler))
+				mPreloadListener.onLoadNModLibs(nmod);
+				if (loadNModElfFiles(nmod, perloadDataItem))
 				{
 					if (perloadDataItem.assets_path != null)
 						assetsArrayList.add(perloadDataItem.assets_path);
@@ -106,16 +100,15 @@ public class Preloader
 			perloadData.dex_path = dexPathArrayList.toArray(new String[0]);
 			perloadData.loaded_libs = loadedNativeLibs.toArray(new String[0]);
 			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(perloadData));
+			mPreloadListener.onFinishedLoadingAllNMods();
 		}
 		else
 			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(new Preloader.NModPreloadData()));
-		mHandler.sendEmptyMessage(PreloadingInfo.MSG_FINISH);
+		mPreloadListener.onFinish(mBundle);
 	}
 
-	private boolean loadNModElfFiles(NMod nmod, NMod.NModPerloadBean perloadDataItem, Handler handler)
+	private boolean loadNModElfFiles(NMod nmod, NMod.NModPerloadBean perloadDataItem)
 	{
-		if (handler == null)
-			handler = new Handler();
 		MinecraftInfo minecraftInfo = mPESdk.getMinecraftInfo();
 
 		if (perloadDataItem.native_libs != null && perloadDataItem.native_libs.length > 0)
@@ -128,11 +121,8 @@ public class Preloader
 				}
 				catch (Throwable t)
 				{
-					nmod.setBugPack(new LoadFailedException("Loading native lib [" + nameItem + "] of nmod [" + nmod.getPackageName() + "(" + nmod.getName() + ")" + "] failed.", t));
-					Message message3 = new Message();
-					message3.what = PreloadingInfo.MSG_PRELOADING_NATIVE_LIBS_FAILED;
-					message3.obj = nmod;
-					handler.sendMessage(message3);
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_LOAD_LIB_FAILED, t));
+					mPreloadListener.onFailedLoadingNMod(nmod);
 					return false;
 				}
 			}
@@ -146,10 +136,44 @@ public class Preloader
 		return true;
 	}
 
-	public class NModPreloadData
+	public static class NModPreloadData
 	{
 		public String[] assets_packs_path;
 		public String[] dex_path;
 		public String[] loaded_libs;
+	}
+
+	public static class PreloadListener
+	{
+		public void onStart()
+		{}
+		public void onLoadNativeLibs()
+		{}
+		public void onLoadSubstrateLib()
+		{}
+		public void onLoadGameLauncherLib()
+		{}
+		public void onLoadFModLib()
+		{}
+		public void onLoadMinecraftPELib()
+		{}
+		public void onLoadNModAPILib()
+		{}
+		public void onFinishedLoadingNativeLibs()
+		{}
+
+		public void onStartLoadingAllNMods()
+		{}
+		public void onCopyNModFiles(NMod nmod)
+		{}
+		public void onLoadNModLibs(NMod nmod)
+		{}
+		public void onFailedLoadingNMod(NMod nmod)
+		{}
+		public void onFinishedLoadingAllNMods()
+		{}
+
+		public void onFinish(Bundle bundle)
+		{}
 	}
 }

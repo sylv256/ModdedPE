@@ -9,7 +9,7 @@ public class LibraryLoader
 
 	public static final String API_NAME = "nmodapi";
 	public static final String SUBSTRATE_NAME = "substrate";
-	public static final String LAUNCHER_NAME = "nmodapi-game-launcher";
+	public static final String LAUNCHER_NAME = "pesdk-game-launcher";
 	
 	static public void loadSubstrate()
 	{

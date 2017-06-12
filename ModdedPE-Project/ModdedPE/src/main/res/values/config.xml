@@ -5,4 +5,8 @@
 		<item>1.1.0.55</item>
 	</string-array>
 	<string name="target_mcpe_version_info">1.1.0.55</string>
+	<string name="app_name">ModdedPE</string>
+    <string name="app_name_demo">ModdedPE Demo</string>
+    <string name="app_name_short">ModdedPE</string>
+    <string name="app_name_short_demo">ModdedPE Demo</string>
 </resources>

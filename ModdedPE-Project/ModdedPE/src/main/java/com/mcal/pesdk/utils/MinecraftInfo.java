@@ -39,14 +39,9 @@ public class MinecraftInfo
 		return null;
 	}
 
-	public String getMinecraftNativeLibraryDir()
-	{
-		return mMCContext.getDataDir().getAbsolutePath() + File.separator + "lib";
-	}
-
 	public String getMinecraftPackageNativeLibraryDir()
 	{
-		return Environment.getDataDirectory() + "data" + File.separator + getMinecraftPackageContext().getPackageName() + File.separator + "lib";
+		return Environment.getDataDirectory().getAbsolutePath() + File.separator + "data" + File.separator + getMinecraftPackageContext().getPackageName() + File.separator + "lib";
 	}
 
 	public Context getMinecraftPackageContext()

@@ -36,7 +36,7 @@
 	<string name="nmod_add_new">添加新的</string>
 	<string name="nmod_export">导出</string>
 	<string name="nmod_add_new_title">添加新的...</string>
-	<string name="nmod_add_new_message">(๑•̀ω•́๑)这里有两种方式来添加新的NMod~\n选一个吧↓</string>
+	<string name="nmod_add_new_message">(๑•̀ω•́๑)这里有两种方式来添加新的NMod~选一个吧↓</string>
 	<string name="nmod_add_new_pick_installed">已安装中</string>
 	<string name="nmod_add_new_pick_storage">外部存储</string>
 	<string name="load_fail_main">错误介绍</string>
@@ -67,14 +67,20 @@
 	<string name="opengame_loading_blocks_message">一个方块，两个方块，三个方块……</string>
 	<string name="opengame_loading">等待游戏开启...</string>
 	<string name="preloading_initing">初始化启动器</string>
-	<string name="preloading_initing_info">    NModAPI版本：%1$s\n    MinecraftPE版本：%2$s\n</string>
-	<string name="preloading_initing_info_safe_mode">    安全模式开启\n    MinecraftPE版本：%1$s\n</string>
-	<string name="preloading_initing_loading_libs">加载动态链接库</string>
-	<string name="preloading_failed_lib_load_failed">无法装载动态链接库：%1$s</string>
-	<string-array name="perloading_tips_text">
+	<string name="preloading_initing_info">--NModAPI版本：%1$s\n--MinecraftPE版本：%2$s</string>
+	<string name="preloading_initing_info_safe_mode">--安全模式开启\n--MinecraftPE版本：%1$s</string>
+	<string name="preloading_initing_loading_libs">加载动态链接库|_•`)</string>
+	<string name="preloading_loading_lib_substrate">--加载libsubstrate.so</string>
+	<string name="preloading_loading_lib_game_launcher">--加载libpesdk-game-launcher.so</string>
+	<string name="preloading_loading_lib_fmod">--加载libfmod.so</string>
+	<string name="preloading_loading_lib_minecraftpe">--加载libminecraftpe.so</string>
+	<string name="preloading_loading_lib_nmodapi">--加载libnmodapi.so</string>
+	<string name="preloading_initing_loading_libs_done">加载动态链接库完成~</string>
+	
+	<string-array name="preloading_tips_text">
 		<item>你造么，APK类型的NMod不安装也可以导入的呢( ･_･)</item>
 		<item>据说主页左上角的苦力怕里面有新世界哦w</item>
-		<item>其实ModdedPE是作者一边女装一边写的呢（???</item>
+		<item>其实ModdedPE是作者一边女装一边写的呢）</item>
 		<item>据说Github是个神奇的地方，那里还有ModdedPE的源码呢（划去</item>
 		<item>ModdedPE始终无广告，如果您发现被恶意植入，欢迎向我们联系~</item>
 		<item>其实NMod全称是Native-Mod啦~（才不是Naive-Mod什么的！</item>
@@ -99,6 +105,7 @@
 		<item>SSSSSSSSSSSSSSSSS~~~</item>
 		<item>你造吗，主页左右滑动可以空降到另一个页面( • ̀ω•́ )✧</item>
 		<item>多人游戏使用NMod时每一位玩家都需要安装哦~</item>
+		<item>NMod需要点击按钮+才能被加载(〃\'▽\'〃)</item>
 	</string-array>
 	
 	<!--Pick NMod from installed-->

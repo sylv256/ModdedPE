@@ -138,17 +138,28 @@ namespace NModAPI
 // Register Natives
 //-------------------------------------------------------------
 
-extern "C" JNIEXPORT jboolean Java_com_mcal_pesdk_nmod_NModLib_nativeRegisterNatives(JNIEnv*env,jobject thiz,jclass cls)
+extern "C" JNIEXPORT jboolean JNICALL Java_com_mcal_pesdk_nmod_NModLib_nativeRegisterNatives(JNIEnv*env,jobject thiz,jclass cls)
+{
+	JNINativeMethod methods[] =
+	{
+		{"nativeCallOnActivityFinish", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;)Z", (void *)&NModAPI::nativeCallOnActivityFinish},
+		{"nativeCallOnLoad", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z", (void *)&NModAPI::nativeCallOnLoad},
+		{"nativeCallOnActivityCreate", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;Landroid/os/Bundle;)Z", (void *)&NModAPI::nativeCallOnActivityCreate},
+		{"nativeCallOnDexLoaded", "(Ljava/lang/String;Ldalvik/system/DexClassLoader;)Z", (void *)&NModAPI::nativeCallOnDexLoaded}
+	};
+	
+	if (env->RegisterNatives(cls,methods,sizeof(methods)/sizeof(JNINativeMethod)) < 0)
+		return JNI_FALSE;
+	return JNI_TRUE;
+}
+
+extern "C" JNIEXPORT jboolean JNICALL Java_com_mcal_pesdk_nativeapi_NativeUtils_nativeRegisterNatives(JNIEnv*env,jobject thiz,jclass cls)
 {
 	JNINativeMethod methods[] =
 	{
 		{"nativeIsGameStarted", "()Z", (void *)&NModAPI::nativeIsGameStarted},
 		{"nativeSetDataDirectory", "(Ljava/lang/String;)V", (void *)&NModAPI::nativeSetDataDirectory},
-		{"nativeCallOnActivityFinish", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;)Z", (void *)&NModAPI::nativeCallOnActivityFinish},
-		{"nativeCallOnLoad", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z", (void *)&NModAPI::nativeCallOnLoad},
-		{"nativeCallOnActivityCreate", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;Landroid/os/Bundle;)Z", (void *)&NModAPI::nativeCallOnActivityCreate},
-		{"nativeDemangle", "(Ljava/lang/String;)Ljava/lang/String;", (void *)&NModAPI::nativeDemangle},
-		{"nativeCallOnDexLoaded", "(Ljava/lang/String;Ldalvik/system/DexClassLoader;)Z", (void *)&NModAPI::nativeCallOnDexLoaded},
+		{"nativeDemangle", "(Ljava/lang/String;)Ljava/lang/String;", (void *)&NModAPI::nativeDemangle}
 	};
 	
 	if (env->RegisterNatives(cls,methods,sizeof(methods)/sizeof(JNINativeMethod)) < 0)

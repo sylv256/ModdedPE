@@ -28,11 +28,6 @@ public class GameManager
 		return mPESdk.getMinecraftInfo().getAssets();
 	}
 
-	public void perloadForLaunch(Bundle extras, Handler handler)
-	{
-		new Preloader(extras,handler,mPESdk).start();
-	}
-
 	public void onMinecraftActivityCreate(MainActivity activity,Bundle savedInstanceState)
 	{
 		boolean safeMode = mPESdk.getLauncherOptions().isSafeMode();
