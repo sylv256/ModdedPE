@@ -63,9 +63,9 @@ class NModArchiver
 
 			try
 			{
-				File nmodDir = new File(new NModFilePathManager(mContext).getNModCacheDir());
+				File nmodDir = new NModFilePathManager(mContext).getNModCacheDir();
 				nmodDir.mkdirs();
-				File toFile = new File(new NModFilePathManager(mContext).getNModCachePath());
+				File toFile = new NModFilePathManager(mContext).getNModCachePath();
 				toFile.createNewFile();
 				ZipFile zipFile = new ZipFile(path);
 				String packageName = packageInfo.packageName;
@@ -136,9 +136,9 @@ class NModArchiver
 			try
 			{
 				ZipFile zipFile = new ZipFile(path);
-				File dir = new File(new NModFilePathManager(mContext).getNModCacheDir());
+				File dir = new NModFilePathManager(mContext).getNModCacheDir();
 				dir.mkdirs();
-				File nmodFile = new File(new NModFilePathManager(mContext).getNModCachePath());
+				File nmodFile = new NModFilePathManager(mContext).getNModCachePath();
 				nmodFile.createNewFile();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(nmodFile));
 				Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) zipFile.entries();
@@ -179,7 +179,7 @@ class NModArchiver
 	{
 		try
 		{
-			File finalFileDir = new File(new NModFilePathManager(mContext).getNModsDir());
+			File finalFileDir = new NModFilePathManager(mContext).getNModsDir();
 			finalFileDir.mkdirs();
 			File finalFile = new File(new NModFilePathManager(mContext).getNModsDir() + File.separator + packageName);
 			finalFile.createNewFile();

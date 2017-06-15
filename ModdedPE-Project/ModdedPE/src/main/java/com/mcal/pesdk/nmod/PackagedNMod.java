@@ -17,9 +17,9 @@ public class PackagedNMod extends NMod
 	}
 
 	@Override
-	public NModPerloadBean copyNModFiles()
+	public NModPreloadBean copyNModFiles()
 	{
-		NModPerloadBean ret = new NModPerloadBean();
+		NModPreloadBean ret = new NModPreloadBean();
 		ret.assets_path = getPackageResourcePath();
 		ArrayList<String> nativeLibs = new ArrayList<String>();
 		ArrayList<String> nativeLibsNeeded = new ArrayList<String>();

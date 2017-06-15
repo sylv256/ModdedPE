@@ -7,6 +7,7 @@ import com.mcal.pesdk.utils.*;
 import java.util.*;
 import com.mcal.pesdk.nativeapi.*;
 import android.content.*;
+import java.io.*;
 
 public class Preloader
 {
@@ -68,7 +69,7 @@ public class Preloader
 		{
 			mPreloadListener.onStartLoadingAllNMods();
 
-			NModPreloadData perloadData = new NModPreloadData();
+			NModPreloadData preloadData = new NModPreloadData();
 			ArrayList<String> assetsArrayList = new ArrayList<String>();
 			ArrayList<String> dexPathArrayList = new ArrayList<String>();
 			ArrayList<String> loadedNativeLibs = new ArrayList<String>();
@@ -76,30 +77,39 @@ public class Preloader
 			ArrayList<NMod> loadedEnabledNMods = mPESdk.getNModAPI().getImportedEnabledNMods();
 			for (NMod nmod:loadedEnabledNMods)
 			{
-				mPreloadListener.onCopyNModFiles(nmod);
-				NMod.NModPerloadBean perloadDataItem = nmod.copyNModFiles();
-
-				mPreloadListener.onLoadNModLibs(nmod);
-				if (loadNModElfFiles(nmod, perloadDataItem))
+				if (nmod.isBugPack())
 				{
-					if (perloadDataItem.assets_path != null)
-						assetsArrayList.add(perloadDataItem.assets_path);
-					if (perloadDataItem.dex_path != null)
-						dexPathArrayList.add(perloadDataItem.dex_path);
+					mPreloadListener.onFailedLoadingNMod(nmod);
+					continue;
+				}
 
-					if (perloadDataItem.native_libs != null && perloadDataItem.native_libs.length > 0)
+				NMod.NModPreloadBean preloadDataItem = nmod.copyNModFiles();
+				if (loadNModElfFiles(nmod, preloadDataItem))
+				{
+					if (preloadDataItem.assets_path != null)
+						assetsArrayList.add(preloadDataItem.assets_path);
+					if (preloadDataItem.dex_path != null)
+						dexPathArrayList.add(preloadDataItem.dex_path);
+
+					if (preloadDataItem.native_libs != null && preloadDataItem.native_libs.length > 0)
 					{
-						for (String nameItem:perloadDataItem.native_libs)
+						for (String nameItem:preloadDataItem.native_libs)
 						{
-							loadedNativeLibs.add(nameItem);
+							loadedNativeLibs.add(nameItem.substring(nameItem.indexOf(File.separator)));
 						}
 					}
+					mPreloadListener.onNModLoaded(nmod);
+				}
+				else
+				{
+					mPreloadListener.onFailedLoadingNMod(nmod);
+					continue;
 				}
 			}
-			perloadData.assets_packs_path = assetsArrayList.toArray(new String[0]);
-			perloadData.dex_path = dexPathArrayList.toArray(new String[0]);
-			perloadData.loaded_libs = loadedNativeLibs.toArray(new String[0]);
-			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(perloadData));
+			preloadData.assets_packs_path = assetsArrayList.toArray(new String[0]);
+			preloadData.dex_path = dexPathArrayList.toArray(new String[0]);
+			preloadData.loaded_libs = loadedNativeLibs.toArray(new String[0]);
+			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(preloadData));
 			mPreloadListener.onFinishedLoadingAllNMods();
 		}
 		else
@@ -107,13 +117,13 @@ public class Preloader
 		mPreloadListener.onFinish(mBundle);
 	}
 
-	private boolean loadNModElfFiles(NMod nmod, NMod.NModPerloadBean perloadDataItem)
+	private boolean loadNModElfFiles(NMod nmod, NMod.NModPreloadBean preloadDataItem)
 	{
 		MinecraftInfo minecraftInfo = mPESdk.getMinecraftInfo();
 
-		if (perloadDataItem.native_libs != null && perloadDataItem.native_libs.length > 0)
+		if (preloadDataItem.native_libs != null && preloadDataItem.native_libs.length > 0)
 		{
-			for (String nameItem:perloadDataItem.native_libs)
+			for (String nameItem:preloadDataItem.native_libs)
 			{
 				try
 				{
@@ -122,14 +132,13 @@ public class Preloader
 				catch (Throwable t)
 				{
 					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_LOAD_LIB_FAILED, t));
-					mPreloadListener.onFailedLoadingNMod(nmod);
 					return false;
 				}
 			}
 
-			for (String nameItem:perloadDataItem.native_libs)
+			for (String nameItem:preloadDataItem.native_libs)
 			{
-				NModLib lib = new NModLib(nameItem);
+				NModLib lib = new NModLib(nameItem.substring(nameItem.indexOf(File.separator)));
 				lib.callOnLoad(minecraftInfo.getMinecraftVersionName(), mPESdk.getNModAPI().getVersionName());
 			}
 		}
@@ -164,9 +173,7 @@ public class Preloader
 
 		public void onStartLoadingAllNMods()
 		{}
-		public void onCopyNModFiles(NMod nmod)
-		{}
-		public void onLoadNModLibs(NMod nmod)
+		public void onNModLoaded(NMod nmod)
 		{}
 		public void onFailedLoadingNMod(NMod nmod)
 		{}

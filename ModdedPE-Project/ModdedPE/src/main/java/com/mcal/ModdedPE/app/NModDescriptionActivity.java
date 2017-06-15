@@ -23,16 +23,16 @@ public class NModDescriptionActivity extends BaseActivity
 		setContentView(R.layout.moddedpe_nmod_description);
 
 		String nmodPackageName = getIntent().getExtras().getString(TAG_PACKAGE_NAME);
-		String iconpath = getIntent().getExtras().getString(TAG_ICON_PATH);
-		Bitmap icon = BitmapFactory.decodeResource(getResources(),R.drawable.mcd_null_pack);
+		Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 		try
 		{
+			String iconpath = getIntent().getExtras().getString(TAG_ICON_PATH);
 			FileInputStream fileInput = new FileInputStream(iconpath);
 			icon = BitmapFactory.decodeStream(fileInput);
 		}
-		catch (FileNotFoundException e)
+		catch (Throwable e)
 		{}
-		
+
 		String description = getIntent().getExtras().getString(TAG_DESCRIPTION);
 		String name = getIntent().getExtras().getString(TAG_NAME);
 		String version_name = getIntent().getExtras().getString(TAG_VERSION_NAME);
@@ -43,7 +43,7 @@ public class NModDescriptionActivity extends BaseActivity
 
 		AppCompatImageView iconImage=(AppCompatImageView)findViewById(R.id.moddedpenmoddescriptionImageViewIcon);
 		iconImage.setImageBitmap(icon);
-		
+
 		AppCompatTextView textViewName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewNModName);
 		textViewName.setText(name);
 		AppCompatTextView textViewPackageName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewNModPackageName);
@@ -65,23 +65,9 @@ public class NModDescriptionActivity extends BaseActivity
 		bundle.putString(TAG_DESCRIPTION, nmod.getDescription());
 		bundle.putString(TAG_AUTHOR, nmod.getAuthor());
 		bundle.putString(TAG_VERSION_NAME, nmod.getVersionName());
-		new File(context.getFilesDir() + File.separator + "nmod_icons").mkdirs();
-		File file = new File(context.getFilesDir() + File.separator + "nmod_icons" + File.separator + nmod.getPackageName());
-		try
-		{
-			Bitmap nmodIcon = nmod.getIcon();
-			if(nmodIcon == null)
-				nmodIcon = BitmapFactory.decodeResource(context.getResources(),R.drawable.mcd_null_pack);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			nmod.getIcon().compress(Bitmap.CompressFormat.PNG, 100, baos);
-			file.createNewFile();
-			FileOutputStream outfile = new FileOutputStream(file);
-			outfile.write(baos.toByteArray());
-			outfile.close();
-			bundle.putString(TAG_ICON_PATH, file.getAbsolutePath());
-		}
-		catch (IOException ioe)
-		{}
+		File iconPath = nmod.copyIconToData();
+		if (iconPath != null)
+			bundle.putString(TAG_ICON_PATH, iconPath.getAbsolutePath());
 		intent.putExtras(bundle);
 		context.startActivity(intent);
 	}

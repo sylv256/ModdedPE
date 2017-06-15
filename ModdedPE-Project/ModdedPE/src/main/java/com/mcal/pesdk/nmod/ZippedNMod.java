@@ -16,9 +16,9 @@ public class ZippedNMod extends NMod
 	private AssetManager mAssets = null;
 
 	@Override
-	public NModPerloadBean copyNModFiles()
+	public NModPreloadBean copyNModFiles()
 	{
-		NModPerloadBean ret = new NModPerloadBean();
+		NModPreloadBean ret = new NModPreloadBean();
 		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) mZipFile.entries();
 
 		new File(getNativeLibsPath()).mkdirs();
@@ -28,7 +28,7 @@ public class ZippedNMod extends NMod
 
 			if (entry == null)
 				continue;
-			
+
 			if (!entry.isDirectory() && entry.getName().startsWith("lib" + File.separator + ABIInfo.getTargetABIType() + File.separator))
 			{
 				try
@@ -51,21 +51,24 @@ public class ZippedNMod extends NMod
 			}
 
 		}
-		
+
 		ArrayList<String> nativeLibs = new ArrayList<String>();
 		ArrayList<String> nativeLibsNeeded = new ArrayList<String>();
-		for(NModLibInfo lib_item:mInfo.native_libs_info)
+		if (mInfo != null && mInfo.native_libs_info != null)
 		{
-			if(lib_item.mode == NModLibInfo.MODE_ALWAYS)
+			for (NModLibInfo lib_item:mInfo.native_libs_info)
 			{
-				nativeLibs.add(lib_item.name);
-			}
-			else if(lib_item.mode == NModLibInfo.MODE_IF_NEEDED)
-			{
-				nativeLibsNeeded.add(lib_item.name);
+				if (lib_item.mode.equals(NModLibInfo.MODE_ALWAYS))
+				{
+					nativeLibs.add(getNativeLibsPath() + File.separator + lib_item.name);
+				}
+				else if (lib_item.mode.equals(NModLibInfo.MODE_IF_NEEDED))
+				{
+					nativeLibsNeeded.add(getNativeLibsPath() + File.separator + lib_item.name);
+				}
 			}
 		}
-		
+
 		ret.native_libs = nativeLibs.toArray(new String[0]);
 		ret.needed_libs = nativeLibsNeeded.toArray(new String[0]);
 		ret.assets_path = getPackageResourcePath();

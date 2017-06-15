@@ -15,11 +15,6 @@ public class ArchiveFailedException extends Exception
 	
 	private int mType;
 	
-	public ArchiveFailedException(int type)
-	{
-		mType = type;
-	}
-	
 	public ArchiveFailedException(int type,Throwable cause)
 	{
 		super(cause);
