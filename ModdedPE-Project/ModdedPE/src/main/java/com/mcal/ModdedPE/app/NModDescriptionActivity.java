@@ -65,7 +65,7 @@ public class NModDescriptionActivity extends BaseActivity
 		bundle.putString(TAG_DESCRIPTION, nmod.getDescription());
 		bundle.putString(TAG_AUTHOR, nmod.getAuthor());
 		bundle.putString(TAG_VERSION_NAME, nmod.getVersionName());
-		File iconPath = nmod.copyIconToData(null);
+		File iconPath = nmod.copyIconToData();
 		if (iconPath != null)
 			bundle.putString(TAG_ICON_PATH, iconPath.getAbsolutePath());
 		intent.putExtras(bundle);

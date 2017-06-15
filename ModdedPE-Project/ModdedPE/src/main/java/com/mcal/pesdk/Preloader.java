@@ -7,6 +7,7 @@ import com.mcal.pesdk.utils.*;
 import java.util.*;
 import com.mcal.pesdk.nativeapi.*;
 import android.content.*;
+import java.io.*;
 
 public class Preloader
 {
@@ -94,7 +95,7 @@ public class Preloader
 					{
 						for (String nameItem:preloadDataItem.native_libs)
 						{
-							loadedNativeLibs.add(nameItem);
+							loadedNativeLibs.add(nameItem.substring(nameItem.indexOf(File.separator)));
 						}
 					}
 					mPreloadListener.onNModLoaded(nmod);
@@ -131,14 +132,13 @@ public class Preloader
 				catch (Throwable t)
 				{
 					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_LOAD_LIB_FAILED, t));
-					mPreloadListener.onFailedLoadingNMod(nmod);
 					return false;
 				}
 			}
 
 			for (String nameItem:preloadDataItem.native_libs)
 			{
-				NModLib lib = new NModLib(nameItem);
+				NModLib lib = new NModLib(nameItem.substring(nameItem.indexOf(File.separator)));
 				lib.callOnLoad(minecraftInfo.getMinecraftVersionName(), mPESdk.getNModAPI().getVersionName());
 			}
 		}

@@ -58,13 +58,13 @@ public class ZippedNMod extends NMod
 		{
 			for (NModLibInfo lib_item:mInfo.native_libs_info)
 			{
-				if (lib_item.mode == NModLibInfo.MODE_ALWAYS)
+				if (lib_item.mode.equals(NModLibInfo.MODE_ALWAYS))
 				{
-					nativeLibs.add(lib_item.name);
+					nativeLibs.add(getNativeLibsPath() + File.separator + lib_item.name);
 				}
-				else if (lib_item.mode == NModLibInfo.MODE_IF_NEEDED)
+				else if (lib_item.mode.equals(NModLibInfo.MODE_IF_NEEDED))
 				{
-					nativeLibsNeeded.add(lib_item.name);
+					nativeLibsNeeded.add(getNativeLibsPath() + File.separator + lib_item.name);
 				}
 			}
 		}

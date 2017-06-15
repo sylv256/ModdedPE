@@ -15,7 +15,6 @@ public class PreloadActivity extends BaseActivity
 {
 	private PreloadUIHandler mPreloadUIHandler = new PreloadUIHandler();
 	private LinearLayout mPreloadingMessageLayout;
-	private Bundle mExtras;
 	private final static int MSG_START_MINECRAFT = 1;
 	private final static int MSG_WRITE_TEXT = 2;
 	private final static int MSG_ERROR = 3;
@@ -123,7 +122,7 @@ public class PreloadActivity extends BaseActivity
 						@Override
 						public void onNModLoaded(NMod nmod)
 						{
-							writeNewText(getString(R.string.preloading_nmod_loaded, new String[]{nmod.getName()}));
+							writeNewText(getString(R.string.preloading_nmod_loaded, new String[]{nmod.getPackageName()}));
 						}
 
 						@Override
@@ -202,9 +201,8 @@ public class PreloadActivity extends BaseActivity
 			}
 			else if (msg.what == MSG_START_MINECRAFT)
 			{
-				mExtras = msg.getData();
 				Intent intent = new Intent(PreloadActivity.this, MinecraftActivity.class);
-				intent.putExtras(mExtras);
+				intent.putExtras(msg.getData());
 				startActivity(intent);
 				finish();
 			}
@@ -214,22 +212,9 @@ public class PreloadActivity extends BaseActivity
 			}
 			else if (msg.what == MSG_START_NMOD_LOADING_FAILED)
 			{
-				mExtras = msg.getData();
-				NModLoadFailActivity.startThisActivity(PreloadActivity.this, (ArrayList<NMod>)msg.obj);
+				NModLoadFailActivity.startThisActivity(PreloadActivity.this, (ArrayList<NMod>)msg.obj,msg.getData());
+				finish();
 			}
-		}
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
-	{
-		super.onActivityResult(requestCode, resultCode, data);
-		if (resultCode == RESULT_OK)
-		{
-			Intent intent = new Intent(PreloadActivity.this, MinecraftActivity.class);
-			intent.putExtras(mExtras);
-			startActivity(intent);
-			finish();
 		}
 	}
 }

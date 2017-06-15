@@ -155,11 +155,9 @@ public abstract class NMod
 		mBugExpection = e;
 	}
 
-	public File copyIconToData(Bitmap bitmap)
+	public File copyIconToData()
 	{
 		Bitmap icon = mIcon;
-		if (mIcon == null)
-			icon = bitmap;
 		if (icon == null)
 			return null;
 		new NModFilePathManager(mContext).getNModIconDir().mkdirs();
