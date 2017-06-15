@@ -94,6 +94,26 @@ public class NModLoadFailActivity extends BaseActivity
 			{
 				imageViewIcon.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack));
 			}
+			final int index = p1;
+			view.setOnClickListener(new View.OnClickListener()
+				{
+
+					@Override
+					public void onClick(View p1)
+					{
+						new AlertDialog.Builder(NModLoadFailActivity.this).setTitle(R.string.load_fail_title).setMessage(getString(R.string.load_fail_msg, new String[]{mTypeStrings.get(index),mMessages.get(index)})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+							{
+
+								@Override
+								public void onClick(DialogInterface p1, int p2)
+								{
+									p1.dismiss();
+								}
+
+
+							}).show();
+					}
+				});
 			return view;
 		}
 	}

@@ -333,6 +333,23 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		mListView.setAdapter(adapterList);
 	}
 
+	private void showBugDialog(NMod nmod)
+	{
+		if(!nmod.isBugPack())
+			return;
+		new AlertDialog.Builder(getContext()).setTitle(R.string.load_fail_title).setMessage(getString(R.string.load_fail_msg,new String[]{nmod.getLoadException().toTypeString(),nmod.getLoadException().getCause().toString()})).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface p1, int p2)
+				{
+					p1.dismiss();
+				}
+				
+			
+		}).show();
+	}
+	
 	public class NModListAdapter extends BaseAdapter 
     {
 		private ArrayList<NMod> mImportedEnabledNMods = new ArrayList<NMod>();
@@ -444,7 +461,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(View p1)
 				{
-					//NModLoadFailActivity.startThisActivity(getContext(), nmod);
+					showBugDialog(nmod);
 				}
 
 
@@ -581,7 +598,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(View p1)
 				{
-					//NModLoadFailActivity.startThisActivity(getContext(), nmod);
+					showBugDialog(nmod);
 				}
 
 

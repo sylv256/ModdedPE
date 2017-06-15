@@ -2,8 +2,6 @@ package com.mcal.pesdk.nmod;
 
 public class LoadFailedException extends Exception
 {
-	private String mFailMsg = null;
-	private Throwable mCause = null;
 	private int mType;
 	
 	public static final int TYPE_LOAD_LIB_FAILED = 1;
@@ -11,20 +9,12 @@ public class LoadFailedException extends Exception
 	
 	public LoadFailedException(String failMsg,Throwable throwable)
 	{
-		super();
-		mFailMsg = failMsg;
-		mCause = throwable;
+		super(throwable);
 	}
 	
 	public LoadFailedException(String failMsg)
 	{
-		super();
-		mFailMsg = failMsg;
-	}
-	
-	public LoadFailedException(int type)
-	{
-		mType = type;
+		super(new Exception(failMsg));
 	}
 	
 	public LoadFailedException(int type,Throwable cause)
@@ -36,19 +26,6 @@ public class LoadFailedException extends Exception
 	public int getType()
 	{
 		return mType;
-	}
-	
-	public String getNModBugMessage()
-	{
-		if(mFailMsg == null)
-			return mCause.toString();
-		return mFailMsg;
-	}
-
-	@Override
-	public String toString()
-	{
-		return mCause.toString();
 	}
 	
 	public String toTypeString()
