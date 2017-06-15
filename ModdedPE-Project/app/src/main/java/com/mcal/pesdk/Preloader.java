@@ -29,7 +29,7 @@ public class Preloader
 		this(pesdk, bundle, null);
 	}
 
-	public void preload()throws PreloadException
+	public void preload(Context context) throws PreloadException
 	{
 		mPreloadListener.onStart();
 
@@ -50,9 +50,9 @@ public class Preloader
 			mPreloadListener.onLoadGameLauncherLib();
 			LibraryLoader.loadLauncher();
 			mPreloadListener.onLoadFModLib();
-			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			LibraryLoader.loadFMod(context, mPESdk.getMinecraftInfo().getMinecraftPackageContext());
 			mPreloadListener.onLoadMinecraftPELib();
-			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			LibraryLoader.loadMinecraftPE(context, mPESdk.getMinecraftInfo().getMinecraftPackageContext());
 			if (!safeMode)
 			{
 				mPreloadListener.onLoadNModAPILib();

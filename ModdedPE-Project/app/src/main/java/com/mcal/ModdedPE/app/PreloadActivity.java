@@ -159,7 +159,7 @@ public class PreloadActivity extends BaseActivity
 							}
 						}
 
-					}).preload();
+					}).preload(PreloadActivity.this);
 			}
 			catch (PreloadException e)
 			{
