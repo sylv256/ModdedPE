@@ -127,19 +127,12 @@ public class NModPackagePickerActivity extends BaseActivity
 					@Override
 					public void onClick(View p1)
 					{
-						if (nmod.isBugPack())
-						{
-							NModLoadFailActivity.startThisActivity(NModPackagePickerActivity.this, nmod);
-						}
-						else
-						{
-							Intent intent = new Intent();
-							Bundle extras = new Bundle();
-							extras.putString(TAG_PACKAGE_NAME, nmod.getPackageName());
-							intent.putExtras(extras);
-							setResult(RESULT_OK, intent);
-							finish();
-						}
+						Intent intent = new Intent();
+						Bundle extras = new Bundle();
+						extras.putString(TAG_PACKAGE_NAME, nmod.getPackageName());
+						intent.putExtras(extras);
+						setResult(RESULT_OK, intent);
+						finish();
 					}
 
 

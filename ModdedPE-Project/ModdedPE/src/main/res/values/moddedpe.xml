@@ -10,12 +10,11 @@
 	<string name="main_title">Home Page</string>
 	<string name="prestart_title">Preloading</string>
 	<string name="import_nmod_title">Import NMod</string>
+	<string name="nmods_load_failed_title">Some NMods Were Broken</string>
 	
 	<!--NMod-->
-	<string name="nmod_loadFailed">Load %1$s Failed!</string>
-	<string name="load_fail_msg">Load Error:</string>
-	<string name="load_fail_description">NMod load failed,but the game can still be opened.</string>
-	<string name="nmod_load_failed">Failed to load NMod.</string>
+	<string name="load_fail_title">Load Failed!</string>
+	<string name="load_fail_msg">Error Type:\n%1$s\nError Message:\n%2$s</string>
 	<string name="nmod_enabled_title">Enabled NMods</string>
 	<string name="nmod_disabled_title">Disabled NMods</string>
 	<string name="nmod_importing_title">Importing NMod...</string>
@@ -42,10 +41,6 @@
 	<string name="nmod_add_new_message">Where do you want to pick NMod from?</string>
 	<string name="nmod_add_new_pick_installed">Apps</string>
 	<string name="nmod_add_new_pick_storage">Storage</string>
-	<string name="load_fail_main">Error Description</string>
-	<string name="load_fail_deal">How to Deal</string>
-	<string name="load_fail_all">Full Description</string>
-	<string name="load_fail_warning">An error was caused by the NMod %1$s.The NMod is disabled now,you can continue to enjoy the game!</string>
 	<string name="nmod_delete_title">Delete NMod</string>
 	<string name="nmod_delete_message">Do you really want to delete it?It may be lost for a long time.(REALLY LONG!)</string>
 	<string name="nmod_description_description_title">Description</string>
@@ -78,7 +73,12 @@
 	<string name="preloading_loading_lib_fmod">--Loading libfmod.so</string>
 	<string name="preloading_loading_lib_minecraftpe">--Loading libminecraftpe.so</string>
 	<string name="preloading_loading_lib_nmodapi">--Loading libnmodapi.so</string>
-	<string name="preloading_initing_loading_libs_done">Loading Native Libs is Done</string>
+	<string name="preloading_initing_loading_libs_done">Loading Native Libs Done</string>
+	<string name="preloading_nmod_start_loading">Loading NMods</string>
+	<string name="preloading_nmod_loaded">--Loaded NMod:%1$s</string>
+	<string name="preloading_nmod_loaded_failed">--Loading Failed:%1$s</string>
+	<string name="preloading_nmod_finish_loading">Loading NMods Done</string>
+	<string name="preloading_finished">Starting Game...</string>
 	
 	<string-array name="preloading_tips_text">
 		<item>APK formatted nmod can also be imported~</item>

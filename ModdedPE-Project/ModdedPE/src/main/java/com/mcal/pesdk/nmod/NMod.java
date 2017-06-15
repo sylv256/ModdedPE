@@ -15,12 +15,12 @@ public abstract class NMod
 	private Bitmap mIcon;
 	private Bitmap mBannerImage;
 	private String mPackageName;
-	
+
 	public static final String MANIFEST_NAME = "nmod_manifest.json";
 	public static final int NMOD_TYPE_ZIPPED = 1;
 	public static final int NMOD_TYPE_PACKAGED = 2;
 
-	public abstract NModPerloadBean copyNModFiles();
+	public abstract NModPreloadBean copyNModFiles();
 	public abstract AssetManager getAssets();
 	public abstract String getPackageResourcePath();
 	public abstract int getNModType();
@@ -155,26 +155,51 @@ public abstract class NMod
 		mBugExpection = e;
 	}
 
+	public File copyIconToData(Bitmap bitmap)
+	{
+		Bitmap icon = mIcon;
+		if (mIcon == null)
+			icon = bitmap;
+		if (icon == null)
+			return null;
+		new NModFilePathManager(mContext).getNModIconDir().mkdirs();
+		File file = new NModFilePathManager(mContext).getNModIconPath(this);
+		try
+		{
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			icon.compress(Bitmap.CompressFormat.PNG, 100, baos);
+			file.createNewFile();
+			FileOutputStream outfile = new FileOutputStream(file);
+			outfile.write(baos.toByteArray());
+			outfile.close();
+			return file;
+		}
+		catch (IOException ioe)
+		{
+			return null;
+		}
+	}
+
 	public final LoadFailedException getLoadException()
 	{
 		return mBugExpection;
 	}
-	
+
 	public final void addWarning(NModWarning warning)
 	{
 		mWarnings.add(warning);
 	}
-	
+
 	public final ArrayList<NModWarning> getWarnings()
 	{
 		ArrayList<NModWarning> newArray = new ArrayList<NModWarning>();
 		newArray.addAll(mWarnings);
 		return newArray;
 	}
-	
+
 	protected void checkWarnings()
 	{
-		
+
 	}
 
 	protected final void preload()
@@ -182,7 +207,7 @@ public abstract class NMod
 		this.mBugExpection = null;
 
 		this.mIcon = createIcon();
-		
+
 		try
 		{
 			InputStream is = createInfoInputStream();
@@ -226,13 +251,13 @@ public abstract class NMod
 		}
 	}
 
-	protected NMod(String packageName,Context context)
+	protected NMod(String packageName, Context context)
 	{
 		mContext = context;
 		mPackageName = packageName;
 	}
 
-	public static class NModPerloadBean
+	public static class NModPreloadBean
 	{
 		public String[] native_libs;
 		public String[] needed_libs;
@@ -251,17 +276,17 @@ public abstract class NMod
 	{
 		public String path = null;
 		public String mode = MODE_REPLACE;
-		
+
 		public static final String MODE_REPLACE = "replace";
 		public static final String MODE_MERGE = "merge";
 	}
-	
+
 	public static class NModLibInfo
 	{
 		public boolean use_api = false;
 		public String name = null;
 		public String mode = MODE_ALWAYS;
-		
+
 		public static final String MODE_ALWAYS = "always";
 		public static final String MODE_IF_NEEDED = "if_needed";
 	}
@@ -284,7 +309,7 @@ public abstract class NMod
 		public String banner_image_path = null;
 		public String change_log = null;
 		public String check_target_version_mode = "no_check";
-		
+
 		public static final String CHECK_MODE_NEVER = "never";
 		public static final String CHECK_MODE_ALWAYS = "always";
 		public static final String CHECK_MODE_SHOW_WARNING = "show_warning";

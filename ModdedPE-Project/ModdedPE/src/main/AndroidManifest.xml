@@ -25,7 +25,7 @@
 
 	<application 
 		android:hasCode="true"
-		android:debuggable="false"
+		android:debuggable="true"
 		android:icon="@drawable/ic_launcher"
 		android:name="com.mcal.ModdedPE.ModdedPEApplication"
 		android:label="@string/app_name"
@@ -122,6 +122,7 @@
 			android:name="com.mcal.ModdedPE.app.NModLoadFailActivity"
 			android:theme="@style/AppTheme"
 			android:launchMode="singleTask"
+			android:label="@string/nmods_load_failed_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 

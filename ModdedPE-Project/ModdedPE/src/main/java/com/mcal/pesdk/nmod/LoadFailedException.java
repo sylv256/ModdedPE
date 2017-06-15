@@ -50,4 +50,9 @@ public class LoadFailedException extends Exception
 	{
 		return mCause.toString();
 	}
+	
+	public String toTypeString()
+	{
+		return "TYPE";
+	}
 }

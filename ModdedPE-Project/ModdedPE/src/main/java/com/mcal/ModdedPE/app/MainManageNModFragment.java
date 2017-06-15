@@ -444,7 +444,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(View p1)
 				{
-					NModLoadFailActivity.startThisActivity(getContext(), nmod);
+					//NModLoadFailActivity.startThisActivity(getContext(), nmod);
 				}
 
 
@@ -581,7 +581,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(View p1)
 				{
-					NModLoadFailActivity.startThisActivity(getContext(), nmod);
+					//NModLoadFailActivity.startThisActivity(getContext(), nmod);
 				}
 
 
