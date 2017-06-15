@@ -243,7 +243,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					public void onClick(DialogInterface p1, int p2)
 					{
 						p1.dismiss();
-						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new String[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new Object[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 							{
 
 								@Override
@@ -337,7 +337,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 	{
 		if(!nmod.isBugPack())
 			return;
-		new AlertDialog.Builder(getContext()).setTitle(R.string.load_fail_title).setMessage(getString(R.string.load_fail_msg,new String[]{nmod.getLoadException().toTypeString(),nmod.getLoadException().getCause().toString()})).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+		new AlertDialog.Builder(getContext()).setTitle(R.string.load_fail_title).setMessage(getString(R.string.load_fail_msg,new Object[]{nmod.getLoadException().toTypeString(),nmod.getLoadException().getCause().toString()})).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
 			{
 
 				@Override

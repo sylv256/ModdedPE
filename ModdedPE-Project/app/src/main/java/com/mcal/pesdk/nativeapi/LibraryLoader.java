@@ -4,12 +4,12 @@ import java.io.*;
 
 public class LibraryLoader
 {
-	public static final String FMOD_LIB_NAME = "libfmod.so";
-	public static final String MINECRAFTPE_LIB_NAME = "libminecraftpe.so";
+	private static final String FMOD_LIB_NAME = "libfmod.so";
+	private static final String MINECRAFTPE_LIB_NAME = "libminecraftpe.so";
 
-	public static final String API_NAME = "nmodapi";
-	public static final String SUBSTRATE_NAME = "substrate";
-	public static final String LAUNCHER_NAME = "pesdk-game-launcher";
+	private static final String API_NAME = "nmodapi";
+	private static final String SUBSTRATE_NAME = "substrate";
+	private static final String LAUNCHER_NAME = "pesdk-game-launcher";
 	
 	static public void loadSubstrate()
 	{
