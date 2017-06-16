@@ -2,8 +2,6 @@
 #include <android/native_activity.h>
 #include <dlfcn.h>
 
-#include "Substrate.h"
-
 extern "C" void ANativeActivity_onCreate(ANativeActivity* activity,void* savedState, size_t savedStateSize)
 {
 	void* imageMCPE=(void*) dlopen("libminecraftpe.so",RTLD_LAZY);

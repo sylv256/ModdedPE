@@ -15,15 +15,6 @@ bool mGameStarted = false;
 JavaVM* mJvm = NULL;
 
 //-------------------------------------------------------------
-// Strcutures
-//-------------------------------------------------------------
-
-struct ScreenChooser
-{
-	void setStartMenuScreen();
-};
-
-//-------------------------------------------------------------
 // Methods Definition
 //-------------------------------------------------------------
 
@@ -175,6 +166,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 {
 	mJvm=vm;
 	//Register Hooks
-	MSHookFunction((void*)&ScreenChooser::setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
+	void* imageMCPE = (void*)dlopen("libminecraftpe.so",RTLD_LAZY);
+	void* ptr_setStartMenuScreen = (void*)dlsym(imageMCPE,"_ZN13ScreenChooser18setStartMenuScreenEv");
+	MSHookFunction(ptr_setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
 	return JNI_VERSION_1_6;
 }

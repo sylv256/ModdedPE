@@ -3,6 +3,6 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := nmodapi
 LOCAL_SRC_FILES_RAW := $(shell find $(LOCAL_PATH) -name '*.cpp') $(shell find $(LOCAL_PATH) -name '*.c')
 LOCAL_SRC_FILES := $(LOCAL_SRC_FILES_RAW:$(LOCAL_PATH)/%=%)
-LOCAL_LDLIBS    := -L$(LOCAL_PATH)/$(TARGET_ARCH_ABI) -llog -ldl -lminecraftpe -lsubstrate
+LOCAL_LDLIBS    := -L$(LOCAL_PATH)/$(TARGET_ARCH_ABI) -llog -ldl -lsubstrate
 TARGET_NO_UNDEFINED_LDFLAGS :=
 include $(BUILD_SHARED_LIBRARY)
