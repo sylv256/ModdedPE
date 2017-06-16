@@ -34,14 +34,14 @@ public class ZippedNMod extends NMod
 				try
 				{
 					InputStream libInputStream = mZipFile.getInputStream(entry);
-					int byteReaded = -1;
+					int byteRead = -1;
 					byte[] buffer = new byte[1024];
 					File outFile = new File(getNativeLibsPath() + File.separator + entry.getName().substring(entry.getName().lastIndexOf(File.separator) + 1));
 					outFile.createNewFile();
 					FileOutputStream writerStream = new FileOutputStream(outFile);
-					while ((byteReaded = libInputStream.read(buffer)) != -1)
+					while ((byteRead = libInputStream.read(buffer)) != -1)
 					{
-						writerStream.write(buffer, 0, byteReaded);
+						writerStream.write(buffer, 0, byteRead);
 					}
 					libInputStream.close();
 					writerStream.close();

@@ -87,11 +87,11 @@ class NModArchiver
 					{
 						zipOutputStream.putNextEntry(entry);
 						InputStream from = zipFile.getInputStream(entry);
-						int byteReaded = -1;
+						int byteRead = -1;
 						byte[] buffer = new byte[1024];
-						while ((byteReaded = from.read(buffer)) != -1)
+						while ((byteRead = from.read(buffer)) != -1)
 						{
-							zipOutputStream.write(buffer, 0, byteReaded);
+							zipOutputStream.write(buffer, 0, byteRead);
 						}
 						from.close();
 						zipOutputStream.closeEntry();
@@ -152,11 +152,11 @@ class NModArchiver
 					{
 						zipOutputStream.putNextEntry(entry);
 						InputStream from = zipFile.getInputStream(entry);
-						int byteReaded = -1;
+						int byteRead = -1;
 						byte[] buffer = new byte[1024];
-						while ((byteReaded = from.read(buffer)) != -1)
+						while ((byteRead = from.read(buffer)) != -1)
 						{
-							zipOutputStream.write(buffer, 0, byteReaded);
+							zipOutputStream.write(buffer, 0, byteRead);
 						}
 						from.close();
 						zipOutputStream.closeEntry();
@@ -185,11 +185,11 @@ class NModArchiver
 			finalFile.createNewFile();
 			FileOutputStream finalFileOutput = new FileOutputStream(finalFile);
 			FileInputStream fileInput = new FileInputStream(cachedNModFile);
-			int byteReaded = -1;
+			int byteRead = -1;
 			byte[] buffer = new byte[1024];
-			while ((byteReaded = fileInput.read(buffer)) != -1)
+			while ((byteRead = fileInput.read(buffer)) != -1)
 			{
-				finalFileOutput.write(buffer, 0, byteReaded);
+				finalFileOutput.write(buffer, 0, byteRead);
 			}
 			finalFileOutput.close();
 			fileInput.close();

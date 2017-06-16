@@ -50,7 +50,7 @@ public class LibraryLoader
 
 	static public void loadMinecraftPE(Context context, Context mcContext) throws IOException,RuntimeException
 	{
-		/*ZipFile zipFile = new ZipFile(new File(mcContext.getPackageResourcePath()));
+		ZipFile zipFile = new ZipFile(new File(mcContext.getPackageResourcePath()));
 		ZipEntry entry = zipFile.getEntry("lib" + File.separator + ABIInfo.getTargetABIType() + File.separator + MINECRAFTPE_LIB_NAME);
 		if (entry == null)
 			throw new RuntimeException("Elf file libminecraftpe.so not found in apk.");
@@ -67,8 +67,7 @@ public class LibraryLoader
 			writerStream.write(buffer, 0, byteRead);
 		}
 		libInputStream.close();
-		writerStream.close();*/
-		System.load("/data/user/0/com.mojang.minecraftpe/lib/libminecraftpe.so");
+		writerStream.close();
 	}
 
 	static public void loadNModAPI()
