@@ -25,20 +25,12 @@ public class LibraryLoader
 
 	static public void loadFMod(Context mcContext)
 	{
-		File filesDir = mcContext.getFilesDir();
-		File parent = filesDir.getParentFile();
-		File libsDir = new File(parent, "lib");
-		File libFile = new File(libsDir, FMOD_LIB_NAME);
-		System.load(libFile.getAbsolutePath());
+		System.load(new File(mcContext.getApplicationInfo().nativeLibraryDir,FMOD_LIB_NAME).getAbsolutePath());
 	}
 
 	static public void loadMinecraftPE(Context mcContext)
 	{
-		File filesDir = mcContext.getFilesDir();
-		File parent = filesDir.getParentFile();
-		File libsDir = new File(parent, "lib");
-		File libFile = new File(libsDir, MINECRAFTPE_LIB_NAME);
-		System.load(libFile.getAbsolutePath());
+		System.load(new File(mcContext.getApplicationInfo().nativeLibraryDir,FMOD_LIB_NAME).getAbsolutePath());
 	}
 
 	static public void loadNModAPI()
