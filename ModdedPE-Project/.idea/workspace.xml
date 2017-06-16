@@ -40,21 +40,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Preloader.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Preloader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/Preloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="81">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MinecraftActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PreloadActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/PreloadActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5319">
+              <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MinecraftActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+            <state relative-caret-position="297">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -63,12 +73,9 @@
       <file leaf-file-name="LibraryLoader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/nativeapi/LibraryLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
+            <state relative-caret-position="621">
               <caret line="32" column="97" selection-start-line="32" selection-start-column="97" selection-end-line="32" selection-end-column="97" />
-              <folding>
-                <element signature="e#1000#1001#0" expanded="true" />
-                <element signature="e#1035#1036#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -76,8 +83,8 @@
       <file leaf-file-name="UtilsSettings.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/utils/UtilsSettings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-162">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="594">
+              <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -86,8 +93,8 @@
       <file leaf-file-name="GameManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+            <state relative-caret-position="486">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -96,7 +103,7 @@
       <file leaf-file-name="MinecraftInfo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/utils/MinecraftInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
+            <state relative-caret-position="1053">
               <caret line="43" column="64" selection-start-line="43" selection-start-column="64" selection-end-line="43" selection-end-column="64" />
               <folding />
             </state>
@@ -108,43 +115,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="8397">
               <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#1768#1769#0" expanded="false" />
-                <element signature="e#1795#1796#0" expanded="false" />
-                <element signature="e#2546#2547#0" expanded="false" />
-                <element signature="e#2587#2588#0" expanded="false" />
-                <element signature="e#5827#5828#0" expanded="false" />
-                <element signature="e#5852#5853#0" expanded="false" />
-                <element signature="e#8025#8026#0" expanded="false" />
-                <element signature="e#8059#8060#0" expanded="false" />
-                <element signature="e#9019#9020#0" expanded="false" />
-                <element signature="e#9050#9051#0" expanded="false" />
-                <element signature="e#9422#9423#0" expanded="false" />
-                <element signature="e#9453#9454#0" expanded="false" />
-                <element signature="e#10794#10795#0" expanded="false" />
-                <element signature="e#10819#10820#0" expanded="false" />
-                <element signature="e#11510#11511#0" expanded="false" />
-                <element signature="e#11534#11535#0" expanded="false" />
-                <element signature="e#11590#11591#0" expanded="false" />
-                <element signature="e#11614#11615#0" expanded="false" />
-                <element signature="e#13161#13162#0" expanded="false" />
-                <element signature="e#13188#13189#0" expanded="false" />
-                <element signature="e#14352#14353#0" expanded="false" />
-                <element signature="e#14384#14385#0" expanded="false" />
-                <element signature="e#15230#15231#0" expanded="false" />
-                <element signature="e#15263#15264#0" expanded="false" />
-                <element signature="e#17330#17331#0" expanded="false" />
-                <element signature="e#17361#17362#0" expanded="false" />
-                <element signature="e#17514#17515#0" expanded="false" />
-                <element signature="e#17588#17589#0" expanded="false" />
-                <element signature="e#18751#18752#0" expanded="false" />
-                <element signature="e#18783#18784#0" expanded="false" />
-                <element signature="e#19629#19630#0" expanded="false" />
-                <element signature="e#19662#19663#0" expanded="false" />
-                <element signature="e#21661#21662#0" expanded="false" />
-                <element signature="e#21735#21736#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1965,20 +1936,21 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/NModLoadFailActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/PreloadActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/ImportNModActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MainManageNModFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/utils/MinecraftInfo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/Preloader.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/nativeapi/LibraryLoader.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/PreloadActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/utils/UtilsSettings.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-11" />
     <option name="y" value="-11" />
-    <option name="width" value="1942" />
+    <option name="width" value="1934" />
     <option name="height" value="1042" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -1992,7 +1964,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -2005,23 +1977,13 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane />
-      </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="Nexus_5X_API_24" />
+    <property name="device.picker.selection" value="Nexus_5X_API_25_2_arm" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ModdedPE-Project/ModdedPE/build.gradle" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -2361,7 +2323,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <frame x="-11" y="-11" width="1934" height="1042" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.49784017" order="6" side_tool="false" content_ui="tabs" />
@@ -2369,7 +2331,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39232674" sideWeight="0.5215983" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39232674" sideWeight="0.5215983" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.48704103" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.48704103" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2377,12 +2339,12 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39321607" sideWeight="0.505618" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0021598272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33044556" sideWeight="0.48920086" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33044556" sideWeight="0.48920086" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16306695" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2391,7 +2353,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4638229" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -2437,14 +2399,168 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java</url>
+          <line>12</line>
+          <properties />
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java</url>
+          <line>13</line>
+          <properties />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java</url>
+          <line>14</line>
+          <properties />
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java</url>
+          <line>15</line>
+          <properties />
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>32</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>33</line>
+          <properties />
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>35</line>
+          <properties />
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>36</line>
+          <properties />
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>37</line>
+          <properties />
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>47</line>
+          <properties />
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>46</line>
+          <properties />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>45</line>
+          <properties />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>44</line>
+          <properties />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>43</line>
+          <properties />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>41</line>
+          <properties />
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>39</line>
+          <properties />
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>49</line>
+          <properties />
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>51</line>
+          <properties />
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>53</line>
+          <properties />
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>54</line>
+          <properties />
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="18" />
+      <option name="time" value="53" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MainManageNModFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8397">
+          <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/Preloader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2457,7 +2573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2465,10 +2580,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1647">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="e#1000#1001#0" expanded="true" />
-            <element signature="e#1035#1036#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2492,43 +2604,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8397">
           <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1768#1769#0" expanded="false" />
-            <element signature="e#1795#1796#0" expanded="false" />
-            <element signature="e#2546#2547#0" expanded="false" />
-            <element signature="e#2587#2588#0" expanded="false" />
-            <element signature="e#5827#5828#0" expanded="false" />
-            <element signature="e#5852#5853#0" expanded="false" />
-            <element signature="e#8025#8026#0" expanded="false" />
-            <element signature="e#8059#8060#0" expanded="false" />
-            <element signature="e#9019#9020#0" expanded="false" />
-            <element signature="e#9050#9051#0" expanded="false" />
-            <element signature="e#9422#9423#0" expanded="false" />
-            <element signature="e#9453#9454#0" expanded="false" />
-            <element signature="e#10794#10795#0" expanded="false" />
-            <element signature="e#10819#10820#0" expanded="false" />
-            <element signature="e#11510#11511#0" expanded="false" />
-            <element signature="e#11534#11535#0" expanded="false" />
-            <element signature="e#11590#11591#0" expanded="false" />
-            <element signature="e#11614#11615#0" expanded="false" />
-            <element signature="e#13161#13162#0" expanded="false" />
-            <element signature="e#13188#13189#0" expanded="false" />
-            <element signature="e#14352#14353#0" expanded="false" />
-            <element signature="e#14384#14385#0" expanded="false" />
-            <element signature="e#15230#15231#0" expanded="false" />
-            <element signature="e#15263#15264#0" expanded="false" />
-            <element signature="e#17330#17331#0" expanded="false" />
-            <element signature="e#17361#17362#0" expanded="false" />
-            <element signature="e#17514#17515#0" expanded="false" />
-            <element signature="e#17588#17589#0" expanded="false" />
-            <element signature="e#18751#18752#0" expanded="false" />
-            <element signature="e#18783#18784#0" expanded="false" />
-            <element signature="e#19629#19630#0" expanded="false" />
-            <element signature="e#19662#19663#0" expanded="false" />
-            <element signature="e#21661#21662#0" expanded="false" />
-            <element signature="e#21735#21736#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2544,7 +2620,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2552,10 +2627,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1647">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="e#1000#1001#0" expanded="true" />
-            <element signature="e#1035#1036#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2579,43 +2651,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8397">
           <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1768#1769#0" expanded="false" />
-            <element signature="e#1795#1796#0" expanded="false" />
-            <element signature="e#2546#2547#0" expanded="false" />
-            <element signature="e#2587#2588#0" expanded="false" />
-            <element signature="e#5827#5828#0" expanded="false" />
-            <element signature="e#5852#5853#0" expanded="false" />
-            <element signature="e#8025#8026#0" expanded="false" />
-            <element signature="e#8059#8060#0" expanded="false" />
-            <element signature="e#9019#9020#0" expanded="false" />
-            <element signature="e#9050#9051#0" expanded="false" />
-            <element signature="e#9422#9423#0" expanded="false" />
-            <element signature="e#9453#9454#0" expanded="false" />
-            <element signature="e#10794#10795#0" expanded="false" />
-            <element signature="e#10819#10820#0" expanded="false" />
-            <element signature="e#11510#11511#0" expanded="false" />
-            <element signature="e#11534#11535#0" expanded="false" />
-            <element signature="e#11590#11591#0" expanded="false" />
-            <element signature="e#11614#11615#0" expanded="false" />
-            <element signature="e#13161#13162#0" expanded="false" />
-            <element signature="e#13188#13189#0" expanded="false" />
-            <element signature="e#14352#14353#0" expanded="false" />
-            <element signature="e#14384#14385#0" expanded="false" />
-            <element signature="e#15230#15231#0" expanded="false" />
-            <element signature="e#15263#15264#0" expanded="false" />
-            <element signature="e#17330#17331#0" expanded="false" />
-            <element signature="e#17361#17362#0" expanded="false" />
-            <element signature="e#17514#17515#0" expanded="false" />
-            <element signature="e#17588#17589#0" expanded="false" />
-            <element signature="e#18751#18752#0" expanded="false" />
-            <element signature="e#18783#18784#0" expanded="false" />
-            <element signature="e#19629#19630#0" expanded="false" />
-            <element signature="e#19662#19663#0" expanded="false" />
-            <element signature="e#21661#21662#0" expanded="false" />
-            <element signature="e#21735#21736#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2631,10 +2667,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#1000#1001#0" expanded="true" />
-            <element signature="e#1035#1036#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2650,43 +2683,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8397">
           <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1768#1769#0" expanded="false" />
-            <element signature="e#1795#1796#0" expanded="false" />
-            <element signature="e#2546#2547#0" expanded="false" />
-            <element signature="e#2587#2588#0" expanded="false" />
-            <element signature="e#5827#5828#0" expanded="false" />
-            <element signature="e#5852#5853#0" expanded="false" />
-            <element signature="e#8025#8026#0" expanded="false" />
-            <element signature="e#8059#8060#0" expanded="false" />
-            <element signature="e#9019#9020#0" expanded="false" />
-            <element signature="e#9050#9051#0" expanded="false" />
-            <element signature="e#9422#9423#0" expanded="false" />
-            <element signature="e#9453#9454#0" expanded="false" />
-            <element signature="e#10794#10795#0" expanded="false" />
-            <element signature="e#10819#10820#0" expanded="false" />
-            <element signature="e#11510#11511#0" expanded="false" />
-            <element signature="e#11534#11535#0" expanded="false" />
-            <element signature="e#11590#11591#0" expanded="false" />
-            <element signature="e#11614#11615#0" expanded="false" />
-            <element signature="e#13161#13162#0" expanded="false" />
-            <element signature="e#13188#13189#0" expanded="false" />
-            <element signature="e#14352#14353#0" expanded="false" />
-            <element signature="e#14384#14385#0" expanded="false" />
-            <element signature="e#15230#15231#0" expanded="false" />
-            <element signature="e#15263#15264#0" expanded="false" />
-            <element signature="e#17330#17331#0" expanded="false" />
-            <element signature="e#17361#17362#0" expanded="false" />
-            <element signature="e#17514#17515#0" expanded="false" />
-            <element signature="e#17588#17589#0" expanded="false" />
-            <element signature="e#18751#18752#0" expanded="false" />
-            <element signature="e#18783#18784#0" expanded="false" />
-            <element signature="e#19629#19630#0" expanded="false" />
-            <element signature="e#19662#19663#0" expanded="false" />
-            <element signature="e#21661#21662#0" expanded="false" />
-            <element signature="e#21735#21736#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2742,13 +2739,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi-v4/com_facebook_tooltip_black_background.9.png" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/moddedpe_manage_nmod.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="59">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
@@ -2832,27 +2829,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/moddedpe_preloading.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/PreloadActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3591">
-          <caret line="41" column="69" selection-start-line="41" selection-start-column="69" selection-end-line="41" selection-end-column="69" />
-          <folding>
-            <element signature="e#1398#1404#0" expanded="false" />
-            <element signature="e#1739#1863#0" expanded="false" />
-            <element signature="e#1899#2054#0" expanded="false" />
-            <element signature="e#3593#3672#0" expanded="false" />
-            <element signature="e#3777#3863#0" expanded="false" />
-          </folding>
-        </state>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/ImportNModActivity.java">
@@ -2866,43 +2849,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8397">
           <caret line="347" column="16" selection-start-line="347" selection-start-column="16" selection-end-line="347" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1768#1769#0" expanded="false" />
-            <element signature="e#1795#1796#0" expanded="false" />
-            <element signature="e#2546#2547#0" expanded="false" />
-            <element signature="e#2587#2588#0" expanded="false" />
-            <element signature="e#5827#5828#0" expanded="false" />
-            <element signature="e#5852#5853#0" expanded="false" />
-            <element signature="e#8025#8026#0" expanded="false" />
-            <element signature="e#8059#8060#0" expanded="false" />
-            <element signature="e#9019#9020#0" expanded="false" />
-            <element signature="e#9050#9051#0" expanded="false" />
-            <element signature="e#9422#9423#0" expanded="false" />
-            <element signature="e#9453#9454#0" expanded="false" />
-            <element signature="e#10794#10795#0" expanded="false" />
-            <element signature="e#10819#10820#0" expanded="false" />
-            <element signature="e#11510#11511#0" expanded="false" />
-            <element signature="e#11534#11535#0" expanded="false" />
-            <element signature="e#11590#11591#0" expanded="false" />
-            <element signature="e#11614#11615#0" expanded="false" />
-            <element signature="e#13161#13162#0" expanded="false" />
-            <element signature="e#13188#13189#0" expanded="false" />
-            <element signature="e#14352#14353#0" expanded="false" />
-            <element signature="e#14384#14385#0" expanded="false" />
-            <element signature="e#15230#15231#0" expanded="false" />
-            <element signature="e#15263#15264#0" expanded="false" />
-            <element signature="e#17330#17331#0" expanded="false" />
-            <element signature="e#17361#17362#0" expanded="false" />
-            <element signature="e#17514#17515#0" expanded="false" />
-            <element signature="e#17588#17589#0" expanded="false" />
-            <element signature="e#18751#18752#0" expanded="false" />
-            <element signature="e#18783#18784#0" expanded="false" />
-            <element signature="e#19629#19630#0" expanded="false" />
-            <element signature="e#19662#19663#0" expanded="false" />
-            <element signature="e#21661#21662#0" expanded="false" />
-            <element signature="e#21735#21736#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2917,57 +2864,68 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="143">
           <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/utils/MinecraftInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
+        <state relative-caret-position="1053">
           <caret line="43" column="64" selection-start-line="43" selection-start-column="64" selection-end-line="43" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/utils/UtilsSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/nativeapi/LibraryLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
+        <state relative-caret-position="621">
           <caret line="32" column="97" selection-start-line="32" selection-start-column="97" selection-end-line="32" selection-end-column="97" />
-          <folding>
-            <element signature="e#1000#1001#0" expanded="true" />
-            <element signature="e#1035#1036#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/utils/UtilsSettings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+        <state relative-caret-position="594">
+          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/GameManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-25/android/os/Looper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3618">
+          <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/PreloadActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5319">
+          <caret line="209" column="0" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/pesdk/Preloader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="81">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/mcal/ModdedPE/app/MinecraftActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding />
         </state>
       </provider>

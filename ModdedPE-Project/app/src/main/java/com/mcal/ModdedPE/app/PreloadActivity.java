@@ -62,7 +62,9 @@ public class PreloadActivity extends BaseActivity
 								Thread.sleep(1500);
 							}
 							catch (InterruptedException e)
-							{}
+							{
+								e.printStackTrace();
+							}
 						}
 
 						@Override
@@ -143,7 +145,9 @@ public class PreloadActivity extends BaseActivity
 									Thread.sleep(1500);
 								}
 								catch (InterruptedException e)
-								{}
+								{
+									e.printStackTrace();
+								}
 								Message message = new Message();
 								message.what = MSG_START_MINECRAFT;
 								message.setData(bundle);

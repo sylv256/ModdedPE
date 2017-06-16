@@ -23,7 +23,8 @@ public class UtilsSettings implements LauncherOptions
 
 	public boolean isSafeMode()
 	{
-		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).getBoolean(TAG_SAFE_MODE, false);
+		return true;
+		//return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).getBoolean(TAG_SAFE_MODE, false);
 	}
 
 	public void setFirstLoaded(boolean z)
