@@ -18,24 +18,12 @@ JavaVM* mJvm = NULL;
 // Methods Definition
 //-------------------------------------------------------------
 
-std::string toString(JNIEnv* env, jstring jstr)
+std::string toString(JNIEnv* env, jstring j_str)
 {
-	char* rtn = NULL;
-	jclass clsstring = env->FindClass("java/lang/String");
-	jmethodID mid = env->GetMethodID(clsstring, "getBytes", "()[B");
-	jbyteArray barr= (jbyteArray)env->CallObjectMethod(jstr,mid);
-	jsize alen = env->GetArrayLength(barr);
-	jbyte* ba = env->GetByteArrayElements(barr,JNI_FALSE);
-	if(alen > 0)
-	{
-		rtn = (char*)malloc(alen+1);
-		memcpy(rtn,ba,alen);
-		rtn[alen]=0;
-	}
-	env->ReleaseByteArrayElements(barr,ba,0);
-	std::string stemp(rtn);
-	free(rtn);
-	return stemp;
+	const char * c_str = env->GetStringUTFChars(j_str, 0);
+	std::string cpp_str = c_str;
+	env->ReleaseStringUTFChars(j_str,c_str);
+	return cpp_str;
 }
 
 //-------------------------------------------------------------
