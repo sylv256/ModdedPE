@@ -30,7 +30,7 @@ public class LibraryLoader
 
 	static public void loadMinecraftPE(Context mcContext)
 	{
-		System.load(new File(mcContext.getApplicationInfo().nativeLibraryDir,FMOD_LIB_NAME).getAbsolutePath());
+		System.load(new File(mcContext.getApplicationInfo().nativeLibraryDir,MINECRAFTPE_LIB_NAME).getAbsolutePath());
 	}
 
 	static public void loadNModAPI()
