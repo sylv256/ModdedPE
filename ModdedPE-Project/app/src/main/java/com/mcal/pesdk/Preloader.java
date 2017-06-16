@@ -39,9 +39,6 @@ public class Preloader
 		boolean safeMode = mPESdk.getLauncherOptions().isSafeMode();
 		String abiInfo = ABIInfo.getTargetABIType();
 
-		if (abiInfo == null)
-			throw new PreloadException(PreloadException.TYPE_UNSUPPORTED_ABI);
-
 		try
 		{
 			mPreloadListener.onLoadNativeLibs();
@@ -103,7 +100,6 @@ public class Preloader
 				else
 				{
 					mPreloadListener.onFailedLoadingNMod(nmod);
-					continue;
 				}
 			}
 			preloadData.assets_packs_path = assetsArrayList.toArray(new String[0]);
@@ -145,11 +141,11 @@ public class Preloader
 		return true;
 	}
 
-	public static class NModPreloadData
+	static class NModPreloadData
 	{
-		public String[] assets_packs_path;
-		public String[] dex_path;
-		public String[] loaded_libs;
+		String[] assets_packs_path;
+		String[] dex_path;
+		String[] loaded_libs;
 	}
 
 	public static class PreloadListener
