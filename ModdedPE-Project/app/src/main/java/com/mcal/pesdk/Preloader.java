@@ -47,9 +47,9 @@ public class Preloader
 			mPreloadListener.onLoadGameLauncherLib();
 			LibraryLoader.loadLauncher();
 			mPreloadListener.onLoadFModLib();
-			LibraryLoader.loadFMod(context, mPESdk.getMinecraftInfo().getMinecraftPackageContext());
+			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftPackageContext());
 			mPreloadListener.onLoadMinecraftPELib();
-			LibraryLoader.loadMinecraftPE(context, mPESdk.getMinecraftInfo().getMinecraftPackageContext());
+			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftPackageContext());
 			if (!safeMode)
 			{
 				mPreloadListener.onLoadNModAPILib();

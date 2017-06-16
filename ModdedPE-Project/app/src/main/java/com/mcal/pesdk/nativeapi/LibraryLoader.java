@@ -13,8 +13,6 @@ public class LibraryLoader
 	private static final String SUBSTRATE_NAME = "substrate";
 	private static final String LAUNCHER_NAME = "pesdk-game-launcher";
 
-	private static final String DIR_LIBS = "mcpe_native_libs";
-
 	static public void loadSubstrate()
 	{
 		System.loadLibrary(SUBSTRATE_NAME);
@@ -25,49 +23,22 @@ public class LibraryLoader
 		System.loadLibrary(LAUNCHER_NAME);
 	}
 
-	static public void loadFMod(Context context, Context mcContext) throws IOException,RuntimeException,ZipException
+	static public void loadFMod(Context mcContext)
 	{
-		ZipFile zipFile = new ZipFile(new File(mcContext.getPackageResourcePath()));
-		ZipEntry entry = zipFile.getEntry("lib" + File.separator + ABIInfo.getTargetABIType() + File.separator + FMOD_LIB_NAME);
-		if (entry == null)
-			throw new RuntimeException("Elf file libfmod.so not found in apk.");
-		File dir = new File(context.getFilesDir(), DIR_LIBS);
-		dir.mkdirs();
-		File elfFile = new File(dir, FMOD_LIB_NAME);
-		elfFile.createNewFile();
-		InputStream libInputStream = zipFile.getInputStream(entry);
-		int byteRead = -1;
-		byte[] buffer = new byte[1024];
-		FileOutputStream writerStream = new FileOutputStream(elfFile);
-		while ((byteRead = libInputStream.read(buffer)) != -1)
-		{
-			writerStream.write(buffer, 0, byteRead);
-		}
-		libInputStream.close();
-		writerStream.close();
-		System.load(elfFile.getAbsolutePath());
+		File filesDir = mcContext.getFilesDir();
+		File parent = filesDir.getParentFile();
+		File libsDir = new File(parent, "lib");
+		File libFile = new File(libsDir, FMOD_LIB_NAME);
+		System.load(libFile.getAbsolutePath());
 	}
 
-	static public void loadMinecraftPE(Context context, Context mcContext) throws IOException,RuntimeException
+	static public void loadMinecraftPE(Context mcContext)
 	{
-		ZipFile zipFile = new ZipFile(new File(mcContext.getPackageResourcePath()));
-		ZipEntry entry = zipFile.getEntry("lib" + File.separator + ABIInfo.getTargetABIType() + File.separator + MINECRAFTPE_LIB_NAME);
-		if (entry == null)
-			throw new RuntimeException("Elf file libminecraftpe.so not found in apk.");
-		File dir = new File(context.getFilesDir(), DIR_LIBS);
-		dir.mkdirs();
-		File elfFile = new File(dir, MINECRAFTPE_LIB_NAME);
-		elfFile.createNewFile();
-		InputStream libInputStream = zipFile.getInputStream(entry);
-		int byteRead = -1;
-		byte[] buffer = new byte[1024];
-		FileOutputStream writerStream = new FileOutputStream(elfFile);
-		while ((byteRead = libInputStream.read(buffer)) != -1)
-		{
-			writerStream.write(buffer, 0, byteRead);
-		}
-		libInputStream.close();
-		writerStream.close();
+		File filesDir = mcContext.getFilesDir();
+		File parent = filesDir.getParentFile();
+		File libsDir = new File(parent, "lib");
+		File libFile = new File(libsDir, MINECRAFTPE_LIB_NAME);
+		System.load(libFile.getAbsolutePath());
 	}
 
 	static public void loadNModAPI()
