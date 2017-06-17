@@ -13,6 +13,7 @@
 
 bool mGameStarted = false;
 JavaVM* mJvm = NULL;
+char const* mNativeLibPath = "libminecraftpe.so";
 
 //-------------------------------------------------------------
 // Methods Definition
@@ -144,6 +145,11 @@ extern "C" JNIEXPORT jboolean JNICALL Java_org_mcal_pesdk_nativeapi_NativeUtils_
 	if (env->RegisterNatives(cls,methods,sizeof(methods)/sizeof(JNINativeMethod)) < 0)
 		return JNI_FALSE;
 	return JNI_TRUE;
+}
+
+extern "C" JNIEXPORT void JNICALL Java_org_mcal_pesdk_nativeapi_LibraryLoader_nativeOnNModAPILoaded(JNIEnv*env,jobject thiz,jstring libPath)
+{
+	mNativeLibPath = toString(env,libPath).c_str();
 }
 
 //-------------------------------------------------------------

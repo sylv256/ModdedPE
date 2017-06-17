@@ -47,16 +47,16 @@ public class Preloader
 			mPreloadListener.onLoadNativeLibs();
 			mPreloadListener.onLoadSubstrateLib();
 			LibraryLoader.loadSubstrate();
-			mPreloadListener.onLoadGameLauncherLib();
-			LibraryLoader.loadLauncher();
 			mPreloadListener.onLoadFModLib();
-			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftPackageContext());
+			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			mPreloadListener.onLoadMinecraftPELib();
-			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftPackageContext());
+			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			mPreloadListener.onLoadGameLauncherLib();
+			LibraryLoader.loadLauncher(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			if (!safeMode)
 			{
 				mPreloadListener.onLoadNModAPILib();
-				LibraryLoader.loadNModAPI();
+				LibraryLoader.loadNModAPI(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			}
 			mPreloadListener.onFinishedLoadingNativeLibs();
 		}
