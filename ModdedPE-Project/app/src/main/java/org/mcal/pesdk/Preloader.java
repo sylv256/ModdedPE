@@ -40,8 +40,7 @@ public class Preloader
 			mBundle = new Bundle();
 		Gson gson = new Gson();
 		boolean safeMode = mPESdk.getLauncherOptions().isSafeMode();
-		String abiInfo = ABIInfo.getTargetABIType();
-
+		
 		try
 		{
 			mPreloadListener.onLoadNativeLibs();
