@@ -18,19 +18,20 @@ public class UtilsSettings implements LauncherOptions
 	{
 		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).edit();
 		editor.putBoolean(TAG_SAFE_MODE, z);
-		editor.commit();
+		editor.apply();
 	}
 
 	public boolean isSafeMode()
 	{
-		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).getBoolean(TAG_SAFE_MODE, false);
+		return true;
+		//return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).getBoolean(TAG_SAFE_MODE, false);
 	}
 
 	public void setFirstLoaded(boolean z)
 	{
 		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).edit();
 		editor.putBoolean(TAG_FIRST_LOADED, z);
-		editor.commit();
+		editor.apply();
 	}
 
 	public boolean isFirstLoaded()
