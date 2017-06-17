@@ -20,7 +20,7 @@
 		android:id="@+id/nmod_picker_package_loading_view"
 		android:visibility="gone">
 
-		<com.mcal.MCDesign.widget.MCDProgressBar
+		<org.mcal.MCDesign.widget.MCDProgressBar
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
 			android:visibility="visible"

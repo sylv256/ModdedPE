@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest 
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.mcal.ModdedPE">
+	package="org.mcal.moddedpe">
 	
 	<uses-feature
 		android:glEsVersion="0x00020000"
@@ -22,7 +22,7 @@
 		android:hasCode="true"
 		android:icon="@drawable/ic_launcher"
 		android:allowBackup="true"
-		android:name="com.mcal.ModdedPE.ModdedPEApplication"
+		android:name="org.mcal.moddedpe.ModdedPEApplication"
 		android:label="@string/app_name"
 		android:largeHeap="true">
 
@@ -43,14 +43,14 @@
 			android:value="@string/hockeyapp_android_id" />
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.MainActivity"
+			android:name="org.mcal.moddedpe.app.MainActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/main_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.SplashesActivity"
+			android:name="org.mcal.moddedpe.app.SplashesActivity"
 			android:theme="@style/FullScreenTheme"
 			android:screenOrientation="sensorLandscape">
 
@@ -65,7 +65,7 @@
 		<activity
 			android:theme="@style/FullScreenTheme"
 			android:label="@string/app_name"
-			android:name="com.mcal.ModdedPE.app.MinecraftActivity"
+			android:name="org.mcal.moddedpe.app.MinecraftActivity"
             android:excludeFromRecents="false"
 			android:launchMode="singleTask"
             android:screenOrientation="sensorLandscape"
@@ -86,34 +86,34 @@
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.AboutActivity"
+			android:name="org.mcal.moddedpe.app.AboutActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/about_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.NModDescriptionActivity"
+			android:name="org.mcal.moddedpe.app.NModDescriptionActivity"
 			android:theme="@style/AppTheme"
 			android:screenOrientation="sensorLandscape">
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.NModFilePickerActivity"
+			android:name="org.mcal.moddedpe.app.NModFilePickerActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/nmod_picker_file_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.NModPackagePickerActivity"
+			android:name="org.mcal.moddedpe.app.NModPackagePickerActivity"
 			android:theme="@style/AppTheme"
 			android:label="@string/nmod_picker_package_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.NModLoadFailActivity"
+			android:name="org.mcal.moddedpe.app.NModLoadFailActivity"
 			android:theme="@style/AppTheme"
 			android:launchMode="singleTask"
 			android:label="@string/nmods_load_failed_title"
@@ -121,7 +121,7 @@
         </activity>
 
 		<activity
-			android:name="com.mcal.ModdedPE.app.PreloadActivity"
+			android:name="org.mcal.moddedpe.app.PreloadActivity"
 			android:theme="@style/FullScreenTheme"
 			android:label="@string/prestart_title"
 			android:screenOrientation="sensorLandscape">
@@ -131,7 +131,7 @@
 			android:theme="@style/AppTheme"
 			android:icon="@drawable/mcd_add_pack"
 			android:screenOrientation="sensorLandscape"
-			android:name="com.mcal.ModdedPE.app.ImportNModActivity"
+			android:name="org.mcal.moddedpe.app.ImportNModActivity"
 			android:label="@string/import_nmod_title" >
 			
 			<intent-filter>

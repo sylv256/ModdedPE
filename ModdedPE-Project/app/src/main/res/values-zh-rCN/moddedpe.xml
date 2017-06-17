@@ -58,6 +58,7 @@
 	<string name="about_translators">翻译人员</string>
 	<string name="about_view_github">Github页</string>
 	<string name="about_view_nmod_api">查看NModAPI</string>
+	<string name="about_translators_message">zh-rCN[ModelPart]\nen[ModelPart]</string>
 	<!--Settings-->
 	
 	<!--Open Game Dialog-->

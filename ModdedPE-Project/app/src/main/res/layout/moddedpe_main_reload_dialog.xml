@@ -11,7 +11,7 @@
 		android:orientation="horizontal"
 		android:layout_margin="5dp">
 
-		<com.mcal.MCDesign.widget.MCDProgressBar
+		<org.mcal.MCDesign.widget.MCDProgressBar
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"/>
 
