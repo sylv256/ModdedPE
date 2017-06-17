@@ -5,8 +5,8 @@ import android.support.v4.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
-import com.mcal.MCDesign.widget.*;
-import com.mcal.ModdedPE.*;
+import org.mcal.MCDesign.widget.*;
+import org.mcal.moddedpe.*;
 
 public class MainSettingsFragment extends BaseFragment
 {

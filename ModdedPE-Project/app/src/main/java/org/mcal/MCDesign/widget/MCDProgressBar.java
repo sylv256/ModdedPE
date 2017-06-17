@@ -1,4 +1,4 @@
-package com.mcal.MCDesign.widget;
+package org.mcal.MCDesign.widget;
 
 import android.graphics.*;
 import android.widget.*;

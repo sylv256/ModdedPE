@@ -1,20 +1,31 @@
 package org.mcal.moddedpe.app;
-import android.app.*;
-import android.content.*;
-import android.graphics.*;
-import android.os.*;
-import android.support.design.widget.*;
-import android.support.v4.app.*;
-import android.support.v7.app.*;
-import android.support.v7.widget.*;
-import android.view.*;
-import android.widget.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.utils.*;
-import com.mcal.pesdk.nmod.*;
-import java.util.*;
 
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+
+import org.mcal.moddedpe.R;
+import org.mcal.moddedpe.utils.DataPreloader;
+import org.mcal.pesdk.nmod.ArchiveFailedException;
+import org.mcal.pesdk.nmod.NMod;
+import org.mcal.pesdk.nmod.PackagedNMod;
+import org.mcal.pesdk.nmod.ZippedNMod;
+
+import java.util.ArrayList;
 
 public class MainManageNModFragment extends BaseFragment implements DataPreloader.PreloadingFinishedListener
 {

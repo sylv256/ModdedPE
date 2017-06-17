@@ -1,7 +1,7 @@
 package org.mcal.moddedpe.app;
 import android.os.*;
 import android.view.*;
-import com.mcal.ModdedPE.*;
+import org.mcal.moddedpe.*;
 
 public class MainStartFragment extends BaseFragment
 {

@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import org.mcal.moddedpe.utils.DataPreloader;
+import org.mcal.moddedpe.R;
+
 public class SplashesActivity extends BaseActivity implements DataPreloader.PreloadingFinishedListener
 {
 	@Override

@@ -1,16 +1,26 @@
 package org.mcal.moddedpe.app;
 
-import android.content.*;
-import android.os.*;
-import android.support.v7.widget.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.pesdk.nmod.*;
-import java.util.*;
-import android.widget.*;
-import android.view.*;
-import android.app.*;
-import android.graphics.*;
-import java.io.*;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+
+import org.mcal.moddedpe.R;
+import org.mcal.pesdk.nmod.NMod;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class NModLoadFailActivity extends BaseActivity
 {

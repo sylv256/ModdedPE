@@ -1,9 +1,10 @@
 package org.mcal.moddedpe.app;
-import android.content.res.*;
-import android.os.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.pesdk.*;
-import com.mojang.minecraftpe.*;
+
+import android.content.res.AssetManager;
+import android.os.Bundle;
+
+import org.mcal.moddedpe.ModdedPEApplication;
+import org.mcal.pesdk.PESdk;
 
 public class MinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {

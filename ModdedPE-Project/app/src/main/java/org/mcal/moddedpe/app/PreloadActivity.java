@@ -1,12 +1,12 @@
 package org.mcal.moddedpe.app;
 import android.content.*;
 import android.os.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.pesdk.nmod.*;
+import org.mcal.moddedpe.*;
+import org.mcal.pesdk.nmod.*;
 import android.support.v7.widget.*;
 import java.util.*;
 import android.text.format.*;
-import com.mcal.pesdk.*;
+import org.mcal.pesdk.*;
 import android.widget.*;
 import android.view.*;
 

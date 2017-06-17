@@ -1,4 +1,4 @@
-package com.mcal.MCDesign.utils;
+package org.mcal.MCDesign.utils;
 import android.graphics.*;
 
 public class BitmapRepeater

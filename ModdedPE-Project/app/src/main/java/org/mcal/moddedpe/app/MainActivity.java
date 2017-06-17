@@ -1,14 +1,21 @@
 package org.mcal.moddedpe.app;
-import android.content.*;
-import android.os.*;
-import android.support.v4.app.*;
-import android.support.v4.view.*;
-import android.support.v7.app.*;
-import android.support.v7.widget.*;
-import android.view.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.ModdedPE.utils.*;
-import java.util.*;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
+import android.view.View;
+
+import org.mcal.moddedpe.R;
+import org.mcal.moddedpe.utils.UtilsSettings;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity
 {
@@ -163,7 +170,6 @@ public class MainActivity extends BaseActivity
 
 				});
 			mdialog.show();
-			return;
 		}
 		else
 			startMinecraft();

@@ -1,8 +1,9 @@
 package org.mcal.moddedpe;
 
-import android.app.*;
-import android.content.res.*;
-import org.mcal.pesdk.*;
+import android.app.Application;
+import android.content.res.AssetManager;
+import org.mcal.moddedpe.utils.UtilsSettings;
+import org.mcal.pesdk.PESdk;
 
 public class ModdedPEApplication extends Application
 {

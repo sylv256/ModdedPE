@@ -1,14 +1,24 @@
 package org.mcal.moddedpe.widget;
-import android.annotation.*;
-import android.content.*;
-import android.os.*;
-import android.support.v4.view.*;
-import android.support.v7.widget.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
-import org.mcal.moddedpe.*;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+import org.mcal.moddedpe.ModdedPEApplication;
+import org.mcal.moddedpe.R;
+import org.mcal.moddedpe.app.NModDescriptionActivity;
 import org.mcal.pesdk.nmod.NMod;
+
 import java.util.ArrayList;
 
 @SuppressLint({ "InflateParams", "ClickableViewAccessibility" })

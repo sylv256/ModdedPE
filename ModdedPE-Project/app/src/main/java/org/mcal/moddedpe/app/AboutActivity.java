@@ -1,8 +1,7 @@
 package org.mcal.moddedpe.app;
 
 import android.os.*;
-import com.mcal.MCDesign.app.*;
-import com.mcal.ModdedPE.*;
+import org.mcal.moddedpe.*;
 import android.view.*;
 import android.content.*;
 import android.net.*;

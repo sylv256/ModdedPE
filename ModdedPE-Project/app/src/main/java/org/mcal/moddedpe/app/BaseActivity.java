@@ -1,7 +1,8 @@
-package com.mcal.ModdedPEpackage org.mcal.moddedpeimport com.mcal.MCDesign.app.*;
-import com.mcal.ModdedPE.*;
-import com.mcal.pesdk.nmod.*;
-import com.mcal.pesdk.*;
+package org.mcal.moddedpe.app;
+import org.mcal.MCDesign.app.*;
+import org.mcal.moddedpe.*;
+import org.mcal.pesdk.nmod.*;
+import org.mcal.pesdk.*;
 
 public class BaseActivity extends MCDActivity
 {

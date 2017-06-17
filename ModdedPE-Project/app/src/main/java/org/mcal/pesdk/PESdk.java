@@ -1,8 +1,9 @@
 package org.mcal.pesdk;
-import org.mcal.pesdk.utils.*;
-import android.content.*;
-import org.mcal.pesdk.nmod.*;
-import org.mcal.pesdk.nativeapi.*;
+
+import android.content.Context;
+import org.mcal.pesdk.nmod.NModAPI;
+import org.mcal.pesdk.utils.LauncherOptions;
+import org.mcal.pesdk.utils.MinecraftInfo;
 
 public class PESdk
 {
