@@ -163,8 +163,8 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+            <state relative-caret-position="210">
+              <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -2017,7 +2017,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/app/OpenGameLoadingDialog.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/widget/ConsoleTableView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/widget/NModBanner.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/mcd_actionbar.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/moddedpe_loading.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/moddedpe_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/moddedpe_main_console_table.xml" />
@@ -2038,6 +2037,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nmod_picker_package.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/nmod_picker_package_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/moddedpe_preloading.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/mcd_actionbar.xml" />
       </list>
     </option>
   </component>
@@ -3211,8 +3211,8 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="210">
+          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
           <folding />
         </state>
       </provider>
