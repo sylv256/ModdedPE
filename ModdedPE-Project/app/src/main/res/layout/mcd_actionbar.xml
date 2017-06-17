@@ -4,7 +4,7 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	
-	<com.mcal.MCDesign.widget.RepeatableImageView
+	<org.mcal.MCDesign.widget.RepeatableImageView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:src="@drawable/mcd_header_bg"/>
@@ -18,7 +18,6 @@
 		android:layout_centerInParent="true"/>
 
 	<RelativeLayout
-		android:foreground="?android:attr/selectableItemBackgroundBorderless"
 		android:layout_height="30dp"
 		android:layout_width="30dp"
 		android:layout_alignParentRight="true"
@@ -27,7 +26,6 @@
 		android:id="@+id/mcd_actionbar_ViewRight"/>
 	
 	<RelativeLayout
-		android:foreground="?android:attr/selectableItemBackgroundBorderless"
 		android:layout_height="30dp"
 		android:layout_width="30dp"
 		android:layout_alignParentLeft="true"

@@ -26,7 +26,7 @@
 			android:layout_height="wrap_content"
 			android:textColor="#DEDEDE"
 			android:layout_alignParentLeft="true"
-			android:singleLine="true"
+			android:maxLines="1"
 			android:id="@+id/moddedpeTextViewNewsNModTitle"
 			android:layout_margin="3dp"/>
 
