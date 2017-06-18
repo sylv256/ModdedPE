@@ -1,9 +1,11 @@
 package org.mcal.moddedpe.app;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 
 import org.mcal.moddedpe.utils.DataPreloader;
 import org.mcal.moddedpe.R;
@@ -17,6 +19,23 @@ public class SplashesActivity extends BaseActivity implements DataPreloader.Prel
 		setContentView(R.layout.moddedpe_splashes);
 
 		initInstance();
+	}
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus)
+	{
+		super.onWindowFocusChanged(hasFocus);
+		if (hasFocus && Build.VERSION.SDK_INT >= 19)
+		{
+			View decorView = getWindow().getDecorView();
+			decorView.setSystemUiVisibility(
+					View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+							| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+							| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+							| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+							| View.SYSTEM_UI_FLAG_FULLSCREEN
+							| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+		}
 	}
 
 	private void initInstance()

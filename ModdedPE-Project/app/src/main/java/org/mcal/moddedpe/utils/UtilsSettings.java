@@ -23,19 +23,18 @@ public class UtilsSettings implements LauncherOptions
 
 	public boolean isSafeMode()
 	{
-		return true;
-		//return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).getBoolean(TAG_SAFE_MODE, false);
+		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getBoolean(TAG_SAFE_MODE, false);
 	}
 
 	public void setFirstLoaded(boolean z)
 	{
-		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).edit();
+		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
 		editor.putBoolean(TAG_FIRST_LOADED, z);
 		editor.apply();
 	}
 
 	public boolean isFirstLoaded()
 	{
-		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).getBoolean(TAG_FIRST_LOADED, false);
+		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getBoolean(TAG_FIRST_LOADED, false);
 	}
 }

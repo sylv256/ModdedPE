@@ -18,15 +18,7 @@ public class MCDActivity extends AppCompatActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
-		View decorView = getWindow().getDecorView();
-		decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_FULLSCREEN);
-
 		setDefaultActionBar();
-
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);
-		bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
-		getWindow().getDecorView().setBackgroundDrawable(new BitmapDrawable(bitmap));
 	}
 
 	protected void setDefaultActionBar()
@@ -36,7 +28,7 @@ public class MCDActivity extends AppCompatActivity
 		{
 			RelativeLayout actionBarCustomView = (RelativeLayout)LayoutInflater.from(this).inflate(R.layout.mcd_actionbar, null);
 			ActionBar.LayoutParams layoutParams = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-			layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL;
+			layoutParams.gravity = Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL;
 			actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 			actionBar.setDisplayShowHomeEnabled(false);
 			actionBar.setDisplayShowCustomEnabled(true);
@@ -113,5 +105,16 @@ public class MCDActivity extends AppCompatActivity
 
 			});
 		setActionBarViewRight(buttonClose);
+	}
+
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus)
+	{
+		super.onWindowFocusChanged(hasFocus);
+
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_bg);
+		bitmap = BitmapRepeater.repeat(getWindowManager().getDefaultDisplay().getWidth(), getWindowManager().getDefaultDisplay().getHeight(), bitmap);
+		getWindow().getDecorView().setBackground(new BitmapDrawable(bitmap));
 	}
 }
