@@ -4,7 +4,7 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 	
-	<org.mcal.MCDesign.widget.RepeatableImageView
+	<org.mcal.mcdesign.widget.RepeatableImageView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:src="@drawable/mcd_header_bg"/>

@@ -1,4 +1,4 @@
-package org.mcal.MCDesign.app;
+package org.mcal.mcdesign.app;
 import android.graphics.*;
 import android.graphics.drawable.*;
 import android.os.*;
@@ -6,8 +6,8 @@ import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.view.*;
 import android.widget.*;
-import org.mcal.MCDesign.utils.*;
-import org.mcal.MCDesign.widget.*;
+import org.mcal.mcdesign.utils.*;
+import org.mcal.mcdesign.widget.*;
 import org.mcal.moddedpe.*;
 
 import org.mcal.moddedpe.R;

@@ -8,7 +8,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="90dp">
 
-		<org.mcal.MCDesign.widget.RepeatableImageView
+		<org.mcal.mcdesign.widget.RepeatableImageView
 			android:layout_height="60dp"
 			android:layout_width="match_parent"
 			android:src="@drawable/mcd_header_bg"

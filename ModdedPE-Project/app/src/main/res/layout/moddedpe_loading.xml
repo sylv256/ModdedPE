@@ -4,12 +4,12 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<org.mcal.MCDesign.widget.RepeatableImageView
+	<org.mcal.mcdesign.widget.RepeatableImageView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:src="@drawable/mcd_bg"/>
 
-	<org.mcal.MCDesign.widget.MCDProgressBar
+	<org.mcal.mcdesign.widget.MCDProgressBar
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerInParent="true"

@@ -1,5 +1,5 @@
 package org.mcal.moddedpe.app;
-import org.mcal.MCDesign.app.*;
+import org.mcal.mcdesign.app.*;
 import org.mcal.moddedpe.*;
 import org.mcal.pesdk.nmod.*;
 import org.mcal.pesdk.*;
