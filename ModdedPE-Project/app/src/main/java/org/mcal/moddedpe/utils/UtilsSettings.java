@@ -16,7 +16,7 @@ public class UtilsSettings implements LauncherOptions
 
 	public void setSafeMode(boolean z)
 	{
-		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_MULTI_PROCESS).edit();
+		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
 		editor.putBoolean(TAG_SAFE_MODE, z);
 		editor.apply();
 	}

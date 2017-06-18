@@ -35,7 +35,7 @@ class NModDataLoader
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.putString(TAG_DISABLE_LIST, fromArrayList(disableList));
-		editor.commit();
+		editor.apply();
 	}
 
 	void remove(NMod nmod)
@@ -59,7 +59,7 @@ class NModDataLoader
 
 	private SharedPreferences getSharedPreferences()
 	{
-		return mContext.getSharedPreferences(TAG_SHARED_PREFERENCE, Context.MODE_MULTI_PROCESS);
+		return mContext.getSharedPreferences(TAG_SHARED_PREFERENCE, Context.MODE_PRIVATE);
 	}
 
 	private void addNewEnabled(NMod nmod)
@@ -73,7 +73,7 @@ class NModDataLoader
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.putString(TAG_DISABLE_LIST, fromArrayList(disableList));
-		editor.commit();
+		editor.apply();
 	}
 
 	void removeEnabled(NMod nmod)
@@ -87,7 +87,7 @@ class NModDataLoader
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
 		editor.putString(TAG_DISABLE_LIST, fromArrayList(disableList));
-		editor.commit();
+		editor.apply();
 	}
 
 	void upNMod(NMod nmod)
@@ -106,7 +106,7 @@ class NModDataLoader
 		enabledList.set(index, nameFront);
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
-		editor.commit();
+		editor.apply();
 	}
 
 	void downNMod(NMod nmod)
@@ -125,7 +125,7 @@ class NModDataLoader
 		enabledList.set(index, nameBack);
 		SharedPreferences.Editor editor=preferences.edit();
 		editor.putString(TAG_ENABLED_LIST, fromArrayList(enabledList));
-		editor.commit();
+		editor.apply();
 	}
 
 	ArrayList<String> getEnabledList()
