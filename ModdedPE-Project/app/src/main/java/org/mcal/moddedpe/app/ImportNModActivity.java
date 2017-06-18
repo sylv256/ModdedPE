@@ -13,6 +13,7 @@ public class ImportNModActivity extends BaseActivity
 {
 	private UIHandler mUIHandler = new UIHandler();
 	private NMod mTargetNMod;
+	private ArchiveFailedException mFailedInfo;
 	private static final int MSG_SUCCEED = 1;
 	private static final int MSG_FAILED = 2;
 	@Override
@@ -47,9 +48,11 @@ public class ImportNModActivity extends BaseActivity
 		NModDescriptionActivity.startThisActivity(this, mTargetNMod);
 	}
 	
-	public void onViewMoreErrorClicked(View view)
+	public void onFailedViewMoreClicked(View view)
 	{
-		
+		setContentView(R.layout.nmod_importer_failed);
+		AppCompatTextView errorText = (AppCompatTextView)findViewById(R.id.nmod_importer_failed_text_view);
+		errorText.setText(getString(R.string.nmod_import_failed_full_info_message, new Object[]{mFailedInfo.toTypeString(),mFailedInfo.getCause().toString()}));
 	}
 	
 
@@ -100,11 +103,40 @@ public class ImportNModActivity extends BaseActivity
 			}
 			else if (msg.what == MSG_FAILED)
 			{
-				setContentView(R.layout.nmod_importer_failed);
-				ArchiveFailedException archiveFailedException = (ArchiveFailedException)msg.obj;
+				setContentView(R.layout.nmod_importer_failed_msg);
+				mFailedInfo = (ArchiveFailedException)msg.obj;
 				setTitle(R.string.nmod_import_failed);
-				AppCompatTextView errorText = (AppCompatTextView)findViewById(R.id.nmod_importer_failed_text_view);
-				errorText.setText(getString(R.string.nmod_import_failed_full_info_message, new Object[]{archiveFailedException.toTypeString(),archiveFailedException.getCause().toString()}));
+				AppCompatTextView errorText = (AppCompatTextView)findViewById(R.id.nmod_import_failed_title_text_view);
+				switch (mFailedInfo.getType())
+				{
+					case ArchiveFailedException.TYPE_DECODE_FAILED:
+						errorText.setText(R.string.nmod_import_failed_message_decode);
+						break;
+					case ArchiveFailedException.TYPE_INEQUAL_PACKAGE_NAME:
+						errorText.setText(R.string.nmod_import_failed_message_inequal_package_name);
+						break;
+					case ArchiveFailedException.TYPE_INVAILD_PACKAGE_NAME:
+						errorText.setText(R.string.nmod_import_failed_message_invalid_package_name);
+						break;
+					case ArchiveFailedException.TYPE_IO_EXCEPTION:
+						errorText.setText(R.string.nmod_import_failed_message_io_exception);
+						break;
+					case ArchiveFailedException.TYPE_JSON_SYNTAX_EXCEPTION:
+						errorText.setText(R.string.nmod_import_failed_message_manifest_json_syntax_error);
+						break;
+					case ArchiveFailedException.TYPE_NO_MANIFEST:
+						errorText.setText(R.string.nmod_import_failed_message_no_manifest);
+						break;
+					case ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME:
+						errorText.setText(R.string.nmod_import_failed_message_no_package_name);
+						break;
+					case ArchiveFailedException.TYPE_REDUNDANT_MANIFEST:
+						errorText.setText(R.string.nmod_import_failed_message_no_package_name);
+						break;
+					default:
+						errorText.setText(R.string.nmod_import_failed_message_unexpected);
+						break;
+				}
 			}
 		}
 	}

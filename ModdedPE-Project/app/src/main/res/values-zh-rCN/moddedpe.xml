@@ -49,6 +49,7 @@
 	<string name="nmod_delete_title">删除NMod</string>
 	<string name="nmod_delete_message">如果您删除了这个NMod，它可能会消失很长很长的一段时间呢(,,•́ . •̀,,)</string>
 	<string name="nmod_imported_view_more">点击按钮以浏览更多ヽ(´•ω•`)↓</string>
+	<string name="nmod_import_failed_view_more">点击按钮查看更多~</string>
 	
 	<!--About-->
 	<string name="about_license">开放源代码许可</string>
