@@ -62,13 +62,13 @@ public abstract class NMod
 		}
 		catch (IOException e)
 		{
-			throw new LoadFailedException("Cannot create nmod banner image.", e);
+			throw new LoadFailedException(LoadFailedException.TYPE_FILE_NOT_FOUND, e);
 		}
 		if (ret == null)
-			throw new LoadFailedException("Cannot decode banner image:" + mInfo.banner_image_path + ".Please make sure it is a valid png or jpg format image file.");
+			throw new LoadFailedException(LoadFailedException.TYPE_DECODE_FAILED,new RuntimeException("Cannot decode banner image file."));
 
 		if (ret.getWidth() != 1024 || ret.getHeight() != 500)
-			throw new LoadFailedException("Bad nmod banner image size.Banner image must be 1024(width)*500(height).");
+			throw new LoadFailedException(LoadFailedException.TYPE_INVALID_SIZE,new RuntimeException("Invalid image size for banner: width must be 1024,height must be 500."));
 		return ret;
 	}
 
@@ -92,31 +92,6 @@ public abstract class NMod
 	public final NModLanguageBean[] getLanguageBeans()
 	{
 		return mInfo.languages;
-	}
-
-	private LoadFailedException findLoadException()
-	{
-		if (mInfo.languages != null)
-		{
-			for (NModLanguageBean lang:mInfo.languages)
-			{
-				if (lang.name == null || lang.name.isEmpty())
-					return new LoadFailedException("Element \"name\" of one of the language data items is invalid.");
-				if (lang.path == null || lang.path.isEmpty())
-					return new LoadFailedException("Element \"path\" of language data item:\"" + lang.name + "\" is invalid.");
-
-				try
-				{
-					getAssets().open(lang.path).close();
-				}
-				catch (IOException e)
-				{
-					return new LoadFailedException("Cannot find language file:" + lang.path, e);
-				}
-			}
-		}
-
-		return null;
 	}
 
 	public final Bitmap getIcon()
@@ -219,21 +194,13 @@ public abstract class NMod
 		catch (JsonSyntaxException e)
 		{
 			mInfo = null;
-			setBugPack(new LoadFailedException("Read json " + MANIFEST_NAME + " failed.", e));
+			setBugPack(new LoadFailedException(LoadFailedException.TYPE_JSON_SYNTAX, e));
 			return;
 		}
 		catch (IOException ioe)
 		{
 			mInfo = null;
-			setBugPack(new LoadFailedException("IO failed: Cannot read " + MANIFEST_NAME, ioe));
-			return;
-		}
-
-		LoadFailedException loadE = findLoadException();
-		if (loadE != null)
-		{
-			mInfo = null;
-			setBugPack(loadE);
+			setBugPack(new LoadFailedException(LoadFailedException.TYPE_IO_FAILED, ioe));
 			return;
 		}
 
@@ -306,7 +273,7 @@ public abstract class NMod
 		public String banner_title = null;
 		public String banner_image_path = null;
 		public String change_log = null;
-		public String check_target_version_mode = "no_check";
+		public String check_target_version_mode = CHECK_MODE_NEVER;
 
 		public static final String CHECK_MODE_NEVER = "never";
 		public static final String CHECK_MODE_ALWAYS = "always";
