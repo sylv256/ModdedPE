@@ -92,7 +92,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			mReloadDialog = new AlertDialog.Builder(getActivity()).setTitle(R.string.main_reloading_title).setView(R.layout.moddedpe_main_reload_dialog).setCancelable(false).create();
 			mReloadDialog.show();
 			mDataPreloader = new DataPreloader(this);
-			mDataPreloader.preload(getPESdk());
+			mDataPreloader.preload(getActivity());
 		}
 	}
 

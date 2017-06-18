@@ -22,6 +22,7 @@ public class MainActivity extends BaseActivity
 {
 	private ViewPager mMainViewPager;
 	private MainManageNModFragment mManageNModFragment;
+	private MainSettingsFragment mMainSettingsFragment;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -40,8 +41,8 @@ public class MainActivity extends BaseActivity
 		fragment_list.add(mManageNModFragment);
 		titles_list.add(getString(R.string.manage_nmod_title));
 
-		MainSettingsFragment settingsFragment = new MainSettingsFragment();
-		fragment_list.add(settingsFragment);
+		mMainSettingsFragment = new MainSettingsFragment();
+		fragment_list.add(mMainSettingsFragment);
 		titles_list.add(getString(R.string.settings_title));
 
 		MainFragmentPagerAdapter pagerAdapter = new MainFragmentPagerAdapter(fragment_list, titles_list);
@@ -96,19 +97,6 @@ public class MainActivity extends BaseActivity
 				}
 			});
 		setActionBarViewRight(burgerButton);
-
-		View imageButtonCreeper=getLayoutInflater().inflate(R.layout.moddedpe_ui_button_creeper, null);
-		imageButtonCreeper.findViewById(R.id.moddedpe_ui_button_item_image_button).setOnClickListener(new View.OnClickListener()
-			{
-
-				@Override
-				public void onClick(View p1)
-				{
-					startActivity(new Intent(MainActivity.this, AboutActivity.class));
-				}
-
-			});
-		setActionBarViewLeft(imageButtonCreeper);
 	}
 
 	private void switchViewPager(MenuItem item)
@@ -221,6 +209,7 @@ public class MainActivity extends BaseActivity
 	{
 		super.onActivityResult(requestCode, resultCode, data);
 		mManageNModFragment.onActivityResult(requestCode, resultCode, data);
+		mMainSettingsFragment.onActivityResult(requestCode, resultCode, data);
 	}
 
 	private class MainFragmentPagerAdapter extends FragmentPagerAdapter

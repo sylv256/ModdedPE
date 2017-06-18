@@ -8,7 +8,10 @@ public class UtilsSettings implements LauncherOptions
 	private final static String TAG_SETTINGS = "moddedpe_settings";
 	private final static String TAG_SAFE_MODE = "safe_mode";
 	private final static String TAG_FIRST_LOADED = "first_loaded";
-
+	private final static String TAG_DATA_SAVED_PATH = "data_saved_path";
+	private final static String TAG_PKG_NAME = "pkg_name";
+	private final static String TAG_LANGUAGE = "language";
+	
 	public UtilsSettings(Context context)
 	{
 		this.mContext = context;
@@ -36,5 +39,43 @@ public class UtilsSettings implements LauncherOptions
 	public boolean isFirstLoaded()
 	{
 		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getBoolean(TAG_FIRST_LOADED, false);
+	}
+	
+	public void setLanguaheType(int z)
+	{
+		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
+		editor.putInt(TAG_LANGUAGE, z);
+		editor.apply();
+	}
+
+	public int getLanguageType()
+	{
+		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getInt(TAG_LANGUAGE, 0);
+	}
+	
+	@Override
+	public String getDataSavedPath()
+	{
+		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getString(TAG_DATA_SAVED_PATH, STRING_VALUE_DEFAULT);
+	}
+
+	@Override
+	public String getMinecraftPEPackageName()
+	{
+		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getString(TAG_PKG_NAME, STRING_VALUE_DEFAULT);
+	}
+	
+	public void setDataSavedPath(String z)
+	{
+		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
+		editor.putString(TAG_DATA_SAVED_PATH, z);
+		editor.apply();
+	}
+	
+	public void setMinecraftPackageName(String z)
+	{
+		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
+		editor.putString(TAG_PKG_NAME, z);
+		editor.apply();
 	}
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ListView
+		android:divider="@null"
+		android:dividerHeight="0dip"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/pkg_picker_package_list_view"
+		android:visibility="gone"
+		android:layout_centerInParent="true"/>
+
+	<RelativeLayout
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_centerInParent="true"
+		android:id="@+id/pkg_picker_package_loading_view"
+		android:visibility="gone">
+
+		<org.mcal.mcdesign.widget.MCDProgressBar
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:visibility="visible"
+			android:id="@+id/pkg_picker_package_progress_bar"
+			android:layout_centerHorizontal="true"/>
+
+		<android.support.v7.widget.AppCompatTextView
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="wrap_content"
+			android:text="@string/pick_pkg_loading"
+			android:layout_below="@id/pkg_picker_package_progress_bar"
+			android:layout_marginTop="15dp"/>
+
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:layout_centerInParent="true"
+		android:id="@+id/pkg_picker_package_unfound_view"
+		android:visibility="gone">
+
+		<android.support.v7.widget.AppCompatTextView
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="wrap_content"
+			android:text="@string/pkg_picker_not_found"/>
+
+	</RelativeLayout>
+	
+	<android.support.design.widget.FloatingActionButton
+		android:layout_height="50dp"
+		android:layout_width="50dp"
+		android:src="@drawable/ic_undo"
+		android:layout_margin="25dp"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentBottom="true"
+		android:onClick="onResetClicked"/>
+	
+</RelativeLayout>
+

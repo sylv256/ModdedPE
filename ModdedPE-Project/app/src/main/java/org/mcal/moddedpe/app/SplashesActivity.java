@@ -1,14 +1,11 @@
 package org.mcal.moddedpe.app;
 
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.view.View;
-
-import org.mcal.moddedpe.utils.DataPreloader;
-import org.mcal.moddedpe.R;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import java.util.*;
+import org.mcal.moddedpe.*;
+import org.mcal.moddedpe.utils.*;
 
 public class SplashesActivity extends BaseActivity implements DataPreloader.PreloadingFinishedListener
 {
@@ -40,7 +37,21 @@ public class SplashesActivity extends BaseActivity implements DataPreloader.Prel
 
 	private void initInstance()
 	{
-		new DataPreloader(this).preload(getPESdk());
+		new DataPreloader(this).preload(this);
+		UtilsSettings settings = new UtilsSettings(this);
+		switch (settings.getLanguageType())
+		{
+			case 0:
+				getResources().getConfiguration().locale = Locale.getDefault();
+				break;
+			case 1:
+				getResources().getConfiguration().locale = Locale.ENGLISH;
+				break;
+			case 2:
+				getResources().getConfiguration().locale = Locale.SIMPLIFIED_CHINESE;
+				break;
+		}
+		getResources().updateConfiguration(getResources().getConfiguration(), getResources().getDisplayMetrics());
 	}
 
 	Handler mHandler=new Handler()

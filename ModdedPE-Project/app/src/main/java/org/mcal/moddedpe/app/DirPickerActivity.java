@@ -1,41 +1,36 @@
 package org.mcal.moddedpe.app;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.widget.AppCompatImageView;
-import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.CardView;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.support.v7.app.*;
+import android.support.v7.widget.*;
+import android.view.*;
+import android.widget.*;
+import java.io.*;
+import java.util.*;
+import org.mcal.mcdesign.app.*;
+import org.mcal.moddedpe.*;
+import org.mcal.pesdk.utils.*;
 
-import org.mcal.moddedpe.R;
+import android.support.v7.app.AlertDialog;
 
-import java.io.File;
-import java.util.ArrayList;
-
-
-public class NModFilePickerActivity extends BaseActivity
+public class DirPickerActivity extends BaseActivity
 {
 	private File currentPath;
 	private ArrayList<File> filesInCurrentPath;
 	private SelectHandler mSelectHandler = new SelectHandler();
 
 	private static final int MSG_SELECT = 1;
-	public static final int REQUEST_PICK_FILE = 2;
-	public final static String TAG_FILE_PATH = "file_path";
+	
+	public static final int REQUEST_PICK_DIR = 3;
+	public final static String TAG_DIR_PATH = "dir_path";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.nmod_picker_file);
+		setContentView(R.layout.moddedpe_dir_picker);
 
 		setResult(RESULT_CANCELED, new Intent());
 		setActionBarButtonCloseRight();
@@ -43,7 +38,7 @@ public class NModFilePickerActivity extends BaseActivity
 		String pathString = null;
 		try
 		{
-			pathString = getIntent().getExtras().getString(TAG_FILE_PATH);
+			pathString = getIntent().getExtras().getString(TAG_DIR_PATH);
 		}
 		catch (Throwable t)
 		{}
@@ -53,11 +48,6 @@ public class NModFilePickerActivity extends BaseActivity
 
 		openDirectory(currentPath);
 	}
-	
-	private boolean isValidParent()
-	{
-		return currentPath.getParentFile() != null && currentPath.getParentFile().exists() && currentPath.getParentFile().listFiles() != null && currentPath.getParentFile().listFiles().length > 0;
-	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
@@ -65,6 +55,52 @@ public class NModFilePickerActivity extends BaseActivity
 		if (item.getItemId() == android.R.id.home)
 			finish();
 		return super.onOptionsItemSelected(item);
+	}
+	
+	private boolean isValidParent()
+	{
+		return currentPath.getParentFile() != null && currentPath.getParentFile().exists() && currentPath.getParentFile().listFiles() != null && currentPath.getParentFile().listFiles().length > 0;
+	}
+	
+	public void onSelectThisClicked(View view)
+	{
+		Intent data = new Intent();
+		Bundle extras = new Bundle();
+		extras.putString(TAG_DIR_PATH, currentPath.getAbsolutePath());
+		data.putExtras(extras);
+		setResult(RESULT_OK, data);
+		finish();
+	}
+	
+	public void onResetClicked(View view)
+	{
+		new AlertDialog.Builder(this).setTitle(R.string.dir_picker_reset_warning_title).setMessage(R.string.dir_picker_reset_warning_message).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface p1, int p2)
+				{
+					p1.dismiss();
+					Intent data = new Intent();
+					Bundle extras = new Bundle();
+					extras.putString(TAG_DIR_PATH, LauncherOptions.STRING_VALUE_DEFAULT);
+					data.putExtras(extras);
+					setResult(RESULT_OK, data);
+					finish();
+				}
+				
+			
+		}).setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener()
+			{
+
+				@Override
+				public void onClick(DialogInterface p1, int p2)
+				{
+					p1.dismiss();
+				}
+				
+			
+		}).show();
 	}
 
 	private void select(File file_arg)
@@ -102,25 +138,10 @@ public class NModFilePickerActivity extends BaseActivity
 				if (fileItem.isDirectory())
 					filesInCurrentPath.add(fileItem);
 			}
-			for (File fileItem : unmanagedFilesInCurrentDirectory)
-			{
-				if (!fileItem.isDirectory())
-					filesInCurrentPath.add(fileItem);
-			}
 		}
 
-		ListView fileListView = (ListView) findViewById(R.id.nmod_picker_file_list_view);
+		ListView fileListView = (ListView) findViewById(R.id.picker_dir_list_view);
 		fileListView.setAdapter(new FileAdapter());
-	}
-
-	private void selectFile(File file)
-	{
-		Intent data = new Intent();
-		Bundle extras = new Bundle();
-		extras.putString(TAG_FILE_PATH, file.getPath());
-		data.putExtras(extras);
-		setResult(RESULT_OK, data);
-		finish();
 	}
 
 	private class FileAdapter extends BaseAdapter
@@ -128,7 +149,7 @@ public class NModFilePickerActivity extends BaseActivity
 		@Override
 		public int getCount()
 		{
-			if (isValidParent())
+			if (!isValidParent())
 				return filesInCurrentPath.size() + 1;
 			if (filesInCurrentPath.size() == 0)
 				return 1;
@@ -268,8 +289,6 @@ public class NModFilePickerActivity extends BaseActivity
 				}
 				else if (file.isDirectory())
 					openDirectory(file);
-				else
-					selectFile(file);
 			}
 		}
 	}
@@ -281,11 +300,11 @@ public class NModFilePickerActivity extends BaseActivity
 
 	public static void startThisActivity(Activity context, String path)
 	{
-		Intent intent = new Intent(context, NModFilePickerActivity.class);
+		Intent intent = new Intent(context, DirPickerActivity.class);
 		Bundle extras = new Bundle();
-		extras.putString(TAG_FILE_PATH, path);
+		extras.putString(TAG_DIR_PATH, path);
 		intent.putExtras(extras);
-		context.startActivityForResult(intent, REQUEST_PICK_FILE);
+		context.startActivityForResult(intent, REQUEST_PICK_DIR);
 	}
 
 	public static void startThisActivity(Activity context)

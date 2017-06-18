@@ -104,6 +104,20 @@
 			android:label="@string/nmod_picker_file_title"
 			android:screenOrientation="sensorLandscape">
         </activity>
+		
+		<activity
+			android:name="org.mcal.moddedpe.app.DirPickerActivity"
+			android:theme="@style/AppTheme"
+			android:label="@string/dir_picker_title"
+			android:screenOrientation="sensorLandscape">
+        </activity>
+		
+		<activity
+			android:name="org.mcal.moddedpe.app.MCPkgPickerActivity"
+			android:theme="@style/AppTheme"
+			android:label="@string/pkg_picker_title"
+			android:screenOrientation="sensorLandscape">
+        </activity>
 
 		<activity
 			android:name="org.mcal.moddedpe.app.NModPackagePickerActivity"

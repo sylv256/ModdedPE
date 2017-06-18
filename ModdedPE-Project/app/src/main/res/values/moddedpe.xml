@@ -11,6 +11,8 @@
 	<string name="prestart_title">Preloading</string>
 	<string name="import_nmod_title">Import NMod</string>
 	<string name="nmods_load_failed_title">Some NMods Were Broken</string>
+	<string name="dir_picker_title">Choose Directory</string>
+	<string name="pkg_picker_title">Package Picker</string>
 	
 	<!--NMod-->
 	<string name="load_fail_title">Load Failed!</string>
@@ -66,7 +68,19 @@
 	<string name="preferences_title_launcher">Launcher Options</string>
 	<string name="preferences_title_safe_mode">Safe Mode</string>
 	<string name="preferences_summary_safe_mode">Disable all nmods.</string>
-	
+	<string name="preferences_title_data_saved_path">Game Data Path</string>
+	<string name="preferences_summary_data_saved_path">File path where game saves data.</string>
+	<string name="preferences_title_game_pkg_name">MinecraftPE Package Name</string>
+	<string name="preferences_summary_game_pkg_name">Change game package name here.</string>
+	<string name="preferences_update_message_data_path">Successfully set data path:%1$s</string>
+	<string name="preferences_update_message_reset_data_path">Successfully reset data path.</string>
+	<string name="preferences_update_message_pkg_name">Successfully set pkg name:%1$s</string>
+	<string name="preferences_update_message_reset_pkg_name">Successfully reset pkg name.</string>
+	<string name="preferences_title_app">Application</string>
+	<string name="preferences_title_about">About</string>
+	<string name="preferences_summary_about">About ModdedPE</string>
+	<string name="preferences_title_language">Language</string>
+	<string name="preferences_summary_language">Change language here.</string>
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
@@ -125,4 +139,27 @@
 	
 	<!--Manage NMods-->
 	<string name="manage_nmod_no_nmod_found">No NMod found on this device.</string>
+	
+	<!--Dir Picker-->
+	<string name="dir_picker_reset_warning_title">Reset Path</string>
+	<string name="dir_picker_reset_warning_message">Would you like to reset game data path to default value?</string>
+	
+	<!--Pkg Picker-->
+	<string name="pkg_picker_not_found">No packages found.\nPlease check if the permission is dined.</string>
+	<string name="pick_pkg_loading">Loading Packages...</string>
+	<string name="pick_tips_title">Tips</string>
+	<string name="pick_tips_message">Are you sure to set minecraft package name to %1$s[%2$s]?ModdedPE will restart.</string>
+	<string name="pick_tips_reset_message">Are you sure to reset minecraft package name to default value?ModdedPE will restart.</string>
+	
+	<!--Language Selector-->
+	<string-array name="language_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+	<string-array name="language_strings">
+        <item>Auto</item>
+        <item>English</item>
+        <item>中文简体</item>
+    </string-array>
 </resources>

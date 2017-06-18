@@ -1,5 +1,7 @@
 package org.mcal.moddedpe.utils;
 import org.mcal.pesdk.*;
+import org.mcal.moddedpe.*;
+import android.content.*;
 
 public class DataPreloader
 {
@@ -12,14 +14,15 @@ public class DataPreloader
 		mListener = litenser;
 	}
 
-	public void preload(PESdk pesdk)
+	public void preload(Context context_a)
 	{
-		final PESdk finalPESdk = pesdk;
+		final Context context = context_a;
 		new Thread()
 		{
 			public void run()
 			{
-				finalPESdk.init();
+				ModdedPEApplication.mPESdk = new PESdk(context,new UtilsSettings(context));
+				ModdedPEApplication.mPESdk.init();
 				mIsPreloadingFinished = true;
 				checkFinish();
 			}
