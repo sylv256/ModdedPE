@@ -11,6 +11,6 @@ ifeq ($(TARGET_ARCH_ABI),x86)
 endif
 
 LOCAL_STATIC_LIBRARIES := android_native_app_glue
-LOCAL_LDLIBS    := -L$(LOCAL_PATH)/$(TARGET_ARCH_ABI) -ldl -landroid -llog
+LOCAL_LDLIBS    := -L$(LOCAL_PATH)/$(TARGET_ARCH_ABI) -ldl -landroid
 
 include $(BUILD_SHARED_LIBRARY)

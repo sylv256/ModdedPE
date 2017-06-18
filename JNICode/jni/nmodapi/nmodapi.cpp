@@ -13,7 +13,8 @@
 
 bool mGameStarted = false;
 JavaVM* mJvm = NULL;
-char const* mNativeLibPath = "libminecraftpe.so";
+std::string* mAddrAndroidAppDataPath = NULL;
+std::string mMCPENativeLibPath;
 
 //-------------------------------------------------------------
 // Methods Definition
@@ -51,12 +52,7 @@ namespace NModAPI
 	
 	void nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
-		void* image=dlopen("libminecraftpe.so",RTLD_LAZY);
-	
-		std::string& android_app_data_path = *((std::string*)dlsym(image,"_ZN19AppPlatform_android20ANDROID_APPDATA_PATHE"));
-		android_app_data_path=toString(env,directory);
-		
-		dlclose(image);
+		*mAddrAndroidAppDataPath = toString(env,directory);
 	}
 	jboolean nativeCallOnActivityFinish(JNIEnv*env,jobject thiz,jstring libname,jobject mainActivity)
 	{
@@ -69,14 +65,14 @@ namespace NModAPI
 		}
 		dlclose(image);
 	}
-	jboolean nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
+	jboolean nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion,jstring libminecraftpePath)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
-		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&)=
-		(void (*)(JavaVM*,JNIEnv*,std::string const&,std::string const&)) dlsym(image,"NMod_onLoad");
+		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)=
+		(void (*)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)) dlsym(image,"NMod_onLoad");
 		if(NMod_onLoad)
 		{
-			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,apiVersion));
+			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,apiVersion),toString(env,libminecraftpePath));
 		}
 		dlclose(image);
 	}
@@ -149,7 +145,13 @@ extern "C" JNIEXPORT jboolean JNICALL Java_org_mcal_pesdk_nativeapi_NativeUtils_
 
 extern "C" JNIEXPORT void JNICALL Java_org_mcal_pesdk_nativeapi_LibraryLoader_nativeOnNModAPILoaded(JNIEnv*env,jobject thiz,jstring libPath)
 {
-	mNativeLibPath = toString(env,libPath).c_str();
+	const char* mNativeLibPath = toString(env,libPath).c_str();
+	mMCPENativeLibPath = mNativeLibPath;
+	void* imageMCPE = (void*)dlopen(mNativeLibPath,RTLD_LAZY);
+	mAddrAndroidAppDataPath = ((std::string*)dlsym(imageMCPE,"_ZN19AppPlatform_android20ANDROID_APPDATA_PATHE"));
+	void* ptr_setStartMenuScreen = (void*)dlsym(imageMCPE,"_ZN13ScreenChooser18setStartMenuScreenEv");
+	MSHookFunction(ptr_setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
+	dlclose(imageMCPE);
 }
 
 //-------------------------------------------------------------
@@ -159,9 +161,5 @@ extern "C" JNIEXPORT void JNICALL Java_org_mcal_pesdk_nativeapi_LibraryLoader_na
 JNIEXPORT jint JNI_OnLoad(JavaVM*vm,void*)
 {
 	mJvm=vm;
-	//Register Hooks
-	void* imageMCPE = (void*)dlopen("libminecraftpe.so",RTLD_LAZY);
-	void* ptr_setStartMenuScreen = (void*)dlsym(imageMCPE,"_ZN13ScreenChooser18setStartMenuScreenEv");
-	MSHookFunction(ptr_setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
 	return JNI_VERSION_1_6;
 }
