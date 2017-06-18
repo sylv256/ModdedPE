@@ -7,14 +7,14 @@ import android.view.*;
 import android.widget.*;
 import org.mcal.mcdesign.widget.*;
 import org.mcal.moddedpe.*;
+import android.preference.*;
 
-public class MainSettingsFragment extends BaseFragment
+public class MainSettingsFragment extends PreferenceFragment
 {
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+	public void onCreate(Bundle savedInstanceState)
 	{
-		View options_view=inflater.inflate(R.layout.moddedpe_options, null);
-
-		return options_view;
+		super.onCreate(savedInstanceState);
+		addPreferencesFromResource(R.xml.preferences);
 	}
 }

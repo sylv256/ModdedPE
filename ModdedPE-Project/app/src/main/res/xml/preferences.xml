@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="settings_fragment"
+    android:layout="@layout/preference_item"
+    android:title="@string/preferences_title">
+	
+    <PreferenceCategory
+        android:layout="@layout/preference_category_widget"
+        android:title="@string/preferences_title_launcher">
+		
+        <CheckBoxPreference
+            android:key="safe_mode"
+            android:title="@string/preferences_title_safe_mode"
+            android:summary="@string/preferences_summary_safe_mode"
+            android:defaultValue="false"/>
+		
+    </PreferenceCategory>
+	<!--
+
+    <PreferenceCategory
+        android:layout="@layout/preference_category_widget"
+        android:title="@string/settings_title_about">
+        <Preference
+            android:layout="@layout/preference_item"
+            android:title="@string/settings_title_version"
+            android:summary="@string/app_version_name" />
+        <Preference
+            android:key="settings_author"
+            android:layout="@layout/preference_item"
+            android:title="@string/settings_title_author"
+            android:summary="by int100"
+            android:defaultValue="false"/>
+
+        <Preference
+            android:key="settings_osc"
+            android:layout="@layout/preference_item"
+            android:summary="@string/settings_summary_osc"/>
+    </PreferenceCategory>-->
+
+
+</PreferenceScreen>

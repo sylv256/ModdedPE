@@ -61,7 +61,12 @@
 	<string name="about_view_github">Github Page</string>
 	<string name="about_view_nmod_api">View NModAPI</string>
 	
-	<!--Settings-->
+	<!--Preferences-->
+	<string name="preferences_title">Settings</string>
+	<string name="preferences_title_launcher">Launcher Options</string>
+	<string name="preferences_title_safe_mode">Safe Mode</string>
+	<string name="preferences_summary_safe_mode">Disable all nmods.</string>
+	
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>

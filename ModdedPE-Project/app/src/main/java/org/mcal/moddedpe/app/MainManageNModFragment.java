@@ -89,7 +89,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		super.onStart();
 		if (mDataPreloader == null && !getPESdk().isInited())
 		{
-			mReloadDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.main_reloading_title).setView(R.layout.moddedpe_main_reload_dialog).setCancelable(false).create();
+			mReloadDialog = new AlertDialog.Builder(getActivity()).setTitle(R.string.main_reloading_title).setView(R.layout.moddedpe_main_reload_dialog).setCancelable(false).create();
 			mReloadDialog.show();
 			mDataPreloader = new DataPreloader(this);
 			mDataPreloader.preload(getPESdk());
@@ -203,7 +203,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 	public void showPickNModFailedDialog(ArchiveFailedException archiveFailedException)
 	{
-		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_import_failed).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 			{
 
 				@Override
@@ -254,7 +254,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					public void onClick(DialogInterface p1, int p2)
 					{
 						p1.dismiss();
-						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new Object[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new Object[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 							{
 
 								@Override
@@ -283,7 +283,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			switch (msg.what)
 			{
 				case MSG_SHOW_PROGRESS_DIALOG:
-					mProcessingDialog = new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_importing_title).setView(R.layout.moddedpe_manage_nmod_progress_dialog_view).setCancelable(false).show();
+					mProcessingDialog = new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_importing_title).setView(R.layout.moddedpe_manage_nmod_progress_dialog_view).setCancelable(false).show();
 					break;
 				case MSG_HIDE_PROGRESS_DIALOG:
 					if (mProcessingDialog != null)
@@ -292,7 +292,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					break;
 				case MSG_SHOW_SUCCEED_DIALOG:
 
-					new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_succeed_title).setMessage(R.string.nmod_import_succeed_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+					new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_import_succeed_title).setMessage(R.string.nmod_import_succeed_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 						{
 
 							@Override
@@ -305,7 +305,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 						}).show();
 					break;
 				case MSG_SHOW_REPLACED_DIALOG:
-					new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_import_replaced_title).setMessage(R.string.nmod_import_replaced_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+					new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_import_replaced_title).setMessage(R.string.nmod_import_replaced_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 						{
 
 							@Override
@@ -348,7 +348,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 	{
 		if(!nmod.isBugPack())
 			return;
-		new AlertDialog.Builder(getContext()).setTitle(R.string.load_fail_title).setMessage(getString(R.string.load_fail_msg,new Object[]{nmod.getLoadException().toTypeString(),nmod.getLoadException().getCause().toString()})).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+		new AlertDialog.Builder(getActivity()).setTitle(R.string.load_fail_title).setMessage(getString(R.string.load_fail_msg,new Object[]{nmod.getLoadException().toTypeString(),nmod.getLoadException().getCause().toString()})).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
 			{
 
 				@Override
@@ -426,7 +426,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 	private View createCutlineView(int textResId)
 	{
-		View convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_ui_cutline, null);
+		View convertView = LayoutInflater.from(getActivity()).inflate(R.layout.moddedpe_ui_cutline, null);
 		AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.moddedpe_cutline_textview);
 		textTitle.setText(textResId);
 		return convertView;
@@ -434,7 +434,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 	private View createAddNewView()
 	{
-		View convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_new, null);
+		View convertView = LayoutInflater.from(getActivity()).inflate(R.layout.moddedpe_nmod_item_new, null);
 		convertView.setOnClickListener(new View.OnClickListener()
 			{
 
@@ -455,7 +455,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		View convertView = null;
 		if (nmod.isBugPack())
 		{
-			convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
+			convertView = LayoutInflater.from(getActivity()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
 			AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_name);
 			textTitle.setText(nmod.getName());
 			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
@@ -484,7 +484,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					@Override
 					public void onClick(View p1)
 					{
-						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 							{
 
 								@Override
@@ -515,7 +515,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			convertView.setOnClickListener(onInfoClickedListener);
 			return convertView;
 		}
-		convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_disabled, null);
+		convertView = LayoutInflater.from(getActivity()).inflate(R.layout.moddedpe_nmod_item_disabled, null);
 		AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_name);
 		textTitle.setText(nmod.getName());
 		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_disabled_item_card_view_text_package_name);
@@ -545,7 +545,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(View p1)
 				{
-					new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+					new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 						{
 
 							@Override
@@ -578,7 +578,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(View p1)
 				{
-					NModDescriptionActivity.startThisActivity(getContext(), nmod);
+					NModDescriptionActivity.startThisActivity(getActivity(), nmod);
 				}
 
 
@@ -592,7 +592,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		View convertView = null;
 		if (nmod.isBugPack())
 		{
-			convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
+			convertView = LayoutInflater.from(getActivity()).inflate(R.layout.moddedpe_nmod_item_bugged, null);
 			AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_name);
 			textTitle.setText(nmod.getName());
 			AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_bugged_item_card_view_text_package_name);
@@ -621,7 +621,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					@Override
 					public void onClick(View p1)
 					{
-						new AlertDialog.Builder(getContext()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_delete_title).setMessage(R.string.nmod_delete_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 							{
 
 								@Override
@@ -652,7 +652,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			convertView.setOnClickListener(onInfoClickedListener);
 			return convertView;
 		}
-		convertView = LayoutInflater.from(getContext()).inflate(R.layout.moddedpe_nmod_item_active, null);
+		convertView = LayoutInflater.from(getActivity()).inflate(R.layout.moddedpe_nmod_item_active, null);
 		AppCompatTextView textTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_name);
 		textTitle.setText(nmod.getName());
 		AppCompatTextView textPkgTitle = (AppCompatTextView)convertView.findViewById(R.id.nmod_enabled_item_card_view_text_package_name);
@@ -707,7 +707,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(View p1)
 				{
-					NModDescriptionActivity.startThisActivity(getContext(), nmod);
+					NModDescriptionActivity.startThisActivity(getActivity(), nmod);
 				}
 
 
