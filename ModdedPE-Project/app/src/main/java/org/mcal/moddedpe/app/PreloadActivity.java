@@ -2,6 +2,7 @@ package org.mcal.moddedpe.app;
 import android.content.*;
 import android.os.*;
 import org.mcal.moddedpe.*;
+import org.mcal.moddedpe.utils.UtilsSettings;
 import org.mcal.pesdk.nmod.*;
 import android.support.v7.widget.*;
 import java.util.*;
@@ -212,7 +213,12 @@ public class PreloadActivity extends BaseActivity
 			}
 			else if (msg.what == MSG_ERROR)
 			{
-
+				PreloadException preloadException = (PreloadException)msg.obj;
+				new UtilsSettings(PreloadActivity.this).setOpenGameFailed(preloadException.toString());
+				Intent intent = new Intent(PreloadActivity.this,MainActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				finish();
 			}
 			else if (msg.what == MSG_START_NMOD_LOADING_FAILED)
 			{

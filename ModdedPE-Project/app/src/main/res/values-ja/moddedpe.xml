@@ -19,7 +19,7 @@
 	<string name="load_fail_msg">エラータイプ:\n%1$s\nエラーメッセージ:\n%2$s</string>
 	<string name="nmod_enabled_title">NModを有効</string>
 	<string name="nmod_disabled_title">NModを無効</string>
-	<string name="nmod_importing_title">NModをインポート中...</string>
+	<string name="nmod_importing_title">NModをインポート中&#8230;</string>
 	<string name="nmod_import_failed">NModのインポートに失敗しました</string>
 	<string name="nmod_import_failed_message_unexpected">NModのインポート中に予期せぬエラーが発生しました</string>
 	<string name="nmod_import_failed_message_decode">このNModファイルは有効ではないため、インポートに失敗しました。それがzip形式であるか確認してください。</string>
@@ -39,7 +39,7 @@
 	<string name="nmod_import_failed_full_info_title">エラーの情報</string>
 	<string name="nmod_import_failed_full_info_message">エラータイプ:\n%1$s\nエラーメッセージ:\n%2$s</string>
 	<string name="nmod_add_new">新しく追加</string>
-	<string name="nmod_add_new_title">新しく追加...</string>
+	<string name="nmod_add_new_title">新しく追加&#8230;</string>
 	<string name="nmod_export">エクスポート</string>
 	<string name="nmod_add_new_message">どこからNModを選びますか？</string>
 	<string name="nmod_add_new_pick_installed">アプリ</string>
@@ -84,7 +84,7 @@
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
-	<string name="opengame_loading">読み込み中...</string>
+	<string name="opengame_loading">読み込み中&#8230;</string>
 	<string name="preloading_initing">起動ランチャー</string>
 	<string name="preloading_initing_info">--NModAPIのバージョン:%1$s\n--MinecraftPEのバージョン:%2$s</string>
 	<string name="preloading_initing_info_safe_mode">--セーフモードをオン\n--MinecraftPEのバージョン:%1$s</string>
@@ -99,12 +99,12 @@
 	<string name="preloading_nmod_loaded">--NModを読み込みました:%1$s</string>
 	<string name="preloading_nmod_loaded_failed">--読み込みに失敗しました:%1$s</string>
 	<string name="preloading_nmod_finish_loading">NModの読み込みに完了しました。</string>
-	<string name="preloading_finished">ゲームを開始...</string>
+	<string name="preloading_finished">ゲームを開始&#8230;</string>
 	<string-array name="preloading_tips_text">
 		<item>APK形式のNModもインポートできるんだ~</item>
 		<item>知ってるかい？左か右にスクロールすると、メインページのページを変更できるんだ。</item>
 		<item>アプリケーションを選ぶより、ファイルを選んでNModをインポートするほうがいいよ。</item>
-		<item>シューーーーーー...うわぁ、クリーパーだぁ！</item>
+		<item>シューーーーーー&#8230;うわぁ、クリーパーだぁ！</item>
 		<item>NModを開発したいって？(About->NModAPI</item>
 		<item>それらはメインページのクリーパーの顔に奇妙な何かがあるよ:)</item>
 		<item>GithubにModdedPEのソースコードが含まれてるよ~</item>
@@ -122,11 +122,11 @@
 	</string-array>
 	
 	<!--Pick NMod from installed-->
-	<string name="pick_nmod_loading">NModsを読み込み中...</string>
+	<string name="pick_nmod_loading">NModsを読み込み中&#8230;</string>
 	
 	<!--Main Activity-->
 	<string name="main_play">プレイ</string>
-	<string name="main_reloading_title">リロード...</string>
+	<string name="main_reloading_title">リロード&#8230;</string>
 	<string name="main_default_minecraft_title">MinecraftPE : デフォルト</string>
 	<string name="no_available_mcpe_version_found">ModdedPEが、このデバイスでサポートされていないバージョンのMinecraftPE (%1$s) を検出しました。(ModdedPEのみのサポートは %2$s です！)\nゲームを続行すると、ModdedPEがクラッシュするか、問題が発生する場合があります。</string>
 	<string name="no_available_mcpe_version_found_title">サポートされていないバージョンのMinecraft:PE</string>
@@ -145,8 +145,12 @@
 	
 	<!--Pkg Picker-->
 	<string name="pkg_picker_not_found">パッケージが見つかりませんでした。\n権限が拒否されているかどうかを確認してください。</string>
-	<string name="pick_pkg_loading">パッケージを読み込み中...</string>
+	<string name="pick_pkg_loading">パッケージを読み込み中&#8230;</string>
 	<string name="pick_tips_title">Tips</string>
 	<string name="pick_tips_message">マインクラフトのパッケージ名を %1$s[%2$s]に設定してもよろしいですか？ModdedPEはリセットされます。</string>
 	<string name="pick_tips_reset_message">マインクラフトのパッケージ名をデフォルトの値にリセットしてもよろしいですか？ModdedPEはリセットされます。</string>
+
+	!--Launch Failed-->
+	<string name="launch_failed_title">ゲームを開くことができませんでした。</string>
+	<string name="launch_failed_message">スターターの崩壊につながる、ゲームを開くときにエラーをトリガModdeddPE。それでも問題が発生した場合、アプリケーションデータModdedPEをオフにします。\ Nエラーメッセージ：％1つの$ sの\nエラーメッセージ：%1$s</string>
 </resources>

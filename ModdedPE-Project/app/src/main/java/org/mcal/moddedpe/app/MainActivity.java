@@ -212,6 +212,26 @@ public class MainActivity extends BaseActivity
 		mMainSettingsFragment.onActivityResult(requestCode, resultCode, data);
 	}
 
+	@Override
+	protected void onStart()
+	{
+		super.onStart();
+
+		String errorString = new UtilsSettings(this).getOpenGameFailed();
+		if(errorString!=null)
+		{
+			new AlertDialog.Builder(this).setTitle(R.string.launch_failed_title).setMessage(getString(R.string.launch_failed_message,new Object[]{errorString})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+			{
+				@Override
+				public void onClick(DialogInterface dialog, int which)
+				{
+					dialog.dismiss();
+				}
+			}).show();
+			new UtilsSettings(this).setOpenGameFailed(null);
+		}
+	}
+
 	private class MainFragmentPagerAdapter extends FragmentPagerAdapter
 	{
 		private List<Fragment> mFragments;

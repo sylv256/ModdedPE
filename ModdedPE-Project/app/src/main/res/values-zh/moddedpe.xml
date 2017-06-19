@@ -9,14 +9,14 @@
 	<string name="nmod_picker_file_title">選擇NMod（存儲）</string>
 	<string name="nmod_picker_package_title">選擇NMod (應用)</string>
 	<string name="prestart_title">初始化遊戲</string>
-	<string name="nmods_load_failed_title">一些NMod壞了...</string>
+	<string name="nmods_load_failed_title">一些NMod壞了&#8230;</string>
 	<string name="import_nmod_title">導入NMod</string>
 	<string name="dir_picker_title">選擇文件夾</string>
 	<string name="pkg_picker_title">選擇包名</string>
 	
 	<!--NMod-->
 	<string name="load_fail_title">加載失敗！</string>
-	<string name="nmod_importing_title">NMod導入中...</string>
+	<string name="nmod_importing_title">NMod導入中&#8230;</string>
 	<string name="nmod_import_failed">導入NMod失敗</string>
 	<string name="nmod_import_failed_message_unexpected">導入時造成了未知錯誤。\n點擊“錯誤信息”以查看更多。</string>
 	<string name="nmod_import_failed_message_decode">(看起來你選擇的文件不是一個ZIP類型文件，\nModdedPE只支持按ZIP編碼的NMod哦~</string>
@@ -25,8 +25,8 @@
 	<string name="nmod_import_failed_message_manifest_json_syntax_error">ModdedPE在讀取清單文件(nmod_manifest.json)時發生了一些小問題，導致NMod基本信息讀取失敗(๑•̀ω•́๑)\n請點擊“錯誤信息”查看具體的語法錯誤。</string>
 	<string name="nmod_import_failed_message_invalid_package_name">似乎這個NMod的包名有些問題。\n包名必須符合Java包名規則哦~</string>
 	<string name="nmod_import_failed_message_no_package_name">ModdedPE沒有在清單文件裏面找到包名標簽[package_name]\n請添加它。</string>
-	<string name="nmod_import_failed_message_inequal_package_name">未解之謎：為何這個NMod裏面有兩個不一樣的包名值呢...\n請確保AndroidManifest.xml中定義的包名與nmod_manifest.json中定義的包名是同一個值。</string>
-	<string name="nmod_import_failed_message_redundant_manifest">哇！有兩個nmod_manifest.json呢！\n(選擇困難癥：我該用哪一個呢...？\n小提示：請不要在壓縮文件內放/assets/nmod_manifest.json和/nmod_manifest.json兩個清單文件。</string>
+	<string name="nmod_import_failed_message_inequal_package_name">未解之謎：為何這個NMod裏面有兩個不一樣的包名值呢&#8230;\n請確保AndroidManifest.xml中定義的包名與nmod_manifest.json中定義的包名是同一個值。</string>
+	<string name="nmod_import_failed_message_redundant_manifest">哇！有兩個nmod_manifest.json呢！\n(選擇困難癥：我該用哪一個呢&#8230;？\n小提示：請不要在壓縮文件內放/assets/nmod_manifest.json和/nmod_manifest.json兩個清單文件。</string>
 	<string name="nmod_import_failed_button_full_info">錯誤信息</string>
 	<string name="nmod_import_failed_full_info_title">錯誤信息</string>
 	<string name="nmod_import_failed_full_info_message">錯誤類型：\n%1$s\n錯誤信息：\n%2$s</string>
@@ -37,7 +37,7 @@
 	<string name="load_fail_msg">錯誤類型：\n%1$s\n錯誤信息：\n%2$s</string>
 	<string name="nmod_add_new">添加新的</string>
 	<string name="nmod_export">導出</string>
-	<string name="nmod_add_new_title">添加新的...</string>
+	<string name="nmod_add_new_title">添加新的&#8230;</string>
 	<string name="nmod_add_new_message">這裏有兩種方式來添加新的NMod，選一個吧。</string>
 	<string name="nmod_add_new_pick_installed">已安裝中</string>
 	<string name="nmod_add_new_pick_storage">外部存儲</string>
@@ -84,7 +84,7 @@
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一個方塊，兩個方塊，三個方塊……</string>
-	<string name="opengame_loading">等待遊戲開啟...</string>
+	<string name="opengame_loading">等待遊戲開啟&#8230;</string>
 	<string name="preloading_initing">初始化啟動器</string>
 	<string name="preloading_initing_info">--NModAPI版本：%1$s\n--MinecraftPE版本：%2$s</string>
 	<string name="preloading_initing_info_safe_mode">--安全模式開啟\n--MinecraftPE版本：%1$s</string>
@@ -108,7 +108,7 @@
 		<item>據說Github是個神奇的地方，那裏還有ModdedPE的源碼呢（劃去</item>
 		<item>ModdedPE始終無廣告，如果您發現被惡意植入，歡迎向我們聯系~</item>
 		<item>其實NMod全稱是Native-Mod啦~（才不是Naive-Mod什麽的！</item>
-		<item>至於MODPE什麽的吶...ModdedPE是不會支持的(:з」∠)_</item>
+		<item>至於MODPE什麽的吶&#8230;ModdedPE是不會支持的(:з」∠)_</item>
 		<item>什麽？你說ModdedPE是國外dalao寫的？才不是呢！</item>
 		<item>你說ModdedPE會加廣告？不，可，能！</item>
 		<item>如果您可以登陸GooglePlay，歡迎給我們貢獻小小的一個下載量(๑•̀ω•́๑)</item>
@@ -133,7 +133,7 @@
 	</string-array>
 	
 	<!--Pick NMod from installed-->
-	<string name="pick_nmod_loading">加載NMod中...</string>
+	<string name="pick_nmod_loading">加載NMod中&#8230;</string>
 	
 	<!--Main Activity-->
 	<string name="main_play">開始遊戲</string>
@@ -156,8 +156,12 @@
 	
 	<!--Pkg Picker-->
 	<string name="pkg_picker_not_found">未找到任何包。\n請確認權限是否被拒絕使用_(:з」∠)_</string>
-	<string name="pick_pkg_loading">正在加載包...</string>
+	<string name="pick_pkg_loading">正在加載包&#8230;</string>
 	<string name="pick_tips_title">提示</string>
 	<string name="pick_tips_message">確定把啟動包換為%1$s[%2$s]麽？ModdedPE將會重啟以完成這一操作~</string>
 	<string name="pick_tips_reset_message">確定把啟動包重置為默認值麽？ModdedPE將會重啟以完成這一操作~</string>
+
+	<!--Launch Failed-->
+	<string name="launch_failed_title">打開遊戲失敗</string>
+	<string name="launch_failed_message">抱歉，ModdeddPE在打開遊戲時觸發了一個錯誤，導致啟動器崩潰。如果仍然出現這個問題，請清除ModdedPE的應用數據。 \n錯誤信息：%1$s</string>
 </resources>

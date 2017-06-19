@@ -19,7 +19,7 @@
 	<string name="load_fail_msg">Error Type:\n%1$s\nError Message:\n%2$s</string>
 	<string name="nmod_enabled_title">Enabled NMods</string>
 	<string name="nmod_disabled_title">Disabled NMods</string>
-	<string name="nmod_importing_title">Importing NMod...</string>
+	<string name="nmod_importing_title">Importing NMod&#8230;</string>
 	<string name="nmod_import_failed">Import NMod Failed</string>
 	<string name="nmod_import_failed_message_unexpected">An unexpected error caused while importing NMod.</string>
 	<string name="nmod_import_failed_message_decode">Importing this nmod failed because this is not a valid nmod file.Please make sure it\'s zip formatted.</string>
@@ -39,7 +39,7 @@
 	<string name="nmod_import_failed_full_info_title">Error Info</string>
 	<string name="nmod_import_failed_full_info_message">Error Type:\n%1$s\nError Message:\n%2$s</string>
 	<string name="nmod_add_new">Add New</string>
-	<string name="nmod_add_new_title">Add New...</string>
+	<string name="nmod_add_new_title">Add New&#8230;</string>
 	<string name="nmod_export">Export</string>
 	<string name="nmod_add_new_message">Where do you want to pick NMod from?</string>
 	<string name="nmod_add_new_pick_installed">Apps</string>
@@ -84,7 +84,7 @@
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
-	<string name="opengame_loading">Loading...</string>
+	<string name="opengame_loading">Loading&#8230;</string>
 	<string name="preloading_initing">Initiating Launcher</string>
 	<string name="preloading_initing_info">--NModAPI Version:%1$s\n--MinecraftPE Version:%2$s</string>
 	<string name="preloading_initing_info_safe_mode">--Safe Mode On\n--MinecraftPE Version:%1$s</string>
@@ -99,7 +99,7 @@
 	<string name="preloading_nmod_loaded">--Loaded NMod:%1$s</string>
 	<string name="preloading_nmod_loaded_failed">--Loading Failed:%1$s</string>
 	<string name="preloading_nmod_finish_loading">Loading NMods Done</string>
-	<string name="preloading_finished">Starting Game...</string>
+	<string name="preloading_finished">Starting Game&#8230;</string>
 	
 	<string-array name="preloading_tips_text">
 		<item>APK formatted nmod can also be imported~</item>
@@ -123,11 +123,11 @@
 	</string-array>
 	
 	<!--Pick NMod from installed-->
-	<string name="pick_nmod_loading">Loading NMods...</string>
+	<string name="pick_nmod_loading">Loading NMods&#8230;</string>
 	
 	<!--Main Activity-->
 	<string name="main_play">Play</string>
-	<string name="main_reloading_title">Reloading...</string>
+	<string name="main_reloading_title">Reloading&#8230;</string>
 	<string name="main_default_minecraft_title">MinecraftPE : Default</string>
 	<string name="no_available_mcpe_version_found">ModdedPE has found an unsupported version of MinecraftPE (%1$s) on this device.(ModdedPE only supports %2$s!)\nIf you continue opening the game,ModdedPE may crash or cause issues.</string>
 	<string name="no_available_mcpe_version_found_title">Unsupported Version of Minecraft:PE</string>
@@ -146,8 +146,13 @@
 	
 	<!--Pkg Picker-->
 	<string name="pkg_picker_not_found">No packages found.\nPlease check if the permission is dined.</string>
-	<string name="pick_pkg_loading">Loading Packages...</string>
+	<string name="pick_pkg_loading">Loading Packages&#8320;</string>
 	<string name="pick_tips_title">Tips</string>
 	<string name="pick_tips_message">Are you sure to set minecraft package name to %1$s[%2$s]?ModdedPE will restart.</string>
 	<string name="pick_tips_reset_message">Are you sure to reset minecraft package name to default value?ModdedPE will restart.</string>
+
+	<!--Launch Failed-->
+	<string name="launch_failed_title">Launch Game Failed</string>
+	<string name="launch_failed_message">Sorry, ModdeddPE triggers an error when opening the game, causing the initiator to crash. If this problem persists, clear ModdedPE\'s application data.\nError Message:%1$s</string>
 </resources>
+

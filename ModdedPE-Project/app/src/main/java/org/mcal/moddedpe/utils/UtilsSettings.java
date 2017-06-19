@@ -11,7 +11,8 @@ public class UtilsSettings implements LauncherOptions
 	private final static String TAG_DATA_SAVED_PATH = "data_saved_path";
 	private final static String TAG_PKG_NAME = "pkg_name";
 	private final static String TAG_LANGUAGE = "language_type";
-	
+	private final static String TAG_OPEN_GAME_FAILED = "open_game_failed_msg";
+
 	public UtilsSettings(Context context)
 	{
 		this.mContext = context;
@@ -77,5 +78,17 @@ public class UtilsSettings implements LauncherOptions
 		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
 		editor.putString(TAG_PKG_NAME, z);
 		editor.apply();
+	}
+
+	public void setOpenGameFailed(String z)
+	{
+		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
+		editor.putString(TAG_OPEN_GAME_FAILED, z);
+		editor.apply();
+	}
+
+	public String getOpenGameFailed()
+	{
+		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getString(TAG_OPEN_GAME_FAILED, null);
 	}
 }
