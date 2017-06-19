@@ -5,18 +5,29 @@ import android.os.Bundle;
 
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.mcal.pesdk.nativeapi.LibraryLoader;
+import org.mcal.pesdk.nmod.LoadFailedException;
+import org.mcal.pesdk.nmod.NMod;
+import org.mcal.pesdk.nmod.NModJSONEditor;
+import org.mcal.pesdk.nmod.NModLib;
+import org.mcal.pesdk.nmod.NModTextEditor;
 import org.mcal.pesdk.utils.MinecraftInfo;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
-import org.mcal.pesdk.nativeapi.LibraryLoader;
-import org.mcal.pesdk.nmod.*;
 
 public class Preloader
 {
 	private Bundle mBundle;
 	private PESdk mPESdk;
 	private PreloadListener mPreloadListener;
+	private NModPreloadData mPreloadData = new NModPreloadData();
+	private ArrayList<String> mAssetsArrayList = new ArrayList<>();
+	private ArrayList<String> mLoadedNativeLibs = new ArrayList<>();
+	private ArrayList<NMod> mLoadedEnabledNMods = new ArrayList<>();
 
 	public Preloader(PESdk pesdk, Bundle bundle, PreloadListener listener)
 	{
@@ -67,14 +78,20 @@ public class Preloader
 		if (!safeMode)
 		{
 			mPreloadListener.onStartLoadingAllNMods();
-
-			NModPreloadData preloadData = new NModPreloadData();
-			ArrayList<String> assetsArrayList = new ArrayList<>();
-			ArrayList<String> dexPathArrayList = new ArrayList<>();
-			ArrayList<String> loadedNativeLibs = new ArrayList<>();
-
-			ArrayList<NMod> loadedEnabledNMods = mPESdk.getNModAPI().getImportedEnabledNMods();
-			for (NMod nmod:loadedEnabledNMods)
+			//init data
+			mPreloadData = new NModPreloadData();
+			mAssetsArrayList = new ArrayList<>();
+			mLoadedNativeLibs = new ArrayList<>();
+			mLoadedEnabledNMods = new ArrayList<>();
+			mAssetsArrayList.add(mPESdk.getMinecraftInfo().getMinecraftPackageContext().getPackageResourcePath());
+			//init index
+			ArrayList<NMod> unIndexedNModArrayList = mPESdk.getNModAPI().getImportedEnabledNMods();
+			for(int index = unIndexedNModArrayList.size()-1;index>=0;--index)
+			{
+				mLoadedEnabledNMods.add(unIndexedNModArrayList.get(index));
+			}
+			//start init nmods
+			for (NMod nmod:mLoadedEnabledNMods)
 			{
 				if (nmod.isBugPack())
 				{
@@ -83,31 +100,15 @@ public class Preloader
 				}
 
 				NMod.NModPreloadBean preloadDataItem = nmod.copyNModFiles();
-				if (loadNModElfFiles(nmod, preloadDataItem))
-				{
-					if (preloadDataItem.assets_path != null)
-						assetsArrayList.add(preloadDataItem.assets_path);
-					if (preloadDataItem.dex_path != null)
-						dexPathArrayList.add(preloadDataItem.dex_path);
 
-					if (preloadDataItem.native_libs != null && preloadDataItem.native_libs.length > 0)
-					{
-						for (String nameItem:preloadDataItem.native_libs)
-						{
-							loadedNativeLibs.add(nameItem);
-						}
-					}
+				if (loadNMod(context,nmod, preloadDataItem))
 					mPreloadListener.onNModLoaded(nmod);
-				}
 				else
-				{
 					mPreloadListener.onFailedLoadingNMod(nmod);
-				}
 			}
-			preloadData.assets_packs_path = assetsArrayList.toArray(new String[0]);
-			preloadData.dex_path = dexPathArrayList.toArray(new String[0]);
-			preloadData.loaded_libs = loadedNativeLibs.toArray(new String[0]);
-			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(preloadData));
+			mPreloadData.assets_packs_path = mAssetsArrayList.toArray(new String[0]);
+			mPreloadData.loaded_libs = mLoadedNativeLibs.toArray(new String[0]);
+			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(mPreloadData));
 			mPreloadListener.onFinishedLoadingAllNMods();
 		}
 		else
@@ -115,17 +116,68 @@ public class Preloader
 		mPreloadListener.onFinish(mBundle);
 	}
 
-	private boolean loadNModElfFiles(NMod nmod, NMod.NModPreloadBean preloadDataItem)
+	private boolean loadNMod(Context context,NMod nmod, NMod.NModPreloadBean preloadDataItem)
 	{
 		MinecraftInfo minecraftInfo = mPESdk.getMinecraftInfo();
 
+		if (preloadDataItem.assets_path != null)
+			mAssetsArrayList.add(preloadDataItem.assets_path);
+
+		//edit json files
+		if(nmod.getInfo().json_edit!=null&&nmod.getInfo().json_edit.length>0)
+		{
+			ArrayList<File> assetFiles = new ArrayList<>();
+			for(String filePath : mAssetsArrayList)
+				assetFiles.add(new File(filePath));
+			NModJSONEditor jsonEditor = new NModJSONEditor(context,nmod,assetFiles.toArray(new File[0]));
+			try
+			{
+				File outResourceFile = jsonEditor.edit();
+				mAssetsArrayList.add(outResourceFile.getAbsolutePath());
+			}
+			catch(IOException e)
+			{
+				if(e instanceof FileNotFoundException)
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_FILE_NOT_FOUND,e));
+				else
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_IO_FAILED,e));
+				return false;
+			}
+			catch(JSONException jsonE)
+			{
+				nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_JSON_SYNTAX,jsonE));
+				return false;
+			}
+		}
+		//edit text files
+		if(nmod.getInfo().text_edit!=null&&nmod.getInfo().text_edit.length>0)
+		{
+			ArrayList<File> assetFiles = new ArrayList<>();
+			for(String filePath : mAssetsArrayList)
+				assetFiles.add(new File(filePath));
+			NModTextEditor textEditor = new NModTextEditor(context,nmod,assetFiles.toArray(new File[0]));
+			try
+			{
+				File outResourceFile = textEditor.edit();
+				mAssetsArrayList.add(outResourceFile.getAbsolutePath());
+			}
+			catch(IOException e)
+			{
+				if (e instanceof FileNotFoundException)
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_FILE_NOT_FOUND, e));
+				else
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_IO_FAILED, e));
+				return false;
+			}
+		}
+		//load elf files
 		if (preloadDataItem.native_libs != null && preloadDataItem.native_libs.length > 0)
 		{
-			for (String nameItem:preloadDataItem.native_libs)
+			for (NMod.NModLibInfo nameItem:preloadDataItem.native_libs)
 			{
 				try
 				{
-					System.load(nameItem);
+					System.load(nameItem.name);
 				}
 				catch (Throwable t)
 				{
@@ -134,10 +186,14 @@ public class Preloader
 				}
 			}
 
-			for (String nameItem:preloadDataItem.native_libs)
+			for (NMod.NModLibInfo nameItem:preloadDataItem.native_libs)
 			{
-				NModLib lib = new NModLib(nameItem);
-				lib.callOnLoad(minecraftInfo.getMinecraftVersionName(), mPESdk.getNModAPI().getVersionName());
+				if(nameItem.use_api)
+				{
+					NModLib lib = new NModLib(nameItem.name);
+					lib.callOnLoad(minecraftInfo.getMinecraftVersionName(), mPESdk.getNModAPI().getVersionName());
+					mLoadedNativeLibs.add(nameItem.name);
+				}
 			}
 		}
 		return true;
@@ -146,7 +202,6 @@ public class Preloader
 	static class NModPreloadData
 	{
 		String[] assets_packs_path;
-		String[] dex_path;
 		String[] loaded_libs;
 	}
 

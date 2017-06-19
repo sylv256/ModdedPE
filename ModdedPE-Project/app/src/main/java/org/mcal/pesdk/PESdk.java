@@ -9,17 +9,14 @@ public class PESdk
 {
 	private MinecraftInfo mMinecraftInfo;
 	private NModAPI mNModAPI;
-	private Context mContext;
 	private LauncherOptions mLauncherOptions;
 	private GameManager mGameManager;
 	private boolean mIsInited;
 
 	public PESdk(Context context, LauncherOptions options)
 	{
-		mContext = context;
-
-		mMinecraftInfo = new MinecraftInfo(mContext, options);
-		mNModAPI = new NModAPI(mContext, options);
+		mMinecraftInfo = new MinecraftInfo(context, options);
+		mNModAPI = new NModAPI(context, options);
 		mLauncherOptions = options;
 		mGameManager = new GameManager(this);
 		mIsInited = false;

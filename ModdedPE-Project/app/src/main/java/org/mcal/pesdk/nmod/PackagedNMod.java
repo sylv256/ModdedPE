@@ -1,10 +1,16 @@
 package org.mcal.pesdk.nmod;
-import android.content.*;
-import android.content.pm.*;
-import android.content.res.*;
-import android.graphics.*;
-import java.io.*;
-import java.util.*;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public class PackagedNMod extends NMod
 {
@@ -21,22 +27,16 @@ public class PackagedNMod extends NMod
 	{
 		NModPreloadBean ret = new NModPreloadBean();
 		ret.assets_path = getPackageResourcePath();
-		ArrayList<String> nativeLibs = new ArrayList<String>();
-		ArrayList<String> nativeLibsNeeded = new ArrayList<String>();
+		ArrayList<NModLibInfo> nativeLibs = new ArrayList<>();
 		for(NModLibInfo lib_item:mInfo.native_libs_info)
 		{
-			if(lib_item.mode == NModLibInfo.MODE_ALWAYS)
-			{
-				nativeLibs.add(lib_item.name);
-			}
-			else if(lib_item.mode == NModLibInfo.MODE_IF_NEEDED)
-			{
-				nativeLibsNeeded.add(lib_item.name);
-			}
+			NModLibInfo newInfo = new NModLibInfo();
+			newInfo.name = getNativeLibsPath() + File.separator + lib_item.name;
+			newInfo.use_api = lib_item.use_api;
+			nativeLibs.add(newInfo);
 		}
 
-		ret.native_libs = nativeLibs.toArray(new String[0]);
-		ret.needed_libs = nativeLibsNeeded.toArray(new String[0]);
+		ret.native_libs = nativeLibs.toArray(new NModLibInfo[0]);
 		return ret;
 	}
 
@@ -55,7 +55,7 @@ public class PackagedNMod extends NMod
 	
 	public String getNativeLibsPath()
 	{
-		return getPackageContext().getDataDir().getAbsolutePath() + File.separator + "lib";
+		return getPackageContext().getFilesDir().getParentFile().getAbsolutePath() + File.separator + "lib";
 	}
 
 	public PackagedNMod(String packageName,Context contextThiz, Context packageContext)
@@ -86,7 +86,9 @@ public class PackagedNMod extends NMod
 			return BitmapFactory.decodeResource(getPackageContext().getResources(), iconRes);
 		}
 		catch (PackageManager.NameNotFoundException e)
-		{}
+		{
+			e.printStackTrace();
+		}
 		return null;
 	}
 

@@ -1,13 +1,17 @@
 package org.mcal.pesdk.nmod;
-import android.content.*;
-import java.io.*;
-import java.util.*;
+
+import android.content.Context;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 class NModManager
 {
-	private ArrayList<NMod> mEnabledNMods=new ArrayList<NMod>();
-	private ArrayList<NMod> mAllNMods=new ArrayList<NMod>();
-	private ArrayList<NMod> mDisabledNMods=new ArrayList<NMod>();
+	private ArrayList<NMod> mEnabledNMods=new ArrayList<>();
+	private ArrayList<NMod> mAllNMods=new ArrayList<>();
+	private ArrayList<NMod> mDisabledNMods=new ArrayList<>();
 	private Context mContext;
 
 	NModManager(Context context)
@@ -22,7 +26,7 @@ class NModManager
 
 	ArrayList<NMod> getEnabledNModsIsValidBanner()
 	{
-		ArrayList<NMod> ret=new ArrayList<NMod>();
+		ArrayList<NMod> ret=new ArrayList<>();
 		for (NMod nmod:getEnabledNMods())
 		{
 			if (nmod.isValidBanner())
@@ -83,25 +87,24 @@ class NModManager
 			{
 				String zippedNModPath = new NModFilePathManager(mContext).getNModsDir() + File.separator + packageName;
 				ZippedNMod zippedNMod = new ZippedNMod(packageName, mContext, new File(zippedNModPath));
-				if (zippedNMod != null)
-				{
-					importNMod(zippedNMod, enabled);
-					continue;
-				}
-
+				importNMod(zippedNMod, enabled);
+				continue;
 			}
 			catch (IOException e)
-			{}
+			{
+				e.printStackTrace();
+			}
 
 			try
 			{
 				NModArchiver archiver = new NModArchiver(mContext);
 				PackagedNMod packagedNMod = archiver.archiveFromInstalledPackage(packageName);
 				importNMod(packagedNMod, enabled);
-				continue;
 			}
 			catch (ArchiveFailedException e)
-			{}
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -131,7 +134,7 @@ class NModManager
 
 
 
-	void refreshDatas()
+	private void refreshDatas()
 	{
 		NModDataLoader dataloader=new NModDataLoader(mContext);
 
@@ -144,7 +147,7 @@ class NModManager
 		}
 	}
 
-	NMod getImportedNMod(String pkgname)
+	private NMod getImportedNMod(String pkgname)
 	{
 		for (NMod nmod : mAllNMods)
 			if (nmod.getPackageName().equals(pkgname))

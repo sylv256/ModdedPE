@@ -42,16 +42,12 @@ public class GameManager
 
 			Preloader.NModPreloadData preloadData = gson.fromJson(data.getString(PreloadingInfo.NMOD_DATA_TAG), Preloader.NModPreloadData.class);
 
-			for (int i=preloadData.assets_packs_path.length - 1;i >= 0;--i)
-			{
-				String assetsPath = preloadData.assets_packs_path[i];
+			for (String assetsPath:preloadData.assets_packs_path)
 				AssetOverrideManager.addAssetOverride(activity.getAssets(), assetsPath);
-			}
 
 			String[] loadedNModLibs = preloadData.loaded_libs;
-			for (int i=loadedNModLibs.length - 1;i >= 0;--i)
+			for (String nativeLibName:loadedNModLibs)
 			{
-				String nativeLibName = loadedNModLibs[i];
 				NModLib lib = new NModLib(nativeLibName);
 				lib.callOnActivityCreate(activity, savedInstanceState);
 			}
@@ -66,9 +62,8 @@ public class GameManager
 		Preloader.NModPreloadData preloadData = gson.fromJson(activity.getIntent().getExtras().getString(PreloadingInfo.NMOD_DATA_TAG), Preloader.NModPreloadData.class);
 
 		String[] loadedNModLibs = preloadData.loaded_libs;
-		for (int i=loadedNModLibs.length - 1;i >= 0;--i)
+		for (String nativeLibName:loadedNModLibs)
 		{
-			String nativeLibName = loadedNModLibs[i];
 			NModLib lib = new NModLib(nativeLibName);
 			lib.callOnActivityFinish(activity);
 		}

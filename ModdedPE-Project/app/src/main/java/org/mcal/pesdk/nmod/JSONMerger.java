@@ -1,16 +1,20 @@
 package org.mcal.pesdk.nmod;
-import org.json.*;
-import java.util.*;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Iterator;
 
 class JSONMerger
 {
 	private String mSrc;
 	private String mDist;
 
-	public JSONMerger(String src, String dist)
+	public JSONMerger(String src, String src2)
 	{
 		this.mSrc = src;
-		this.mDist = dist;
+		this.mDist = src2;
 	}
 
 	public String merge() throws JSONException
@@ -24,7 +28,7 @@ class JSONMerger
 			return mergeArray(new JSONArray(mSrc), new JSONArray(mDist)).toString();
 		}
 		else
-			throw new JSONException("Merging FAILED: CAMNOT JUDGE STRING TYPE");
+			throw new JSONException("Merging FAILED: CANNOT JUDGE STRING TYPE");
 	}
 
 	private static boolean isJSONArray(String json)

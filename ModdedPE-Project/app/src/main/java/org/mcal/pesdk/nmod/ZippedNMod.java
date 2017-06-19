@@ -61,25 +61,19 @@ public class ZippedNMod extends NMod
 
 		}
 
-		ArrayList<String> nativeLibs = new ArrayList<String>();
-		ArrayList<String> nativeLibsNeeded = new ArrayList<String>();
+		ArrayList<NModLibInfo> nativeLibs = new ArrayList<>();
 		if (mInfo != null && mInfo.native_libs_info != null)
 		{
 			for (NModLibInfo lib_item:mInfo.native_libs_info)
 			{
-				if (lib_item.mode.equals(NModLibInfo.MODE_ALWAYS))
-				{
-					nativeLibs.add(getNativeLibsPath() + File.separator + lib_item.name);
-				}
-				else if (lib_item.mode.equals(NModLibInfo.MODE_IF_NEEDED))
-				{
-					nativeLibsNeeded.add(getNativeLibsPath() + File.separator + lib_item.name);
-				}
+				NModLibInfo newInfo = new NModLibInfo();
+				newInfo.name = getNativeLibsPath() + File.separator + lib_item.name;
+				newInfo.use_api = lib_item.use_api;
+				nativeLibs.add(newInfo);
 			}
 		}
 
-		ret.native_libs = nativeLibs.toArray(new String[0]);
-		ret.needed_libs = nativeLibsNeeded.toArray(new String[0]);
+		ret.native_libs = nativeLibs.toArray(new NModLibInfo[0]);
 		ret.assets_path = getPackageResourcePath();
 		return ret;
 	}

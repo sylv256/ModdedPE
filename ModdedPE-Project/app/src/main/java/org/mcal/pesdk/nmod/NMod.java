@@ -1,10 +1,19 @@
 package org.mcal.pesdk.nmod;
-import android.content.*;
-import android.content.res.*;
-import android.graphics.*;
-import com.google.gson.*;
-import java.io.*;
-import java.util.*;
+
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public abstract class NMod
 {
@@ -45,9 +54,7 @@ public abstract class NMod
 	@Override
 	public final boolean equals(Object obj)
 	{
-		if (getClass().equals(obj.getClass()))
-			return getPackageName().equals(((NMod)obj).getPackageName());
-		return false;
+		return getClass().equals(obj.getClass()) && getPackageName().equals(((NMod)obj).getPackageName());
 	}
 
 	public final Bitmap createBannerImage() throws LoadFailedException
@@ -87,11 +94,6 @@ public abstract class NMod
 	public final boolean isValidBanner()
 	{
 		return getBannerImage() != null;
-	}
-
-	public final NModLanguageBean[] getLanguageBeans()
-	{
-		return mInfo.languages;
 	}
 
 	public final Bitmap getIcon()
@@ -165,7 +167,7 @@ public abstract class NMod
 
 	public final ArrayList<NModWarning> getWarnings()
 	{
-		ArrayList<NModWarning> newArray = new ArrayList<NModWarning>();
+		ArrayList<NModWarning> newArray = new ArrayList<>();
 		newArray.addAll(mWarnings);
 		return newArray;
 	}
@@ -175,7 +177,12 @@ public abstract class NMod
 
 	}
 
-	protected final void preload()
+	public NMod.NModInfo getInfo()
+	{
+		return mInfo;
+	}
+
+	final void preload()
 	{
 		this.mBugExpection = null;
 
@@ -188,8 +195,7 @@ public abstract class NMod
 			is.read(buffer);
 			String jsonStr = new String(buffer);
 			Gson gson = new Gson();
-			NModInfo theInfo = gson.fromJson(jsonStr, NModInfo.class);
-			mInfo = theInfo;
+			mInfo = gson.fromJson(jsonStr, NModInfo.class);
 		}
 		catch (JsonSyntaxException e)
 		{
@@ -212,7 +218,6 @@ public abstract class NMod
 		{
 			mInfo = null;
 			setBugPack(nmodle);
-			return;
 		}
 	}
 
@@ -224,17 +229,18 @@ public abstract class NMod
 
 	public static class NModPreloadBean
 	{
-		public String[] native_libs;
-		public String[] needed_libs;
-		public String dex_path;
+		public NModLibInfo[] native_libs;
 		public String assets_path;
 	}
 
-	public static class NModLanguageBean
+	public static class NModTextEditBean
 	{
-		public String name = null;
 		public String path = null;
-		public boolean format_space = false;
+		public String mode = MODE_REPLACE;
+
+		public static final String MODE_REPLACE = "replace";
+		public static final String MODE_APPEND = "append";
+		public static final String MODE_PREPEND = "prepend";
 	}
 
 	public static class NModJsonEditBean
@@ -250,30 +256,25 @@ public abstract class NMod
 	{
 		public boolean use_api = false;
 		public String name = null;
-		public String mode = MODE_ALWAYS;
-
-		public static final String MODE_ALWAYS = "always";
-		public static final String MODE_IF_NEEDED = "if_needed";
 	}
 
 	public static class NModInfo
 	{
 		public NModLibInfo[] native_libs_info = null;
-		public NModLanguageBean[] languages = null;
+		public NModTextEditBean[] text_edit = null;
 		public NModJsonEditBean[] json_edit = null;
-		public String[] parents_package_names = null;
-		public String[] target_mcpe_versions = null;
+		public String[] dependencies = null;
+		public String[] support_versions = null;
 		public int version_code = -1;
 		public String name = null;
 		public String package_name = null;
-		public String icon_path = null;
 		public String description = null;
 		public String author = null;
 		public String version_name = null;
 		public String banner_title = null;
 		public String banner_image_path = null;
 		public String change_log = null;
-		public String check_target_version_mode = CHECK_MODE_NEVER;
+		public String check_support_version_mode = CHECK_MODE_NEVER;
 
 		public static final String CHECK_MODE_NEVER = "never";
 		public static final String CHECK_MODE_ALWAYS = "always";

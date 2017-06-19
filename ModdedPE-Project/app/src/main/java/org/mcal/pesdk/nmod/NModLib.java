@@ -1,9 +1,8 @@
 package org.mcal.pesdk.nmod;
-import android.os.*;
-import dalvik.system.*;
-import java.io.*;
-import java.util.*;
-import com.mojang.minecraftpe.*;
+
+import android.os.Bundle;
+
+import com.mojang.minecraftpe.MainActivity;
 
 public class NModLib
 {
@@ -28,18 +27,12 @@ public class NModLib
 		return nativeCallOnLoad(mName, mcver, apiVer);
 	}
 
-	public boolean callOnDexLoaded(DexClassLoader dexClassLoader)
-	{
-		return nativeCallOnDexLoaded(mName, dexClassLoader);
-	}
-	
 	static
 	{
 		nativeRegisterNatives(NModLib.class);
 	}
 	
 	private static native boolean nativeRegisterNatives(Class cls);
-	private static native boolean nativeCallOnDexLoaded(String name, DexClassLoader classLoader);
 	private static native boolean nativeCallOnActivityFinish(String name, MainActivity mainActivity);
 	private static native boolean nativeCallOnLoad(String name, String mcVersion, String apiVersion);
 	private static native boolean nativeCallOnActivityCreate(String mame, MainActivity mainActivity, Bundle savedInstanceState);

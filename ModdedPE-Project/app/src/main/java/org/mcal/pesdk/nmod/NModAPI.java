@@ -1,25 +1,22 @@
 package org.mcal.pesdk.nmod;
-import android.content.*;
-import android.content.res.*;
-import android.os.*;
-import com.google.gson.*;
-import org.mcal.pesdk.utils.*;
-import java.util.*;
-import org.mcal.pesdk.*;
+
+import android.content.Context;
+
+import org.mcal.pesdk.utils.LauncherOptions;
+
+import java.util.ArrayList;
 
 public final class NModAPI
 {
 	private Context mContext;
 	private NModManager mNModManager;
 	private NModArchiver mArchiver;
-	private LauncherOptions mLauncherOptions;
 
 	public NModAPI(Context context, LauncherOptions launcherOptions)
 	{
 		this.mContext = context;
 		this.mNModManager = new NModManager(context);
 		this.mArchiver = new NModArchiver(context);
-		this.mLauncherOptions = launcherOptions;
 	}
 
 	public ZippedNMod archiveZippedNMod(String filePath) throws ArchiveFailedException
