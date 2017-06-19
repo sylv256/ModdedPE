@@ -120,7 +120,10 @@ public class ZippedNMod extends NMod
 		InputStream imageStream = null;
 		try
 		{
-			imageStream = mZipFile.getInputStream(mZipFile.getEntry("icon.png"));
+			ZipEntry iconEntry = mZipFile.getEntry("icon.png");
+			if (iconEntry == null)
+				return null;
+			imageStream = mZipFile.getInputStream(iconEntry);
 			Bitmap ret = BitmapFactory.decodeStream(imageStream);
 			return ret;
 		}

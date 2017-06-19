@@ -104,13 +104,13 @@ public class MainActivity extends BaseActivity
 		switch (item.getItemId())
 		{
 			case R.id.item_main_page:
-				mMainViewPager.setCurrentItem(0, true);
+				mMainViewPager.setCurrentItem(0, false);
 				break;
 			case R.id.item_manage_nmods:
-				mMainViewPager.setCurrentItem(1, true);
+				mMainViewPager.setCurrentItem(1, false);
 				break;
 			case R.id.item_launcher_settings:
-				mMainViewPager.setCurrentItem(2, true);
+				mMainViewPager.setCurrentItem(2, false);
 				break;
 		}
 	}

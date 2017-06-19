@@ -65,14 +65,14 @@ namespace NModAPI
 		}
 		dlclose(image);
 	}
-	jboolean nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion,jstring libminecraftpePath)
+	jboolean nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)=
 		(void (*)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)) dlsym(image,"NMod_onLoad");
 		if(NMod_onLoad)
 		{
-			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,apiVersion),toString(env,libminecraftpePath));
+			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,apiVersion),mMCPENativeLibPath);
 		}
 		dlclose(image);
 	}

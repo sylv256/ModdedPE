@@ -94,7 +94,7 @@ public class Preloader
 					{
 						for (String nameItem:preloadDataItem.native_libs)
 						{
-							loadedNativeLibs.add(nameItem.substring(nameItem.indexOf(File.separator)));
+							loadedNativeLibs.add(nameItem);
 						}
 					}
 					mPreloadListener.onNModLoaded(nmod);
@@ -136,7 +136,7 @@ public class Preloader
 
 			for (String nameItem:preloadDataItem.native_libs)
 			{
-				NModLib lib = new NModLib(nameItem.substring(nameItem.indexOf(File.separator)));
+				NModLib lib = new NModLib(nameItem);
 				lib.callOnLoad(minecraftInfo.getMinecraftVersionName(), mPESdk.getNModAPI().getVersionName());
 			}
 		}
