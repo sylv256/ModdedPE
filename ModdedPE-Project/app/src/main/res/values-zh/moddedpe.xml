@@ -18,27 +18,27 @@
 	<string name="load_fail_title">加載失敗！</string>
 	<string name="nmod_importing_title">NMod導入中...</string>
 	<string name="nmod_import_failed">導入NMod失敗</string>
-	<string name="nmod_import_failed_message_unexpected">導入時造成了未知錯誤ಠ_ಠ \n點擊“錯誤信息”以查看更多~</string>
-	<string name="nmod_import_failed_message_decode">(看起來你選擇的文件不是一個ZIP類型文件(๑•ี_เ•ี๑)\nModdedPE只支持按ZIP編碼的NMod哦~</string>
-	<string name="nmod_import_failed_message_no_manifest">看起來這個ZIP文件裏面沒有NMod清單_(:з」∠)_\n請確保在壓縮包根目錄處有一個nmod_manifest.json作為清單~</string>
-	<string name="nmod_import_failed_message_io_exception">文件讀寫出現錯誤( ･_･)ﾉ⌒●~*</string>
-	<string name="nmod_import_failed_message_manifest_json_syntax_error">ModdedPE在讀取清單文件(nmod_manifest.json)時發生了一些小問題，導致NMod基本信息讀取失敗(๑•̀ω•́๑)\n請點擊“錯誤信息”查看具體的語法錯誤w</string>
-	<string name="nmod_import_failed_message_invalid_package_name">似乎這個NMod的包名有些問題(,,•́ . •̀,,)\n包名必須符合Java包名規則哦~</string>
-	<string name="nmod_import_failed_message_no_package_name">ModdedPE沒有在清單文件裏面找到包名標簽[package_name](.ω.)\n請添加它(๑•́ ₃ •̀๑)</string>
-	<string name="nmod_import_failed_message_inequal_package_name">未解之謎：為何這個NMod裏面有兩個不一樣的包名值呢..._(:з」∠)_\n請確保AndroidManifest.xml中定義的包名與nmod_manifest.json中定義的包名是同一個值~</string>
-	<string name="nmod_import_failed_message_redundant_manifest">哇！有兩個nmod_manifest.json呢！\n(選擇困難癥：我該用哪一個呢...?|•ω•`)\n小提示：請不要在壓縮文件內放/assets/nmod_manifest.json和/nmod_manifest.json兩個清單文件~</string>
+	<string name="nmod_import_failed_message_unexpected">導入時造成了未知錯誤。\n點擊“錯誤信息”以查看更多。</string>
+	<string name="nmod_import_failed_message_decode">(看起來你選擇的文件不是一個ZIP類型文件，\nModdedPE只支持按ZIP編碼的NMod哦~</string>
+	<string name="nmod_import_failed_message_no_manifest">看起來這個ZIP文件裏面沒有NMod清單，\n請確保在壓縮包根目錄處有一個nmod_manifest.json作為清單~</string>
+	<string name="nmod_import_failed_message_io_exception">文件讀寫出現錯誤。</string>
+	<string name="nmod_import_failed_message_manifest_json_syntax_error">ModdedPE在讀取清單文件(nmod_manifest.json)時發生了一些小問題，導致NMod基本信息讀取失敗(๑•̀ω•́๑)\n請點擊“錯誤信息”查看具體的語法錯誤。</string>
+	<string name="nmod_import_failed_message_invalid_package_name">似乎這個NMod的包名有些問題。\n包名必須符合Java包名規則哦~</string>
+	<string name="nmod_import_failed_message_no_package_name">ModdedPE沒有在清單文件裏面找到包名標簽[package_name]\n請添加它。</string>
+	<string name="nmod_import_failed_message_inequal_package_name">未解之謎：為何這個NMod裏面有兩個不一樣的包名值呢...\n請確保AndroidManifest.xml中定義的包名與nmod_manifest.json中定義的包名是同一個值。</string>
+	<string name="nmod_import_failed_message_redundant_manifest">哇！有兩個nmod_manifest.json呢！\n(選擇困難癥：我該用哪一個呢...？\n小提示：請不要在壓縮文件內放/assets/nmod_manifest.json和/nmod_manifest.json兩個清單文件。</string>
 	<string name="nmod_import_failed_button_full_info">錯誤信息</string>
 	<string name="nmod_import_failed_full_info_title">錯誤信息</string>
 	<string name="nmod_import_failed_full_info_message">錯誤類型：\n%1$s\n錯誤信息：\n%2$s</string>
 	<string name="nmod_import_replaced_title">已覆蓋</string>
 	<string name="nmod_import_replaced_message">為何有一個已經導入的NMod與所選擇的NMod有同一個包名呢(๑′°︿°๑)?\n不管啦，新選擇的NMod只好把舊的覆蓋了呢w</string>
-	<string name="nmod_import_succeed_title">導入成功~</string>
-	<string name="nmod_import_succeed_message">導入成功(๑•̀ㅁ•́ฅ)！</string>
+	<string name="nmod_import_succeed_title">導入成功</string>
+	<string name="nmod_import_succeed_message">導入成功！</string>
 	<string name="load_fail_msg">錯誤類型：\n%1$s\n錯誤信息：\n%2$s</string>
 	<string name="nmod_add_new">添加新的</string>
 	<string name="nmod_export">導出</string>
 	<string name="nmod_add_new_title">添加新的...</string>
-	<string name="nmod_add_new_message">這裏有兩種方式來添加新的NMod~選一個吧↓</string>
+	<string name="nmod_add_new_message">這裏有兩種方式來添加新的NMod，選一個吧。</string>
 	<string name="nmod_add_new_pick_installed">已安裝中</string>
 	<string name="nmod_add_new_pick_storage">外部存儲</string>
 	<string name="nmod_enabled_title">有效NMod</string>
@@ -49,9 +49,9 @@
 	<string name="nmod_description_about_version_name">版本名：</string>
 	<string name="nmod_description_unknow">未填寫</string>
 	<string name="nmod_delete_title">刪除NMod</string>
-	<string name="nmod_delete_message">如果您刪除了這個NMod，它可能會消失很長很長的一段時間呢(,,•́ . •̀,,)</string>
-	<string name="nmod_imported_view_more">點擊按鈕以瀏覽更多ヽ(´•ω•`)↓</string>
-	<string name="nmod_import_failed_view_more">點擊按鈕查看更多~</string>
+	<string name="nmod_delete_message">如果您刪除了這個NMod，它可能會消失很長很長的一段時間呢。確定要刪除嗎？</string>
+	<string name="nmod_imported_view_more">點擊按鈕以瀏覽更多。</string>
+	<string name="nmod_import_failed_view_more">點擊按鈕查看更多。</string>
 	
 	<!--About-->
 	<string name="about_license">開放源代碼許可</string>
@@ -69,18 +69,18 @@
 	<string name="preferences_title_safe_mode">安全模式</string>
 	<string name="preferences_summary_safe_mode">禁用所有的NMod</string>
 	<string name="preferences_title_data_saved_path">數據目錄</string>
-	<string name="preferences_summary_data_saved_path">改變遊戲存儲數據的文件夾~</string>
+	<string name="preferences_summary_data_saved_path">改變遊戲存儲數據的文件夾</string>
 	<string name="preferences_title_game_pkg_name">MinecraftPE包名</string>
-	<string name="preferences_summary_game_pkg_name">在這裏切換啟動包|_•`)。</string>
+	<string name="preferences_summary_game_pkg_name">在這裏切換啟動包</string>
 	<string name="preferences_update_message_data_path">成功設置數據目錄：%1$s</string>
 	<string name="preferences_update_message_reset_data_path">成功設置數據目錄到默認值√</string>
 	<string name="preferences_update_message_pkg_name">成功設置包名：%1$s</string>
-	<string name="preferences_update_message_reset_pkg_name">成功設置包名到默認值√</string>
+	<string name="preferences_update_message_reset_pkg_name">成功設置包名到默認值。</string>
 	<string name="preferences_title_app">應用程序</string>
 	<string name="preferences_title_about">關於</string>
-	<string name="preferences_summary_about">ModdedPE是什麽？可以吃麽？</string>
+	<string name="preferences_summary_about">關於ModdedPE</string>
 	<string name="preferences_title_language">語言</string>
-	<string name="preferences_summary_language">在這裏更換語言Orz。</string>
+	<string name="preferences_summary_language">在這裏更換語言</string>
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">一個方塊，兩個方塊，三個方塊……</string>
@@ -88,7 +88,7 @@
 	<string name="preloading_initing">初始化啟動器</string>
 	<string name="preloading_initing_info">--NModAPI版本：%1$s\n--MinecraftPE版本：%2$s</string>
 	<string name="preloading_initing_info_safe_mode">--安全模式開啟\n--MinecraftPE版本：%1$s</string>
-	<string name="preloading_initing_loading_libs">加載動態鏈接庫|_•`)</string>
+	<string name="preloading_initing_loading_libs">加載動態鏈接庫</string>
 	<string name="preloading_loading_lib_substrate">--加載libsubstrate.so</string>
 	<string name="preloading_loading_lib_game_launcher">--加載libpesdk-game-launcher.so</string>
 	<string name="preloading_loading_lib_fmod">--加載libfmod.so</string>
@@ -99,10 +99,10 @@
 	<string name="preloading_nmod_loaded">--已裝載：%1$s</string>
 	<string name="preloading_nmod_finish_loading">裝載NMod完成w</string>
 	<string name="preloading_nmod_loaded_failed">--裝載失敗：%1$s</string>
-	<string name="preloading_finished">正在打開遊戲(๑•́ ₃ •̀๑)</string>
+	<string name="preloading_finished">正在打開遊戲</string>
 	
 	<string-array name="preloading_tips_text">
-		<item>你造麽，APK類型的NMod不安裝也可以導入的呢( ･_･)</item>
+		<item>你造麽，APK類型的NMod不安裝也可以導入的呢。</item>
 		<item>據說主頁左上角的苦力怕裏面有新世界哦w</item>
 		<item>其實ModdedPE是作者一邊女裝一邊寫的呢）</item>
 		<item>據說Github是個神奇的地方，那裏還有ModdedPE的源碼呢（劃去</item>
