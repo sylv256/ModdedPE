@@ -10,7 +10,7 @@ public class UtilsSettings implements LauncherOptions
 	private final static String TAG_FIRST_LOADED = "first_loaded";
 	private final static String TAG_DATA_SAVED_PATH = "data_saved_path";
 	private final static String TAG_PKG_NAME = "pkg_name";
-	private final static String TAG_LANGUAGE = "language";
+	private final static String TAG_LANGUAGE = "language_type";
 	
 	public UtilsSettings(Context context)
 	{
@@ -41,7 +41,7 @@ public class UtilsSettings implements LauncherOptions
 		return mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).getBoolean(TAG_FIRST_LOADED, false);
 	}
 	
-	public void setLanguaheType(int z)
+	public void setLanguageType(int z)
 	{
 		SharedPreferences.Editor editor = mContext.getSharedPreferences(TAG_SETTINGS, Context.MODE_PRIVATE).edit();
 		editor.putInt(TAG_LANGUAGE, z);

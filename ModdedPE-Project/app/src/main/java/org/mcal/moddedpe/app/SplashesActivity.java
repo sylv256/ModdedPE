@@ -38,20 +38,6 @@ public class SplashesActivity extends BaseActivity implements DataPreloader.Prel
 	private void initInstance()
 	{
 		new DataPreloader(this).preload(this);
-		UtilsSettings settings = new UtilsSettings(this);
-		switch (settings.getLanguageType())
-		{
-			case 0:
-				getResources().getConfiguration().locale = Locale.getDefault();
-				break;
-			case 1:
-				getResources().getConfiguration().locale = Locale.ENGLISH;
-				break;
-			case 2:
-				getResources().getConfiguration().locale = Locale.SIMPLIFIED_CHINESE;
-				break;
-		}
-		getResources().updateConfiguration(getResources().getConfiguration(), getResources().getDisplayMetrics());
 	}
 
 	Handler mHandler=new Handler()

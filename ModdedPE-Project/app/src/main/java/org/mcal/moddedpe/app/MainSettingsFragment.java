@@ -1,18 +1,13 @@
 package org.mcal.moddedpe.app;
+import android.app.*;
 import android.content.*;
 import android.os.*;
-import android.support.v4.app.*;
-import android.support.v7.widget.*;
-import android.view.*;
-import android.widget.*;
-import org.mcal.mcdesign.widget.*;
-import org.mcal.moddedpe.*;
 import android.preference.*;
-import org.mcal.moddedpe.utils.*;
-import android.app.*;
 import android.support.design.widget.*;
-import org.mcal.pesdk.utils.*;
 import java.util.*;
+import org.mcal.moddedpe.*;
+import org.mcal.moddedpe.utils.*;
+import org.mcal.pesdk.utils.*;
 
 public class MainSettingsFragment extends PreferenceFragment
 {
@@ -94,24 +89,11 @@ public class MainSettingsFragment extends PreferenceFragment
 				public boolean onPreferenceChange(Preference p1, Object p2)
 				{
 					int type = new Integer((String)p2);
-					mSettings.setLanguaheType(type);
-					switch (type)
-					{
-						case 0:
-							getResources().getConfiguration().locale = Locale.getDefault();
-							break;
-						case 1:
-							getResources().getConfiguration().locale = Locale.ENGLISH;
-							break;
-						case 2:
-							getResources().getConfiguration().locale = Locale.SIMPLIFIED_CHINESE;
-							break;
-					}
-					getResources().updateConfiguration(getResources().getConfiguration(), getResources().getDisplayMetrics());
+					mSettings.setLanguageType(type);
+					I18n.setLanguage(getActivity());
 					Intent intent = new Intent(getActivity(), SplashesActivity.class);
-					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-					getActivity().startActivity(intent);
-					getActivity().finish();
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(intent);
 					return true;
 				}
 

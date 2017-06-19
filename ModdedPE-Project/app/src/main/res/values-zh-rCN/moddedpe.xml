@@ -160,16 +160,4 @@
 	<string name="pick_tips_title">提示</string>
 	<string name="pick_tips_message">确定把启动包换为%1$s[%2$s]么？ModdedPE将会重启以完成这一操作~</string>
 	<string name="pick_tips_reset_message">确定把启动包重置为默认值么？ModdedPE将会重启以完成这一操作~</string>
-	
-	<!--Language Selector-->
-	<string-array name="language_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-	<string-array name="language_strings">
-        <item>自动</item>
-        <item>English</item>
-        <item>中文简体</item>
-    </string-array>
 </resources>

@@ -58,7 +58,7 @@ namespace NModAPI
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityFinish)(JNIEnv*env,jobject thiz)=
-		(void (*)(JNIEnv*,jobject)) dlsym(image,"NMod_onActivityFinish");
+		(void (*)(JNIEnv*,jobject)) dlsym(image,"NMod_OnActivityFinish");
 		if(NMod_onActivityFinish)
 		{
 			NMod_onActivityFinish(env,mainActivity);
@@ -69,7 +69,7 @@ namespace NModAPI
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)=
-		(void (*)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)) dlsym(image,"NMod_onLoad");
+		(void (*)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)) dlsym(image,"NMod_OnLoad");
 		if(NMod_onLoad)
 		{
 			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,apiVersion),mMCPENativeLibPath);
@@ -80,7 +80,7 @@ namespace NModAPI
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onActivityCreate)(JNIEnv*env,jobject thiz,jobject savedInstanceState)=
-		(void (*)(JNIEnv*,jobject,jobject)) dlsym(image,"NMod_onActivityCreate");
+		(void (*)(JNIEnv*,jobject,jobject)) dlsym(image,"NMod_OnActivityCreate");
 		if(NMod_onActivityCreate)
 		{
 			NMod_onActivityCreate(env,mainActivity,bundle);
@@ -101,7 +101,7 @@ namespace NModAPI
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
 		void (*NMod_onDexLoaded)(JNIEnv*env,jobject dexClassLoader)=
-		(void (*)(JNIEnv*,jobject)) dlsym(image,"NMod_onDexLoaded");
+		(void (*)(JNIEnv*,jobject)) dlsym(image,"NMod_OnDexLoaded");
 		if(NMod_onDexLoaded)
 		{
 			NMod_onDexLoaded(env,dexClassLoader);

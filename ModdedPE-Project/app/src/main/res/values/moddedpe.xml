@@ -150,16 +150,4 @@
 	<string name="pick_tips_title">Tips</string>
 	<string name="pick_tips_message">Are you sure to set minecraft package name to %1$s[%2$s]?ModdedPE will restart.</string>
 	<string name="pick_tips_reset_message">Are you sure to reset minecraft package name to default value?ModdedPE will restart.</string>
-	
-	<!--Language Selector-->
-	<string-array name="language_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-	<string-array name="language_strings">
-        <item>Auto</item>
-        <item>English</item>
-        <item>中文简体</item>
-    </string-array>
 </resources>
