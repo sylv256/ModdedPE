@@ -97,17 +97,6 @@ namespace NModAPI
 		}
 		return env->NewStringUTF("");
 	}
-	jboolean nativeCallOnDexLoaded(JNIEnv*env,jobject thiz,jstring libname,jobject dexClassLoader)
-	{
-		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
-		void (*NMod_onDexLoaded)(JNIEnv*env,jobject dexClassLoader)=
-		(void (*)(JNIEnv*,jobject)) dlsym(image,"NMod_OnDexLoaded");
-		if(NMod_onDexLoaded)
-		{
-			NMod_onDexLoaded(env,dexClassLoader);
-		}
-		dlclose(image);
-	}
 }
 
 //-------------------------------------------------------------
@@ -120,8 +109,7 @@ extern "C" JNIEXPORT jboolean JNICALL Java_org_mcal_pesdk_nmod_NModLib_nativeReg
 	{
 		{"nativeCallOnActivityFinish", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;)Z", (void *)&NModAPI::nativeCallOnActivityFinish},
 		{"nativeCallOnLoad", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z", (void *)&NModAPI::nativeCallOnLoad},
-		{"nativeCallOnActivityCreate", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;Landroid/os/Bundle;)Z", (void *)&NModAPI::nativeCallOnActivityCreate},
-		{"nativeCallOnDexLoaded", "(Ljava/lang/String;Ldalvik/system/DexClassLoader;)Z", (void *)&NModAPI::nativeCallOnDexLoaded}
+		{"nativeCallOnActivityCreate", "(Ljava/lang/String;Lcom/mojang/minecraftpe/MainActivity;Landroid/os/Bundle;)Z", (void *)&NModAPI::nativeCallOnActivityCreate}
 	};
 	
 	if (env->RegisterNatives(cls,methods,sizeof(methods)/sizeof(JNINativeMethod)) < 0)
