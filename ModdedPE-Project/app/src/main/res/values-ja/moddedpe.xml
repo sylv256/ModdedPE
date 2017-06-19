@@ -150,7 +150,7 @@
 	<string name="pick_tips_message">マインクラフトのパッケージ名を %1$s[%2$s]に設定してもよろしいですか？ModdedPEはリセットされます。</string>
 	<string name="pick_tips_reset_message">マインクラフトのパッケージ名をデフォルトの値にリセットしてもよろしいですか？ModdedPEはリセットされます。</string>
 
-	!--Launch Failed-->
+	<!--Launch Failed-->
 	<string name="launch_failed_title">ゲームを開くことができませんでした。</string>
 	<string name="launch_failed_message">スターターの崩壊につながる、ゲームを開くときにエラーをトリガModdeddPE。それでも問題が発生した場合、アプリケーションデータModdedPEをオフにします。\ Nエラーメッセージ：％1つの$ sの\nエラーメッセージ：%1$s</string>
 </resources>
