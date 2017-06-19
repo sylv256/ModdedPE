@@ -59,7 +59,7 @@
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 	<string name="about_author">MADE BY ModelPart[Twitter: @model_part]</string>
 	<string name="about_translators">Translators</string>
-	<string name="about_translators_message">zh-rCN[ModelPart]\nen[ModelPart]</string>
+	<string name="about_translators_message">People who have participated in this language translator:\nModelPart\nKenMizz</string>
 	<string name="about_view_github">Github Page</string>
 	<string name="about_view_nmod_api">View NModAPI</string>
 	

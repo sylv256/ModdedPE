@@ -59,7 +59,7 @@
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 	<string name="about_author">MADE BY ModelPart[Twitter: @model_part]</string>
 	<string name="about_translators">翻訳者</string>
-	<string name="about_translators_message">zh-rCN[ModelPart]\nen[ModelPart]</string>
+	<string name="about_translators_message">誰がこの言語の翻訳に参加しました。\nDarkShuper</string>
 	<string name="about_view_github">Githubページ</string>
 	<string name="about_view_nmod_api">NModAPIを見る</string>
 	

@@ -61,7 +61,7 @@
 	<string name="about_translators">翻譯人員</string>
 	<string name="about_view_github">Github頁</string>
 	<string name="about_view_nmod_api">查看NModAPI</string>
-	<string name="about_translators_message">zh-rCN[ModelPart]\nen[ModelPart]</string>
+	<string name="about_translators_message">參加過本語言翻譯的人員：\nModelPart</string>
 	
 	<!--Preferences-->
 	<string name="preferences_title">設置</string>
