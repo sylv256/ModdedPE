@@ -41,6 +41,9 @@ public class I18n
 			case 7:
 				config.locale = new Locale("pt");
 				break;
+			case 8:
+				config.locale = Locale.FRENCH;
+				break;
 		}
 		if (!defaultLocale.equals(config.locale))
 			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());

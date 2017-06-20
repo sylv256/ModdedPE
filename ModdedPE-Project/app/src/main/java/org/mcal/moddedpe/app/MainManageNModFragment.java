@@ -754,11 +754,10 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 	private boolean checkPermissions()
 	{
-		if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+		if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
 		{
-			ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
-
-
+			ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+			return false;
 		}
 		return true;
 	}
@@ -768,7 +767,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 	{
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-		if (requestCode == 0)
+		if (requestCode == 1)
 		{
 			boolean isAllGranted = true;
 
@@ -807,7 +806,6 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				});
 				builder.setNegativeButton(android.R.string.cancel, null);
 				builder.show();
-
 			}
 		}
 	}
