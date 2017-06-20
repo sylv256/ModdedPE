@@ -274,7 +274,7 @@ public abstract class NMod
 		public String banner_title = null;
 		public String banner_image_path = null;
 		public String change_log = null;
-		public String check_support_version_mode = CHECK_MODE_NEVER;
+		public String version_check_mode = CHECK_MODE_NEVER;
 
 		public static final String CHECK_MODE_NEVER = "never";
 		public static final String CHECK_MODE_ALWAYS = "always";

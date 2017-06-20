@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import java.io.*;
 
 public class ZippedNMod extends NMod
 {
@@ -132,7 +133,10 @@ public class ZippedNMod extends NMod
 	{
 		try
 		{
-			return mZipFile.getInputStream(mZipFile.getEntry(MANIFEST_NAME));
+			ZipEntry entry = mZipFile.getEntry(MANIFEST_NAME);
+			if (entry == null)
+				return null;
+			return mZipFile.getInputStream(entry);
 		}
 		catch (IOException e)
 		{
@@ -146,7 +150,8 @@ public class ZippedNMod extends NMod
 		this.mZipFile = new ZipFile(file);
 		this.mFilePath = file;
 
-		mZipFile.getInputStream(mZipFile.getEntry(MANIFEST_NAME)).close();
+		if (mZipFile.getEntry(MANIFEST_NAME) == null)
+			throw new FileNotFoundException(MANIFEST_NAME);
 
 		try
 		{

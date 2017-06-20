@@ -28,14 +28,16 @@ public class PackagedNMod extends NMod
 		NModPreloadBean ret = new NModPreloadBean();
 		ret.assets_path = getPackageResourcePath();
 		ArrayList<NModLibInfo> nativeLibs = new ArrayList<>();
-		for(NModLibInfo lib_item:mInfo.native_libs_info)
+		if (mInfo.native_libs_info != null)
 		{
-			NModLibInfo newInfo = new NModLibInfo();
-			newInfo.name = getNativeLibsPath() + File.separator + lib_item.name;
-			newInfo.use_api = lib_item.use_api;
-			nativeLibs.add(newInfo);
+			for (NModLibInfo lib_item:mInfo.native_libs_info)
+			{
+				NModLibInfo newInfo = new NModLibInfo();
+				newInfo.name = getNativeLibsPath() + File.separator + lib_item.name;
+				newInfo.use_api = lib_item.use_api;
+				nativeLibs.add(newInfo);
+			}
 		}
-
 		ret.native_libs = nativeLibs.toArray(new NModLibInfo[0]);
 		return ret;
 	}
@@ -43,24 +45,24 @@ public class PackagedNMod extends NMod
 	@Override
 	public boolean isSupportedABI()
 	{
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public int getNModType()
 	{
 		return NMOD_TYPE_PACKAGED;
 	}
-	
+
 	public String getNativeLibsPath()
 	{
 		return getPackageContext().getFilesDir().getParentFile().getAbsolutePath() + File.separator + "lib";
 	}
 
-	public PackagedNMod(String packageName,Context contextThiz, Context packageContext)
+	public PackagedNMod(String packageName, Context contextThiz, Context packageContext)
 	{
-		super(packageName,contextThiz);
+		super(packageName, contextThiz);
 		this.mPackageContext = packageContext;
 		preload();
 	}

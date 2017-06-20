@@ -13,7 +13,7 @@ public class I18n
 
 		Locale defaultLocale = context.getResources().getConfiguration().locale;
 		Configuration config = context.getResources().getConfiguration();
-		
+
 		switch (type)
 		{
 			case 0:
@@ -35,9 +35,15 @@ public class I18n
 			case 5:
 				config.locale = Locale.TRADITIONAL_CHINESE;
 				break;
+			case 6:
+				config.locale = new Locale("tu");
+				break;
+			case 7:
+				config.locale = new Locale("pt");
+				break;
 		}
 		if (!defaultLocale.equals(config.locale))
 			context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-		
+
 	}
 }

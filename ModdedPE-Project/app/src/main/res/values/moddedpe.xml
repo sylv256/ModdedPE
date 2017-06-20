@@ -154,5 +154,9 @@
 	<!--Launch Failed-->
 	<string name="launch_failed_title">Launch Game Failed</string>
 	<string name="launch_failed_message">Sorry, ModdeddPE triggers an error when opening the game, causing the initiator to crash. If this problem persists, clear ModdedPE\'s application data.\nError Message:%1$s</string>
+	
+	<!--Enable Warnings-->
+	<string name="enable_warning_unsupport_title">Unsupported Version</string>
+	<string name="enable_warning_unsupport_message"></string>
 </resources>
 

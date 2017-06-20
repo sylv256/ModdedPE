@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!--Language Selector-->
 	<string-array name="language_values">
@@ -8,6 +7,8 @@
 		<item>3</item>
 		<item>4</item>
 		<item>5</item>
+		<item>6</item>
+		<item>7</item>
 	</string-array>
 
  	<string-array name="language_strings">
@@ -15,7 +16,9 @@
 		<item>English</item>
 		<item>简体中文</item>
 		<item>日本語</item>
-		<item>русский</item>
+		<item>Pусский</item>
 		<item>繁體中文</item>
+		<item>Türkçe</item>
+		<item>Português</item>
 	</string-array>
 </resources>
