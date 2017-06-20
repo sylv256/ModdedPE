@@ -197,7 +197,7 @@
     <string name="preloading_finished">Lancement du jeu…</string>
 
 
-    -<string-array name="preloading_tips_text">
+    <string-array name="preloading_tips_text">
 
     <item>APK formatted nmod can also be imported~</item>
 
