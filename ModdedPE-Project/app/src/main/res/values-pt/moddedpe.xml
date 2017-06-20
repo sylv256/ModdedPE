@@ -7,7 +7,7 @@
 	<string name="about_title">Sobre</string>
 	<string name="nmod_picker_file_title">Escolher NMod (Armazenamento)</string>
 	<string name="nmod_picker_package_title">Escolher NMod (Aplicativos)</string>
-	<string name="main_title">Pagina inicial</string>
+	<string name="main_title">Página inicial</string>
 	<string name="prestart_title">Pré-carregamento</string>
 	<string name="import_nmod_title">Importar NMod</string>
 	<string name="nmods_load_failed_title">Alguns NMods estavam quebrados</string>
@@ -19,7 +19,7 @@
 	<string name="load_fail_msg">Tipo de erro:\n%1$s\nMensagem de erro:\n%2$s</string>
 	<string name="nmod_enabled_title">Ativado NMods</string>
 	<string name="nmod_disabled_title">Desativado NMods</string>
-	<string name="nmod_importing_title">Importando NMod...</string>
+	<string name="nmod_importing_title">Importando NMod&#8320;</string>
 	<string name="nmod_import_failed">Falha ao importar NMod</string>
 	<string name="nmod_import_failed_message_unexpected">Ocorreu um erro inesperado ao importar Mod.</string>
 	<string name="nmod_import_failed_message_decode">A importação desse NMod falhou porque este não é um arquivo de mod válido. Por favor, certifique-se de que ele tenha o formato zip.</string>
@@ -39,7 +39,7 @@
 	<string name="nmod_import_failed_full_info_title">Informação de Erro</string>
 	<string name="nmod_import_failed_full_info_message">Tipo de erro:\n%1$s\nMensagem de erro:\n%2$s</string>
 	<string name="nmod_add_new">Adicionar Novo</string>
-	<string name="nmod_add_new_title">Adicionar Novo...</string>
+	<string name="nmod_add_new_title">Adicionar Novo&#8320;</string>
 	<string name="nmod_export">Exportar</string>
 	<string name="nmod_add_new_message">De onde você deseja escolher o NMod?</string>
 	<string name="nmod_add_new_pick_installed">Aplicativos</string>
@@ -59,7 +59,7 @@
 	<string name="about_copyright_owner">Direito autoral © MCAL,Nextdev.</string>
 	<string name="about_author">FEITO POR ModelPart[Twitter: @model_part]</string>
 	<string name="about_translators">Tradutores</string>
-	<string name="about_translators_message">Leonardo Queiroz</string>
+	<string name="about_translators_message">Que participaram deste traduções de idiomas:\nLeonardo Queiroz</string>
 	<string name="about_view_github">Página Github</string>
 	<string name="about_view_nmod_api">Ver NModAPI</string>
 
@@ -84,7 +84,7 @@
 
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">Um bloco,dois blocos,três blocos…</string>
-	<string name="opengame_loading">Carregando...</string>
+	<string name="opengame_loading">Carregando&#8321;</string>
 	<string name="preloading_initing">Inicializando Launcher</string>
 	<string name="preloading_initing_info">--NModAPI Versão:%1$s\n--MinecraftPE Versão:%2$s</string>
 	<string name="preloading_initing_info_safe_mode">--Modo de segurança ativo\n--MinecraftPE Versão:%1$s</string>
@@ -99,7 +99,7 @@
 	<string name="preloading_nmod_loaded">--Carregado NMod:%1$s</string>
 	<string name="preloading_nmod_loaded_failed">--Falha ao Carregar:%1$s</string>
 	<string name="preloading_nmod_finish_loading">NMods Carregados</string>
-	<string name="preloading_finished">Começando o jogo...</string>
+	<string name="preloading_finished">Começando o jogo&#8321;</string>
 
 	<string-array name="preloading_tips_text">
 		<item>O mod formatado APK também pode ser importado~</item>
@@ -123,11 +123,11 @@
 	</string-array>
 
 	<!--Pick NMod from installed-->
-	<string name="pick_nmod_loading">Carregando NMods...</string>
+	<string name="pick_nmod_loading">Carregando NMods&#8321;</string>
 
 	<!--Main Activity-->
 	<string name="main_play">Toque</string>
-	<string name="main_reloading_title">Recarregar...</string>
+	<string name="main_reloading_title">Recarregar&#8321;</string>
 	<string name="main_default_minecraft_title">MinecraftPE : Padrão</string>
 	<string name="no_available_mcpe_version_found">O ModdedPE encontrou uma versão não suportada do MinecraftPE (%1$s) neste aparelho.(ModdedPE suporta apenas %2$s!)\nSe continuar a abrir o jogo, o ModdedPE pode falhar ou causar problemas.</string>
 	<string name="no_available_mcpe_version_found_title">Versão não suportada do Minecraft: PE</string>
@@ -146,22 +146,21 @@
 
 	<!--Pkg Picker-->
 	<string name="pkg_picker_not_found">Não foram encontrados pacotes.\nVerifique se a permissão é negada.</string>
-	<string name="pick_pkg_loading">Carregando Pacotes...</string>
+	<string name="pick_pkg_loading">Carregando Pacotes&#8321;</string>
 	<string name="pick_tips_title">Dicas</string>
 	<string name="pick_tips_message">Você tem certeza de configurar o nome do pacote minecraft para %1$s[%2$s]?O ModdedPE será reiniciado.</string>
 	<string name="pick_tips_reset_message">Tem certeza de reiniciar o nome do pacote minecraft para o valor padrão? O ModdedPE será reiniciado.</string>
 
-	<!--Language Selector-->
-	<string-array name="language_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-		<item>3</item>
-    </string-array>
-	<string-array name="language_strings">
-        <item>Auto</item>
-        <item>English</item>
-        <item>中文简体</item>
-		<item>Portuguese</item>
-    </string-array>
+	<!--Launch Failed-->
+	<string name="launch_failed_title">Launch Game Failed</string>
+	<string name="launch_failed_message">Sorry, ModdeddPE triggers an error when opening the game, causing the initiator to crash. If this problem persists, clear ModdedPE\'s application data.\nError Message:%1$s</string>
+
+	<!--Enable Warnings-->
+	<string name="enable_warning_unsupported_title">Unsupported Version</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+
+	<!--Permissions-->
+	<string name="permission_grant_failed_title">Permission Grant Failed</string>
+	<string name="permission_grant_failed_message">Cannot grant permission: read external storage.Please go to the settings page to grant the relevant permissions.</string>
 </resources>

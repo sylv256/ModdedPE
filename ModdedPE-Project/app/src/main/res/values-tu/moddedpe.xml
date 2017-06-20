@@ -57,7 +57,7 @@
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 	<string name="about_author">ModelPart tarafından yapıldı[Twitter: @model_part]</string>
 	<string name="about_translators">Çevirmenler</string>
-	<string name="about_translators_message">Çevirmenler:\nModelPart\nKenMizz</string>
+	<string name="about_translators_message">Bu dil çevirileri katılan Kim:\nBayram Akdemir</string>
 	<string name="about_view_github">Github Sayfasına Git</string>
 	<string name="about_view_nmod_api">NModAPI\'yi Görüntüle</string>
 	<!--Preferences-->
@@ -84,7 +84,7 @@
 	<string name="preloading_initing">Başlatılıyor</string>
 	<string name="preloading_initing_info">--NModAPI Versiyonu:%1$s\n--MinecraftPE Versiyonu:%2$s</string>
 	<string name="preloading_initing_info_safe_mode">--Güvenli Mod Açık\n--MinecraftPE Versiyonu:%1$s</string>
-	<string name="preloading_initing_loading_libs">Native Kütüphaneleri Yükleniyor...</string>
+	<string name="preloading_initing_loading_libs">Native Kütüphaneleri Yükleniyor&#8320;</string>
 	<string name="preloading_loading_lib_substrate">--libsubstrate.so yükleniyor</string>
 	<string name="preloading_loading_lib_game_launcher">--libpesdk-game-launcher.so yükleniyor</string>
 	<string name="preloading_loading_lib_fmod">--libfmod.so yükleniyor</string>
@@ -143,4 +143,13 @@
 	<!--Launch Failed-->
 	<string name="launch_failed_title">Uygulama başlatılamadı.</string>
 	<string name="launch_failed_message">Üzgünüz, ModdedPE oyunu başlatırken başlatıcının çökmesine neden olan bir hata buldu. Bu sorun devam ederse ModdedPE \ \'nin uygulama verilerini silin. \nHata Mesajı:%1$s</string>
+
+		<!--Enable Warnings-->
+	<string name="enable_warning_unsupported_title">Unsupported Version</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+
+	<!--Permissions-->
+	<string name="permission_grant_failed_title">Permission Grant Failed</string>
+	<string name="permission_grant_failed_message">Cannot grant permission: read external storage.Please go to the settings page to grant the relevant permissions.</string>
 </resources>

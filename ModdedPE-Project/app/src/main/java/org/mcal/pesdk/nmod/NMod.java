@@ -263,8 +263,6 @@ public abstract class NMod
 		public NModLibInfo[] native_libs_info = null;
 		public NModTextEditBean[] text_edit = null;
 		public NModJsonEditBean[] json_edit = null;
-		public String[] dependencies = null;
-		public String[] support_versions = null;
 		public int version_code = -1;
 		public String name = null;
 		public String package_name = null;
@@ -274,10 +272,5 @@ public abstract class NMod
 		public String banner_title = null;
 		public String banner_image_path = null;
 		public String change_log = null;
-		public String version_check_mode = CHECK_MODE_NEVER;
-
-		public static final String CHECK_MODE_NEVER = "never";
-		public static final String CHECK_MODE_ALWAYS = "always";
-		public static final String CHECK_MODE_SHOW_WARNING = "show_warning";
 	}
 }

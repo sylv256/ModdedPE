@@ -59,7 +59,7 @@
  	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
  	<string name="about_author">Приложение От ModelPart[Twitter: @model_part]</string>
  	<string name="about_translators">Переводчики</string>
- 	<string name="about_translators_message">Кто участвовал в этом языке перевода:\nEugene Vladimirovich Nadgrob\'ev</string>
+ 	<string name="about_translators_message">Кто участвовал в этом языке перевода:\nEugene Vladimirovich Nadgrob\'ev\nMrDubstep</string>
  	<string name="about_view_github">Github страница</string>
  	<string name="about_view_nmod_api">View NModAPI</string>
 	
@@ -153,4 +153,13 @@
 	<!--Launch Failed-->
 	<string name= "launch_failed_title">, чтобы открыть игру не удалось </string>
 	<string name="launch_failed_message"> К сожалению, ModdeddPE вызвать ошибку при открытии игры, что привело к коллапсу стартера. Если проблема не возникает, очистить ModdedPE данных приложения. \ N Сообщение об ошибке: %1$s</string>
+
+	<!--Enable Warnings-->
+	<string name="enable_warning_unsupported_title">Unsupported Version</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+
+	<!--Permissions-->
+	<string name="permission_grant_failed_title">Permission Grant Failed</string>
+	<string name="permission_grant_failed_message">Cannot grant permission: read external storage.Please go to the settings page to grant the relevant permissions.</string>
 </resources>

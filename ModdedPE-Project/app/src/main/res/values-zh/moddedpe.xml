@@ -103,30 +103,20 @@
 	
 	<string-array name="preloading_tips_text">
 		<item>你造麽，APK類型的NMod不安裝也可以導入的呢。</item>
-		<item>據說主頁左上角的苦力怕裏面有新世界哦w</item>
 		<item>其實ModdedPE是作者一邊女裝一邊寫的呢）</item>
-		<item>據說Github是個神奇的地方，那裏還有ModdedPE的源碼呢（劃去</item>
 		<item>ModdedPE始終無廣告，如果您發現被惡意植入，歡迎向我們聯系~</item>
 		<item>其實NMod全稱是Native-Mod啦~（才不是Naive-Mod什麽的！</item>
-		<item>至於MODPE什麽的吶&#8230;ModdedPE是不會支持的(:з」∠)_</item>
-		<item>什麽？你說ModdedPE是國外dalao寫的？才不是呢！</item>
 		<item>你說ModdedPE會加廣告？不，可，能！</item>
 		<item>如果您可以登陸GooglePlay，歡迎給我們貢獻小小的一個下載量(๑•̀ω•́๑)</item>
-		<item>NMod其實是一種神奇的生物）</item>
 		<item>一起來開發NMod吧！（關於->NModAPI</item>
-		<item>MCAL是個什麽地方？也就是個原生插件研究所罷了|ω•`)</item>
-		<item>亻呆扌戶目艮目青，不要等看字都是分開了再開始哦w</item>
-		<item>如果玩的高興，何妨不把ModdedPE分享給好基/姬友呢~</item>
 		<item>NMod是C++和JSON做的哦(๑•̀ㅁ•́ฅ)</item>
 		<item>歡迎微博關註@ModelPart(๑•̀ω•́๑)</item>
 		<item>ModdedPE能導入JS?tan90°</item>
 		<item>文件管理器點擊*.zip,*.mcnmod,*.apk,*.nmod可以快速導入NMod~</item>
 		<item>再這樣玩遊戲下去你吃棗藥丸（劃去（塗黑</item>
-		<item>據說指令/clear可以給你一組鉆石（才不是呢！</item>
 		<item>ModdedPE不限轉載_(:з」∠)_，不要再問作者了~</item>
 		<item>其實你可以把NModAPI用到自己的程序裏面~（關於->NModAPI</item>
 		<item>想把ModdedPE在某個論壇裏面分享？那當然是可以的啦~</item>
-		<item>SSSSSSSSSSSSSSSSS~~~</item>
 		<item>你造嗎，主頁左右滑動可以空降到另一個頁面( • ̀ω•́ )✧</item>
 		<item>多人遊戲使用NMod時每一位玩家都需要安裝哦~</item>
 		<item>NMod需要點擊按鈕+才能被加載(〃\'▽\'〃)</item>
@@ -164,4 +154,13 @@
 	<!--Launch Failed-->
 	<string name="launch_failed_title">打開遊戲失敗</string>
 	<string name="launch_failed_message">抱歉，ModdeddPE在打開遊戲時觸發了一個錯誤，導致啟動器崩潰。如果仍然出現這個問題，請清除ModdedPE的應用數據。 \n錯誤信息：%1$s</string>
+
+	<!--Enable Warnings-->
+	<string name="enable_warning_unsupported_title">版本不支持！</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s暫未支持您安裝的MinecraftPE %2$s。請更新NMod %1$s。</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s暫未支持您安裝的MinecraftPE %2$s。妳可以啟用它，但是可能會造成錯誤或者崩潰哦~</string>
+
+	<!--Permissions-->
+	<string name="permission_grant_failed_title">獲取權限失敗</string>
+	<string name="permission_grant_failed_message">無法獲取權限：讀取外部存儲。請在設置頁面授予ModdedPE相關權限。</string>
 </resources>

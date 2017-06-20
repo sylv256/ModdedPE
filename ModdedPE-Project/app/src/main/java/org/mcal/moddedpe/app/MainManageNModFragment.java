@@ -1,14 +1,21 @@
 package org.mcal.moddedpe.app;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -26,6 +33,8 @@ import org.mcal.pesdk.nmod.PackagedNMod;
 import org.mcal.pesdk.nmod.ZippedNMod;
 
 import java.util.ArrayList;
+
+import static android.R.attr.permission;
 
 public class MainManageNModFragment extends BaseFragment implements DataPreloader.PreloadingFinishedListener
 {
@@ -254,7 +263,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					public void onClick(DialogInterface p1, int p2)
 					{
 						p1.dismiss();
-						new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getContext().getResources().getString(R.string.nmod_import_failed_full_info_message, new Object[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+						new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_import_failed_full_info_title).setMessage(getActivity().getResources().getString(R.string.nmod_import_failed_full_info_message, new Object[]{fArvhiveFailedException.toTypeString(),fArvhiveFailedException.getCause().toString()})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 							{
 
 								@Override
@@ -361,12 +370,12 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		}).show();
 	}
 	
-	public class NModListAdapter extends BaseAdapter 
+	private class NModListAdapter extends BaseAdapter
     {
-		private ArrayList<NMod> mImportedEnabledNMods = new ArrayList<NMod>();
-		private ArrayList<NMod> mImportedDisabledNMods = new ArrayList<NMod>();
+		private ArrayList<NMod> mImportedEnabledNMods = new ArrayList<>();
+		private ArrayList<NMod> mImportedDisabledNMods = new ArrayList<>();
 
-		public NModListAdapter()
+		NModListAdapter()
 		{
 			mImportedEnabledNMods.addAll(getPESdk().getNModAPI().getImportedEnabledNMods());
 			mImportedDisabledNMods.addAll(getPESdk().getNModAPI().getImportedDisabledNMods());
@@ -734,11 +743,72 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				@Override
 				public void onClick(DialogInterface p1, int p2)
 				{
-					NModFilePickerActivity.startThisActivity(getActivity());
+					if(checkPermissions())
+						NModFilePickerActivity.startThisActivity(getActivity());
 					p1.dismiss();
 				}
 
 
 			}).show();
+	}
+
+	private boolean checkPermissions()
+	{
+		if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+		{
+			ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+
+
+		}
+		return true;
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	{
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+		if (requestCode == 0)
+		{
+			boolean isAllGranted = true;
+
+			for (int grant : grantResults)
+			{
+				if (grant != PackageManager.PERMISSION_GRANTED)
+				{
+					isAllGranted = false;
+					break;
+				}
+			}
+
+			if (isAllGranted)
+			{
+				NModFilePickerActivity.startThisActivity(getActivity());
+			}
+			else
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				builder.setTitle(R.string.permission_grant_failed_title);
+				builder.setMessage(R.string.permission_grant_failed_message);
+				builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						Intent intent = new Intent();
+						intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+						intent.addCategory(Intent.CATEGORY_DEFAULT);
+						intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+						intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+						startActivity(intent);
+					}
+				});
+				builder.setNegativeButton(android.R.string.cancel, null);
+				builder.show();
+
+			}
+		}
 	}
 }

@@ -156,7 +156,12 @@
 	<string name="launch_failed_message">Sorry, ModdeddPE triggers an error when opening the game, causing the initiator to crash. If this problem persists, clear ModdedPE\'s application data.\nError Message:%1$s</string>
 	
 	<!--Enable Warnings-->
-	<string name="enable_warning_unsupport_title">Unsupported Version</string>
-	<string name="enable_warning_unsupport_message"></string>
+	<string name="enable_warning_unsupported_title">Unsupported Version</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+
+	<!--Permissions-->
+	<string name="permission_grant_failed_title">Permission Grant Failed</string>
+	<string name="permission_grant_failed_message">Cannot grant permission: read external storage.Please go to the settings page to grant the relevant permissions.</string>
 </resources>
 

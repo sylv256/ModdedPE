@@ -1,9 +1,9 @@
 package org.mcal.moddedpe.utils;
-import android.app.*;
-import android.content.*;
-import java.util.*;
-import org.mcal.moddedpe.app.*;
-import android.content.res.*;
+
+import android.app.Activity;
+import android.content.res.Configuration;
+
+import java.util.Locale;
 
 public class I18n
 {
@@ -33,7 +33,7 @@ public class I18n
 				config.locale = new Locale("ru", "RU");
 				break;
 			case 5:
-				config.locale = Locale.TRADITIONAL_CHINESE;
+				config.locale = Locale.CHINESE;
 				break;
 			case 6:
 				config.locale = new Locale("tu");

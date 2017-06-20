@@ -60,7 +60,7 @@ public class ImportNModActivity extends BaseActivity
 	{
 		private File mTargetFile;
 
-		public ImportThread(File file)
+		ImportThread(File file)
 		{
 			mTargetFile = file;
 		}
