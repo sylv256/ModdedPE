@@ -1,6 +1,9 @@
 package org.mcal.moddedpe.utils;
-import android.content.*;
-import org.mcal.pesdk.utils.*;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import org.mcal.pesdk.utils.LauncherOptions;
 
 public class UtilsSettings implements LauncherOptions
 {

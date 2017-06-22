@@ -1,7 +1,9 @@
 package org.mcal.mcdesign.widget;
 
-import android.graphics.*;
-import android.widget.*;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.widget.ProgressBar;
 
 public class MCDProgressBar extends ProgressBar
 {

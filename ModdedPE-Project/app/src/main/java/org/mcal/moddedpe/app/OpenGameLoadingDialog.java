@@ -10,9 +10,9 @@ import android.widget.TextView;
 import org.mcal.moddedpe.R;
 import org.mcal.pesdk.nativeapi.NativeUtils;
 
-public class OpenGameLoadingDialog extends AppCompatDialog
+class OpenGameLoadingDialog extends AppCompatDialog
 {
-	public OpenGameLoadingDialog(Context context)
+	OpenGameLoadingDialog(Context context)
 	{
 		super(context, R.style.FullScreenTheme);
 
@@ -52,7 +52,7 @@ public class OpenGameLoadingDialog extends AppCompatDialog
 		}.start();
 	}
 
-	public void setLoadingMessage(String msg)
+	void setLoadingMessage(String msg)
 	{
 		((TextView)findViewById(R.id.moddedpe_loading_message)).setText(msg);
 	}

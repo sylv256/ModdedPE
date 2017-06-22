@@ -1,7 +1,8 @@
 package org.mcal.pesdk.utils;
-import android.content.*;
-import android.content.pm.*;
-import android.content.res.*;
+
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 
 public class MinecraftInfo
 {

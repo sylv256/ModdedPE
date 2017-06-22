@@ -1,11 +1,13 @@
 package org.mcal.moddedpe.app;
 
-import android.os.*;
-import org.mcal.moddedpe.*;
-import android.view.*;
-import android.content.*;
-import android.net.*;
-import android.support.v7.app.*;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+
+import org.mcal.moddedpe.R;
 
 public class AboutActivity extends BaseActivity
 {

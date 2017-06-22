@@ -1,8 +1,9 @@
 package org.mcal.moddedpe.app;
-import android.app.*;
-import org.mcal.moddedpe.*;
-import org.mcal.pesdk.nmod.*;
-import org.mcal.pesdk.*;
+
+import android.app.Fragment;
+
+import org.mcal.moddedpe.ModdedPEApplication;
+import org.mcal.pesdk.PESdk;
 
 public class BaseFragment extends Fragment
 {

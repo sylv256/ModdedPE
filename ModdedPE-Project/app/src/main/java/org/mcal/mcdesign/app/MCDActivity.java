@@ -1,15 +1,18 @@
 package org.mcal.mcdesign.app;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.os.*;
-import android.support.v7.app.*;
-import android.support.v7.widget.*;
-import android.view.*;
-import android.widget.*;
-import org.mcal.mcdesign.utils.*;
-import org.mcal.mcdesign.widget.*;
-import org.mcal.moddedpe.*;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatTextView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RelativeLayout;
+
+import org.mcal.mcdesign.utils.BitmapRepeater;
 import org.mcal.moddedpe.R;
 
 public class MCDActivity extends AppCompatActivity

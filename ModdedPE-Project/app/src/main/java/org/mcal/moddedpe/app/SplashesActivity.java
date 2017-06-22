@@ -1,11 +1,14 @@
 package org.mcal.moddedpe.app;
 
-import android.content.*;
-import android.os.*;
-import android.view.*;
-import java.util.*;
-import org.mcal.moddedpe.*;
-import org.mcal.moddedpe.utils.*;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.View;
+
+import org.mcal.moddedpe.R;
+import org.mcal.moddedpe.utils.DataPreloader;
 
 public class SplashesActivity extends BaseActivity implements DataPreloader.PreloadingFinishedListener
 {

@@ -55,19 +55,19 @@ public class PackagedNMod extends NMod
 		return NMOD_TYPE_PACKAGED;
 	}
 
-	public String getNativeLibsPath()
+	private String getNativeLibsPath()
 	{
 		return getPackageContext().getFilesDir().getParentFile().getAbsolutePath() + File.separator + "lib";
 	}
 
-	public PackagedNMod(String packageName, Context contextThiz, Context packageContext)
+	PackagedNMod(String packageName, Context contextThiz, Context packageContext)
 	{
 		super(packageName, contextThiz);
 		this.mPackageContext = packageContext;
 		preload();
 	}
 
-	public Context getPackageContext()
+	private Context getPackageContext()
 	{
 		return mPackageContext;
 	}
@@ -82,8 +82,7 @@ public class PackagedNMod extends NMod
 		try
 		{
 			PackageManager packageManager = getPackageContext().getPackageManager();
-			PackageInfo packageInfo = null;
-			packageInfo = packageManager.getPackageInfo(getPackageContext().getPackageName(), 0);
+			PackageInfo packageInfo = packageManager.getPackageInfo(getPackageContext().getPackageName(), 0);
 			int iconRes = packageInfo.applicationInfo.icon;
 			return BitmapFactory.decodeResource(getPackageContext().getResources(), iconRes);
 		}

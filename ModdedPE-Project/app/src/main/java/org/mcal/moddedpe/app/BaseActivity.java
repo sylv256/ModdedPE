@@ -1,10 +1,11 @@
 package org.mcal.moddedpe.app;
-import org.mcal.mcdesign.app.*;
-import org.mcal.moddedpe.*;
-import org.mcal.pesdk.nmod.*;
-import org.mcal.pesdk.*;
-import android.os.*;
-import org.mcal.moddedpe.utils.*;
+
+import android.os.Bundle;
+
+import org.mcal.mcdesign.app.MCDActivity;
+import org.mcal.moddedpe.ModdedPEApplication;
+import org.mcal.moddedpe.utils.I18n;
+import org.mcal.pesdk.PESdk;
 
 public class BaseActivity extends MCDActivity
 {

@@ -13,13 +13,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,8 +34,6 @@ import org.mcal.pesdk.nmod.PackagedNMod;
 import org.mcal.pesdk.nmod.ZippedNMod;
 
 import java.util.ArrayList;
-
-import static android.R.attr.permission;
 
 public class MainManageNModFragment extends BaseFragment implements DataPreloader.PreloadingFinishedListener
 {

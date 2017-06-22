@@ -1,13 +1,18 @@
 package org.mcal.moddedpe.app;
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.preference.*;
-import android.support.design.widget.*;
-import java.util.*;
-import org.mcal.moddedpe.*;
-import org.mcal.moddedpe.utils.*;
-import org.mcal.pesdk.utils.*;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.PreferenceFragment;
+import android.support.design.widget.Snackbar;
+
+import org.mcal.moddedpe.R;
+import org.mcal.moddedpe.utils.I18n;
+import org.mcal.moddedpe.utils.UtilsSettings;
+import org.mcal.pesdk.utils.LauncherOptions;
 
 public class MainSettingsFragment extends PreferenceFragment
 {

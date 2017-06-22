@@ -8,9 +8,9 @@ import java.util.ArrayList;
 class NModDataLoader
 {
 	private Context mContext;
-	static final String TAG_SHARED_PREFERENCE = "nmod_data_list";
-	static final String TAG_ENABLED_LIST = "enabled_nmods_list";
-	static final String TAG_DISABLE_LIST = "disabled_nmods_list";
+	private static final String TAG_SHARED_PREFERENCE = "nmod_data_list";
+	private static final String TAG_ENABLED_LIST = "enabled_nmods_list";
+	private static final String TAG_DISABLE_LIST = "disabled_nmods_list";
 
 	NModDataLoader(Context context)
 	{
@@ -38,23 +38,12 @@ class NModDataLoader
 		editor.apply();
 	}
 
-	void remove(NMod nmod)
-	{
-		removeByName(nmod.getPackageName());
-	}
-
 	void setIsEnabled(NMod nmod, boolean isEnabled)
 	{
 		if (isEnabled)
 			addNewEnabled(nmod);
 		else
 			removeEnabled(nmod);
-	}
-
-	boolean isEnabled(NMod nmod)
-	{
-		ArrayList<String> enabledList=getEnabledList();
-		return enabledList.indexOf(nmod.getPackageName()) != -1;
 	}
 
 	private SharedPreferences getSharedPreferences()
@@ -76,7 +65,7 @@ class NModDataLoader
 		editor.apply();
 	}
 
-	void removeEnabled(NMod nmod)
+	private void removeEnabled(NMod nmod)
 	{
 		SharedPreferences preferences=getSharedPreferences();
 		ArrayList<String> enabledList=getEnabledList();
@@ -142,14 +131,11 @@ class NModDataLoader
 	private static ArrayList<String> toArrayList(String str)
 	{
 		String[] mstr=str.split("/");
-		ArrayList<String> list = new ArrayList<String>();
-		if (mstr != null)
+		ArrayList<String> list = new ArrayList<>();
+		for (String strElement:mstr)
 		{
-			for (String strElement:mstr)
-			{
-				if (strElement != null && !strElement.isEmpty())
-					list.add(strElement);
-			}
+			if (strElement != null && !strElement.isEmpty())
+				list.add(strElement);
 		}
 		return list;
 	}

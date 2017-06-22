@@ -1,15 +1,21 @@
 package org.mcal.moddedpe.app;
-import android.content.*;
-import android.os.*;
-import org.mcal.moddedpe.*;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.widget.AppCompatTextView;
+import android.text.format.Time;
+import android.widget.LinearLayout;
+
+import org.mcal.moddedpe.R;
 import org.mcal.moddedpe.utils.UtilsSettings;
-import org.mcal.pesdk.nmod.*;
-import android.support.v7.widget.*;
-import java.util.*;
-import android.text.format.*;
-import org.mcal.pesdk.*;
-import android.widget.*;
-import android.view.*;
+import org.mcal.pesdk.PreloadException;
+import org.mcal.pesdk.Preloader;
+import org.mcal.pesdk.nmod.NMod;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class PreloadActivity extends BaseActivity

@@ -1,5 +1,7 @@
 package org.mcal.mcdesign.utils;
-import android.graphics.*;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 public class BitmapRepeater
 {

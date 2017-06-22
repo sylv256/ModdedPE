@@ -104,7 +104,7 @@ public class ZippedNMod extends NMod
 		return mFilePath.getPath();
 	}
 
-	public String getNativeLibsPath()
+	private String getNativeLibsPath()
 	{
 		return new NModFilePathManager(mContext).getNModLibsDir() + File.separator + getPackageName();
 	}
@@ -119,8 +119,7 @@ public class ZippedNMod extends NMod
 			if (iconEntry == null)
 				return null;
 			imageStream = mZipFile.getInputStream(iconEntry);
-			Bitmap ret = BitmapFactory.decodeStream(imageStream);
-			return ret;
+			return BitmapFactory.decodeStream(imageStream);
 		}
 		catch (IOException e)
 		{
@@ -144,7 +143,7 @@ public class ZippedNMod extends NMod
 		}
 	}
 
-	public ZippedNMod(String packageName, Context thisContext, File file) throws IOException
+	ZippedNMod(String packageName, Context thisContext, File file) throws IOException
 	{
 		super(packageName, thisContext);
 		this.mZipFile = new ZipFile(file);

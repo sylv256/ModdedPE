@@ -1,12 +1,29 @@
 package org.mcal.pesdk.nmod;
-import android.content.*;
-import android.content.pm.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import com.google.gson.*;
-import java.io.*;
-import java.util.*;
-import java.util.zip.*;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 class NModArchiver
 {

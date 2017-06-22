@@ -1,10 +1,14 @@
 package org.mcal.mcdesign.widget;
-import android.support.v7.widget.*;
-import android.content.*;
-import android.util.*;
-import android.graphics.drawable.*;
-import android.graphics.*;
-import org.mcal.mcdesign.utils.*;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
+import android.util.AttributeSet;
+
+import org.mcal.mcdesign.utils.BitmapRepeater;
 
 public class RepeatableImageView extends AppCompatImageView
 {

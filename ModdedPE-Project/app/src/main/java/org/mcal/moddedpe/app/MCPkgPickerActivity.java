@@ -1,15 +1,27 @@
 package org.mcal.moddedpe.app;
-import android.app.*;
-import android.content.*;
-import android.content.pm.*;
-import android.graphics.*;
-import android.os.*;
-import android.support.v7.widget.*;
-import android.view.*;
-import android.widget.*;
-import java.util.*;
-import org.mcal.moddedpe.*;
-import org.mcal.pesdk.utils.*;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+
+import org.mcal.moddedpe.R;
+import org.mcal.pesdk.utils.LauncherOptions;
+
+import java.util.List;
 
 public class MCPkgPickerActivity extends BaseActivity
 {

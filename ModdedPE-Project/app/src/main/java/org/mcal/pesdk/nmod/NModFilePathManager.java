@@ -1,6 +1,8 @@
 package org.mcal.pesdk.nmod;
-import android.content.*;
-import java.io.*;
+
+import android.content.Context;
+
+import java.io.File;
 
 class NModFilePathManager
 {

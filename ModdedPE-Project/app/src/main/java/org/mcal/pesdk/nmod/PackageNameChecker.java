@@ -13,12 +13,12 @@ class PackageNameChecker
 		return true;
 	} 
 
-	static public boolean isValidPackageName(String fullName)
+	static boolean isValidPackageName(String fullName)
 	{
 		if (fullName == null)
 			return false;
 
-		if (fullName.indexOf(".") == -1)
+		if (!fullName.contains("."))
 			return false;
 
 		boolean flag = true;
