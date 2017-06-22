@@ -68,11 +68,11 @@ namespace NModAPI
 	jboolean nativeCallOnLoad(JNIEnv*env,jobject thiz,jstring libname,jstring mcVer,jstring apiVersion)
 	{
 		void* image=dlopen(toString(env,libname).c_str(),RTLD_LAZY);
-		void (*NMod_onLoad)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)=
-		(void (*)(JavaVM*,JNIEnv*,std::string const&,std::string const&,std::string const&)) dlsym(image,"NMod_OnLoad");
+		void (*NMod_onLoad)(JavaVM*,JNIEnv*,const char*,const char*,const char*)=
+		(void (*)(JavaVM*,JNIEnv*,const char*,const char*,const char*)) dlsym(image,"NMod_OnLoad");
 		if(NMod_onLoad)
 		{
-			NMod_onLoad(mJvm,env,toString(env,mcVer),toString(env,apiVersion),mMCPENativeLibPath);
+			NMod_onLoad(mJvm,env,toString(env,mcVer).c_str(),toString(env,apiVersion).c_str(),mMCPENativeLibPath.c_str());
 		}
 		dlclose(image);
 	}

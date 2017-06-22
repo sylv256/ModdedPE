@@ -13,12 +13,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -474,7 +475,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			if (nmodIcon == null)
 				nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 			imageIcon.setImageBitmap(nmodIcon);
-			FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
+			AppCompatImageButton infoButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_bugged_info);
 			View.OnClickListener onInfoClickedListener = new View.OnClickListener()
 			{
 
@@ -486,7 +487,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 
 			};
-			FloatingActionButton deleteButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_delete);
+			AppCompatImageButton deleteButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_bugged_delete);
 			deleteButton.setOnClickListener(new View.OnClickListener()
 				{
 
@@ -534,7 +535,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		if (nmodIcon == null)
 			nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 		imageIcon.setImageBitmap(nmodIcon);
-		FloatingActionButton addButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_disabled_add);
+		AppCompatImageButton addButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_disabled_add);
 		addButton.setOnClickListener(new View.OnClickListener()
 			{
 
@@ -547,7 +548,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 
 			});
-		FloatingActionButton deleteButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_disabled_delete);
+		AppCompatImageButton deleteButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_disabled_delete);
 		deleteButton.setOnClickListener(new View.OnClickListener()
 			{
 
@@ -611,7 +612,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			if (nmodIcon == null)
 				nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 			imageIcon.setImageBitmap(nmodIcon);
-			FloatingActionButton infoButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_info);
+			AppCompatImageButton infoButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_bugged_info);
 			View.OnClickListener onInfoClickedListener = new View.OnClickListener()
 			{
 
@@ -623,7 +624,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 
 			};
-			FloatingActionButton deleteButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_bugged_delete);
+			AppCompatImageButton deleteButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_bugged_delete);
 			deleteButton.setOnClickListener(new View.OnClickListener()
 				{
 
@@ -671,7 +672,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		if (nmodIcon == null)
 			nmodIcon = BitmapFactory.decodeResource(getResources(), R.drawable.mcd_null_pack);
 		imageIcon.setImageBitmap(nmodIcon);
-		FloatingActionButton minusButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_minus);
+		AppCompatImageButton minusButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_enabled_minus);
 		minusButton.setOnClickListener(new View.OnClickListener()
 			{
 
@@ -684,7 +685,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 
 			});
-		FloatingActionButton downButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_arrow_down);
+		AppCompatImageButton downButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_enabled_arrow_down);
 		downButton.setOnClickListener(new View.OnClickListener()
 			{
 
@@ -697,7 +698,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 
 
 			});
-		FloatingActionButton upButton = (FloatingActionButton)convertView.findViewById(R.id.nmod_enabled_arrow_up);
+		AppCompatImageButton upButton = (AppCompatImageButton)convertView.findViewById(R.id.nmod_enabled_arrow_up);
 		upButton.setOnClickListener(new View.OnClickListener()
 			{
 

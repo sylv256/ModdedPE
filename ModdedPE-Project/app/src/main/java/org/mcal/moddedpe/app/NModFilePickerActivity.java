@@ -178,11 +178,8 @@ public class NModFilePickerActivity extends BaseActivity
 				{
 					final File currentCardViewFile = filesInCurrentPath.get(--p1);
 					AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
-					if (currentCardViewFile.isDirectory())
-						fileImage.setImageResource(R.drawable.ic_folder);
-					else
-						fileImage.setImageResource(R.drawable.ic_file);
-
+					fileImage.setImageResource(R.drawable.ic_folder);
+					
 					AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
 					textFileName.setText(currentCardViewFile.getName());
 
@@ -205,11 +202,8 @@ public class NModFilePickerActivity extends BaseActivity
 				{
 					final File currentCardViewFile = filesInCurrentPath.get(p1);
 					AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
-					if (currentCardViewFile.isDirectory())
-						fileImage.setImageResource(R.drawable.ic_folder);
-					else
-						fileImage.setImageResource(R.drawable.ic_file);
-
+					fileImage.setImageResource(R.drawable.ic_folder);
+					
 					AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
 					textFileName.setText(currentCardViewFile.getName());
 

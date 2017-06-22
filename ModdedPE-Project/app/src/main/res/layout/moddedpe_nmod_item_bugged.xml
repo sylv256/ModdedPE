@@ -59,23 +59,22 @@
 
 		</LinearLayout>
 
-		<android.support.design.widget.FloatingActionButton
-			android:layout_height="50dp"
-			android:layout_width="50dp"
+		<android.support.v7.widget.AppCompatImageButton
+			android:layout_marginRight="10dp"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
 			android:src="@drawable/ic_exclamation"
 			android:id="@+id/nmod_bugged_info"
-			android:layout_margin="10dp"
-			android:layout_centerHorizontal="true"
+			android:layout_centerVertical="true"
 			android:layout_alignParentRight="true"/>
 
-		<android.support.design.widget.FloatingActionButton
-			android:layout_height="50dp"
-			android:layout_width="50dp"
+		<android.support.v7.widget.AppCompatImageButton
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
 			android:src="@drawable/ic_delete"
 			android:id="@+id/nmod_bugged_delete"
-			android:layout_margin="10dp"
 			android:layout_toLeftOf="@id/nmod_bugged_info"
-			android:layout_centerHorizontal="true"/>
+			android:layout_centerVertical="true"/>
 		
 		
 	</RelativeLayout>

@@ -22,7 +22,7 @@ public class DirPickerActivity extends BaseActivity
 	private SelectHandler mSelectHandler = new SelectHandler();
 
 	private static final int MSG_SELECT = 1;
-	
+
 	public static final int REQUEST_PICK_DIR = 3;
 	public final static String TAG_DIR_PATH = "dir_path";
 
@@ -56,12 +56,12 @@ public class DirPickerActivity extends BaseActivity
 			finish();
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private boolean isValidParent()
 	{
 		return currentPath.getParentFile() != null && currentPath.getParentFile().exists() && currentPath.getParentFile().listFiles() != null && currentPath.getParentFile().listFiles().length > 0;
 	}
-	
+
 	public void onSelectThisClicked(View view)
 	{
 		Intent data = new Intent();
@@ -71,10 +71,10 @@ public class DirPickerActivity extends BaseActivity
 		setResult(RESULT_OK, data);
 		finish();
 	}
-	
+
 	public void onResetClicked(View view)
 	{
-		new AlertDialog.Builder(this).setTitle(R.string.dir_picker_reset_warning_title).setMessage(R.string.dir_picker_reset_warning_message).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
+		new AlertDialog.Builder(this).setTitle(R.string.dir_picker_reset_warning_title).setMessage(R.string.dir_picker_reset_warning_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 			{
 
 				@Override
@@ -88,9 +88,9 @@ public class DirPickerActivity extends BaseActivity
 					setResult(RESULT_OK, data);
 					finish();
 				}
-				
-			
-		}).setNegativeButton(android.R.string.cancel,new DialogInterface.OnClickListener()
+
+
+			}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
 			{
 
 				@Override
@@ -98,9 +98,9 @@ public class DirPickerActivity extends BaseActivity
 				{
 					p1.dismiss();
 				}
-				
-			
-		}).show();
+
+
+			}).show();
 	}
 
 	private void select(File file_arg)
@@ -149,7 +149,7 @@ public class DirPickerActivity extends BaseActivity
 		@Override
 		public int getCount()
 		{
-			if (!isValidParent())
+			if (isValidParent())
 				return filesInCurrentPath.size() + 1;
 			if (filesInCurrentPath.size() == 0)
 				return 1;
@@ -199,10 +199,7 @@ public class DirPickerActivity extends BaseActivity
 				{
 					final File currentCardViewFile = filesInCurrentPath.get(--p1);
 					AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
-					if (currentCardViewFile.isDirectory())
-						fileImage.setImageResource(R.drawable.ic_folder);
-					else
-						fileImage.setImageResource(R.drawable.ic_file);
+					fileImage.setImageResource(R.drawable.ic_folder);
 
 					AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
 					textFileName.setText(currentCardViewFile.getName());
@@ -222,50 +219,24 @@ public class DirPickerActivity extends BaseActivity
 			}
 			else
 			{
-				if (filesInCurrentPath.size() > 0)
-				{
-					final File currentCardViewFile = filesInCurrentPath.get(p1);
-					AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
-					if (currentCardViewFile.isDirectory())
-						fileImage.setImageResource(R.drawable.ic_folder);
-					else
-						fileImage.setImageResource(R.drawable.ic_file);
+				final File currentCardViewFile = filesInCurrentPath.get(p1);
+				AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
+				fileImage.setImageResource(R.drawable.ic_folder);
 
-					AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
-					textFileName.setText(currentCardViewFile.getName());
+				AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
+				textFileName.setText(currentCardViewFile.getName());
 
-					cardView.setOnClickListener(new View.OnClickListener()
+				cardView.setOnClickListener(new View.OnClickListener()
+					{
+
+						@Override
+						public void onClick(View p1)
 						{
-
-							@Override
-							public void onClick(View p1)
-							{
-								select(currentCardViewFile);
-							}
+							select(currentCardViewFile);
+						}
 
 
-						});
-				}
-				else
-				{
-					AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
-					fileImage.setImageResource(R.drawable.ic_folder_outline);
-
-					AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
-					textFileName.setText(android.R.string.cancel);
-
-					cardView.setOnClickListener(new View.OnClickListener()
-						{
-
-							@Override
-							public void onClick(View p1)
-							{
-								openDirectory(Environment.getExternalStorageDirectory());
-							}
-
-
-						});
-				}
+					});
 			}
 			return cardView;
 		}
@@ -284,7 +255,7 @@ public class DirPickerActivity extends BaseActivity
 				if (file == null)
 				{
 					File lastFile = currentPath.getParentFile();
-					if(isValidParent())
+					if (isValidParent())
 						openDirectory(lastFile);
 				}
 				else if (file.isDirectory())
