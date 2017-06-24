@@ -57,7 +57,7 @@ public class PackagedNMod extends NMod
 
 	private String getNativeLibsPath()
 	{
-		return getPackageContext().getFilesDir().getParentFile().getAbsolutePath() + File.separator + "lib";
+		return getPackageContext().getApplicationInfo().nativeLibraryDir;
 	}
 
 	PackagedNMod(String packageName, Context contextThiz, Context packageContext)

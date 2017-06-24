@@ -19,7 +19,7 @@ public class NModJSONEditor
     private NModFilePathManager mManager;
     private File[] mParents;
 
-    public NModJSONEditor(Context context, NMod nmod,File[] parents)
+    public NModJSONEditor(Context context, NMod nmod, File[] parents)
     {
         mTargetNMod = nmod;
         mManager = new NModFilePathManager(context);
@@ -35,17 +35,18 @@ public class NModJSONEditor
         ZipOutputStream zipOutPut = new ZipOutputStream(new FileOutputStream(file));
         zipOutPut.putNextEntry(new ZipEntry("AndroidManifest.xml"));
         zipOutPut.closeEntry();
-        for(NMod.NModJsonEditBean jsonEdit:mTargetNMod.getInfo().json_edit)
+        for (NMod.NModJsonEditBean jsonEdit:mTargetNMod.getInfo().json_edit)
         {
             String src = readJsonFromParents(jsonEdit.path);
             String srcThis = readJsonFromThis(jsonEdit.path);
-            if(jsonEdit.mode.equals(NMod.NModJsonEditBean.MODE_REPLACE))
+            if (jsonEdit.mode.equals(NMod.NModJsonEditBean.MODE_REPLACE))
             {
                 zipOutPut.putNextEntry(new ZipEntry(jsonEdit.path));
                 zipOutPut.write(srcThis.getBytes());
                 zipOutPut.closeEntry();
             }
-            else if(jsonEdit.mode.equals(NMod.NModJsonEditBean.MODE_MERGE)) {
+            else if (jsonEdit.mode.equals(NMod.NModJsonEditBean.MODE_MERGE))
+			{
                 JSONMerger merger = new JSONMerger(src, srcThis);
                 String result = merger.merge();
                 zipOutPut.putNextEntry(new ZipEntry(jsonEdit.path));
@@ -59,11 +60,11 @@ public class NModJSONEditor
 
     private String readJsonFromParents(String path)throws IOException
     {
-        for(File parentItem:mParents)
+        for (File parentItem:mParents)
         {
             ZipFile zipFile = new ZipFile(parentItem);
-            ZipEntry entry = zipFile.getEntry(path);
-            if(entry==null)
+            ZipEntry entry = zipFile.getEntry("assets" + File.separator + path);
+            if (entry == null)
                 continue;
             InputStream input = zipFile.getInputStream(entry);
             byte[] buffer = new byte[input.available()];

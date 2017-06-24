@@ -16,7 +16,7 @@ public class PESdk
 	public PESdk(Context context, LauncherOptions options)
 	{
 		mMinecraftInfo = new MinecraftInfo(context, options);
-		mNModAPI = new NModAPI(context, options);
+		mNModAPI = new NModAPI(context);
 		mLauncherOptions = options;
 		mGameManager = new GameManager(this);
 		mIsInited = false;

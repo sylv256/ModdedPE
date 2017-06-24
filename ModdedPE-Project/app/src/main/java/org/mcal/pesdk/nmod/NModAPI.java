@@ -12,7 +12,7 @@ public final class NModAPI
 	private NModManager mNModManager;
 	private NModArchiver mArchiver;
 
-	public NModAPI(Context context, LauncherOptions launcherOptions)
+	public NModAPI(Context context)
 	{
 		this.mContext = context;
 		this.mNModManager = new NModManager(context);
@@ -91,7 +91,7 @@ public final class NModAPI
 
 	public String getVersionName()
 	{
-		return "1.0";
+		return "1.1";
 	}
 
 	

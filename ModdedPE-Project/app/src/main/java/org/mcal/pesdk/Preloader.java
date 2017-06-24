@@ -51,7 +51,7 @@ public class Preloader
 			mBundle = new Bundle();
 		Gson gson = new Gson();
 		boolean safeMode = mPESdk.getLauncherOptions().isSafeMode();
-		
+
 		try
 		{
 			mPreloadListener.onLoadNativeLibs();
@@ -86,7 +86,7 @@ public class Preloader
 			mAssetsArrayList.add(mPESdk.getMinecraftInfo().getMinecraftPackageContext().getPackageResourcePath());
 			//init index
 			ArrayList<NMod> unIndexedNModArrayList = mPESdk.getNModAPI().getImportedEnabledNMods();
-			for(int index = unIndexedNModArrayList.size()-1;index>=0;--index)
+			for (int index = unIndexedNModArrayList.size() - 1;index >= 0;--index)
 			{
 				mLoadedEnabledNMods.add(unIndexedNModArrayList.get(index));
 			}
@@ -101,7 +101,7 @@ public class Preloader
 
 				NMod.NModPreloadBean preloadDataItem = nmod.copyNModFiles();
 
-				if (loadNMod(context,nmod, preloadDataItem))
+				if (loadNMod(context, nmod, preloadDataItem))
 					mPreloadListener.onNModLoaded(nmod);
 				else
 					mPreloadListener.onFailedLoadingNMod(nmod);
@@ -116,7 +116,7 @@ public class Preloader
 		mPreloadListener.onFinish(mBundle);
 	}
 
-	private boolean loadNMod(Context context,NMod nmod, NMod.NModPreloadBean preloadDataItem)
+	private boolean loadNMod(Context context, NMod nmod, NMod.NModPreloadBean preloadDataItem)
 	{
 		MinecraftInfo minecraftInfo = mPESdk.getMinecraftInfo();
 
@@ -124,44 +124,44 @@ public class Preloader
 			mAssetsArrayList.add(preloadDataItem.assets_path);
 
 		//edit json files
-		if(nmod.getInfo().json_edit!=null&&nmod.getInfo().json_edit.length>0)
+		if (nmod.getInfo().json_edit != null && nmod.getInfo().json_edit.length > 0)
 		{
 			ArrayList<File> assetFiles = new ArrayList<>();
-			for(String filePath : mAssetsArrayList)
+			for (String filePath : mAssetsArrayList)
 				assetFiles.add(new File(filePath));
-			NModJSONEditor jsonEditor = new NModJSONEditor(context,nmod,assetFiles.toArray(new File[0]));
+			NModJSONEditor jsonEditor = new NModJSONEditor(context, nmod, assetFiles.toArray(new File[0]));
 			try
 			{
 				File outResourceFile = jsonEditor.edit();
 				mAssetsArrayList.add(outResourceFile.getAbsolutePath());
 			}
-			catch(IOException e)
+			catch (IOException e)
 			{
-				if(e instanceof FileNotFoundException)
-					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_FILE_NOT_FOUND,e));
+				if (e instanceof FileNotFoundException)
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_FILE_NOT_FOUND, e));
 				else
-					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_IO_FAILED,e));
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_IO_FAILED, e));
 				return false;
 			}
-			catch(JSONException jsonE)
+			catch (JSONException jsonE)
 			{
-				nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_JSON_SYNTAX,jsonE));
+				nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_JSON_SYNTAX, jsonE));
 				return false;
 			}
 		}
 		//edit text files
-		if(nmod.getInfo().text_edit!=null&&nmod.getInfo().text_edit.length>0)
+		if (nmod.getInfo().text_edit != null && nmod.getInfo().text_edit.length > 0)
 		{
 			ArrayList<File> assetFiles = new ArrayList<>();
-			for(String filePath : mAssetsArrayList)
+			for (String filePath : mAssetsArrayList)
 				assetFiles.add(new File(filePath));
-			NModTextEditor textEditor = new NModTextEditor(context,nmod,assetFiles.toArray(new File[0]));
+			NModTextEditor textEditor = new NModTextEditor(context, nmod, assetFiles.toArray(new File[0]));
 			try
 			{
 				File outResourceFile = textEditor.edit();
 				mAssetsArrayList.add(outResourceFile.getAbsolutePath());
 			}
-			catch(IOException e)
+			catch (IOException e)
 			{
 				if (e instanceof FileNotFoundException)
 					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_FILE_NOT_FOUND, e));
@@ -188,7 +188,7 @@ public class Preloader
 
 			for (NMod.NModLibInfo nameItem:preloadDataItem.native_libs)
 			{
-				if(nameItem.use_api)
+				if (nameItem.use_api)
 				{
 					NModLib lib = new NModLib(nameItem.name);
 					lib.callOnLoad(minecraftInfo.getMinecraftVersionName(), mPESdk.getNModAPI().getVersionName());

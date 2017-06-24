@@ -1,15 +1,8 @@
 package org.mcal.pesdk.nmod;
 
-import android.content.Context;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
+import android.content.*;
+import java.io.*;
+import java.util.zip.*;
 
 public class NModTextEditor
 {
@@ -33,24 +26,24 @@ public class NModTextEditor
         ZipOutputStream zipOutPut = new ZipOutputStream(new FileOutputStream(file));
         zipOutPut.putNextEntry(new ZipEntry("AndroidManifest.xml"));
         zipOutPut.closeEntry();
-        for(NMod.NModTextEditBean textEdit:mTargetNMod.getInfo().text_edit)
+        for (NMod.NModTextEditBean textEdit:mTargetNMod.getInfo().text_edit)
         {
             String src = readTextFromParents(textEdit.path);
             String srcThis = readTextFromThis(textEdit.path);
-            if(textEdit.mode.equals(NMod.NModTextEditBean.MODE_REPLACE))
+            if (textEdit.mode.equals(NMod.NModTextEditBean.MODE_REPLACE))
             {
                 zipOutPut.putNextEntry(new ZipEntry(textEdit.path));
                 zipOutPut.write(srcThis.getBytes());
                 zipOutPut.closeEntry();
             }
-            else if(textEdit.mode.equals(NMod.NModTextEditBean.MODE_APPEND))
+            else if (textEdit.mode.equals(NMod.NModTextEditBean.MODE_APPEND))
             {
                 String result = src + srcThis;
                 zipOutPut.putNextEntry(new ZipEntry(textEdit.path));
                 zipOutPut.write(result.getBytes());
                 zipOutPut.closeEntry();
             }
-            else if(textEdit.mode.equals(NMod.NModTextEditBean.MODE_PREPEND))
+            else if (textEdit.mode.equals(NMod.NModTextEditBean.MODE_PREPEND))
             {
                 String result = srcThis + src;
                 zipOutPut.putNextEntry(new ZipEntry(textEdit.path));
@@ -64,11 +57,11 @@ public class NModTextEditor
 
     private String readTextFromParents(String path)throws IOException
     {
-        for(File parentItem:mParents)
+        for (File parentItem:mParents)
         {
             ZipFile zipFile = new ZipFile(parentItem);
-            ZipEntry entry = zipFile.getEntry(path);
-            if(entry==null)
+            ZipEntry entry = zipFile.getEntry("assets" + File.separator + path);
+            if (entry == null)
                 continue;
             InputStream input = zipFile.getInputStream(entry);
             byte[] buffer = new byte[input.available()];
