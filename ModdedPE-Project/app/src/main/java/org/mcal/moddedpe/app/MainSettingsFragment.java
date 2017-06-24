@@ -1,13 +1,22 @@
 package org.mcal.moddedpe.app;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 
 import org.mcal.moddedpe.R;
 import org.mcal.moddedpe.utils.I18n;
@@ -52,7 +61,10 @@ public class MainSettingsFragment extends PreferenceFragment
 				@Override
 				public boolean onPreferenceClick(Preference p1)
 				{
-					DirPickerActivity.startThisActivity(getActivity());
+					if(checkPermissions())
+						DirPickerActivity.startThisActivity(getActivity());
+					else
+						showPermissionDinedDialog();
 					return true;
 				}
 
@@ -93,7 +105,7 @@ public class MainSettingsFragment extends PreferenceFragment
 				@Override
 				public boolean onPreferenceChange(Preference p1, Object p2)
 				{
-					int type = new Integer((String)p2);
+					int type = Integer.valueOf((String)p2);
 					mSettings.setLanguageType(type);
 					I18n.setLanguage(getActivity());
 					Intent intent = new Intent(getActivity(), SplashesActivity.class);
@@ -147,5 +159,68 @@ public class MainSettingsFragment extends PreferenceFragment
 			mPkgPreference.setSummary(mSettings.getMinecraftPEPackageName());
 		else
 			mPkgPreference.setSummary(R.string.preferences_summary_game_pkg_name);
+	}
+
+	private boolean checkPermissions()
+	{
+		if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+		{
+			ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+			return false;
+		}
+		return true;
+	}
+
+	private void showPermissionDinedDialog()
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle(R.string.permission_grant_failed_title);
+		builder.setMessage(R.string.permission_grant_failed_message);
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				Intent intent = new Intent();
+				intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+				intent.addCategory(Intent.CATEGORY_DEFAULT);
+				intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+				intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+				startActivity(intent);
+			}
+		});
+		builder.setNegativeButton(android.R.string.cancel, null);
+		builder.show();
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+	{
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+		if (requestCode == 1)
+		{
+			boolean isAllGranted = true;
+
+			for (int grant : grantResults)
+			{
+				if (grant != PackageManager.PERMISSION_GRANTED)
+				{
+					isAllGranted = false;
+					break;
+				}
+			}
+
+			if (isAllGranted)
+			{
+				DirPickerActivity.startThisActivity(getActivity());
+			}
+			else
+			{
+				showPermissionDinedDialog();
+			}
+		}
 	}
 }

@@ -744,6 +744,8 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				{
 					if(checkPermissions())
 						NModFilePickerActivity.startThisActivity(getActivity());
+					else
+						showPermissionDinedDialog();
 					p1.dismiss();
 				}
 
@@ -785,27 +787,32 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			}
 			else
 			{
-				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-				builder.setTitle(R.string.permission_grant_failed_title);
-				builder.setMessage(R.string.permission_grant_failed_message);
-				builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-				{
-					@Override
-					public void onClick(DialogInterface dialog, int which)
-					{
-						Intent intent = new Intent();
-						intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-						intent.addCategory(Intent.CATEGORY_DEFAULT);
-						intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
-						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-						intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-						startActivity(intent);
-					}
-				});
-				builder.setNegativeButton(android.R.string.cancel, null);
-				builder.show();
+				showPermissionDinedDialog();
 			}
 		}
+	}
+
+	private void showPermissionDinedDialog()
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle(R.string.permission_grant_failed_title);
+		builder.setMessage(R.string.permission_grant_failed_message);
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
+		{
+			@Override
+			public void onClick(DialogInterface dialog, int which)
+			{
+				Intent intent = new Intent();
+				intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+				intent.addCategory(Intent.CATEGORY_DEFAULT);
+				intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+				intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
+				startActivity(intent);
+			}
+		});
+		builder.setNegativeButton(android.R.string.cancel, null);
+		builder.show();
 	}
 }

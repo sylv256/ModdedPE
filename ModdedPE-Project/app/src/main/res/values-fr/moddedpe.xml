@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
     <!--Titles-->
-    
+
     <string name="menu_title">Menu</string>
 
     <string name="manage_nmod_title">Gérer les NMods</string>
@@ -296,7 +296,6 @@
     <string name="launch_failed_title">Lancement du jeu à échoué</string>
 
     <string name="launch_failed_message">Désolé, mais ModdedPE à détecté un problème causant la fermeture de l\'application et des problèmes internes à l\'application.\n Si ce problème persiste, nettoyez ModdedPE le cache de l\'application.\nMessage d\'erreur:%1$s</string>
-
 
     <!--Enable Warnings-->
     <string name="enable_warning_unsupported_title">Unsupported Version</string>
