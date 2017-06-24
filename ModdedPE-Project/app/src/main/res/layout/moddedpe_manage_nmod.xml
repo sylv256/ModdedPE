@@ -54,7 +54,7 @@
 					<android.support.design.widget.FloatingActionButton
 						android:layout_height="50dp"
 						android:layout_width="50dp"
-						android:src="@drawable/ic_plus"
+						android:src="@drawable/ic_plus_white"
 						android:id="@+id/moddedpe_manage_nmod_add_new"
 						android:layout_margin="10dp"/>
 
