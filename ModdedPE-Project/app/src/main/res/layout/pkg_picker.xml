@@ -59,7 +59,7 @@
 		android:layout_margin="25dp"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentBottom="true"
-		android:onClick="onResetClicked"/>
+		android:id="@+id/pkg_picker_reset_button"/>
 	
 </RelativeLayout>
 

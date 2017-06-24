@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity
 	private ViewPager mMainViewPager;
 	private MainManageNModFragment mManageNModFragment;
 	private MainSettingsFragment mMainSettingsFragment;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -115,94 +115,6 @@ public class MainActivity extends BaseActivity
 		}
 	}
 
-	public void onPlayClicked(View v)
-	{
-		if (!getPESdk().getMinecraftInfo().isMinecraftInstalled())
-		{
-			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
-			mdialog.setTitle(getString(R.string.no_mcpe_found_title));
-			mdialog.setMessage(getString(R.string.no_mcpe_found));
-			mdialog.setPositiveButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener()
-				{
-
-					@Override
-					public void onClick(DialogInterface p1, int id)
-					{
-						p1.dismiss();
-					}
-				});
-			mdialog.show();
-		}
-		else if (!getPESdk().getMinecraftInfo().isSupportedMinecraftVersion(getResources().getStringArray(R.array.target_mcpe_versions)))
-		{
-			android.support.v7.app.AlertDialog.Builder mdialog = new AlertDialog.Builder(this);
-			mdialog.setTitle(getString(R.string.no_available_mcpe_version_found_title));
-			mdialog.setMessage(getString(R.string.no_available_mcpe_version_found, new Object[]{getPESdk().getMinecraftInfo().getMinecraftVersionName(),getString(R.string.target_mcpe_version_info)}));
-			mdialog.setNegativeButton(getString(android.R.string.cancel), new DialogInterface.OnClickListener()
-				{
-
-					@Override
-					public void onClick(DialogInterface p1, int id)
-					{
-						p1.dismiss();
-					}
-				});
-			mdialog.setPositiveButton(getString(R.string.no_available_mcpe_version_continue), new DialogInterface.OnClickListener()
-				{
-
-					@Override
-					public void onClick(DialogInterface p1, int id)
-					{
-						startMinecraft();
-					}
-
-
-				});
-			mdialog.show();
-		}
-		else
-			startMinecraft();
-	}
-
-	private void startMinecraft()
-	{
-		if (new UtilsSettings(MainActivity.this).isSafeMode())
-		{
-			new AlertDialog.Builder(this).setTitle(R.string.safe_mode_on_title).setMessage(R.string.safe_mode_on_message).
-				setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-				{
-
-					@Override
-					public void onClick(DialogInterface p1, int p2)
-					{
-						Intent intent = null;
-						intent = new Intent(MainActivity.this, PreloadActivity.class);
-						startActivity(intent);
-						finish();
-						p1.dismiss();
-					}
-
-
-				}).setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener()
-				{
-
-					@Override
-					public void onClick(DialogInterface p1, int p2)
-					{
-						p1.dismiss();
-					}
-
-
-				}).show();
-		}
-		else
-		{
-			Intent intent = null;
-			intent = new Intent(MainActivity.this, PreloadActivity.class);
-			startActivity(intent);
-			finish();
-		}
-	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
@@ -218,16 +130,16 @@ public class MainActivity extends BaseActivity
 		super.onStart();
 
 		String errorString = new UtilsSettings(this).getOpenGameFailed();
-		if(errorString!=null)
+		if (errorString != null)
 		{
-			new AlertDialog.Builder(this).setTitle(R.string.launch_failed_title).setMessage(getString(R.string.launch_failed_message,new Object[]{errorString})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
-			{
-				@Override
-				public void onClick(DialogInterface dialog, int which)
+			new AlertDialog.Builder(this).setTitle(R.string.launch_failed_title).setMessage(getString(R.string.launch_failed_message, new Object[]{errorString})).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 				{
-					dialog.dismiss();
-				}
-			}).show();
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						dialog.dismiss();
+					}
+				}).show();
 			new UtilsSettings(this).setOpenGameFailed(null);
 		}
 	}

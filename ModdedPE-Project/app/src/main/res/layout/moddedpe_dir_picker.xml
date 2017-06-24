@@ -19,7 +19,6 @@
 		android:layout_margin="25dp"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentBottom="true"
-		android:onClick="onSelectThisClicked"
 		android:id="@+id/moddedpe_dir_picker_fab_select"/>
 
 	<android.support.design.widget.FloatingActionButton
@@ -28,7 +27,7 @@
 		android:src="@drawable/ic_undo"
 		android:layout_marginRight="25dp"
 		android:layout_alignParentRight="true"
-		android:onClick="onResetClicked"
+		android:id="@+id/moddedpe_dir_picker_fab_reset"
 		android:layout_above="@id/moddedpe_dir_picker_fab_select"/>
 
 </RelativeLayout>

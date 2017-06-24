@@ -23,6 +23,29 @@ public class ImportNModActivity extends BaseActivity
 		setContentView(R.layout.nmod_importer_loading);
 		setActionBarButtonCloseRight();
 		setTitle(R.string.import_nmod_title);
+		
+		findViewById(R.id.import_failed_view_more_button).setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onFailedViewMoreClicked();
+				}
+				
+			
+		});
+		findViewById(R.id.import_succeed_view_more_button).setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onViewMoreClicked();
+				}
+				
+			
+		});
 
 		File targetFile = getTargetNModFile();
 		new ImportThread(targetFile).start();
@@ -43,12 +66,12 @@ public class ImportNModActivity extends BaseActivity
 		return null;
 	}
 
-	public void onViewMoreClicked(View view)
+	private void onViewMoreClicked()
 	{
 		NModDescriptionActivity.startThisActivity(this, mTargetNMod);
 	}
 	
-	public void onFailedViewMoreClicked(View view)
+	private void onFailedViewMoreClicked()
 	{
 		setContentView(R.layout.nmod_importer_failed);
 		AppCompatTextView errorText = (AppCompatTextView)findViewById(R.id.nmod_importer_failed_text_view);

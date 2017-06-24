@@ -31,6 +31,29 @@ public class DirPickerActivity extends BaseActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_dir_picker);
+		
+		findViewById(R.id.moddedpe_dir_picker_fab_reset).setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onResetClicked();
+				}
+				
+			
+		});
+		findViewById(R.id.moddedpe_dir_picker_fab_select).setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onSelectThisClicked();
+				}
+				
+			
+		});
 
 		setResult(RESULT_CANCELED, new Intent());
 		setActionBarButtonCloseRight();
@@ -62,7 +85,7 @@ public class DirPickerActivity extends BaseActivity
 		return currentPath.getParentFile() != null && currentPath.getParentFile().exists() && currentPath.getParentFile().listFiles() != null && currentPath.getParentFile().listFiles().length > 0;
 	}
 
-	public void onSelectThisClicked(View view)
+	private void onSelectThisClicked()
 	{
 		Intent data = new Intent();
 		Bundle extras = new Bundle();
@@ -72,7 +95,7 @@ public class DirPickerActivity extends BaseActivity
 		finish();
 	}
 
-	public void onResetClicked(View view)
+	private void onResetClicked()
 	{
 		new AlertDialog.Builder(this).setTitle(R.string.dir_picker_reset_warning_title).setMessage(R.string.dir_picker_reset_warning_message).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 			{

@@ -53,7 +53,7 @@ public class NModFilePickerActivity extends BaseActivity
 
 		openDirectory(currentPath);
 	}
-	
+
 	private boolean isValidParent()
 	{
 		return currentPath.getParentFile() != null && currentPath.getParentFile().exists() && currentPath.getParentFile().listFiles() != null && currentPath.getParentFile().listFiles().length > 0;
@@ -178,8 +178,11 @@ public class NModFilePickerActivity extends BaseActivity
 				{
 					final File currentCardViewFile = filesInCurrentPath.get(--p1);
 					AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
-					fileImage.setImageResource(R.drawable.ic_folder);
-					
+					if (currentCardViewFile.isDirectory())
+						fileImage.setImageResource(R.drawable.ic_folder);
+					else
+						fileImage.setImageResource(R.drawable.ic_file);
+
 					AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
 					textFileName.setText(currentCardViewFile.getName());
 
@@ -202,8 +205,11 @@ public class NModFilePickerActivity extends BaseActivity
 				{
 					final File currentCardViewFile = filesInCurrentPath.get(p1);
 					AppCompatImageView fileImage = (AppCompatImageView) cardView.findViewById(R.id.nmod_picker_item_card_view_image_view);
-					fileImage.setImageResource(R.drawable.ic_folder);
-					
+					if (currentCardViewFile.isDirectory())
+						fileImage.setImageResource(R.drawable.ic_folder);
+					else
+						fileImage.setImageResource(R.drawable.ic_file);
+
 					AppCompatTextView textFileName = (AppCompatTextView) cardView.findViewById(R.id.nmod_picker_item_card_view_text_name);
 					textFileName.setText(currentCardViewFile.getName());
 
@@ -257,7 +263,7 @@ public class NModFilePickerActivity extends BaseActivity
 				if (file == null)
 				{
 					File lastFile = currentPath.getParentFile();
-					if(isValidParent())
+					if (isValidParent())
 						openDirectory(lastFile);
 				}
 				else if (file.isDirectory())

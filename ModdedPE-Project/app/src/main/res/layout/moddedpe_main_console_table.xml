@@ -26,8 +26,7 @@
 				android:layout_width="wrap_content"
 				android:id="@+id/moddedpe_main_play_button"
 				android:background="@drawable/moddedpe_main_start_button_drawable"
-				android:adjustViewBounds="true"
-				android:onClick="onPlayClicked"/>
+				android:adjustViewBounds="true"/>
 
 			<android.support.v7.widget.AppCompatTextView
 				android:layout_height="wrap_content"

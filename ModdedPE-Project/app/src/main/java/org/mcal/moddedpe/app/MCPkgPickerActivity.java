@@ -45,6 +45,18 @@ public class MCPkgPickerActivity extends BaseActivity
 		View loading_view = findViewById(R.id.pkg_picker_package_loading_view);
 		loading_view.setVisibility(View.VISIBLE);
 
+		findViewById(R.id.pkg_picker_reset_button).setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onResetClicked();
+				}
+
+
+			});
+		
 		new LoadingThread().start();
 	}
 
@@ -69,7 +81,7 @@ public class MCPkgPickerActivity extends BaseActivity
 		view.setVisibility(View.VISIBLE);
 	}
 
-	public void onResetClicked(View view)
+	private void onResetClicked()
 	{
 		new AlertDialog.Builder(this).setTitle(R.string.pick_tips_title).setMessage(R.string.pick_tips_reset_message).setPositiveButton(android.R.string.ok,new DialogInterface.OnClickListener()
 			{

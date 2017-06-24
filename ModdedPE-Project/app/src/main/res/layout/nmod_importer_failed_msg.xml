@@ -32,7 +32,7 @@
 		android:layout_margin="25dp"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentBottom="true"
-		android:onClick="onFailedViewMoreClicked"/>
+		android:id="@+id/import_failed_view_more_button"/>
 
 </RelativeLayout>
 

@@ -53,6 +53,18 @@ public class NModLoadFailActivity extends BaseActivity
 
 		ListView errorListView = (ListView)findViewById(R.id.nmod_load_failed_list_view);
 		errorListView.setAdapter(new ViewAdapter());
+		
+		findViewById(R.id.load_failed_next_button).setOnClickListener(new View.OnClickListener()
+			{
+
+				@Override
+				public void onClick(View p1)
+				{
+					onNextClicked();
+				}
+				
+			
+		});
 	}
 
 	private class BuggedNModInfo
@@ -128,7 +140,7 @@ public class NModLoadFailActivity extends BaseActivity
 		}
 	}
 
-	public void onNextClicked(View view)
+	private void onNextClicked()
 	{
 		Intent intent = new Intent(this, MinecraftActivity.class);
 		intent.putExtras(mMCData);

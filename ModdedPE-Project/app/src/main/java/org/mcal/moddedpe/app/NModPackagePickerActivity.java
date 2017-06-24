@@ -18,6 +18,7 @@ import org.mcal.moddedpe.R;
 import org.mcal.pesdk.nmod.NMod;
 
 import java.util.ArrayList;
+import android.view.View.*;
 
 public class NModPackagePickerActivity extends BaseActivity
 {
@@ -39,7 +40,7 @@ public class NModPackagePickerActivity extends BaseActivity
 
 		View loading_view = findViewById(R.id.nmod_picker_package_loading_view);
 		loading_view.setVisibility(View.VISIBLE);
-
+		
 		new LoadingThread().start();
 	}
 
