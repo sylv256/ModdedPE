@@ -76,7 +76,7 @@
 				android:text="@string/about_view_github"
 				android:layout_marginLeft="5dp"
 				android:layout_marginRight="5dp"
-				android:onClick="onViewGithubClicked"/>
+				android:id="@+id/about_view_github_button"/>
 			
 			<android.support.v7.widget.AppCompatButton
 				android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
 				android:text="@string/about_view_privacy_policy"
 				android:layout_marginLeft="5dp"
 				android:layout_marginRight="5dp"
-				android:onClick="onViewPrivacyPolicyClicked"/>
+				android:id="@+id/about_view_privacy_policy_button"/>
 			
 			<android.support.v7.widget.AppCompatButton
 				android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
 				android:text="@string/about_view_nmod_api"
 				android:layout_marginLeft="5dp"
 				android:layout_marginRight="5dp"
-				android:onClick="onViewNModAPIClicked"/>
+				android:id="@+id/about_view_nmod_api_button"/>
 			
 			<android.support.v7.widget.AppCompatButton
 				android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
 				android:text="@string/about_translators"
 				android:layout_marginLeft="5dp"
 				android:layout_marginRight="5dp"
-				android:onClick="onViewTranslatorsClicked"/>
+				android:id="@+id/about_translators_button"/>
 
 		</LinearLayout>
 
