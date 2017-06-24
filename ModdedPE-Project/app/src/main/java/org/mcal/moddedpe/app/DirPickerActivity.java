@@ -1,19 +1,27 @@
 package org.mcal.moddedpe.app;
 
-import android.app.*;
-import android.content.*;
-import android.os.*;
-import android.support.v7.app.*;
-import android.support.v7.widget.*;
-import android.view.*;
-import android.widget.*;
-import java.io.*;
-import java.util.*;
-import org.mcal.mcdesign.app.*;
-import org.mcal.moddedpe.*;
-import org.mcal.pesdk.utils.*;
-
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+
+import org.mcal.moddedpe.R;
+import org.mcal.pesdk.utils.LauncherOptions;
+
+import java.io.File;
+import java.util.ArrayList;
 
 public class DirPickerActivity extends BaseActivity
 {

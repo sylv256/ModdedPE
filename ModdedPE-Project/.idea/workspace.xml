@@ -52,7 +52,7 @@
     <favorites_list name="ModdedPE-Project" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="450" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1887,7 +1887,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/values-tu/moddedpe.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-pt/moddedpe.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/moddedpe.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-zh/moddedpe.xml" />
@@ -1938,6 +1937,7 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values-tu/config.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-zh/config.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/config.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/app/DirPickerActivity.java" />
       </list>
     </option>
   </component>
@@ -2499,20 +2499,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/app/NModPackagePickerActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/app/OpenGameLoadingDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/app/PreloadActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
@@ -2872,6 +2858,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/app/DirPickerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="42" column="76" selection-start-line="42" selection-start-column="76" selection-end-line="42" selection-end-column="76" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1272#1399#0" expanded="true" />
+            <element signature="e#1398#1399#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/mcal/moddedpe/app/MCPkgPickerActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
           <folding />
         </state>
       </provider>
