@@ -41,7 +41,7 @@ public class NModJSONEditor
             String srcThis = readJsonFromThis(jsonEdit.path);
             if (jsonEdit.mode.equals(NMod.NModJsonEditBean.MODE_REPLACE))
             {
-                zipOutPut.putNextEntry(new ZipEntry(jsonEdit.path));
+                zipOutPut.putNextEntry(new ZipEntry("assets" + File.separator + jsonEdit.path));
                 zipOutPut.write(srcThis.getBytes());
                 zipOutPut.closeEntry();
             }
@@ -49,7 +49,7 @@ public class NModJSONEditor
 			{
                 JSONMerger merger = new JSONMerger(src, srcThis);
                 String result = merger.merge();
-                zipOutPut.putNextEntry(new ZipEntry(jsonEdit.path));
+                zipOutPut.putNextEntry(new ZipEntry("assets" + File.separator + jsonEdit.path));
                 zipOutPut.write(result.getBytes());
                 zipOutPut.closeEntry();
             }

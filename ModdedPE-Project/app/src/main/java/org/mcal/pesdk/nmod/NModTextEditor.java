@@ -32,21 +32,21 @@ public class NModTextEditor
             String srcThis = readTextFromThis(textEdit.path);
             if (textEdit.mode.equals(NMod.NModTextEditBean.MODE_REPLACE))
             {
-                zipOutPut.putNextEntry(new ZipEntry(textEdit.path));
+                zipOutPut.putNextEntry(new ZipEntry("assets" + File.separator + textEdit.path));
                 zipOutPut.write(srcThis.getBytes());
                 zipOutPut.closeEntry();
             }
             else if (textEdit.mode.equals(NMod.NModTextEditBean.MODE_APPEND))
             {
                 String result = src + srcThis;
-                zipOutPut.putNextEntry(new ZipEntry(textEdit.path));
+                zipOutPut.putNextEntry(new ZipEntry("assets" + File.separator + textEdit.path));
                 zipOutPut.write(result.getBytes());
                 zipOutPut.closeEntry();
             }
             else if (textEdit.mode.equals(NMod.NModTextEditBean.MODE_PREPEND))
             {
                 String result = srcThis + src;
-                zipOutPut.putNextEntry(new ZipEntry(textEdit.path));
+                zipOutPut.putNextEntry(new ZipEntry("assets" + File.separator + textEdit.path));
                 zipOutPut.write(result.getBytes());
                 zipOutPut.closeEntry();
             }

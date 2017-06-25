@@ -91,7 +91,7 @@ public final class NModAPI
 
 	public String getVersionName()
 	{
-		return "1.1.1";
+		return "1.2";
 	}
 
 	
