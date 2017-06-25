@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MinecraftInfo
 {
 	private static String MC_PACKAGE_NAME = "com.mojang.minecraftpe";
@@ -18,7 +21,9 @@ public class MinecraftInfo
 			return false;
 		for (String nameItem : versions)
 		{
-			if (nameItem.equals(mcpeVersionName))
+			Pattern pattern = Pattern.compile(nameItem);
+			Matcher matcher = pattern.matcher(mcpeVersionName);
+			if (matcher.find())
 				return true;
 		}
 		return false;

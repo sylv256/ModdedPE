@@ -2,11 +2,7 @@
 <resources>
 	<string name="app_version">2.0</string>
 	<string-array name="target_mcpe_versions">
-		<item>1.1.0.55</item>
-		<item>1.1.1.1</item>
-		<item>1.1.1.0</item>
-		<item>1.1.1.51</item>
-		<item>1.1.2.50</item>
+		<item>^1[.]1[.]</item>
 	</string-array>
 	<string name="target_mcpe_version_info">1.1.*</string>
 	<string name="app_name">ModdedPE</string>
