@@ -10,11 +10,11 @@
 		android:src="@drawable/mcd_header_bg"/>
 
 	<android.support.v7.widget.AppCompatTextView
+		android:textColor="#DEDEDE"
 		android:layout_height="wrap_content"
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:layout_width="wrap_content"
 		android:id="@+id/mcd_actionbar_title"
-		android:textColor="#DEDEDE"
 		android:layout_centerInParent="true"/>
 
 	<RelativeLayout
