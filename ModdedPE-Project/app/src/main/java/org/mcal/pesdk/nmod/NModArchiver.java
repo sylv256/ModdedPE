@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
 class NModArchiver
@@ -58,9 +60,9 @@ class NModArchiver
 		{
 			new ZipFile(new File(path));
 		}
-		catch (ZipException zipe)
+		catch (ZipException zipE)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_DECODE_FAILED, zipe);
+			throw new ArchiveFailedException(ArchiveFailedException.TYPE_DECODE_FAILED, zipE);
 		}
 		catch(IOException ioe)
 		{
@@ -92,14 +94,11 @@ class NModArchiver
 				packageInfo.applicationInfo.publicSourceDir = path;
 				Drawable icon = packageManager.getApplicationIcon(packageInfo.applicationInfo);
 				ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(toFile));
-				Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) zipFile.entries();
+				ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(new FileInputStream(path)));
+				ZipEntry entry = null;
 
-				while (zipfile_ents.hasMoreElements())
+				while ((entry = zipInput.getNextEntry()) != null)
 				{
-					ZipEntry entry=zipfile_ents.nextElement();
-					if (entry == null || entry.getName() == null)
-						continue;
-
 					if (!entry.isDirectory() && !(entry.getName().equals(NMod.MANIFEST_NAME) || entry.getName().endsWith(File.separator + NMod.MANIFEST_NAME)))
 					{
 						zipOutputStream.putNextEntry(entry);
@@ -134,7 +133,9 @@ class NModArchiver
 				zipOutputStream.write(baos.toByteArray());
 				zipOutputStream.closeEntry();
 
+				zipOutputStream.flush();
 				zipOutputStream.close();
+				zipInput.close();
 
 				return new ZippedNMod(packageName, mContext, copyCachedNModToData(toFile, packageName));
 			}
@@ -153,18 +154,15 @@ class NModArchiver
 			try
 			{
 				ZipFile zipFile = new ZipFile(path);
+				ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(new FileInputStream(path)));
 				File dir = new NModFilePathManager(mContext).getNModCacheDir();
 				dir.mkdirs();
 				File nmodFile = new NModFilePathManager(mContext).getNModCachePath();
 				nmodFile.createNewFile();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(nmodFile));
-				Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) zipFile.entries();
-
-				while (zipfile_ents.hasMoreElements())
+				ZipEntry entry = null;
+				while ( (entry = zipInput.getNextEntry()) != null)
 				{
-					ZipEntry entry=zipfile_ents.nextElement();
-					if (entry == null || entry.getName() == null)
-						continue;
 					if (!entry.isDirectory())
 					{
 						zipOutputStream.putNextEntry(entry);
@@ -179,10 +177,13 @@ class NModArchiver
 						zipOutputStream.closeEntry();
 					}
 				}
-				ZipEntry entry=new ZipEntry("AndroidManifest.xml");
-				zipOutputStream.putNextEntry(entry);
+				ZipEntry entryManifest = new ZipEntry("AndroidManifest.xml");
+				zipOutputStream.putNextEntry(entryManifest);
 				zipOutputStream.closeEntry();
+				zipOutputStream.flush();
 				zipOutputStream.close();
+				zipInput.close();
+
 				return new ZippedNMod(nmodInfo.package_name, mContext, copyCachedNModToData(nmodFile, nmodInfo.package_name));
 			}
 			catch (IOException ioe)
@@ -238,7 +239,7 @@ class NModArchiver
 		return list;
 	}
 
-	NMod.NModInfo archiveInfoFromZipped(File filePath)throws ArchiveFailedException
+	private NMod.NModInfo archiveInfoFromZipped(File filePath)throws ArchiveFailedException
 	{
 		ZipFile zipFile = null;
 		try

@@ -29,7 +29,7 @@ public abstract class NMod
 	public static final int NMOD_TYPE_ZIPPED = 1;
 	public static final int NMOD_TYPE_PACKAGED = 2;
 
-	public abstract NModPreloadBean copyNModFiles();
+	public abstract NModPreloadBean copyNModFiles() throws IOException;
 	public abstract AssetManager getAssets();
 	public abstract String getPackageResourcePath();
 	public abstract int getNModType();

@@ -18,6 +18,7 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.io.*;
+import java.util.zip.ZipInputStream;
 
 public class ZippedNMod extends NMod
 {
@@ -26,41 +27,34 @@ public class ZippedNMod extends NMod
 	private AssetManager mAssets = null;
 
 	@Override
-	public NModPreloadBean copyNModFiles()
+	public NModPreloadBean copyNModFiles() throws IOException
 	{
 		NModPreloadBean ret = new NModPreloadBean();
-		Enumeration<ZipEntry> zipfile_ents = (Enumeration<ZipEntry>) mZipFile.entries();
+		ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(new FileInputStream(mFilePath.getAbsolutePath())));
+		ZipEntry entry = null;
 
 		new File(getNativeLibsPath()).mkdirs();
-		while (zipfile_ents.hasMoreElements())
+		while ((entry = zipInput.getNextEntry()) != null)
 		{
-			ZipEntry entry=zipfile_ents.nextElement();
-
-			if (entry == null)
-				continue;
-
 			if (!entry.isDirectory() && entry.getName().startsWith("lib" + File.separator + ABIInfo.getTargetABIType() + File.separator))
 			{
-				try
+				InputStream libInputStream = mZipFile.getInputStream(entry);
+				int byteRead = -1;
+				byte[] buffer = new byte[1024];
+				File outFile = new File(getNativeLibsPath() + File.separator + entry.getName().substring(entry.getName().lastIndexOf(File.separator) + 1));
+				outFile.createNewFile();
+				FileOutputStream writerStream = new FileOutputStream(outFile);
+				while ((byteRead = libInputStream.read(buffer)) != -1)
 				{
-					InputStream libInputStream = mZipFile.getInputStream(entry);
-					int byteRead = -1;
-					byte[] buffer = new byte[1024];
-					File outFile = new File(getNativeLibsPath() + File.separator + entry.getName().substring(entry.getName().lastIndexOf(File.separator) + 1));
-					outFile.createNewFile();
-					FileOutputStream writerStream = new FileOutputStream(outFile);
-					while ((byteRead = libInputStream.read(buffer)) != -1)
-					{
-						writerStream.write(buffer, 0, byteRead);
-					}
-					libInputStream.close();
-					writerStream.close();
+					writerStream.write(buffer, 0, byteRead);
 				}
-				catch (IOException e)
-				{}
+				libInputStream.close();
+				writerStream.close();
 			}
 
 		}
+
+		zipInput.close();
 
 		ArrayList<NModLibInfo> nativeLibs = new ArrayList<>();
 		if (mInfo != null && mInfo.native_libs_info != null)

@@ -58,9 +58,9 @@ public class Preloader
 			mPreloadListener.onLoadSubstrateLib();
 			LibraryLoader.loadSubstrate();
 			mPreloadListener.onLoadFModLib();
-			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			LibraryLoader.loadFMod(context,mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			mPreloadListener.onLoadMinecraftPELib();
-			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			LibraryLoader.loadMinecraftPE(context,mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			mPreloadListener.onLoadGameLauncherLib();
 			LibraryLoader.loadLauncher(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			if (!safeMode)
@@ -90,6 +90,7 @@ public class Preloader
 			{
 				mLoadedEnabledNMods.add(unIndexedNModArrayList.get(index));
 			}
+
 			//start init nmods
 			for (NMod nmod:mLoadedEnabledNMods)
 			{
@@ -99,7 +100,17 @@ public class Preloader
 					continue;
 				}
 
-				NMod.NModPreloadBean preloadDataItem = nmod.copyNModFiles();
+				NMod.NModPreloadBean preloadDataItem = null;
+				try
+				{
+					preloadDataItem = nmod.copyNModFiles();
+				}
+				catch(IOException ioe)
+				{
+					nmod.setBugPack(new LoadFailedException(LoadFailedException.TYPE_IO_FAILED,ioe));
+					mPreloadListener.onFailedLoadingNMod(nmod);
+					continue;
+				}
 
 				if (loadNMod(context, nmod, preloadDataItem))
 					mPreloadListener.onNModLoaded(nmod);
@@ -177,7 +188,7 @@ public class Preloader
 			{
 				try
 				{
-					System.load(nameItem.name);
+					NativeLibLoader.load(context,nameItem.name);
 				}
 				catch (Throwable t)
 				{
