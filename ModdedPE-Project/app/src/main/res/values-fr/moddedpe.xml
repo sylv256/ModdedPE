@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <resources>
+
     <!--Titles-->
+
 
     <string name="menu_title">Menu</string>
 
@@ -24,46 +27,46 @@
 
     <string name="dir_picker_title">Choisir un dossier</string>
 
-    <string name="pkg_picker_title">Prendre un pkg</string>
+    <string name="pkg_picker_title">Prendre un nom de package</string>
 
     <!--NMod-->
 
 
     <string name="load_fail_title">Chargement échoué !</string>
 
-    <string name="load_fail_msg">Type d\'erreur:\n%1$s\nError Message:\n%2$s</string>
+    <string name="load_fail_msg">Type d\'erreur:\n%1$s\nMessage D\'erreur\n%2$s</string>
 
     <string name="nmod_enabled_title">NMods Activés</string>
 
     <string name="nmod_disabled_title">NMods Désactivés</string>
 
-    <string name="nmod_importing_title">Importement de l\'NMod…</string>
+    <string name="nmod_importing_title">Importation de l\'NMod…</string>
 
-    <string name="nmod_import_failed">L\'importement de l\'NMod à échoué !</string>
+    <string name="nmod_import_failed">L\'importation de l\'NMod à échoué !</string>
 
     <string name="nmod_import_failed_message_unexpected">Une erreur inconnue s\'est produite lors de l\'importation de l\'NMod.</string>
 
     <string name="nmod_import_failed_message_decode">L\'importation du NMod à échouer car le format est invalide. S\'il vous plaît, vérifiez que le fichier est en format .zip</string>
 
-    <string name="nmod_import_failed_message_no_manifest">ModdedPE à réussi à décodé ce NMod mais aucun nmod_manifest.json a été trouvé. Veuillez vérifier si ce NMod est valide.</string>
+    <string name="nmod_import_failed_message_no_manifest">ModdedPE à réussi à décodé ce NMod mais aucun fichier nmod_manifest.json a été trouvé. Veuillez vérifier si ce NMod est valide.</string>
 
     <string name="nmod_import_failed_message_io_exception">Erreur: une exception io s\'est produite lors de l\'importation du NMod.</string>
 
-    <string name="nmod_import_failed_message_manifest_json_syntax_error">Une erreur de syntaxe Jason s\'est produite lors de la lecture du fichier nmod_manifest.json. Veuillez vérifier.</string>
+    <string name="nmod_import_failed_message_manifest_json_syntax_error">Une erreur de syntaxe Json s\'est produite lors de la lecture du fichier nmod_manifest.json. Veuillez vérifier le NMod.</string>
 
-    <string name="nmod_import_failed_message_invalid_package_name">Invalid package name defined in manifest.Element "package_name" must be a java-styled package name.</string>
+    <string name="nmod_import_failed_message_invalid_package_name">Nom de package invalide défini dans le fichier de manifeste. L\'Élément "package_name" doit être un nom de Package de style java.</string>
 
-    <string name="nmod_import_failed_message_no_package_name">No package name found in nmod_manifest.json.Please add element "package_name"(String).</string>
+    <string name="nmod_import_failed_message_no_package_name">Aucun nom de package défini dans nmod_manifest.json.S\'il vous plaît, ajoutez l\'élément "package_name"(Ligne).</string>
 
-    <string name="nmod_import_failed_message_inequal_package_name">Inequal package name defined in AndroidManifest.xml and nmod_manifest.json.ModdedPE couldn\'t decide which package name to use.</string>
+    <string name="nmod_import_failed_message_inequal_package_name">Les noms de package défini dans AndroidManifest.xml et nmod_manifest.json ne sont pas les mêmes ! ModdedPE n\'a pu décider quel nom utiliser.</string>
 
-    <string name="nmod_import_failed_message_redundant_manifest">ModdedPE found two nmod_manifest.json in this file but didn\'t know which one to read.Please delete one.(/nmod_manifest.json or /assets/nmod_manifest.json)</string>
+    <string name="nmod_import_failed_message_redundant_manifest">ModdedPE à trouver deux nmod_manifest.json dans ce fichier mais ne sait pas le quel prendre, S\'il vous plaît, veuillez en supprimez un.(/nmod_manifest.json ou /assets/nmod_manifest.json)</string>
 
-    <string name="nmod_import_failed_button_full_info">Error Info</string>
+    <string name="nmod_import_failed_button_full_info">Info D\'erreur</string>
 
     <string name="nmod_import_replaced_title">Replacé</string>
 
-    <string name="nmod_import_replaced_message">ModdedPE found an imported nmod with same package name.The new one has successfully imported and replaced the old one.</string>
+    <string name="nmod_import_replaced_message">ModdedPE à trouver un NMod avec un nom de package similaire. Ce dernier à remplacer l\'ancien.</string>
 
     <string name="nmod_import_succeed_title">Importé avec succès.</string>
 
@@ -75,7 +78,7 @@
 
     <string name="nmod_import_failed_full_info_message">Type d\'erreur:\n%1$s\nMessage d\'erreur:\n%2$s</string>
 
-    <string name="nmod_add_new">Ajouter un nouveau</string>
+    <string name="nmod_add_new">Ajouter un nouveau NMod</string>
 
     <string name="nmod_add_new_title">Ajouter un nouveau…</string>
 
@@ -112,11 +115,11 @@
 
     <string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 
-    <string name="about_author">CRÉÉ PAR ModelPart[Twitter: @model_part]</string>
+    <string name="about_author">Créé par ModelPart[Twitter: @model_part]</string>
 
     <string name="about_translators">Traducteurs</string>
 
-    <string name="about_translators_message">People who have participated in this language translator: \nCreepsoGaming</string>
+    <string name="about_translators_message">Personnes qui ont participé à la traduction de cette langue: \nCreepsoGaming</string>
 
     <string name="about_view_github">Page Github</string>
 
@@ -133,7 +136,7 @@
 
     <string name="preferences_summary_safe_mode">Désactivation de tout les nmods.</string>
 
-    <string name="preferences_title_data_saved_path">Game Data Path</string>
+    <string name="preferences_title_data_saved_path">Endroit où l\'application enregistrera ses données</string>
 
     <string name="preferences_summary_data_saved_path">Fichier ou le jeu se sauvegarde.</string>
 
@@ -190,7 +193,7 @@
 
     <string name="preloading_nmod_loaded">-- NMod chargé:%1$s</string>
 
-    <string name="preloading_nmod_loaded_failed">-- Chargement échoué:%1$s</string>
+    <string name="preloading_nmod_loaded_failed">-- Chargement de cet NMod échoué:%1$s</string>
 
     <string name="preloading_nmod_finish_loading">Chargement des NMods terminé</string>
 
@@ -203,7 +206,7 @@
 
     <item>Le saviez-vous? Vous pouvez faire glisser l\'écran de l\'écran d\'accueil vers la gauche et vers la droite pour accéder aux autres pages.</item>
 
-    <item>You\'d better import NMods by picking files rather than picking applications.</item>
+    <item>Tu auras mieux d\'importer tes NMods par des fichiers que par des applications.</item>
 
     <item>SSSSSSSSSSSSSSSSSSSSSS~~~.Oh, C\'est un Creeeeeper!</item>
 
@@ -249,7 +252,7 @@
 
     <string name="main_reloading_title">Rechargement…</string>
 
-    <string name="main_default_minecraft_title">MinecraftPE : Defaut</string>
+    <string name="main_default_minecraft_title">Minecraft Pocket Édition par Défaut</string>
 
     <string name="no_available_mcpe_version_found">ModdedPE n\'a pas trouvé de version supportée de MinecraftPE (%1$s) sur cet appareil.(ModdedPE ne supporte que %2$s!)\nSi vous continuez à ouvrir le jeu, ModdedPE pourrait crash et créer des issues !</string>
 
@@ -273,36 +276,44 @@
     <!--Dir Picker-->
 
 
-    <string name="dir_picker_reset_warning_title">Reset le Path</string>
+    <string name="dir_picker_reset_warning_title">Reset l\'endroit d\'enregistrement de l\'application</string>
 
-    <string name="dir_picker_reset_warning_message">Veut tu vraiment reset le game path ?</string>
+    <string name="dir_picker_reset_warning_message">Veut tu vraiment reset le "Path" ?</string>
 
     <!--Pkg Picker-->
 
 
     <string name="pkg_picker_not_found">Aucun fichier package détecté.\nS\'il vous plaît, check si la permission est déniée.</string>
 
-    <string name="pick_pkg_loading">Chargement des packages₀</string>
+    <string name="pick_pkg_loading">Chargement des packages</string>
 
     <string name="pick_tips_title">Tips</string>
 
-    <string name="pick_tips_message">Voulez vous vraiment renommer le MinecraftPE Package en %1$s[%2$s]?ModdedPE exécutera un redémarrage.</string>
+    <string name="pick_tips_message">Voulez vous vraiment renommer le MinecraftPE Package en %1$s[%2$s]?\nModdedPE exécutera un redémarrage.</string>
 
-    <string name="pick_tips_reset_message">Voulez vous vraiment le nom de Package par défaut ?ModdedPE exécutera un redémarrage.</string>
+    <string name="pick_tips_reset_message">Voulez vous vraiment le nom de Package par défaut ?\nModdedPE exécutera un redémarrage.</string>
 
     <!--Launch Failed-->
 
 
     <string name="launch_failed_title">Lancement du jeu à échoué</string>
 
-    <string name="launch_failed_message">Désolé, mais ModdedPE à détecté un problème causant la fermeture de l\'application et des problèmes internes à l\'application.\n Si ce problème persiste, nettoyez ModdedPE le cache de l\'application.\nMessage d\'erreur:%1$s</string>
+    <string name="launch_failed_message">Désolé, mais ModdedPE à détecté un problème causant la fermeture de l\'application et des problèmes internes à l\'application.\n Si ce problème persiste, nettoyez le cache de l\'application.\nMessage d\'erreur:%1$s</string>
 
     <!--Enable Warnings-->
-    <string name="enable_warning_unsupported_title">Unsupported Version</string>
-    <string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
-    <string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+
+
+    <string name="enable_warning_unsupported_title">Version non supportée</string>
+
+    <string name="enable_warning_unsupported_message">NMod %1$s ne supporte pas encore MinecraftPE %2$s. Mettez à jour NMod %1$s s\'il vous plaît.</string>
+
+    <string name="enable_warning_unsupported_message_if_next">NMod %1$s ne supporte pas encore MinecraftPE %2$s. Vous pouvez le lancer, cependant l\'application aura des risques de crash ou autres.</string>
 
     <!--Permissions-->
-    <string name="permission_grant_failed_title">Permission Grant Failed</string>
-    <string name="permission_grant_failed_message">Cannot grant permission: read external storage.Please go to the settings page to grant the relevant permissions.</string>
+
+
+    <string name="permission_grant_failed_title">Permission d\'accès au stockage déniée.</string>
+
+    <string name="permission_grant_failed_message">ModdedPE N\'a pas pu accéder à la permission: Lire les informations du stockage interne/externe. S\'il vous plaît veuillez vous rendre dans les "informations de l\'applications">autorisations de l\'application>stockage.</string>
+
 </resources>

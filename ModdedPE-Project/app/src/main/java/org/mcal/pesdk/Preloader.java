@@ -55,12 +55,12 @@ public class Preloader
 		try
 		{
 			mPreloadListener.onLoadNativeLibs();
-			mPreloadListener.onLoadSubstrateLib();
-			LibraryLoader.loadSubstrate();
+            mPreloadListener.onLoadSubstrateLib();
+            LibraryLoader.loadSubstrate();
 			mPreloadListener.onLoadFModLib();
-			LibraryLoader.loadFMod(context,mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			LibraryLoader.loadFMod(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			mPreloadListener.onLoadMinecraftPELib();
-			LibraryLoader.loadMinecraftPE(context,mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
+			LibraryLoader.loadMinecraftPE(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			mPreloadListener.onLoadGameLauncherLib();
 			LibraryLoader.loadLauncher(mPESdk.getMinecraftInfo().getMinecraftPackageNativeLibraryDir());
 			if (!safeMode)
@@ -188,7 +188,7 @@ public class Preloader
 			{
 				try
 				{
-					NativeLibLoader.load(context,nameItem.name);
+					System.load(nameItem.name);
 				}
 				catch (Throwable t)
 				{

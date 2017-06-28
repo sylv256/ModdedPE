@@ -1,9 +1,5 @@
 package org.mcal.pesdk.nativeapi;
 
-import android.content.Context;
-
-import org.mcal.pesdk.NativeLibLoader;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -27,14 +23,14 @@ public class LibraryLoader
 		nativeOnLauncherLoaded(mcLibsPath + File.separator + MINECRAFTPE_LIB_NAME);
 	}
 
-	static public void loadFMod(Context context,String mcLibsPath) throws IOException
+	static public void loadFMod(String mcLibsPath) throws IOException
 	{
-		NativeLibLoader.load(context,new File(mcLibsPath,FMOD_LIB_NAME).getAbsolutePath());
+		System.load(new File(mcLibsPath,FMOD_LIB_NAME).getAbsolutePath());
 	}
 
-	static public void loadMinecraftPE(Context context,String mcLibsPath) throws IOException
+	static public void loadMinecraftPE(String mcLibsPath) throws IOException
 	{
-		NativeLibLoader.load(context,new File(mcLibsPath,MINECRAFTPE_LIB_NAME).getAbsolutePath());
+		System.load(new File(mcLibsPath,MINECRAFTPE_LIB_NAME).getAbsolutePath());
 	}
 
 	static public void loadNModAPI(String mcLibsPath)
