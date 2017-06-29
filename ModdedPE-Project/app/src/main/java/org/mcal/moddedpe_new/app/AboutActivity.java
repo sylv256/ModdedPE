@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.app;
+package org.mcal.moddedpe_new.app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
-import org.mcal.moddedpe.R;
+import org.mcal.moddedpe_new.R;
 
 public class AboutActivity extends BaseActivity
 {

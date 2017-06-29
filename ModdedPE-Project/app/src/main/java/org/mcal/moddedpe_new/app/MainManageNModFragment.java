@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.app;
+package org.mcal.moddedpe_new.app;
 
 import android.Manifest;
 import android.app.Activity;
@@ -26,8 +26,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import org.mcal.moddedpe.R;
-import org.mcal.moddedpe.utils.DataPreloader;
+import org.mcal.moddedpe_new.R;
+import org.mcal.moddedpe_new.utils.DataPreloader;
 import org.mcal.pesdk.nmod.ExtractFailedException;
 import org.mcal.pesdk.nmod.NMod;
 import org.mcal.pesdk.nmod.PackagedNMod;

@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.utils;
+package org.mcal.moddedpe_new.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

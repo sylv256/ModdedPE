@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.app;
+package org.mcal.moddedpe_new.app;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,9 +18,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 
-import org.mcal.moddedpe.R;
-import org.mcal.moddedpe.utils.I18n;
-import org.mcal.moddedpe.utils.UtilsSettings;
+import org.mcal.moddedpe_new.R;
+import org.mcal.moddedpe_new.utils.I18n;
+import org.mcal.moddedpe_new.utils.UtilsSettings;
 import org.mcal.pesdk.utils.LauncherOptions;
 
 public class MainSettingsFragment extends PreferenceFragment

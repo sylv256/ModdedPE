@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.app;
+package org.mcal.moddedpe_new.app;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
 
-import org.mcal.moddedpe.R;
+import org.mcal.moddedpe_new.R;
 import org.mcal.pesdk.nativeapi.NativeUtils;
 
 class OpenGameLoadingDialog extends AppCompatDialog

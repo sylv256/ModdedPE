@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import org.mcal.mcdesign.utils.BitmapRepeater;
-import org.mcal.moddedpe.R;
+import org.mcal.moddedpe_new.R;
 
 public class MCDActivity extends AppCompatActivity
 {

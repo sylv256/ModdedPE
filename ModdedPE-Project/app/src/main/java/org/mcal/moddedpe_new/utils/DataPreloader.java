@@ -1,8 +1,8 @@
-package org.mcal.moddedpe.utils;
+package org.mcal.moddedpe_new.utils;
 
 import android.content.Context;
 
-import org.mcal.moddedpe.ModdedPEApplication;
+import org.mcal.moddedpe_new.ModdedPEApplication;
 import org.mcal.pesdk.PESdk;
 
 public class DataPreloader

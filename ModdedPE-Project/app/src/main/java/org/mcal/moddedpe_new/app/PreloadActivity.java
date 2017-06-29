@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.app;
+package org.mcal.moddedpe_new.app;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.format.Time;
 import android.widget.LinearLayout;
 
-import org.mcal.moddedpe.R;
-import org.mcal.moddedpe.utils.UtilsSettings;
+import org.mcal.moddedpe_new.R;
+import org.mcal.moddedpe_new.utils.UtilsSettings;
 import org.mcal.pesdk.PreloadException;
 import org.mcal.pesdk.Preloader;
 import org.mcal.pesdk.nmod.NMod;

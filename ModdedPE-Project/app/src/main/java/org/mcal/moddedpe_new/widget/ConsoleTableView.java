@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.widget;
+package org.mcal.moddedpe_new.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import org.mcal.moddedpe.ModdedPEApplication;
-import org.mcal.moddedpe.R;
+import org.mcal.moddedpe_new.ModdedPEApplication;
+import org.mcal.moddedpe_new.R;
 
 @SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 public class ConsoleTableView extends RelativeLayout

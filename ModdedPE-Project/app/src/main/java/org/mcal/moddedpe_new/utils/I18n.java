@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.utils;
+package org.mcal.moddedpe_new.utils;
 
 import android.app.Activity;
 import android.content.res.Configuration;

@@ -1,28 +1,22 @@
-package org.mcal.moddedpe.widget;
+package org.mcal.moddedpe_new.widget;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import org.mcal.moddedpe.ModdedPEApplication;
-import org.mcal.moddedpe.R;
-import org.mcal.moddedpe.app.NModDescriptionActivity;
+import org.mcal.moddedpe_new.ModdedPEApplication;
+import org.mcal.moddedpe_new.R;
+import org.mcal.moddedpe_new.app.NModDescriptionActivity;
 import org.mcal.pesdk.nmod.NMod;
 
 import java.util.ArrayList;
 import java.util.Random;
-import android.view.ViewGroup.*;
 
 @SuppressLint({ "InflateParams", "ClickableViewAccessibility" })
 public class NModBanner extends RelativeLayout

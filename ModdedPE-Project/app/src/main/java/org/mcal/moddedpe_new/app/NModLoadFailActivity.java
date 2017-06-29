@@ -1,4 +1,4 @@
-package org.mcal.moddedpe.app;
+package org.mcal.moddedpe_new.app;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
-import org.mcal.moddedpe.R;
+import org.mcal.moddedpe_new.R;
 import org.mcal.pesdk.nmod.NMod;
 
 import java.io.File;

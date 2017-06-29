@@ -4,7 +4,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<org.mcal.moddedpe.widget.NModBanner
+	<org.mcal.moddedpe_new.widget.NModBanner
 		android:layout_width="wrap_content"
 		android:layout_height="match_parent"
 		android:layout_marginBottom="105dp"
@@ -12,7 +12,7 @@
 		android:layout_marginTop="15dp"
 		android:layout_marginRight="15dp"/>
 	
-	<org.mcal.moddedpe.widget.ConsoleTableView
+	<org.mcal.moddedpe_new.widget.ConsoleTableView
 		android:layout_width="match_parent"
 		android:layout_height="90dp"
 		android:id="@+id/moddedpe_main_console_table_view"
