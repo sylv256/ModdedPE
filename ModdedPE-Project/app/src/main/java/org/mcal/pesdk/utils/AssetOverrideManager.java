@@ -9,7 +9,7 @@ public class AssetOverrideManager
 	private static AssetOverrideManager mInstance;
 	private AssetManager mLocalAssetManager;
 
-	public void addAssetOverride(String packageResourcePath)
+	void addAssetOverride(String packageResourcePath)
 	{
 		try
 		{
@@ -17,7 +17,9 @@ public class AssetOverrideManager
 			method.invoke(mLocalAssetManager, packageResourcePath);
 		}
 		catch (Throwable t)
-		{}
+		{
+			t.printStackTrace();
+		}
 	}
 	
 	public static void addAssetOverride(AssetManager mgr,String packageResourcePath)
@@ -28,22 +30,24 @@ public class AssetOverrideManager
 			method.invoke(mgr, packageResourcePath);
 		}
 		catch (Throwable t)
-		{}
+		{
+			t.printStackTrace();
+		}
 	}
 
-	public AssetManager getAssetManager()
+	AssetManager getAssetManager()
 	{
 		return mLocalAssetManager;
 	}
 
-	public static AssetOverrideManager getInstance()
+	static AssetOverrideManager getInstance()
 	{
 		if (mInstance == null)
 			return mInstance = new AssetOverrideManager();
 		return mInstance;
 	}
 	
-	public static void newInstance()
+	static void newInstance()
 	{
 		mInstance = new AssetOverrideManager();
 	}
@@ -54,9 +58,9 @@ public class AssetOverrideManager
 		{
 			mLocalAssetManager = AssetManager.class.newInstance();
 		}
-		catch (InstantiationException e)
-		{}
-		catch (IllegalAccessException e)
-		{}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

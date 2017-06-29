@@ -18,12 +18,11 @@ import org.mcal.moddedpe.R;
 import org.mcal.pesdk.nmod.NMod;
 
 import java.util.ArrayList;
-import android.view.View.*;
 
 public class NModPackagePickerActivity extends BaseActivity
 {
 	private UIHandler mUIHandler = new UIHandler();
-	private ArrayList<NMod> nmods = new ArrayList<NMod>();
+	private ArrayList<NMod> nmods = new ArrayList<>();
 
 	public static final String TAG_PACKAGE_NAME = "package_name";
 	public static final int REQUEST_PICK_PACKAGE = 1;
@@ -56,7 +55,7 @@ public class NModPackagePickerActivity extends BaseActivity
 		list.setAdapter(new PackageListAdapter());
 	}
 
-	private void showUnfoundView()
+	private void showUnFoundView()
 	{
 		View loading_view = findViewById(R.id.nmod_picker_package_loading_view);
 		loading_view.setVisibility(View.GONE);
@@ -78,7 +77,7 @@ public class NModPackagePickerActivity extends BaseActivity
 			}
 			else if (msg.what == MSG_SHOW_UNFOUND_VIEW)
 			{
-				showUnfoundView();
+				showUnFoundView();
 			}
 		}
 	}

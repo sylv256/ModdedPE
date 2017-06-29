@@ -16,7 +16,6 @@ import org.mcal.moddedpe.utils.UtilsSettings;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.support.v4.app.*;
 
 public class MainActivity extends BaseActivity
 {
@@ -30,8 +29,8 @@ public class MainActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_main_pager);
 
-		ArrayList<Fragment> fragment_list=new ArrayList<Fragment>();
-		ArrayList<CharSequence> titles_list=new ArrayList<CharSequence>();
+		ArrayList<Fragment> fragment_list=new ArrayList<>();
+		ArrayList<CharSequence> titles_list=new ArrayList<>();
 
 		MainStartFragment startFragment = new MainStartFragment();
 		fragment_list.add(startFragment);
@@ -148,7 +147,7 @@ public class MainActivity extends BaseActivity
 	{
 		private List<Fragment> mFragments;
 		private List<CharSequence> mTitles;
-		public MainFragmentPagerAdapter(List<Fragment>fragments, List<CharSequence>titles)
+		MainFragmentPagerAdapter(List<Fragment>fragments, List<CharSequence>titles)
 		{
 			super(getFragmentManager());
 			this.mFragments = fragments;

@@ -64,7 +64,7 @@
 
 	<string name="nmod_import_failed_button_full_info">エラーの情報</string>
 
-	<string name="nmod_import_replaced_title">置き換え済み</string>
+	<string name="nmod_import_replaced_title">置き換えました</string>
 
 	<string name="nmod_import_replaced_message">ModdedPEは同じパッケージ名でインポートされたNModを見つけました。新しいものを正常にインポートし、置き換えました。</string>
 
@@ -154,7 +154,7 @@
 
 	<string name="preferences_title_app">アプリケーション</string>
 
-	<string name="preferences_title_about">About</string>
+	<string name="preferences_title_about">情報</string>
 
 	<string name="preferences_summary_about">ModdedPEについて</string>
 
@@ -298,14 +298,22 @@
 
 	<string name="launch_failed_title">ゲームを開くことができませんでした。</string>
 
-	<string name="launch_failed_message">スターターの崩壊につながる、ゲームを開くときにエラーをトリガModdeddPE。それでも問題が発生した場合、アプリケーションデータModdedPEをオフにします。\ Nエラーメッセージ：％1つの$ sの\nエラーメッセージ：%1$s</string>
+	<string name="launch_failed_message">ModdeddPEはゲームを開くときにエラーが発生しました、イニシエーターがクラッシュする原因。 この問題が解決しない場合、ModdedPEのアプリケーションデータを削除してみてください。\nエラーメッセージ:%1$s</string>
 
 	<!--Permissions-->
-	<string name="permission_grant_failed_title">許可を得るに失敗</string>
-	<string name="permission_grant_failed_message">外部ストレージを読む権限を取得できません。[設定]ページでModdedPE許可権限。</string>
+
+
+	<string name="permission_grant_failed_title">許可されていません</string>
+
+	<string name="permission_grant_failed_message">外部ストレージを読む権限を取得できませんでした。[設定]ページでModdedPEのストレージアクセス権限を許可してください。</string>
 
 	<!--Enable Warnings-->
-	<string name="enable_warning_unsupported_title">Unsupported Version</string>
-	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
-	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+
+
+	<string name="enable_warning_unsupported_title">サポートしていないバージョン</string>
+
+	<string name="enable_warning_unsupported_message">NMod %1$s はまだMinecraftPE %2$s をサポートしていません。NModをアップデートしてください %1$s.</string>
+
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s はまだMinecraftPE %2$s をサポートしていません。有効化することはできますがクラッシュや不具合の原因になるかもしれません。</string>
+
 </resources>

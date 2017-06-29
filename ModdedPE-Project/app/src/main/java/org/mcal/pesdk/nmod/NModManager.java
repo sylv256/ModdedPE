@@ -42,9 +42,9 @@ class NModManager
 
 	void init()
 	{
-		mAllNMods = new ArrayList<NMod>();
-		mEnabledNMods = new ArrayList<NMod>();
-		mDisabledNMods = new ArrayList<NMod>();
+		mAllNMods = new ArrayList<>();
+		mEnabledNMods = new ArrayList<>();
+		mDisabledNMods = new ArrayList<>();
 
 		NModDataLoader dataloader = new NModDataLoader(mContext);
 
@@ -97,11 +97,11 @@ class NModManager
 
 			try
 			{
-				NModArchiver archiver = new NModArchiver(mContext);
-				PackagedNMod packagedNMod = archiver.archiveFromInstalledPackage(packageName);
+				NModExtractor extractor = new NModExtractor(mContext);
+				PackagedNMod packagedNMod = extractor.archiveFromInstalledPackage(packageName);
 				importNMod(packagedNMod, enabled);
 			}
-			catch (ArchiveFailedException e)
+			catch (ExtractFailedException e)
 			{
 				e.printStackTrace();
 			}

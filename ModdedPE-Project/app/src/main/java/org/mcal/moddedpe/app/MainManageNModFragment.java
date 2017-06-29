@@ -28,7 +28,7 @@ import android.widget.ListView;
 
 import org.mcal.moddedpe.R;
 import org.mcal.moddedpe.utils.DataPreloader;
-import org.mcal.pesdk.nmod.ArchiveFailedException;
+import org.mcal.pesdk.nmod.ExtractFailedException;
 import org.mcal.pesdk.nmod.NMod;
 import org.mcal.pesdk.nmod.PackagedNMod;
 import org.mcal.pesdk.nmod.ZippedNMod;
@@ -100,7 +100,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			mReloadDialog = new AlertDialog.Builder(getActivity()).setTitle(R.string.main_reloading_title).setView(R.layout.moddedpe_main_reload_dialog).setCancelable(false).create();
 			mReloadDialog.show();
 			mDataPreloader = new DataPreloader(this);
-			mDataPreloader.preload(getActivity());
+			mDataPreloader.preload(getActivity().getApplicationContext());
 		}
 	}
 
@@ -158,7 +158,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					mNModProcesserHandler.sendEmptyMessage(MSG_REFRESH_NMOD_DATA);
 
 				}
-				catch (ArchiveFailedException archiveFailedException)
+				catch (ExtractFailedException archiveFailedException)
 				{
 					mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
 					Message message = new Message();
@@ -197,7 +197,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 					mNModProcesserHandler.sendEmptyMessage(MSG_REFRESH_NMOD_DATA);
 
 				}
-				catch (ArchiveFailedException archiveFailedException)
+				catch (ExtractFailedException archiveFailedException)
 				{
 					mNModProcesserHandler.sendEmptyMessage(MSG_HIDE_PROGRESS_DIALOG);
 					Message message = new Message();
@@ -209,7 +209,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		}.start();
 	}
 
-	public void showPickNModFailedDialog(ArchiveFailedException archiveFailedException)
+	public void showPickNModFailedDialog(ExtractFailedException archiveFailedException)
 	{
 		AlertDialog.Builder alertBuilder = new AlertDialog.Builder(getActivity()).setTitle(R.string.nmod_import_failed).setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener()
 			{
@@ -224,28 +224,28 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 			});
 		switch (archiveFailedException.getType())
 		{
-			case ArchiveFailedException.TYPE_DECODE_FAILED:
+			case ExtractFailedException.TYPE_DECODE_FAILED:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_decode);
 				break;
-			case ArchiveFailedException.TYPE_INEQUAL_PACKAGE_NAME:
+			case ExtractFailedException.TYPE_INEQUAL_PACKAGE_NAME:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_inequal_package_name);
 				break;
-			case ArchiveFailedException.TYPE_INVAILD_PACKAGE_NAME:
+			case ExtractFailedException.TYPE_INVAILD_PACKAGE_NAME:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_invalid_package_name);
 				break;
-			case ArchiveFailedException.TYPE_IO_EXCEPTION:
+			case ExtractFailedException.TYPE_IO_EXCEPTION:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_io_exception);
 				break;
-			case ArchiveFailedException.TYPE_JSON_SYNTAX_EXCEPTION:
+			case ExtractFailedException.TYPE_JSON_SYNTAX_EXCEPTION:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_manifest_json_syntax_error);
 				break;
-			case ArchiveFailedException.TYPE_NO_MANIFEST:
+			case ExtractFailedException.TYPE_NO_MANIFEST:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_no_manifest);
 				break;
-			case ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME:
+			case ExtractFailedException.TYPE_UNDEFINED_PACKAGE_NAME:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_no_package_name);
 				break;
-			case ArchiveFailedException.TYPE_REDUNDANT_MANIFEST:
+			case ExtractFailedException.TYPE_REDUNDANT_MANIFEST:
 				alertBuilder.setMessage(R.string.nmod_import_failed_message_no_package_name);
 				break;
 			default:
@@ -254,7 +254,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 		}
 		if (archiveFailedException.getCause() != null)
 		{
-			final ArchiveFailedException fArvhiveFailedException = archiveFailedException;
+			final ExtractFailedException fArvhiveFailedException = archiveFailedException;
 			alertBuilder.setNegativeButton(R.string.nmod_import_failed_button_full_info, new DialogInterface.OnClickListener()
 				{
 
@@ -326,7 +326,7 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 						}).show();
 					break;
 				case MSG_SHOW_FAILED_DIALOG:
-					showPickNModFailedDialog((ArchiveFailedException)msg.obj);
+					showPickNModFailedDialog((ExtractFailedException)msg.obj);
 					break;
 				case MSG_REFRESH_NMOD_DATA:
 					refreshNModDatas();
@@ -744,8 +744,6 @@ public class MainManageNModFragment extends BaseFragment implements DataPreloade
 				{
 					if(checkPermissions())
 						NModFilePickerActivity.startThisActivity(getActivity());
-					else
-						showPermissionDinedDialog();
 					p1.dismiss();
 				}
 

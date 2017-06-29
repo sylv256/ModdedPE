@@ -2,6 +2,7 @@ package org.mcal.pesdk;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Environment;
 
 import com.google.gson.Gson;
 
@@ -14,10 +15,19 @@ import org.mcal.pesdk.nmod.NModLib;
 import org.mcal.pesdk.nmod.NModTextEditor;
 import org.mcal.pesdk.utils.MinecraftInfo;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class Preloader
 {
@@ -83,7 +93,9 @@ public class Preloader
 			mAssetsArrayList = new ArrayList<>();
 			mLoadedNativeLibs = new ArrayList<>();
 			mLoadedEnabledNMods = new ArrayList<>();
+
 			mAssetsArrayList.add(mPESdk.getMinecraftInfo().getMinecraftPackageContext().getPackageResourcePath());
+
 			//init index
 			ArrayList<NMod> unIndexedNModArrayList = mPESdk.getNModAPI().getImportedEnabledNMods();
 			for (int index = unIndexedNModArrayList.size() - 1;index >= 0;--index)
@@ -100,7 +112,7 @@ public class Preloader
 					continue;
 				}
 
-				NMod.NModPreloadBean preloadDataItem = null;
+				NMod.NModPreloadBean preloadDataItem;
 				try
 				{
 					preloadDataItem = nmod.copyNModFiles();
@@ -117,6 +129,7 @@ public class Preloader
 				else
 					mPreloadListener.onFailedLoadingNMod(nmod);
 			}
+
 			mPreloadData.assets_packs_path = mAssetsArrayList.toArray(new String[0]);
 			mPreloadData.loaded_libs = mLoadedNativeLibs.toArray(new String[0]);
 			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(mPreloadData));
@@ -124,6 +137,7 @@ public class Preloader
 		}
 		else
 			mBundle.putString(PreloadingInfo.NMOD_DATA_TAG, gson.toJson(new Preloader.NModPreloadData()));
+
 		mPreloadListener.onFinish(mBundle);
 	}
 
@@ -131,8 +145,8 @@ public class Preloader
 	{
 		MinecraftInfo minecraftInfo = mPESdk.getMinecraftInfo();
 
-		if (preloadDataItem.assets_path != null)
-			mAssetsArrayList.add(preloadDataItem.assets_path);
+		String jsonEditFile = null;
+		String textEditFile = null;
 
 		//edit json files
 		if (nmod.getInfo().json_edit != null && nmod.getInfo().json_edit.length > 0)
@@ -144,7 +158,7 @@ public class Preloader
 			try
 			{
 				File outResourceFile = jsonEditor.edit();
-				mAssetsArrayList.add(outResourceFile.getAbsolutePath());
+				jsonEditFile = outResourceFile.getAbsolutePath();
 			}
 			catch (IOException e)
 			{
@@ -170,7 +184,7 @@ public class Preloader
 			try
 			{
 				File outResourceFile = textEditor.edit();
-				mAssetsArrayList.add(outResourceFile.getAbsolutePath());
+				textEditFile = outResourceFile.getAbsolutePath();
 			}
 			catch (IOException e)
 			{
@@ -181,6 +195,15 @@ public class Preloader
 				return false;
 			}
 		}
+
+		if (preloadDataItem.assets_path != null)
+			mAssetsArrayList.add(preloadDataItem.assets_path);
+
+		if(jsonEditFile != null)
+			mAssetsArrayList.add(jsonEditFile);
+		if(textEditFile != null)
+			mAssetsArrayList.add(textEditFile);
+
 		//load elf files
 		if (preloadDataItem.native_libs != null && preloadDataItem.native_libs.length > 0)
 		{

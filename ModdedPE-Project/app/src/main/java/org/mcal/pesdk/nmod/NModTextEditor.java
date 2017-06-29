@@ -1,8 +1,16 @@
 package org.mcal.pesdk.nmod;
 
-import android.content.*;
-import java.io.*;
-import java.util.zip.*;
+import android.content.Context;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
 
 public class NModTextEditor
 {
@@ -51,22 +59,28 @@ public class NModTextEditor
                 zipOutPut.closeEntry();
             }
         }
+        zipOutPut.flush();
         zipOutPut.close();
         return file;
     }
 
     private String readTextFromParents(String path)throws IOException
     {
-        for (File parentItem:mParents)
+        for (int index = mParents.length - 1;index>=0;--index)
         {
+            File parentItem = mParents[index];
             ZipFile zipFile = new ZipFile(parentItem);
             ZipEntry entry = zipFile.getEntry("assets" + File.separator + path);
             if (entry == null)
                 continue;
             InputStream input = zipFile.getInputStream(entry);
-            byte[] buffer = new byte[input.available()];
-            input.read(buffer);
-            String tmp = new String(buffer);
+            int byteRead ;
+            byte[] buffer = new byte[1024];
+            String tmp = "";
+            while( (byteRead = input.read(buffer))>0)
+            {
+                tmp += new String(buffer,0,byteRead);
+            }
             return tmp;
         }
         throw new FileNotFoundException(path);
@@ -75,9 +89,13 @@ public class NModTextEditor
     private String readTextFromThis(String path)throws IOException
     {
         InputStream input = mTargetNMod.getAssets().open(path);
-        byte[] buffer = new byte[input.available()];
-        input.read(buffer);
-        String tmp = new String(buffer);
+        int byteRead ;
+        byte[] buffer = new byte[1024];
+        String tmp = "";
+        while( (byteRead = input.read(buffer))>0)
+        {
+            tmp += new String(buffer,0,byteRead);
+        }
         return tmp;
     }
 }

@@ -63,8 +63,6 @@ public class MainSettingsFragment extends PreferenceFragment
 				{
 					if(checkPermissions())
 						DirPickerActivity.startThisActivity(getActivity());
-					else
-						showPermissionDinedDialog();
 					return true;
 				}
 

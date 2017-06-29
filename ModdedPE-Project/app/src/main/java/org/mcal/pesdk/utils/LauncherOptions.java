@@ -2,9 +2,9 @@ package org.mcal.pesdk.utils;
 
 public interface LauncherOptions
 {
-	public boolean isSafeMode();
-	public String getDataSavedPath();
-	public String getMinecraftPEPackageName();
+	boolean isSafeMode();
+	String getDataSavedPath();
+	String getMinecraftPEPackageName();
 	
-	public static final String STRING_VALUE_DEFAULT = "default";
+	String STRING_VALUE_DEFAULT = "default";
 }

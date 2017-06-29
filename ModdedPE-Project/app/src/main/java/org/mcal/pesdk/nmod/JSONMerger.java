@@ -11,13 +11,13 @@ class JSONMerger
 	private String mSrc;
 	private String mDist;
 
-	public JSONMerger(String src, String src2)
+	JSONMerger(String src, String src2)
 	{
 		this.mSrc = src;
 		this.mDist = src2;
 	}
 
-	public String merge() throws JSONException
+	String merge() throws JSONException
 	{
 		if (isJSONObject(mSrc) && isJSONObject(mDist))
 		{
@@ -59,10 +59,10 @@ class JSONMerger
 
 	private static JSONObject mergeObject(JSONObject object1, JSONObject object2) throws JSONException
 	{
-		Iterator iter = object2.keys();
-		for (int index = 0;iter.hasNext();++index)
+		Iterator iterator = object2.keys();
+		for (;iterator.hasNext();)
 		{
-			String name = (String)iter.next();
+			String name = (String)iterator.next();
 			judgeTypeAndPut(object1, object2, name);
 		}
 		return object1;

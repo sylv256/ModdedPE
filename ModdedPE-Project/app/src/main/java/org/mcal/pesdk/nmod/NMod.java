@@ -54,7 +54,7 @@ public abstract class NMod
 	@Override
 	public final boolean equals(Object obj)
 	{
-		return getClass().equals(obj.getClass()) && getPackageName().equals(((NMod)obj).getPackageName());
+		return obj instanceof NMod && getPackageName().equals(((NMod)obj).getPackageName());
 	}
 
 	public final Bitmap createBannerImage() throws LoadFailedException
@@ -190,12 +190,16 @@ public abstract class NMod
 
 		try
 		{
-			InputStream is = createInfoInputStream();
-			byte[] buffer = new byte[is.available()];
-			is.read(buffer);
-			String jsonStr = new String(buffer);
+			InputStream input = createInfoInputStream();
+			int byteRead ;
+			byte[] buffer = new byte[1024];
+			String tmp = "";
+			while( (byteRead = input.read(buffer))>0)
+			{
+				tmp += new String(buffer,0,byteRead);
+			}
 			Gson gson = new Gson();
-			mInfo = gson.fromJson(jsonStr, NModInfo.class);
+			mInfo = gson.fromJson(tmp, NModInfo.class);
 		}
 		catch (JsonSyntaxException e)
 		{
@@ -207,6 +211,12 @@ public abstract class NMod
 		{
 			mInfo = null;
 			setBugPack(new LoadFailedException(LoadFailedException.TYPE_IO_FAILED, ioe));
+			return;
+		}
+
+		if(mInfo == null)
+		{
+			setBugPack(new LoadFailedException(LoadFailedException.TYPE_JSON_SYNTAX, new JsonSyntaxException("NMod Info returns null.Please check if there is json syntax mistakes in nmod_manifest.json")));
 			return;
 		}
 

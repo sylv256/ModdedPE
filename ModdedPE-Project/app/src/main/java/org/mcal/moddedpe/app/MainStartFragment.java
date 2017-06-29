@@ -109,9 +109,7 @@ public class MainStartFragment extends BaseFragment
 		}
 		else
 		{
-			Intent intent = null;
-			intent = new Intent(getActivity(), PreloadActivity.class);
-			startActivity(intent);
+			startActivity(new Intent(getActivity(), PreloadActivity.class));
 			getActivity().finish();
 		}
 	}

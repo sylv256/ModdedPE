@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 
 public class BitmapRepeater
 {
-	public static Bitmap repeatW(int width, Bitmap src)
+	private static Bitmap repeatW(int width, Bitmap src)
 	{
 		int count = (width + src.getWidth() - 1) / src.getWidth() + 1;
 		Bitmap bitmap = Bitmap.createBitmap(width, src.getHeight(), Bitmap.Config.ARGB_8888);
@@ -20,7 +20,7 @@ public class BitmapRepeater
 		return bitmap;
 	}
 
-	public static Bitmap repeatH(int height, Bitmap src)
+	private static Bitmap repeatH(int height, Bitmap src)
 	{
 		int count = (height + src.getHeight() - 1) / src.getHeight() + 1;
 		Bitmap bitmap = Bitmap.createBitmap(src.getWidth(), height, Bitmap.Config.ARGB_8888);

@@ -60,16 +60,21 @@ public class NModJSONEditor
 
     private String readJsonFromParents(String path)throws IOException
     {
-        for (File parentItem:mParents)
+        for (int index = mParents.length - 1;index>=0;--index)
         {
+            File parentItem = mParents[index];
             ZipFile zipFile = new ZipFile(parentItem);
             ZipEntry entry = zipFile.getEntry("assets" + File.separator + path);
             if (entry == null)
                 continue;
             InputStream input = zipFile.getInputStream(entry);
-            byte[] buffer = new byte[input.available()];
-            input.read(buffer);
-            String tmp = new String(buffer);
+            int byteRead ;
+            byte[] buffer = new byte[1024];
+            String tmp = "";
+            while( (byteRead = input.read(buffer))>0)
+            {
+                tmp += new String(buffer,0,byteRead);
+            }
             return tmp;
         }
         throw new FileNotFoundException(path);
@@ -78,9 +83,13 @@ public class NModJSONEditor
     private String readJsonFromThis(String path)throws IOException
     {
         InputStream input = mTargetNMod.getAssets().open(path);
-        byte[] buffer = new byte[input.available()];
-        input.read(buffer);
-        String tmp = new String(buffer);
+        int byteRead ;
+        byte[] buffer = new byte[1024];
+        String tmp = "";
+        while( (byteRead = input.read(buffer))>0)
+        {
+            tmp += new String(buffer,0,byteRead);
+        }
         return tmp;
     }
 }

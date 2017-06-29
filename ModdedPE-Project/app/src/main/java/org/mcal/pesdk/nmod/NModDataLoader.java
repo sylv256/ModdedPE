@@ -19,7 +19,7 @@ class NModDataLoader
 
 	ArrayList<String> getAllList()
 	{
-		ArrayList<String> ret = new ArrayList<String>();
+		ArrayList<String> ret = new ArrayList<>();
 		ret.addAll(getDisabledList());
 		ret.addAll(getEnabledList());
 		return ret;
@@ -130,9 +130,9 @@ class NModDataLoader
 	}
 	private static ArrayList<String> toArrayList(String str)
 	{
-		String[] mstr=str.split("/");
+		String[] mStr = str.split("/");
 		ArrayList<String> list = new ArrayList<>();
-		for (String strElement:mstr)
+		for (String strElement:mStr)
 		{
 			if (strElement != null && !strElement.isEmpty())
 				list.add(strElement);
@@ -145,9 +145,9 @@ class NModDataLoader
 		String str="";
 		if (arrayList != null)
 		{
-			for (String mstr:arrayList)
+			for (String mStr:arrayList)
 			{
-				str += mstr;
+				str += mStr;
 				str += "/";
 			}
 		}

@@ -1,8 +1,6 @@
 package org.mcal.pesdk.nmod;
 
-import android.content.Context;
-
-import org.mcal.pesdk.utils.LauncherOptions;
+import  android.content.Context;
 
 import java.util.ArrayList;
 
@@ -10,18 +8,18 @@ public final class NModAPI
 {
 	private Context mContext;
 	private NModManager mNModManager;
-	private NModArchiver mArchiver;
+	private NModExtractor mExtractor;
 
 	public NModAPI(Context context)
 	{
 		this.mContext = context;
 		this.mNModManager = new NModManager(context);
-		this.mArchiver = new NModArchiver(context);
+		this.mExtractor = new NModExtractor(context);
 	}
 
-	public ZippedNMod archiveZippedNMod(String filePath) throws ArchiveFailedException
+	public ZippedNMod archiveZippedNMod(String filePath) throws ExtractFailedException
 	{
-		return mArchiver.archiveFromZipped(filePath);
+		return mExtractor.archiveFromZipped(filePath);
 	}
 
 	public void initNModDatas()
@@ -51,7 +49,7 @@ public final class NModAPI
 
 	public ArrayList<NMod> findInstalledNMods()
 	{
-		NModArchiver arvhiver = new NModArchiver(mContext);
+		NModExtractor arvhiver = new NModExtractor(mContext);
 		return arvhiver.archiveAllFromInstalled();
 	}
 
@@ -83,15 +81,15 @@ public final class NModAPI
 		mNModManager.makeDown(nmod);
 	}
 
-	public PackagedNMod archivePackagedNMod(String packageName) throws ArchiveFailedException
+	public PackagedNMod archivePackagedNMod(String packageName) throws ExtractFailedException
 	{
-		NModArchiver arvhiver = new NModArchiver(mContext);
-		return arvhiver.archiveFromInstalledPackage(packageName);
+		NModExtractor extractor = new NModExtractor(mContext);
+		return extractor.archiveFromInstalledPackage(packageName);
 	}
 
 	public String getVersionName()
 	{
-		return "1.2";
+		return "1.3";
 	}
 
 	

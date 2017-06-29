@@ -7,17 +7,18 @@ import android.graphics.BitmapFactory;
 
 import org.mcal.pesdk.ABIInfo;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import java.io.*;
 import java.util.zip.ZipInputStream;
 
 public class ZippedNMod extends NMod
@@ -31,7 +32,7 @@ public class ZippedNMod extends NMod
 	{
 		NModPreloadBean ret = new NModPreloadBean();
 		ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(new FileInputStream(mFilePath.getAbsolutePath())));
-		ZipEntry entry = null;
+		ZipEntry entry;
 
 		new File(getNativeLibsPath()).mkdirs();
 		while ((entry = zipInput.getNextEntry()) != null)
@@ -39,7 +40,7 @@ public class ZippedNMod extends NMod
 			if (!entry.isDirectory() && entry.getName().startsWith("lib" + File.separator + ABIInfo.getTargetABIType() + File.separator))
 			{
 				InputStream libInputStream = mZipFile.getInputStream(entry);
-				int byteRead = -1;
+				int byteRead;
 				byte[] buffer = new byte[1024];
 				File outFile = new File(getNativeLibsPath() + File.separator + entry.getName().substring(entry.getName().lastIndexOf(File.separator) + 1));
 				outFile.createNewFile();
@@ -106,7 +107,7 @@ public class ZippedNMod extends NMod
 	@Override
 	public Bitmap createIcon()
 	{
-		InputStream imageStream = null;
+		InputStream imageStream;
 		try
 		{
 			ZipEntry iconEntry = mZipFile.getEntry("icon.png");

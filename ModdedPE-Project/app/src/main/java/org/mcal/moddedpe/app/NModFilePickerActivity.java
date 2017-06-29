@@ -80,7 +80,9 @@ public class NModFilePickerActivity extends BaseActivity
 					Thread.sleep(450);
 				}
 				catch (InterruptedException e)
-				{}
+				{
+					e.printStackTrace();
+				}
 				Message mMessage = new Message();
 				mMessage.what = MSG_SELECT;
 				mMessage.obj = file;

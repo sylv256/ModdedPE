@@ -19,7 +19,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
@@ -27,16 +26,16 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-class NModArchiver
+class NModExtractor
 {
 	private Context mContext;
 
-	NModArchiver(Context context)
+	NModExtractor(Context context)
 	{
 		this.mContext = context;
 	}
 
-	PackagedNMod archiveFromInstalledPackage(String packageName)throws ArchiveFailedException
+	PackagedNMod archiveFromInstalledPackage(String packageName)throws ExtractFailedException
 	{
 		try
 		{
@@ -46,15 +45,15 @@ class NModArchiver
 		}
 		catch (IOException e)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_NO_MANIFEST, e);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_NO_MANIFEST, e);
 		}
 		catch (PackageManager.NameNotFoundException notFoundE)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_PACKAGE_NOT_FOUND, notFoundE);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_PACKAGE_NOT_FOUND, notFoundE);
 		}
 	}
 
-	ZippedNMod archiveFromZipped(String path)throws ArchiveFailedException
+	ZippedNMod archiveFromZipped(String path)throws ExtractFailedException
 	{
 		try
 		{
@@ -62,11 +61,11 @@ class NModArchiver
 		}
 		catch (ZipException zipE)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_DECODE_FAILED, zipE);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_DECODE_FAILED, zipE);
 		}
 		catch(IOException ioe)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_IO_EXCEPTION, ioe);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_IO_EXCEPTION, ioe);
 		}
 		
 		PackageManager packageManager = mContext.getPackageManager();
@@ -76,7 +75,7 @@ class NModArchiver
 		if (packageInfo != null)
 		{
 			if (nmodInfo.package_name != null && !nmodInfo.package_name.equals(packageInfo.packageName))
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INEQUAL_PACKAGE_NAME, new RuntimeException("Package name defined in AndroidManifest.xml and nmod_manifest.json must equal!"));
+				throw new ExtractFailedException(ExtractFailedException.TYPE_INEQUAL_PACKAGE_NAME, new RuntimeException("Package name defined in AndroidManifest.xml and nmod_manifest.json must equal!"));
 
 			nmodInfo.package_name = packageInfo.packageName;
 
@@ -95,7 +94,7 @@ class NModArchiver
 				Drawable icon = packageManager.getApplicationIcon(packageInfo.applicationInfo);
 				ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(toFile));
 				ZipInputStream zipInput = new ZipInputStream(new BufferedInputStream(new FileInputStream(path)));
-				ZipEntry entry = null;
+				ZipEntry entry;
 
 				while ((entry = zipInput.getNextEntry()) != null)
 				{
@@ -103,7 +102,7 @@ class NModArchiver
 					{
 						zipOutputStream.putNextEntry(entry);
 						InputStream from = zipFile.getInputStream(entry);
-						int byteRead = -1;
+						int byteRead;
 						byte[] buffer = new byte[1024];
 						while ((byteRead = from.read(buffer)) != -1)
 						{
@@ -141,15 +140,15 @@ class NModArchiver
 			}
 			catch (IOException ioe)
 			{
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_IO_EXCEPTION, ioe);
+				throw new ExtractFailedException(ExtractFailedException.TYPE_IO_EXCEPTION, ioe);
 			}
 		}
 		else
 		{
 			if (nmodInfo.package_name == null)
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_UNDEFINED_PACKAGE_NAME, new RuntimeException("Undefined package name in manifest."));
+				throw new ExtractFailedException(ExtractFailedException.TYPE_UNDEFINED_PACKAGE_NAME, new RuntimeException("Undefined package name in manifest."));
 			if (!PackageNameChecker.isValidPackageName(nmodInfo.package_name))
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_INVAILD_PACKAGE_NAME, new RuntimeException("The provided package name is not a valid java-styled package name."));
+				throw new ExtractFailedException(ExtractFailedException.TYPE_INVAILD_PACKAGE_NAME, new RuntimeException("The provided package name is not a valid java-styled package name."));
 
 			try
 			{
@@ -160,7 +159,7 @@ class NModArchiver
 				File nmodFile = new NModFilePathManager(mContext).getNModCachePath();
 				nmodFile.createNewFile();
 				ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(nmodFile));
-				ZipEntry entry = null;
+				ZipEntry entry;
 				while ( (entry = zipInput.getNextEntry()) != null)
 				{
 					if (!entry.isDirectory())
@@ -188,12 +187,12 @@ class NModArchiver
 			}
 			catch (IOException ioe)
 			{
-				throw new ArchiveFailedException(ArchiveFailedException.TYPE_IO_EXCEPTION, ioe);
+				throw new ExtractFailedException(ExtractFailedException.TYPE_IO_EXCEPTION, ioe);
 			}
 		}
 	}
 
-	private File copyCachedNModToData(File cachedNModFile, String packageName)throws ArchiveFailedException
+	private File copyCachedNModToData(File cachedNModFile, String packageName)throws ExtractFailedException
 	{
 		try
 		{
@@ -203,7 +202,7 @@ class NModArchiver
 			finalFile.createNewFile();
 			FileOutputStream finalFileOutput = new FileOutputStream(finalFile);
 			FileInputStream fileInput = new FileInputStream(cachedNModFile);
-			int byteRead = -1;
+			int byteRead;
 			byte[] buffer = new byte[1024];
 			while ((byteRead = fileInput.read(buffer)) != -1)
 			{
@@ -216,7 +215,7 @@ class NModArchiver
 		}
 		catch (IOException ioe)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_IO_EXCEPTION, ioe);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_IO_EXCEPTION, ioe);
 		}
 	}
 
@@ -224,54 +223,57 @@ class NModArchiver
 	{
 		PackageManager packageManager = mContext.getPackageManager();
 		List<PackageInfo> infos = packageManager.getInstalledPackages(0);
-		ArrayList<NMod> list = new ArrayList<NMod>();
+		ArrayList<NMod> list = new ArrayList<>();
 		for (PackageInfo info:infos)
 		{
 			try
 			{
 				PackagedNMod packagedNMod = archiveFromInstalledPackage(info.packageName);
 				list.add(packagedNMod);
-				continue;
 			}
-			catch (ArchiveFailedException e)
+			catch (ExtractFailedException e)
 			{}
 		}
 		return list;
 	}
 
-	private NMod.NModInfo archiveInfoFromZipped(File filePath)throws ArchiveFailedException
+	private NMod.NModInfo archiveInfoFromZipped(File filePath)throws ExtractFailedException
 	{
-		ZipFile zipFile = null;
+		ZipFile zipFile;
 		try
 		{
 			zipFile = new ZipFile(filePath);
 		}
 		catch (IOException e)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_DECODE_FAILED, e);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_DECODE_FAILED, e);
 		}
 		ZipEntry manifest1 = zipFile.getEntry(NMod.MANIFEST_NAME);
 		ZipEntry manifest2 = zipFile.getEntry("assets" + File.separator + NMod.MANIFEST_NAME);
 		if (manifest1 != null && manifest2 != null)
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_REDUNDANT_MANIFEST, new RuntimeException("ModdedPE found two nmod_manifest.json in this file but didn't know which one to read.Please delete one.(/nmod_manifest.json or /assets/nmod_manifest.json)"));
+			throw new ExtractFailedException(ExtractFailedException.TYPE_REDUNDANT_MANIFEST, new RuntimeException("ModdedPE found two nmod_manifest.json in this file but didn't know which one to read.Please delete one.(/nmod_manifest.json or /assets/nmod_manifest.json)"));
 		if (manifest1 == null && manifest2 == null)
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_NO_MANIFEST, new RuntimeException("There is no nmod_manifest.json found in this file."));
+			throw new ExtractFailedException(ExtractFailedException.TYPE_NO_MANIFEST, new RuntimeException("There is no nmod_manifest.json found in this file."));
 		ZipEntry manifest = manifest1 == null ?manifest2: manifest1;
 		try
 		{
 			InputStream input = zipFile.getInputStream(manifest);
-			byte[] buffer = new byte[input.available()];
-			input.read(buffer);
-			String jsonString = new String(buffer);
-			return new Gson().fromJson(jsonString, NMod.NModInfo.class);
+			int byteRead ;
+			byte[] buffer = new byte[1024];
+			String tmp = "";
+			while( (byteRead = input.read(buffer))>0)
+			{
+				tmp += new String(buffer,0,byteRead);
+			}
+			return new Gson().fromJson(tmp, NMod.NModInfo.class);
 		}
 		catch (IOException ioe)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_IO_EXCEPTION, ioe);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_IO_EXCEPTION, ioe);
 		}
 		catch (JsonSyntaxException jsonSyntaxE)
 		{
-			throw new ArchiveFailedException(ArchiveFailedException.TYPE_JSON_SYNTAX_EXCEPTION, jsonSyntaxE);
+			throw new ExtractFailedException(ExtractFailedException.TYPE_JSON_SYNTAX_EXCEPTION, jsonSyntaxE);
 		}
 	}
 }

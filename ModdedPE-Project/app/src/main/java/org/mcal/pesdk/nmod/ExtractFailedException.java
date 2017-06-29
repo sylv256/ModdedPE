@@ -1,6 +1,6 @@
 package org.mcal.pesdk.nmod;
 
-public class ArchiveFailedException extends Exception
+public class ExtractFailedException extends Exception
 {
 	public static final int TYPE_JSON_SYNTAX_EXCEPTION = 1;
 	public static final int TYPE_IO_EXCEPTION = 2;
@@ -15,7 +15,7 @@ public class ArchiveFailedException extends Exception
 	
 	private int mType;
 	
-	public ArchiveFailedException(int type,Throwable cause)
+	public ExtractFailedException(int type, Throwable cause)
 	{
 		super(cause);
 		mType = type;

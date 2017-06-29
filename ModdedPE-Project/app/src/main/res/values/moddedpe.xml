@@ -59,7 +59,7 @@
 	<string name="about_copyright_owner">Copyright © MCAL,Nextdev.</string>
 	<string name="about_author">MADE BY ModelPart[Twitter: @model_part]</string>
 	<string name="about_translators">Translators</string>
-	<string name="about_translators_message">People who have participated in this language translator:\nModelPart\nKenMizz</string>
+	<string name="about_translators_message">People who have participated in this language translator:\nModelPart</string>
 	<string name="about_view_github">Github Page</string>
 	<string name="about_view_nmod_api">View NModAPI</string>
 	
@@ -84,7 +84,7 @@
 	
 	<!--Open Game Dialog-->
 	<string name="opengame_loading_blocks_message">One block,two blocks,three blocks…</string>
-	<string name="opengame_loading">Loading&#8230;</string>
+	<string name="opengame_loading">Waiting for the Game to Open&#8230;</string>
 	<string name="preloading_initing">Initiating Launcher</string>
 	<string name="preloading_initing_info">--NModAPI Version:%1$s\n--MinecraftPE Version:%2$s</string>
 	<string name="preloading_initing_info_safe_mode">--Safe Mode On\n--MinecraftPE Version:%1$s</string>

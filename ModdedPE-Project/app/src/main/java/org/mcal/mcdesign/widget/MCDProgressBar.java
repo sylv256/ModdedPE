@@ -7,24 +7,30 @@ import android.widget.ProgressBar;
 
 public class MCDProgressBar extends ProgressBar
 {
+	private Paint mPaint;
+
 	public MCDProgressBar(android.content.Context context) 
 	{
 		super(context);
+		mPaint = new Paint();
+		mPaint.setStyle(Paint.Style.FILL);
+		mPaint.setColor(Color.parseColor("#66BA44"));
 	}
 
     public MCDProgressBar(android.content.Context context, android.util.AttributeSet attrs)
 	{
 		super(context, attrs);
+		mPaint = new Paint();
+		mPaint.setStyle(Paint.Style.FILL);
+		mPaint.setColor(Color.parseColor("#66BA44"));
 	}
 
     public MCDProgressBar(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr)
 	{
 		super(context, attrs, defStyleAttr);
-	}
-
-    public MCDProgressBar(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr, int defStyleRes)
-	{
-		super(context, attrs, defStyleAttr, defStyleRes);
+		mPaint = new Paint();
+		mPaint.setStyle(Paint.Style.FILL);
+		mPaint.setColor(Color.parseColor("#66BA44"));
 	}
 
 	private int mWidth = 0;
@@ -39,19 +45,6 @@ public class MCDProgressBar extends ProgressBar
 	}
 
 	private static final float mDefaultSpeed = 0.075F;
-	private float mSpeed = mDefaultSpeed;
-
-	public void setSpeed(float s)
-	{
-		mSpeed = s > 1 ? 1 : s;
-		if (mSpeed <= 0)
-			mSpeed = mDefaultSpeed;
-	}
-
-	public float getSpeed()
-	{
-		return mSpeed;
-	}
 
 	private float mBlockDrawingProgress =  0;
 	private int mShowedBlocks = 1;
@@ -60,14 +53,10 @@ public class MCDProgressBar extends ProgressBar
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		Paint mPaint=new Paint();
-		mPaint.setStyle(Paint.Style.FILL);
-		mPaint.setColor(Color.parseColor("#66BA44"));
-
 		if (mIsScaling)
-			mBlockDrawingProgress += (mSpeed / 2);
+			mBlockDrawingProgress += (mDefaultSpeed / 2);
 		else
-			mBlockDrawingProgress += mSpeed;
+			mBlockDrawingProgress += mDefaultSpeed;
 		if (mBlockDrawingProgress >= 1 && !mIsScaling)
 		{
 			mBlockDrawingProgress = 0;

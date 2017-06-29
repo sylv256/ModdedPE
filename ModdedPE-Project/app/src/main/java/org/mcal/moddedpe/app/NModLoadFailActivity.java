@@ -26,16 +26,14 @@ public class NModLoadFailActivity extends BaseActivity
 {
 	private static final String KEY_TYPE_STRING = "type_string";
 	private static final String KEY_MESSAGE = "message";
-	private static final String KEY_TYPE = "type";
 	private static final String KEY_PACKAGE_NAME = "package_name";
 	private static final String KEY_ICON_PATH = "icon_path";
 	private static final String KEY_MC_DATA = "mc_data";
 
-	private ArrayList<Integer> mTypes = new ArrayList<Integer>();
-	private ArrayList<String> mPackageNames = new ArrayList<String>();
-	private ArrayList<String> mMessages = new ArrayList<String>();
-	private ArrayList<String> mTypeStrings = new ArrayList<String>();
-	private ArrayList<String> mIconPaths = new ArrayList<String>();
+	private ArrayList<String> mPackageNames = new ArrayList<>();
+	private ArrayList<String> mMessages = new ArrayList<>();
+	private ArrayList<String> mTypeStrings = new ArrayList<>();
+	private ArrayList<String> mIconPaths = new ArrayList<>();
 	private Bundle mMCData;
 
 	@Override
@@ -44,7 +42,6 @@ public class NModLoadFailActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.moddedpe_nmod_load_failed);
 
-		mTypes = getIntent().getExtras().getIntegerArrayList(KEY_TYPE);
 		mMessages = getIntent().getExtras().getStringArrayList(KEY_MESSAGE);
 		mIconPaths = getIntent().getExtras().getStringArrayList(KEY_ICON_PATH);
 		mTypeStrings = getIntent().getExtras().getStringArrayList(KEY_TYPE_STRING);
@@ -65,15 +62,6 @@ public class NModLoadFailActivity extends BaseActivity
 				
 			
 		});
-	}
-
-	private class BuggedNModInfo
-	{
-		public String mTypeString;
-		public String mMessage;
-		public int mType;
-		public String mPackageName;
-		public String mIconPath;
 	}
 
 	private class ViewAdapter extends BaseAdapter
@@ -159,14 +147,12 @@ public class NModLoadFailActivity extends BaseActivity
 		Intent intent=new Intent(context, NModLoadFailActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		Bundle bundle = new Bundle();
-		ArrayList<Integer> mTypes = new ArrayList<Integer>();
-		ArrayList<String> mPackageNames = new ArrayList<String>();
-		ArrayList<String> mMessages = new ArrayList<String>();
-		ArrayList<String> mTypeStrings = new ArrayList<String>();
-		ArrayList<String> mIconPaths = new ArrayList<String>();
+		ArrayList<String> mPackageNames = new ArrayList<>();
+		ArrayList<String> mMessages = new ArrayList<>();
+		ArrayList<String> mTypeStrings = new ArrayList<>();
+		ArrayList<String> mIconPaths = new ArrayList<>();
 		for (NMod nmod:nmods)
 		{
-			mTypes.add(nmod.getLoadException().getType());
 			mPackageNames.add(nmod.getPackageName());
 			mMessages.add(nmod.getLoadException().getCause().toString());
 			mTypeStrings.add(nmod.getLoadException().toTypeString());
@@ -176,7 +162,6 @@ public class NModLoadFailActivity extends BaseActivity
 			else
 				mIconPaths.add(null);
 		}
-		bundle.putIntegerArrayList(KEY_TYPE, mTypes);
 		bundle.putStringArrayList(KEY_MESSAGE, mMessages);
 		bundle.putStringArrayList(KEY_ICON_PATH, mIconPaths);
 		bundle.putStringArrayList(KEY_TYPE_STRING, mTypeStrings);
