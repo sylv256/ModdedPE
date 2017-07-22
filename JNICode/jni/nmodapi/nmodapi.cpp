@@ -22,9 +22,9 @@ std::string mMCPENativeLibPath;
 
 std::string toString(JNIEnv* env, jstring j_str)
 {
+	//DO NOT RELEASE.
 	const char * c_str = env->GetStringUTFChars(j_str, 0);
 	std::string cpp_str = c_str;
-	env->ReleaseStringUTFChars(j_str,c_str);
 	return cpp_str;
 }
 
