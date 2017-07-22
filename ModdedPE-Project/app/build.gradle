@@ -7,8 +7,8 @@ android {
         applicationId "org.mcal.moddedpe_new"
         minSdkVersion 17
         targetSdkVersion 21
-        versionCode 53
-        versionName "2.1"
+        versionCode 54
+        versionName "2.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
