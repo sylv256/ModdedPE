@@ -2,16 +2,15 @@
 // Includes
 //-------------------------------------------------------------
 
-#include "Substrate.h"
 #include <jni.h>
 #include <string>
 #include <cxxabi.h>
+#include <dlfcn.h>
 
 //-------------------------------------------------------------
 // Variants
 //-------------------------------------------------------------
 
-bool mGameStarted = false;
 JavaVM* mJvm = NULL;
 std::string* mAddrAndroidAppDataPath = NULL;
 std::string mMCPENativeLibPath;
@@ -29,27 +28,11 @@ std::string toString(JNIEnv* env, jstring j_str)
 }
 
 //-------------------------------------------------------------
-// Hook Methods
-//-------------------------------------------------------------
-
-void (*setStartMenuScreen_)(void*);
-void setStartMenuScreen(void*self)
-{
-	setStartMenuScreen_(self);
-	mGameStarted=true;
-}
-
-//-------------------------------------------------------------
 // Native Methods
 //-------------------------------------------------------------
 
 namespace NModAPI
 {
-	jboolean nativeIsGameStarted(JNIEnv*env,jobject thiz)
-	{
-		return mGameStarted;
-	}
-	
 	void nativeSetDataDirectory(JNIEnv*env,jobject thiz,jstring directory)
 	{
 		*mAddrAndroidAppDataPath = toString(env,directory);
@@ -121,7 +104,6 @@ extern "C" JNIEXPORT jboolean JNICALL Java_org_mcal_pesdk_nativeapi_NativeUtils_
 {
 	JNINativeMethod methods[] =
 	{
-		{"nativeIsGameStarted", "()Z", (void *)&NModAPI::nativeIsGameStarted},
 		{"nativeSetDataDirectory", "(Ljava/lang/String;)V", (void *)&NModAPI::nativeSetDataDirectory},
 		{"nativeDemangle", "(Ljava/lang/String;)Ljava/lang/String;", (void *)&NModAPI::nativeDemangle}
 	};
@@ -137,8 +119,6 @@ extern "C" JNIEXPORT void JNICALL Java_org_mcal_pesdk_nativeapi_LibraryLoader_na
 	mMCPENativeLibPath = mNativeLibPath;
 	void* imageMCPE = (void*)dlopen(mNativeLibPath,RTLD_LAZY);
 	mAddrAndroidAppDataPath = ((std::string*)dlsym(imageMCPE,"_ZN19AppPlatform_android20ANDROID_APPDATA_PATHE"));
-	void* ptr_setStartMenuScreen = (void*)dlsym(imageMCPE,"_ZN13ScreenChooser18setStartMenuScreenEv");
-	MSHookFunction(ptr_setStartMenuScreen,(void*)&setStartMenuScreen,(void**)&setStartMenuScreen_);
 	dlclose(imageMCPE);
 }
 
