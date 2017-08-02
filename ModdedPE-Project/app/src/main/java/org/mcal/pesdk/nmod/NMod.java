@@ -177,6 +177,11 @@ public abstract class NMod
 
 	}
 
+	public String getChangeLog()
+	{
+		return mInfo.change_log;
+	}
+
 	public NMod.NModInfo getInfo()
 	{
 		return mInfo;

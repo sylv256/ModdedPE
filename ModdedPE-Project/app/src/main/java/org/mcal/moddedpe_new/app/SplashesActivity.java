@@ -43,7 +43,7 @@ public class SplashesActivity extends BaseActivity implements DataPreloader.Prel
 		new DataPreloader(this).preload(getApplicationContext());
 	}
 
-	Handler mHandler=new Handler()
+	Handler mHandler = new Handler()
 	{
 		
 		@Override

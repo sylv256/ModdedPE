@@ -50,6 +50,7 @@
 	<string name="nmod_description_about_author">Yazar:</string>
 	<string name="nmod_description_about_version_name">Versiyon Adı:</string>
 	<string name="nmod_description_unknow">Bilinmiyor</string>
+	<string name="nmod_description_whatsnew_title">What\'s New</string>
 	<string name="nmod_imported_view_more">Daha fazlasını göster</string>
 	<!--About-->
 	<string name="about_license">Lisanslar</string>

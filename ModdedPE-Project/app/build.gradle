@@ -6,9 +6,11 @@ android {
     defaultConfig {
         applicationId "org.mcal.moddedpe_new"
         minSdkVersion 17
+        //DO NOT modify targetSdkVersion!KEEP IT 21!
+        //If not,libminecraftpe.so will not be linked successfully!
         targetSdkVersion 21
-        versionCode 54
-        versionName "2.1.1"
+        versionCode 55
+        versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,5 +27,5 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:cardview-v7:25.3.1'
 	compile "com.android.support:support-v13:25.3.1"
-    compile files('libs/minecraftpe.jar')
+    compile files('libs/libmcpe.jar')
 }

@@ -152,6 +152,39 @@
 
 		</RelativeLayout>
 
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:layout_height="wrap_content">
+
+			<android.support.v7.widget.AppCompatTextView
+				android:layout_height="wrap_content"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:layout_width="wrap_content"
+				android:text="@string/nmod_description_whatsnew_title"
+				android:id="@+id/moddedpenmoddescriptionTextViewWhatsNewTitle"
+				android:layout_marginLeft="10dp"/>
+
+			<View
+				android:layout_width="match_parent"
+				android:layout_height="1dp"
+				android:background="#6E6E6E"
+				android:layout_centerVertical="true"
+				android:layout_marginLeft="5dp"
+				android:layout_toRightOf="@id/moddedpenmoddescriptionTextViewWhatsNewTitle"/>
+
+		</RelativeLayout>
+
+		<android.support.v7.widget.AppCompatTextView
+			android:layout_height="wrap_content"
+			android:id="@+id/moddedpenmoddescriptionTextViewWhatsNew"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="match_parent"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="5dp"
+			android:layout_marginBottom="5dp"/>
+
 	</LinearLayout>
 
 </ScrollView>

@@ -48,6 +48,7 @@
 	<string name="nmod_description_about_author">作者：</string>
 	<string name="nmod_description_about_version_name">版本名：</string>
 	<string name="nmod_description_unknow">未填寫</string>
+	<string name="nmod_description_whatsnew_title">新增</string>
 	<string name="nmod_delete_title">刪除NMod</string>
 	<string name="nmod_delete_message">如果您刪除了這個NMod，它可能會消失很長很長的一段時間呢。確定要刪除嗎？</string>
 	<string name="nmod_imported_view_more">點擊按鈕以瀏覽更多。</string>

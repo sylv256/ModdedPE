@@ -22,6 +22,7 @@ public class NModDescriptionActivity extends BaseActivity
 	public final static String TAG_VERSION_NAME="version_name";
 	public final static String TAG_DESCRIPTION="description";
 	public final static String TAG_ICON_PATH="icon_path";
+	public final static String TAG_CHANGE_LOG="change_log";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -44,6 +45,7 @@ public class NModDescriptionActivity extends BaseActivity
 		String name = getIntent().getExtras().getString(TAG_NAME);
 		String version_name = getIntent().getExtras().getString(TAG_VERSION_NAME);
 		String author = getIntent().getExtras().getString(TAG_AUTHOR);
+		String change_log = getIntent().getExtras().getString(TAG_CHANGE_LOG);
 
 		setTitle(name);
 		setActionBarButtonCloseRight();
@@ -56,11 +58,13 @@ public class NModDescriptionActivity extends BaseActivity
 		AppCompatTextView textViewPackageName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewNModPackageName);
 		textViewPackageName.setText(nmodPackageName);
 		AppCompatTextView textViewDescription=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewDescription);
-		textViewDescription.setText(description);
+		textViewDescription.setText(description == null?getString(R.string.nmod_description_unknow):description);
 		AppCompatTextView textViewAuthor=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewAuthor);
-		textViewAuthor.setText(author);
+		textViewAuthor.setText(author == null?getString(R.string.nmod_description_unknow):author);
 		AppCompatTextView textViewVersionName=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewVersionName);
-		textViewVersionName.setText(version_name);
+		textViewVersionName.setText(version_name == null?getString(R.string.nmod_description_unknow):version_name);
+		AppCompatTextView textViewWhatsNew=(AppCompatTextView)findViewById(R.id.moddedpenmoddescriptionTextViewWhatsNew);
+		textViewWhatsNew.setText(change_log == null?getString(R.string.nmod_description_unknow):change_log);
 	}
 
 	public static void startThisActivity(Context context, NMod nmod)
@@ -72,6 +76,7 @@ public class NModDescriptionActivity extends BaseActivity
 		bundle.putString(TAG_DESCRIPTION, nmod.getDescription());
 		bundle.putString(TAG_AUTHOR, nmod.getAuthor());
 		bundle.putString(TAG_VERSION_NAME, nmod.getVersionName());
+		bundle.putString(TAG_CHANGE_LOG, nmod.getChangeLog());
 		File iconPath = nmod.copyIconToData();
 		if (iconPath != null)
 			bundle.putString(TAG_ICON_PATH, iconPath.getAbsolutePath());

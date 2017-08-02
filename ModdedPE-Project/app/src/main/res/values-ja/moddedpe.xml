@@ -102,6 +102,8 @@
 
 	<string name="nmod_description_about_version_name">バージョン名:</string>
 
+	<string name="nmod_description_whatsnew_title">What\'s New</string>
+
 	<string name="nmod_description_unknow">不明</string>
 
 	<string name="nmod_imported_view_more">もっと見るにはボタンをクリックしてください。</string>
