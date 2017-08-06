@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_version">2.2</string>
+	<string name="app_version">2.2.1</string>
 	<string-array name="target_mcpe_versions">
 		<item>^1[.]2[.]</item>
 	</string-array>

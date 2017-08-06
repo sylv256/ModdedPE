@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.AppCompatTextView;
-import android.text.format.Time;
 import android.widget.LinearLayout;
 
 import org.mcal.moddedpe_new.R;
@@ -35,9 +34,7 @@ public class PreloadActivity extends BaseActivity
 
 		AppCompatTextView tipsText = (AppCompatTextView)findViewById(R.id.moddedpe_preloading_text);
 		String[] tipsArray = getResources().getStringArray(R.array.preloading_tips_text);
-		Time currentTime = new Time();
-		currentTime.setToNow();
-		tipsText.setText(tipsArray[new Random(currentTime.toMillis(false)).nextInt(tipsArray.length)]);
+		tipsText.setText(tipsArray[new Random().nextInt(tipsArray.length)]);
 
 		mPreloadingMessageLayout = (LinearLayout)findViewById(R.id.moddedpe_preloading_texts_adapted_layput);
 
@@ -87,12 +84,6 @@ public class PreloadActivity extends BaseActivity
 						}
 
 						@Override
-						public void onLoadGameLauncherLib()
-						{
-							writeNewText(getString(R.string.preloading_loading_lib_game_launcher));
-						}
-
-						@Override
 						public void onLoadFModLib()
 						{
 							writeNewText(getString(R.string.preloading_loading_lib_fmod));
@@ -105,9 +96,9 @@ public class PreloadActivity extends BaseActivity
 						}
 
 						@Override
-						public void onLoadNModAPILib()
+						public void onLoadPESdkLib()
 						{
-							writeNewText(getString(R.string.preloading_loading_lib_nmodapi));
+							writeNewText(getString(R.string.preloading_loading_lib_pesdk));
 						}
 
 						@Override

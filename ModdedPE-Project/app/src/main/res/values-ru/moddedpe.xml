@@ -171,9 +171,9 @@
 
 <string name="preloading_initing">Запускаем лаунчер</string>
 
-<string name="preloading_initing_info">--NModAPI Версия:%1$s\n--Версия MinecraftPE:%2$s</string>
+<string name="preloading_initing_info">--NModAPI Версия:%1$s\n--Версия Minecraft:%2$s</string>
 
-<string name="preloading_initing_info_safe_mode">--Безопасный режим вкл.\n--Версия MinecraftPE:%1$s</string>
+<string name="preloading_initing_info_safe_mode">--Безопасный режим вкл.\n--Версия Minecraft:%1$s</string>
 
 <string name="preloading_initing_loading_libs">Загрузка Native Libs</string>
 
@@ -185,7 +185,7 @@
 
 <string name="preloading_loading_lib_minecraftpe">--Загрузка libminecraftpe.so</string>
 
-<string name="preloading_loading_lib_nmodapi">--Загрузка libnmodapi.so</string>
+<string name="preloading_loading_lib_pesdk">--Загрузка libpesdk.so</string>
 
 <string name="preloading_initing_loading_libs_done">Загрузка Native Libs завершена</string>
 
@@ -254,7 +254,7 @@
 
 <string name="main_default_minecraft_title">Minecraft PE : Default</string>
 
-<string name="no_available_mcpe_version_found">ModdedPE нашёл несовместимую версию MinecraftPE (%1$s) на этом устройстве.(ModdedPE совместим с %2$s!)\nЕсли если вы продолжите запуск, то ModdedPE может вылететь или заглючить.</string>
+<string name="no_available_mcpe_version_found">ModdedPE нашёл несовместимую версию Minecraft (%1$s) на этом устройстве.(ModdedPE совместим с %2$s!)\nЕсли если вы продолжите запуск, то ModdedPE может вылететь или заглючить.</string>
 
 <string name="no_available_mcpe_version_found_title">Неподходящая версия Minecraft:PE</string>
 
@@ -302,8 +302,8 @@
 
 	<!--Enable Warnings-->
 	<string name="enable_warning_unsupported_title">Unsupported Version</string>
-	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
-	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support Minecraft %2$s yet.Please update NMod %1$s.</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support Minecraft %2$s yet.You can enable it but may cause issues or crashes.</string>
 
 	<!--Permissions-->
 	<string name="permission_grant_failed_title">Permission Grant Failed</string>

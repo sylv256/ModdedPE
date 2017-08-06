@@ -71,7 +71,7 @@
 	<string name="preferences_summary_safe_mode">Desabilitar todos os nmods.</string>
 	<string name="preferences_title_data_saved_path">Caminho de dados do jogo</string>
 	<string name="preferences_summary_data_saved_path">Caminho do arquivo onde o jogo economiza dados.</string>
-	<string name="preferences_title_game_pkg_name">Nome do pacote MinecraftPE</string>
+	<string name="preferences_title_game_pkg_name">Nome do pacote Minecraft</string>
 	<string name="preferences_summary_game_pkg_name">Mude o nome do pacote do jogo aqui.</string>
 	<string name="preferences_update_message_data_path">Caminho de dados definido com sucesso:%1$s</string>
 	<string name="preferences_update_message_reset_data_path">Caminho de dados redefinido com sucesso</string>
@@ -87,14 +87,14 @@
 	<string name="opengame_loading_blocks_message">Um bloco,dois blocos,três blocos…</string>
 	<string name="opengame_loading">Carregando&#8321;</string>
 	<string name="preloading_initing">Inicializando Launcher</string>
-	<string name="preloading_initing_info">--NModAPI Versão:%1$s\n--MinecraftPE Versão:%2$s</string>
-	<string name="preloading_initing_info_safe_mode">--Modo de segurança ativo\n--MinecraftPE Versão:%1$s</string>
+	<string name="preloading_initing_info">--NModAPI Versão:%1$s\n--Minecraft Versão:%2$s</string>
+	<string name="preloading_initing_info_safe_mode">--Modo de segurança ativo\n--Minecraft Versão:%1$s</string>
 	<string name="preloading_initing_loading_libs">Carregando bibliotecas Nativas</string>
 	<string name="preloading_loading_lib_substrate">--Carregando libsubstrate.so</string>
 	<string name="preloading_loading_lib_game_launcher">--Carregando libpesdk-game-launcher.so</string>
 	<string name="preloading_loading_lib_fmod">--Carregando libfmod.so</string>
 	<string name="preloading_loading_lib_minecraftpe">--Carregando libminecraftpe.so</string>
-	<string name="preloading_loading_lib_nmodapi">--Carregando libnmodapi.so</string>
+	<string name="preloading_loading_lib_pesdk">--Carregando libpesdk.so</string>
 	<string name="preloading_initing_loading_libs_done">Carregando Native Libs</string>
 	<string name="preloading_nmod_start_loading">Carregando NMods</string>
 	<string name="preloading_nmod_loaded">--Carregado NMod:%1$s</string>
@@ -129,14 +129,14 @@
 	<!--Main Activity-->
 	<string name="main_play">Toque</string>
 	<string name="main_reloading_title">Recarregar&#8321;</string>
-	<string name="main_default_minecraft_title">MinecraftPE : Padrão</string>
-	<string name="no_available_mcpe_version_found">O ModdedPE encontrou uma versão não suportada do MinecraftPE (%1$s) neste aparelho.(ModdedPE suporta apenas %2$s!)\nSe continuar a abrir o jogo, o ModdedPE pode falhar ou causar problemas.</string>
+	<string name="main_default_minecraft_title">Minecraft : Padrão</string>
+	<string name="no_available_mcpe_version_found">O ModdedPE encontrou uma versão não suportada do Minecraft (%1$s) neste aparelho.(ModdedPE suporta apenas %2$s!)\nSe continuar a abrir o jogo, o ModdedPE pode falhar ou causar problemas.</string>
 	<string name="no_available_mcpe_version_found_title">Versão não suportada do Minecraft: PE</string>
 	<string name="no_available_mcpe_version_continue">Continuar (DESCONTINUADA!)</string>
 	<string name="safe_mode_on_title">Modo de segurança está ativo</string>
 	<string name="safe_mode_on_message">Com o mesmo modo ativado, o ModdedPE não carregou nenhum NMod e todas as funções nas configurações do ModdedPE não funcionarão.</string>
-	<string name="no_mcpe_found">ModdedPE é um launcher do Minecraft: PE, mas não conseguimos encontrar o MinecraftPE (Feito Por Mojang) neste dispositivo.</string>
-	<string name="no_mcpe_found_title">MinecraftPE não encontrado.</string>
+	<string name="no_mcpe_found">ModdedPE é um launcher do Minecraft: PE, mas não conseguimos encontrar o Minecraft (Feito Por Mojang) neste dispositivo.</string>
+	<string name="no_mcpe_found_title">Minecraft não encontrado.</string>
 
 	<!--Manage NMods-->
 	<string name="manage_nmod_no_nmod_found">Nenhum Mod encontrado neste dispositivo.</string>
@@ -158,8 +158,8 @@
 
 	<!--Enable Warnings-->
 	<string name="enable_warning_unsupported_title">Unsupported Version</string>
-	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
-	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support Minecraft %2$s yet.Please update NMod %1$s.</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support Minecraft %2$s yet.You can enable it but may cause issues or crashes.</string>
 
 	<!--Permissions-->
 	<string name="permission_grant_failed_title">Permission Grant Failed</string>

@@ -10,6 +10,17 @@ import org.mcal.pesdk.PESdk;
 
 public class MinecraftActivity extends com.mojang.minecraftpe.MainActivity
 {
+	protected PESdk getPESdk()
+	{
+		return ModdedPEApplication.mPESdk;
+	}
+
+	@Override
+	public AssetManager getAssets()
+	{
+		return getPESdk().getGameManager().getAssets();
+	}
+
 	@Override
 	public void onCreate(Bundle p1)
 	{
@@ -22,17 +33,6 @@ public class MinecraftActivity extends com.mojang.minecraftpe.MainActivity
 	{
 		getPESdk().getGameManager().onMinecraftActivityFinish(this);
 		super.onDestroy();
-	}
-	
-	protected PESdk getPESdk()
-	{
-		return ModdedPEApplication.mPESdk;
-	}
-
-	@Override
-	public AssetManager getAssets()
-	{
-		return getPESdk().getGameManager().getAssets();
 	}
 
 	@Override

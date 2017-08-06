@@ -68,7 +68,7 @@
 	<string name="preferences_summary_safe_mode">Tüm NMod\'ları devre dışı bırak</string>
 	<string name="preferences_title_data_saved_path">Oyun Veri Dosyaları Yolu</string>
 	<string name="preferences_summary_data_saved_path">Oyun verisi kaydedilen dosya yolu.</string>
-	<string name="preferences_title_game_pkg_name">MinecraftPE Paket Adı.</string>
+	<string name="preferences_title_game_pkg_name">Minecraft Paket Adı.</string>
 	<string name="preferences_summary_game_pkg_name">Uygulama paket adını değiştir.</string>
 	<string name="preferences_update_message_data_path">Uygulama veri yolu başarılı bir şekilde değiştirilildi:%1$s</string>
 	<string name="preferences_update_message_reset_data_path">Veri yolu başarılı bir şekilde sıfırlandı.</string>
@@ -83,14 +83,14 @@
 	<string name="opengame_loading_blocks_message">Bir blok,iki blok,üç blok…</string>
 	<string name="opengame_loading">Yükleniyor</string>
 	<string name="preloading_initing">Başlatılıyor</string>
-	<string name="preloading_initing_info">--NModAPI Versiyonu:%1$s\n--MinecraftPE Versiyonu:%2$s</string>
-	<string name="preloading_initing_info_safe_mode">--Güvenli Mod Açık\n--MinecraftPE Versiyonu:%1$s</string>
+	<string name="preloading_initing_info">--NModAPI Versiyonu:%1$s\n--Minecraft Versiyonu:%2$s</string>
+	<string name="preloading_initing_info_safe_mode">--Güvenli Mod Açık\n--Minecraft Versiyonu:%1$s</string>
 	<string name="preloading_initing_loading_libs">Native Kütüphaneleri Yükleniyor&#8320;</string>
 	<string name="preloading_loading_lib_substrate">--libsubstrate.so yükleniyor</string>
 	<string name="preloading_loading_lib_game_launcher">--libpesdk-game-launcher.so yükleniyor</string>
 	<string name="preloading_loading_lib_fmod">--libfmod.so yükleniyor</string>
 	<string name="preloading_loading_lib_minecraftpe">--libminecraftpe.so yükleniyor</string>
-	<string name="preloading_loading_lib_nmodapi">--libnmodapi.so yükleniyor</string>
+	<string name="preloading_loading_lib_pesdk">--libpesdk.so yükleniyor</string>
 	<string name="preloading_initing_loading_libs_done">Native Kütüphaneleri yüklemesi tamamlandı.</string>
 	<string name="preloading_nmod_start_loading">NMods yükleniyor</string>
 	<string name="preloading_nmod_loaded">--NMod:%1$s yüklendi</string>
@@ -122,14 +122,14 @@
 	<!--Main Activity-->
 	<string name="main_play">Oyna</string>
 	<string name="main_reloading_title">Yeniden Yükleniyor</string>
-	<string name="main_default_minecraft_title">MinecraftPE : Varsayılan</string>
-	<string name="no_available_mcpe_version_found">ModdedPE desteklenmeyen bir MinecraftPE sürümü tespit etti.(%1$s)(ModdedPE sadece şu versiyonları destekler: %2$s!)\n Oyunu başlatmak bazı hatalara veya oyun esnasında çökmelere sebep olabilir!</string>
+	<string name="main_default_minecraft_title">Minecraft : Varsayılan</string>
+	<string name="no_available_mcpe_version_found">ModdedPE desteklenmeyen bir Minecraft sürümü tespit etti.(%1$s)(ModdedPE sadece şu versiyonları destekler: %2$s!)\n Oyunu başlatmak bazı hatalara veya oyun esnasında çökmelere sebep olabilir!</string>
 	<string name="no_available_mcpe_version_found_title">Minecraft:PE sürümü desteklenmiyor</string>
 	<string name="no_available_mcpe_version_continue">Devam Et(Önerilmez!)</string>
 	<string name="safe_mode_on_title">Güvenli Mod Aktif</string>
 	<string name="safe_mode_on_message">Aynı mod açıkken, ModdedPE herhangi bir NMod yükleyemez ve ModdedPE \ \'nin ayarlarındaki tüm işlevler çalışamaz.</string>
-	<string name="no_mcpe_found">ModdedPE bir Minecraft:PE başlatıcısıdır,bu yüzden bu cihazda MinecraftPE(Mojang tarafından yapılmış) kurulu olmalıdır.</string>
-	<string name="no_mcpe_found_title">MinecraftPE bulunamadı.</string>
+	<string name="no_mcpe_found">ModdedPE bir Minecraft:PE başlatıcısıdır,bu yüzden bu cihazda Minecraft(Mojang tarafından yapılmış) kurulu olmalıdır.</string>
+	<string name="no_mcpe_found_title">Minecraft bulunamadı.</string>
 	<!--Manage NMods-->
 	<string name="manage_nmod_no_nmod_found">Bu cihazda hiçbir NMod bulunamadı.</string>
 	<!--Dir Picker-->
@@ -147,8 +147,8 @@
 
 		<!--Enable Warnings-->
 	<string name="enable_warning_unsupported_title">Unsupported Version</string>
-	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support MinecraftPE %2$s yet.Please update NMod %1$s.</string>
-	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support MinecraftPE %2$s yet.You can enable it but may cause issues or crashes.</string>
+	<string name="enable_warning_unsupported_message">NMod %1$s hasn\'t support Minecraft %2$s yet.Please update NMod %1$s.</string>
+	<string name="enable_warning_unsupported_message_if_next">NMod %1$s hasn\'t support Minecraft %2$s yet.You can enable it but may cause issues or crashes.</string>
 
 	<!--Permissions-->
 	<string name="permission_grant_failed_title">Permission Grant Failed</string>

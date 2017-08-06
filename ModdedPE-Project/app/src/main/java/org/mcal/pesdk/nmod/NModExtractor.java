@@ -251,7 +251,7 @@ class NModExtractor
 		ZipEntry manifest1 = zipFile.getEntry(NMod.MANIFEST_NAME);
 		ZipEntry manifest2 = zipFile.getEntry("assets" + File.separator + NMod.MANIFEST_NAME);
 		if (manifest1 != null && manifest2 != null)
-			throw new ExtractFailedException(ExtractFailedException.TYPE_REDUNDANT_MANIFEST, new RuntimeException("ModdedPE found two nmod_manifest.json in this file but didn't know which one to read.Please delete one.(/nmod_manifest.json or /assets/nmod_manifest.json)"));
+				throw new ExtractFailedException(ExtractFailedException.TYPE_REDUNDANT_MANIFEST, new RuntimeException("NModAPI found two nmod_manifest.json in this file but didn't know which one to read.Please delete one.(/nmod_manifest.json or /assets/nmod_manifest.json)"));
 		if (manifest1 == null && manifest2 == null)
 			throw new ExtractFailedException(ExtractFailedException.TYPE_NO_MANIFEST, new RuntimeException("There is no nmod_manifest.json found in this file."));
 		ZipEntry manifest = manifest1 == null ?manifest2: manifest1;

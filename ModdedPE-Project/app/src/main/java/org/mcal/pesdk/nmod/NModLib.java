@@ -27,12 +27,6 @@ public class NModLib
 		return nativeCallOnLoad(mName, mcver, apiVer);
 	}
 
-	static
-	{
-		nativeRegisterNatives(NModLib.class);
-	}
-	
-	private static native boolean nativeRegisterNatives(Class cls);
 	private static native boolean nativeCallOnActivityFinish(String name, MainActivity mainActivity);
 	private static native boolean nativeCallOnLoad(String name, String mcVersion, String apiVersion);
 	private static native boolean nativeCallOnActivityCreate(String mame, MainActivity mainActivity, Bundle savedInstanceState);

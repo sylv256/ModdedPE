@@ -142,7 +142,7 @@
 
     <string name="preferences_summary_data_saved_path">Fichier ou le jeu se sauvegarde.</string>
 
-    <string name="preferences_title_game_pkg_name">Nom de Package pour MinecraftPE</string>
+    <string name="preferences_title_game_pkg_name">Nom de Package pour Minecraft</string>
 
     <string name="preferences_summary_game_pkg_name">Change le Game Package ici.</string>
 
@@ -173,9 +173,9 @@
 
     <string name="preloading_initing">Initialisation du Launcher</string>
 
-    <string name="preloading_initing_info">--Version de l\'API NMod:%1$s\n--Version de MinecraftPE:%2$s</string>
+    <string name="preloading_initing_info">--Version de l\'API NMod:%1$s\n--Version de Minecraft:%2$s</string>
 
-    <string name="preloading_initing_info_safe_mode">--Safe Mode Actif\n--Version de MinecraftPE:%1$s</string>
+    <string name="preloading_initing_info_safe_mode">--Safe Mode Actif\n--Version de Minecraft:%1$s</string>
 
     <string name="preloading_initing_loading_libs">Chargement des libraires requises..</string>
 
@@ -187,7 +187,7 @@
 
     <string name="preloading_loading_lib_minecraftpe">--Chargement de libminecraftpe.so</string>
 
-    <string name="preloading_loading_lib_nmodapi">--Chargement de libnmodapi.so</string>
+    <string name="preloading_loading_lib_pesdk">--Chargement de libpesdk.so</string>
 
     <string name="preloading_initing_loading_libs_done">Chargement des Librairies requises terminé.</string>
 
@@ -256,7 +256,7 @@
 
     <string name="main_default_minecraft_title">Minecraft Pocket Édition par Défaut</string>
 
-    <string name="no_available_mcpe_version_found">ModdedPE n\'a pas trouvé de version supportée de MinecraftPE (%1$s) sur cet appareil.(ModdedPE ne supporte que %2$s!)\nSi vous continuez à ouvrir le jeu, ModdedPE pourrait crash et créer des issues !</string>
+    <string name="no_available_mcpe_version_found">ModdedPE n\'a pas trouvé de version supportée de Minecraft (%1$s) sur cet appareil.(ModdedPE ne supporte que %2$s!)\nSi vous continuez à ouvrir le jeu, ModdedPE pourrait crash et créer des issues !</string>
 
     <string name="no_available_mcpe_version_found_title">Version non supportée de Minecraft:PE</string>
 
@@ -266,9 +266,9 @@
 
     <string name="safe_mode_on_message">Avec le safe mode actif, tous vos NMods seront désactivés ainsi que vos paramètres.</string>
 
-    <string name="no_mcpe_found">ModdedPE est un launcher pour Minecraft:PE,mais nous n\'avons pas trouvé de MinecraftPE(Fait par MojangAB) installé sur cet appareil.</string>
+    <string name="no_mcpe_found">ModdedPE est un launcher pour Minecraft:PE,mais nous n\'avons pas trouvé de Minecraft(Fait par MojangAB) installé sur cet appareil.</string>
 
-    <string name="no_mcpe_found_title">MinecraftPE non-installé</string>
+    <string name="no_mcpe_found_title">Minecraft non-installé</string>
 
     <!--Manage NMods-->
 
@@ -291,7 +291,7 @@
 
     <string name="pick_tips_title">Tips</string>
 
-    <string name="pick_tips_message">Voulez vous vraiment renommer le MinecraftPE Package en %1$s[%2$s]?\nModdedPE exécutera un redémarrage.</string>
+    <string name="pick_tips_message">Voulez vous vraiment renommer le Minecraft Package en %1$s[%2$s]?\nModdedPE exécutera un redémarrage.</string>
 
     <string name="pick_tips_reset_message">Voulez vous vraiment le nom de Package par défaut ?\nModdedPE exécutera un redémarrage.</string>
 
@@ -307,9 +307,9 @@
 
     <string name="enable_warning_unsupported_title">Version non supportée</string>
 
-    <string name="enable_warning_unsupported_message">NMod %1$s ne supporte pas encore MinecraftPE %2$s. Mettez à jour NMod %1$s s\'il vous plaît.</string>
+    <string name="enable_warning_unsupported_message">NMod %1$s ne supporte pas encore Minecraft %2$s. Mettez à jour NMod %1$s s\'il vous plaît.</string>
 
-    <string name="enable_warning_unsupported_message_if_next">NMod %1$s ne supporte pas encore MinecraftPE %2$s. Vous pouvez le lancer, cependant l\'application aura des risques de crash ou autres.</string>
+    <string name="enable_warning_unsupported_message_if_next">NMod %1$s ne supporte pas encore Minecraft %2$s. Vous pouvez le lancer, cependant l\'application aura des risques de crash ou autres.</string>
 
     <!--Permissions-->
 
