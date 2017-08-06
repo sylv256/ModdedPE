@@ -9,8 +9,8 @@ android {
         //DO NOT modify targetSdkVersion!KEEP IT 21!
         //If not,libminecraftpe.so will not be linked successfully!
         targetSdkVersion 21
-        versionCode 56
-        versionName "2.2"
+        versionCode 57
+        versionName "2.2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
